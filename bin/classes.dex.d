@@ -22,6 +22,7 @@
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$id.class \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R.class \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/MainActivity$1.class \
+/home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$dimen.class \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$attr.class \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$1.class \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$menu.class \

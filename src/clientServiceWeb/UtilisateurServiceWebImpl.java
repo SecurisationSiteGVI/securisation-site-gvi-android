@@ -4,6 +4,7 @@
  */
 package clientServiceWeb;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import entitys.Technicien;
 import java.io.*;
@@ -305,11 +306,12 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     private class RESTBackGround extends AsyncTask<Object, Void, Object> {
 
+        
         @Override
         protected Object doInBackground(Object... params) {
             Technicien technicien = new Technicien();
             try {
-                
+
                 Technicien utilisateur = (Technicien) params[0];
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -390,17 +392,18 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                     }
                 }
                 conn.disconnect();
-               
+
             } catch (ParserConfigurationException ex) {
-                technicien=null;
+                technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SAXException ex) {
-                technicien=null;
+                technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                technicien=null;
+                technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }  return technicien;
+            }
+            return technicien;
         }
     }
 }
