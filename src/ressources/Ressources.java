@@ -10,7 +10,7 @@ package ressources;
  */
 public class Ressources {
     private final static String protocol ="http://";
-    private final static String serveurURL ="192.168.1.11";/*"localhost""172.16.79.128"*/;
+    private final static String serveurURL ="192.168.1.11";/*"localhost""172.16.79.128";*/
     private final static int  port = 8080;
     private final static String applicationName ="securisation-site-gvi-web";
     private final static String resourcesPath ="webresources";
