@@ -4,6 +4,7 @@
  */
 package clientServiceWeb;
 
+import android.os.AsyncTask;
 import entitys.Technicien;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -20,6 +21,10 @@ import entitys.Utilisateur;
 
 import java.net.ProtocolException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 import ressources.Ressources;
 
 /**
@@ -248,11 +253,11 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output;
-        boolean ret= false;
+        boolean ret = false;
         while ((output = br.readLine()) != null) {
-            System.out.println("'"+output+"'");
+            System.out.println("'" + output + "'");
         }
-        if(output.equals("true")){
+        if (output.equals("true")) {
             ret = true;
         }
         conn.disconnect();
@@ -261,86 +266,8 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     @Override
     public Technicien verificationConnexion(Technicien utilisateur) throws Exception {
-        Technicien technicien = new Technicien();
-        Long id = utilisateur.getId();
-        String prenom = utilisateur.getPrenom();
-        String nom = utilisateur.getNom();
-        String email = utilisateur.getEmail();
-        String telephoneFixe = utilisateur.getTelephoneFixe();
-        String telephonePortable = utilisateur.getTelephonePortable();
-        String ville = utilisateur.getVille();
-        int codePostale = utilisateur.getCodePostale();
-        String adresse = utilisateur.getAdresse();
-        boolean homme = utilisateur.isHomme();
-        String login = utilisateur.getLogin();
-        String password = utilisateur.getPassword();
-        Date dateDeNaissance = utilisateur.getDateDeNaissance();
-        URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/verificationConnexion");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json");
-        String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\","
-                + "\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ","
-                + "\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
-        OutputStream os = conn.getOutputStream();
-        os.write(input.getBytes());
-        os.flush();
-        InputStream fluxLecture = null;
-        fluxLecture = conn.getInputStream();
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fluxLecture);
-        doc.getDocumentElement().normalize();
-        try {
-            NodeList nList = doc.getElementsByTagName("administrateur");
-            Node nNode = nList.item(0);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                technicien.setEmail(getTagValue("email", eElement));
-                technicien.setId(Long.parseLong(getTagValue("id", eElement)));
-                technicien.setLogin(getTagValue("login", eElement));
-                technicien.setNom(getTagValue("nom", eElement));
-                technicien.setPassword(getTagValue("password", eElement));
-                technicien.setPrenom(getTagValue("prenom", eElement));
-                technicien.setVille(getTagValue("ville", eElement));
-                technicien.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
-                technicien.setAdresse(getTagValue("adresse", eElement));
-                technicien.setTelephonePortable(getTagValue("telephonePortable", eElement));
-                technicien.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
-                technicien.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
-                if (getTagValue("dateDeNaissance", eElement) != null) {
-                    long parse = Date.parse(getTagValue("dateDeNaissance", eElement));
-                    Date d = new Date(parse);
-                    technicien.setDateDeNaissance(d);
-                }
-
-            }
-        } catch (Exception e) {
-            NodeList nList = doc.getElementsByTagName("technicien");
-            Node nNode = nList.item(0);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                technicien.setEmail(getTagValue("email", eElement));
-                technicien.setId(Long.parseLong(getTagValue("id", eElement)));
-                technicien.setLogin(getTagValue("login", eElement));
-                technicien.setNom(getTagValue("nom", eElement));
-                technicien.setPassword(getTagValue("password", eElement));
-                technicien.setPrenom(getTagValue("prenom", eElement));
-                technicien.setVille(getTagValue("ville", eElement));
-                technicien.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
-                technicien.setAdresse(getTagValue("adresse", eElement));
-                technicien.setTelephonePortable(getTagValue("telephonePortable", eElement));
-                technicien.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
-                technicien.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
-                if (getTagValue("dateDeNaissance", eElement) != null) {
-                    long parse = Date.parse(getTagValue("dateDeNaissance", eElement));
-                    Date d = new Date(parse);
-                    technicien.setDateDeNaissance(d);
-                }
-            }
-        }
-        conn.disconnect();
+        AsyncTask<Object, Void, Object> ret = new RESTBackGround().execute(utilisateur);
+        Technicien technicien = (Technicien) ret.get();
         return technicien;
     }
 
@@ -374,5 +301,106 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             }
         }
         return utilisateurs;
+    }
+
+    private class RESTBackGround extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Technicien technicien = new Technicien();
+            try {
+                
+                Technicien utilisateur = (Technicien) params[0];
+                Long id = utilisateur.getId();
+                String prenom = utilisateur.getPrenom();
+                String nom = utilisateur.getNom();
+                String email = utilisateur.getEmail();
+                String telephoneFixe = utilisateur.getTelephoneFixe();
+                String telephonePortable = utilisateur.getTelephonePortable();
+                String ville = utilisateur.getVille();
+                int codePostale = utilisateur.getCodePostale();
+                String adresse = utilisateur.getAdresse();
+                boolean homme = utilisateur.isHomme();
+                String login = utilisateur.getLogin();
+                String password = utilisateur.getPassword();
+                Date dateDeNaissance = utilisateur.getDateDeNaissance();
+                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/verificationConnexion");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\","
+                        + "\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ","
+                        + "\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
+                OutputStream os = conn.getOutputStream();
+                os.write(input.getBytes());
+                os.flush();
+                InputStream fluxLecture = null;
+                fluxLecture = conn.getInputStream();
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(fluxLecture);
+                doc.getDocumentElement().normalize();
+                try {
+                    NodeList nList = doc.getElementsByTagName("administrateur");
+                    Node nNode = nList.item(0);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        technicien.setEmail(getTagValue("email", eElement));
+                        technicien.setId(Long.parseLong(getTagValue("id", eElement)));
+                        technicien.setLogin(getTagValue("login", eElement));
+                        technicien.setNom(getTagValue("nom", eElement));
+                        technicien.setPassword(getTagValue("password", eElement));
+                        technicien.setPrenom(getTagValue("prenom", eElement));
+                        technicien.setVille(getTagValue("ville", eElement));
+                        technicien.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
+                        technicien.setAdresse(getTagValue("adresse", eElement));
+                        technicien.setTelephonePortable(getTagValue("telephonePortable", eElement));
+                        technicien.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
+                        technicien.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
+                        if (getTagValue("dateDeNaissance", eElement) != null) {
+                            long parse = Date.parse(getTagValue("dateDeNaissance", eElement));
+                            Date d = new Date(parse);
+                            technicien.setDateDeNaissance(d);
+                        }
+
+                    }
+                } catch (Exception e) {
+                    NodeList nList = doc.getElementsByTagName("technicien");
+                    Node nNode = nList.item(0);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        technicien.setEmail(getTagValue("email", eElement));
+                        technicien.setId(Long.parseLong(getTagValue("id", eElement)));
+                        technicien.setLogin(getTagValue("login", eElement));
+                        technicien.setNom(getTagValue("nom", eElement));
+                        technicien.setPassword(getTagValue("password", eElement));
+                        technicien.setPrenom(getTagValue("prenom", eElement));
+                        technicien.setVille(getTagValue("ville", eElement));
+                        technicien.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
+                        technicien.setAdresse(getTagValue("adresse", eElement));
+                        technicien.setTelephonePortable(getTagValue("telephonePortable", eElement));
+                        technicien.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
+                        technicien.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
+                        if (getTagValue("dateDeNaissance", eElement) != null) {
+                            long parse = Date.parse(getTagValue("dateDeNaissance", eElement));
+                            Date d = new Date(parse);
+                            technicien.setDateDeNaissance(d);
+                        }
+                    }
+                }
+                conn.disconnect();
+               
+            } catch (ParserConfigurationException ex) {
+                technicien=null;
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                technicien=null;
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                technicien=null;
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }  return technicien;
+        }
     }
 }
