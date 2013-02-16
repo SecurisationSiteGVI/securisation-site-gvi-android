@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Sécurisation site gvi</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="image_content_description">Un Android </string>
+    <string name="create_account">Créer un compte</string>
+    <string name="email">Adresse email</string>
+    <string name="password">Mot de passe</string>
+    <string name="connect">Se connecter</string>
+    <string name="labelConnexion">Veuiller vous connecter.</string>
+    <string name="login">Login : </string>
+    <string name="mdp">Mot de passe : </string>
+    <string name="connexion">Connexion</string>
+    <string name="title_activity_accueil">AccueilActivity</string>
 </resources>
