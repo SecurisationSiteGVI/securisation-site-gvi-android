@@ -1,4 +1,4 @@
-/home/damien/NetBeansProjects/securisation-site-gvi-android/gen/fr/securisation_site_gvi/client/R.java \
+/home/damien/NetBeansProjects/securisation-site-gvi-android/bin/securisation-site-gvi-android.ap_ \
  : /home/damien/NetBeansProjects/securisation-site-gvi-android/res/layout-xlarge/main.xml \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/res/layout-xlarge/activity_accueil.xml \
 /home/damien/NetBeansProjects/securisation-site-gvi-android/res/values-v14/styles.xml \
