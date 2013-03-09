@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="fr.securisation_site_gvi.client"
           android:versionCode="1"
+          
           android:versionName="1.0">
     <uses-permission android:name="android.permission.INTERNET" />   
     <uses-sdk
@@ -10,6 +11,7 @@
 
     <application android:label="@string/app_name"
                 android:allowBackup="true" 
+                android:debuggable="true"
                  android:icon="@drawable/ic_launcher"
                  android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
@@ -25,8 +27,12 @@
             android:label="@string/title_activity_accueil" >
         </activity>
         <activity
-            android:name="com.example.test.MenuUtilisateur"
+            android:name=".MenuUtilisateur"
             android:label="@string/title_activity_menu_utilisateur" >
+        </activity>
+        <activity
+            android:name=".ListeUtilisateur"
+            android:label="@string/title_activity_liste_utilisateur" >
         </activity>
     </application> 
     
