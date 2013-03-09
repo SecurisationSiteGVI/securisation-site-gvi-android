@@ -1,6 +1,12 @@
-# view AndroidManifest.xml #generated:23
+# view AndroidManifest.xml #generated:25
 -keep class fr.securisation_site_gvi.client.AccueilActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:15
+# view AndroidManifest.xml #generated:33
+-keep class fr.securisation_site_gvi.client.ListeUtilisateur { <init>(...); }
+
+# view AndroidManifest.xml #generated:17
 -keep class fr.securisation_site_gvi.client.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:29
+-keep class fr.securisation_site_gvi.client.MenuUtilisateur { <init>(...); }
 

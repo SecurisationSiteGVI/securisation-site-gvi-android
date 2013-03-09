@@ -7,6 +7,8 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-xhdpi/ic_action_settings.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/accueilactivity.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_menu_utilisateur.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_liste_utilisateur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_about.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_search_1.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/bg.jpg \

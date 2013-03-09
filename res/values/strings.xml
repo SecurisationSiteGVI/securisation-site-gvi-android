@@ -21,7 +21,7 @@
     <string name="listeUtilisateurs">Liste des utilisateurs</string>
     <string name="ajouterUtilisateur">Ajouter un utilisateur</string>
     <string name="ajouterTechnicien">Ajouter un technicien</string>
-     <string name="voirHistorique">Voir historique</string>
+    <string name="voirHistorique">Voir historique</string>
     <string name="gererLesBadges">Gérer les badges</string>
     <string name="gererLesUtilisateurs">Gérer les utilisateurs</string>
     <string name="gererLesSecteur">Gérer les secteur</string>
@@ -29,4 +29,7 @@
     <string name="gererLesNumerosPredéfinis">Gérer les numéros prédéfinis</string>
     <string name="gererLesAuthorisationDacces">Gérer les authorisation d\'acces</string>
     <string name="title_activity_menu_utilisateur">Menu gérer utilisateurs</string>
+    <string name="precedent">Précedent</string>
+    <string name="suivant">Suivant</string>
+    <string name="title_activity_liste_utilisateur">Liste des utilisateurs</string>
 </resources>
