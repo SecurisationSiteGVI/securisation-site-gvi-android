@@ -21,6 +21,5 @@ public interface UtilisateurServiceWeb {
     public boolean update(Utilisateur utilisateur) throws Exception;
     public boolean loginIsUse(String login) throws Exception;
     public Technicien verificationConnexion(Technicien utilisateur) throws Exception;
-    public void test() throws Exception;
     
 }

@@ -148,31 +148,6 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         return retour;
     }
 
-    @Override
-    public void test() throws Exception {
-
-        URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/1");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Content-Type", "application/json");
-        if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + conn.getResponseCode());
-            } else {
-                System.out.println("Requete envoyé mais pas de réponse du serveur.");
-            }
-        }
-        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-        String output;
-        System.out.println("Output from Server .... \n");
-        while ((output = br.readLine()) != null) {
-            System.out.println(output);
-        }
-        conn.disconnect();
-
-    }
 
     @Override
     public boolean update(Utilisateur utilisateur) throws Exception {
