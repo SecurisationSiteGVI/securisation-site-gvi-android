@@ -45,11 +45,12 @@ public class MainActivity extends Activity {
                 } catch (Exception ex) {
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                progressDialog.dismiss();
+                
                 if (tech == null) {
                     textView.setText("Connexion erreur.");
                    Toast to= Toast.makeText(MainActivity.this,"Il y à une erreur dans votre login ou votre mot de passe.",Toast.LENGTH_LONG);
                    to.show();
+                   progressDialog.dismiss();
                 } else {
                     textView.setText("Connexion réussi.");
                     
