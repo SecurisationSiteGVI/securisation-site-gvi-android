@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sécurisation site gvi</string>
-
     <string name="title_activity_main">MainActivity</string>
     <string name="image_content_description">Un Android </string>
     <string name="create_account">Créer un compte</string>
@@ -13,17 +12,15 @@
     <string name="mdp">Mot de passe : </string>
     <string name="connexion">Connexion</string>
     <string name="title_activity_accueil">AccueilActivity</string>
-
     <string name="menu_settings">Paramètres</string>
-
     <string name="menu_search">Recherche</string>
     <string name="menu_refresh">Rafraichir</string>
     <string name="menu_help">Aide</string>
     <string name="menu_about">A propos</string>
     <string name="next">Suivant</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section1">Section 1</string>
+    <string name="listeUtilisateurs">Liste des utilisateurs</string>
+    <string name="ajouterUtilisateur">Ajouter un utilisateur</string>
+    <string name="ajouterTechnicien">Ajouter un technicien</string>
      <string name="voirHistorique">Voir historique</string>
     <string name="gererLesBadges">Gérer les badges</string>
     <string name="gererLesUtilisateurs">Gérer les utilisateurs</string>
@@ -31,4 +28,5 @@
     <string name="gererLesAppareils">Gérer les appareils</string>
     <string name="gererLesNumerosPredéfinis">Gérer les numéros prédéfinis</string>
     <string name="gererLesAuthorisationDacces">Gérer les authorisation d\'acces</string>
+    <string name="title_activity_menu_utilisateur">Menu gérer utilisateurs</string>
 </resources>
