@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
         this.editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         this.textView = (TextView) findViewById(R.id.textView1);
         this.editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        this.editTextLogin.setText("damienChes");
+        this.editTextPassword.setText("damien");
         this.buttonConnnexion.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Technicien t = new Technicien();
