@@ -24,6 +24,10 @@
             android:name="fr.securisation_site_gvi.client.AccueilActivity"
             android:label="@string/title_activity_accueil" >
         </activity>
+        <activity
+            android:name="com.example.test.MenuUtilisateur"
+            android:label="@string/title_activity_menu_utilisateur" >
+        </activity>
     </application> 
     
 </manifest>
