@@ -24,4 +24,11 @@
     <string name="title_section3">Section 3</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section1">Section 1</string>
+     <string name="voirHistorique">Voir historique</string>
+    <string name="gererLesBadges">Gérer les badges</string>
+    <string name="gererLesUtilisateurs">Gérer les utilisateurs</string>
+    <string name="gererLesSecteur">Gérer les secteur</string>
+    <string name="gererLesAppareils">Gérer les appareils</string>
+    <string name="gererLesNumerosPredéfinis">Gérer les numéros prédéfinis</string>
+    <string name="gererLesAuthorisationDacces">Gérer les authorisation d\'acces</string>
 </resources>
