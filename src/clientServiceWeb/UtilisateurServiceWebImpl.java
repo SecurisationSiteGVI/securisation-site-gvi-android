@@ -19,6 +19,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import entitys.Utilisateur;
+import java.net.MalformedURLException;
 
 import java.net.ProtocolException;
 import java.util.Date;
@@ -148,7 +149,6 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         return retour;
     }
 
-
     @Override
     public boolean update(Utilisateur utilisateur) throws Exception {
         Boolean retour = true;
@@ -242,46 +242,69 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     @Override
     public Technicien verificationConnexion(Technicien utilisateur) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBackGround().execute(utilisateur);
+        AsyncTask<Object, Void, Object> ret = new RESTVerifConnexionBackGround().execute(utilisateur);
         Technicien technicien = (Technicien) ret.get();
         return technicien;
     }
 
     @Override
     public List<Utilisateur> getAll(int from, int nbResut) throws Exception {
-        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-        InputStream fluxLecture = null;
-        URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
-        fluxLecture = url.openStream();
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fluxLecture);
-        doc.getDocumentElement().normalize();
-        NodeList nList = doc.getElementsByTagName("utilisateur");
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Utilisateur utilisateur = new Utilisateur();
-            Node nNode = nList.item(temp);
-            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element eElement = (Element) nNode;
-                utilisateur.setEmail(getTagValue("email", eElement));
-                utilisateur.setId(Long.parseLong(getTagValue("id", eElement)));
-                utilisateur.setVille(getTagValue("ville", eElement));
-                utilisateur.setNom(getTagValue("nom", eElement));
-                utilisateur.setPrenom(getTagValue("prenom", eElement));
-                utilisateur.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
-                utilisateur.setAdresse(getTagValue("adresse", eElement));
-                utilisateur.setTelephonePortable(getTagValue("telephonePortable", eElement));
-                utilisateur.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
-                utilisateur.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
-                utilisateurs.add(utilisateur);
-            }
-        }
+        AsyncTask<Object, Void, Object> ret = new RESTGetAllByRange().execute(from,nbResut);
+        List<Utilisateur> utilisateurs =  (List<Utilisateur>) ret.get();
         return utilisateurs;
+
     }
 
-    private class RESTBackGround extends AsyncTask<Object, Void, Object> {
+    private class RESTGetAllByRange extends AsyncTask<Object, Void, Object> {
 
-        
+        @Override
+        protected Object doInBackground(Object... params) {
+            List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+            try {
+                Integer from = (Integer) params[0];
+                Integer nbResut = (Integer) params[1];
+                InputStream fluxLecture = null;
+                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
+                fluxLecture = url.openStream();
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(fluxLecture);
+                doc.getDocumentElement().normalize();
+                NodeList nList = doc.getElementsByTagName("utilisateur");
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    Utilisateur utilisateur = new Utilisateur();
+                    Node nNode = nList.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        utilisateur.setEmail(getTagValue("email", eElement));
+                        utilisateur.setId(Long.parseLong(getTagValue("id", eElement)));
+                        utilisateur.setVille(getTagValue("ville", eElement));
+                        utilisateur.setNom(getTagValue("nom", eElement));
+                        utilisateur.setPrenom(getTagValue("prenom", eElement));
+                        utilisateur.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
+                        utilisateur.setAdresse(getTagValue("adresse", eElement));
+                        utilisateur.setTelephonePortable(getTagValue("telephonePortable", eElement));
+                        utilisateur.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
+                        utilisateur.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
+                        utilisateurs.add(utilisateur);
+                    }
+                }
+
+            } catch (SAXException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return utilisateurs;
+        }
+    }
+
+    private class RESTVerifConnexionBackGround extends AsyncTask<Object, Void, Object> {
+
         @Override
         protected Object doInBackground(Object... params) {
             Technicien technicien = new Technicien();
