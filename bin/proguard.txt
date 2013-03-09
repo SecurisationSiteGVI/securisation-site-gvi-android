@@ -1,6 +1,6 @@
-# view AndroidManifest.xml #generated:24
+# view AndroidManifest.xml #generated:23
 -keep class fr.securisation_site_gvi.client.AccueilActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:16
+# view AndroidManifest.xml #generated:15
 -keep class fr.securisation_site_gvi.client.MainActivity { <init>(...); }
 
