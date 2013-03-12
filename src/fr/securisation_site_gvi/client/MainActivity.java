@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import clientServiceWeb.UtilisateurServiceWeb;
-import entitys.Technicien;
+import physique.dataOut.UtilisateurServiceWeb;
+import metier.entitys.Technicien;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     private EditText editTextLogin;
     private TextView textView;
     private EditText editTextPassword;
-    private UtilisateurServiceWeb utilisateurSrv = clientServiceWeb.ClientServiceWebFactory.getPersonneClientServiceWeb();
+    private UtilisateurServiceWeb utilisateurSrv = physique.dataOut.PhysiqueDataOutFactory.getPersonneClientServiceWeb();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
