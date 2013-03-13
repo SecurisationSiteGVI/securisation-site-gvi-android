@@ -101,7 +101,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
     }
 
     public Utilisateur getById(Long id) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTGetAllByRange().execute(id);
+        AsyncTask<Object, Void, Object> ret = new RESTGetById().execute(id);
         List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
         return utilisateurs.get(0);
     }
@@ -110,8 +110,9 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         @Override
         protected Object doInBackground(Object... params) {
             List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-            try {
-                Integer id = (Integer) params[0];
+            try {System.out.println("PASSAAAAAAAAAAAAAAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE !!!!!!!!!!!!!!!\n\n\n\n");
+                Long id = (Long) params[0];
+                
                 InputStream fluxLecture = null;
                 URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + id );
                 fluxLecture = url.openStream();
@@ -452,22 +453,10 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     private class RESTVerifConnexionBackGround extends AsyncTask<Object, Void, Object> {
 
-//        @Override
-//	protected void onPreExecute() {
-//		super.onPreExecute();
-//                
-////		ProgressDialog progressDialog = ProgressDialog.show(, "", "Vérification ...", true);
-//	}
-//        @Override
-//	protected void onPostExecute(Void result) {
-//            
-//		Toast.makeText(getApplicationContext(), "Le traitement asynchrone est terminé", Toast.LENGTH_LONG).show();
-//	}
         @Override
         protected Object doInBackground(Object... params) {
             Technicien technicien = new Technicien();
             try {
-
                 Technicien utilisateur = (Technicien) params[0];
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -521,7 +510,6 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                             Date d = new Date(parse);
                             technicien.setDateDeNaissance(d);
                         }
-
                     }
                 } catch (Exception e) {
                     NodeList nList = doc.getElementsByTagName("technicien");
@@ -548,7 +536,6 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                     }
                 }
                 conn.disconnect();
-
             } catch (ParserConfigurationException ex) {
                 technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
