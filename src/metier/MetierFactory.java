@@ -12,10 +12,13 @@ import android.content.Context;
  */
 public class MetierFactory {
     private static RessourceService ressourceSrv;
-
+    private static UtilisateurService utilisateurSrv = new UtilisateurServiceImpl();
     public static RessourceService getRessourceSrv(Context context) {
         MetierFactory.ressourceSrv = new RessourceServiceImpl(context);
         return ressourceSrv;
+    }
+    public static UtilisateurService getUtilisateurSrv() {
+        return utilisateurSrv;
     }
     
     
