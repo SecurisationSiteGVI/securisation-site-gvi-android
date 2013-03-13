@@ -32,4 +32,25 @@
     <string name="precedent">Précedent</string>
     <string name="suivant">Suivant</string>
     <string name="title_activity_liste_utilisateur">Liste des utilisateurs</string>
+    <string name="title_activity_parametres">Parametres</string>
+    <string name="protocol">"Protocol : "</string>
+    <string name="serveurURL">Serveur URL :</string>
+    <string name="port">Port :</string>
+    <string name="applicationName">Nom de l\'application :</string>
+    <string name="ressourcesPth">Chemin des ressources :</string>
+    <string name="valier">Valider</string>
+    <string name="valider">Valider</string>
+    <string name="title_activity_modifier_utilisateur">ModifierUtilisateur</string>
+    <string name="nom">Nom :</string>
+    <string name="prenom">Prénom :</string>
+    <string name="ddNaissance">Date de naissance :</string>
+    <string name="mail">Email :</string>
+    <string name="sexe">Sexe :</string>
+    <string name="fixe">Téléphone fixe :</string>
+    <string name="portable">Téléphone portable :</string>
+    <string name="adresse">Adresse :</string>
+    <string name="codepostale">Code postale :</string>
+    <string name="ville">Ville :</string>
+    <string name="deleteUtilisateur">Supprimer l\'utilisateur</string>
+    <string name="updateUtilisateur">Modifier l\'utilisateur</string>
 </resources>
