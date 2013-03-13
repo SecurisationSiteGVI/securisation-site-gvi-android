@@ -100,6 +100,58 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     }
 
+    public Utilisateur getById(Long id) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTGetAllByRange().execute(id);
+        List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
+        return utilisateurs.get(0);
+    }
+    private class RESTGetById extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+            try {
+                Integer id = (Integer) params[0];
+                InputStream fluxLecture = null;
+                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + id );
+                fluxLecture = url.openStream();
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(fluxLecture);
+                doc.getDocumentElement().normalize();
+                NodeList nList = doc.getElementsByTagName("utilisateur");
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    Utilisateur utilisateur = new Utilisateur();
+                    Node nNode = nList.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        utilisateur.setEmail(getTagValue("email", eElement));
+                        utilisateur.setId(Long.parseLong(getTagValue("id", eElement)));
+                        utilisateur.setVille(getTagValue("ville", eElement));
+                        utilisateur.setNom(getTagValue("nom", eElement));
+                        utilisateur.setPrenom(getTagValue("prenom", eElement));
+                        utilisateur.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
+                        utilisateur.setAdresse(getTagValue("adresse", eElement));
+                        utilisateur.setTelephonePortable(getTagValue("telephonePortable", eElement));
+                        utilisateur.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
+                        utilisateur.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
+                        utilisateurs.add(utilisateur);
+                    }
+                }
+
+            } catch (SAXException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return utilisateurs;
+        }
+    }
+
     private class RESTGetAll extends AsyncTask<Object, Void, Object> {
 
         @Override
