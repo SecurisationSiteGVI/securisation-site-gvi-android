@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import physique.dataOut.UtilisateurServiceWeb;
-import metier.entitys.Technicien;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.entitys.Technicien;
+import physique.dataOut.UtilisateurServiceWeb;
 
 public class MainActivity extends Activity {
 
@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+
         this.buttonConnnexion = (Button) findViewById(R.id.buttonConnexion);
         this.editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         this.textView = (TextView) findViewById(R.id.textView1);
@@ -41,24 +41,23 @@ public class MainActivity extends Activity {
                 t.setLogin(editTextLogin.getText().toString());
                 t.setPassword(editTextPassword.getText().toString());
                 Technicien tech = null;
-                 ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "", "Vérification ...", true);
+                ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "", "Vérification ...", true);
                 try {
                     tech = utilisateurSrv.verificationConnexion(t);
                 } catch (Exception ex) {
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 if (tech == null) {
                     textView.setText("Connexion erreur.");
-                   Toast to= Toast.makeText(MainActivity.this,"Il y à une erreur dans votre login ou votre mot de passe.",Toast.LENGTH_LONG);
-                   to.show();
-                   progressDialog.dismiss();
+                    Toast to = Toast.makeText(MainActivity.this, "Il y à une erreur dans votre login ou votre mot de passe.", Toast.LENGTH_LONG);
+                    to.show();
+                    progressDialog.dismiss();
                 } else {
                     textView.setText("Connexion réussi.");
-                    
                     Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
-
                     startActivity(intent);
+                    progressDialog.dismiss();
                 }
             }
         });
@@ -66,21 +65,23 @@ public class MainActivity extends Activity {
 
 
     }
-    @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_settings:
-			// Comportement du bouton "A Propos"
-			return true;
-		
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                Intent intent = new Intent(MainActivity.this, Parametres.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
