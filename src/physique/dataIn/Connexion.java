@@ -31,10 +31,9 @@ public class Connexion extends SQLiteOpenHelper {
             + RESSOURCE_PORT + " INTEGER);";
     public static final String RESSOURCE_TABLE_DROP = "DROP TABLE IF EXISTS " + RESSOURCE_TABLE_NAME + ";";
     protected final static int VERSION = 1;
-    protected SQLiteDatabase mDb = null;
+    protected SQLiteDatabase mDb;
 
     public Connexion(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        //name nom de la base
         super(context, name, factory, version);
     }
 
@@ -48,7 +47,7 @@ public class Connexion extends SQLiteOpenHelper {
     }
 
     public SQLiteDatabase getBDD() {
-        return mDb;
+        return this.mDb;
     }
 
     @Override

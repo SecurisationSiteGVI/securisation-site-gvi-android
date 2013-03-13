@@ -26,15 +26,16 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
     public static final String RESSOURCE_RESSOURCES_PATH = "ressourcesPath";
     public static final String RESSOURCE_TABLE_NAME = "Ressource";
     private Connexion connexion;
-    private SQLiteDatabase db;
-
+    private SQLiteDatabase db ;
+    private Context c;
     public RessourceServiceDataInServiceImpl(Context c) {
-        this.connexion = new Connexion(c, "Ressource.db", null, Connexion.VERSION);
-        db = this.connexion.getBDD();
+        this.c = c;
     }
 
     public void add(Ressource ressource) throws Exception {
-        connexion.open();
+        this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
+        db = connexion.mDb;
+        this.connexion.open();
         ContentValues values = new ContentValues();
         values.put(RESSOURCE_KEY, 1);
         values.put(RESSOURCE_PROTOCOL, ressource.getProtocol());
@@ -42,14 +43,15 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
         values.put(RESSOURCE_PORT, ressource.getPort());
         values.put(RESSOURCE_APPLICATION_NAME, ressource.getApplicationName());
         values.put(RESSOURCE_RESSOURCES_PATH, ressource.getResourcesPath());
-        db.insert(RESSOURCE_TABLE_NAME, null, values);
+        this.connexion.mDb.insert(RESSOURCE_TABLE_NAME, null, values);
         this.connexion.close();
     }
 
     public Ressource getRessource() throws Exception {
+        this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         this.connexion.open();
-        Cursor c = this.db.query(RESSOURCE_TABLE_NAME, new String[]{RESSOURCE_KEY, RESSOURCE_APPLICATION_NAME,
-                    RESSOURCE_PORT, RESSOURCE_PROTOCOL, RESSOURCE_RESSOURCES_PATH, RESSOURCE_SERVEUR_URL}, 1 + " LIKE 1", null, null, null, null);
+        Cursor c = this.connexion.mDb.query(RESSOURCE_TABLE_NAME, new String[]{RESSOURCE_KEY, RESSOURCE_APPLICATION_NAME,
+                    RESSOURCE_PORT, RESSOURCE_PROTOCOL, RESSOURCE_RESSOURCES_PATH, RESSOURCE_SERVEUR_URL}, 1 + "", null, null, null, null);
         this.connexion.close();
         Ressource ressource = new Ressource();
         ressource.setProtocol(c.getString(c.getColumnIndex(RESSOURCE_PROTOCOL)));
@@ -61,6 +63,7 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
     }
 
     public void update(Ressource ressource) throws Exception {
+        this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         connexion.open();
         ContentValues values = new ContentValues();
         values.put(RESSOURCE_KEY, 1);
@@ -69,7 +72,7 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
         values.put(RESSOURCE_PORT, ressource.getPort());
         values.put(RESSOURCE_APPLICATION_NAME, ressource.getApplicationName());
         values.put(RESSOURCE_RESSOURCES_PATH, ressource.getResourcesPath());
-        db.update(RESSOURCE_TABLE_NAME, values, RESSOURCE_KEY + " = 1", null);
+        this.connexion.mDb.update(RESSOURCE_TABLE_NAME, values, RESSOURCE_KEY + " = 1", null);
         connexion.close();
     }
 }
