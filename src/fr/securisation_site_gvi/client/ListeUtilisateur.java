@@ -2,9 +2,13 @@ package fr.securisation_site_gvi.client;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -16,6 +20,8 @@ import metier.entitys.Utilisateur;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 
 public class ListeUtilisateur extends Activity {
 
@@ -26,6 +32,8 @@ public class ListeUtilisateur extends Activity {
     private int index;
     private int nbLinge = 10;
     private TextView textViewPage;
+    private List<Utilisateur> u;
+    private int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +47,12 @@ public class ListeUtilisateur extends Activity {
         this.index = this.index + nbLinge;
         this.remplirListView();
     }
-    private void remplirListView(){
+
+    private void remplirListView() {
         List<Utilisateur> utilisateurs = null;
         try {
             utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge);
+            this.u = utilisateurs;
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +61,7 @@ public class ListeUtilisateur extends Activity {
             listeStrings[i] = utilisateurs.get(i).toString();
         }
         listUtilisateurs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-        this.textViewPage.setText("Page "+this.getPage());
+        this.textViewPage.setText("Page " + this.getPage());
     }
 
     public void pagePrécédente() {
@@ -74,17 +84,39 @@ public class ListeUtilisateur extends Activity {
         this.listUtilisateurs = (ListView) findViewById(R.id.listeUtilisateurs);
         this.precedent = (Button) findViewById(R.id.boutonUtilisateurPrecedent);
         this.suivant = (Button) findViewById(R.id.boutonUtilisateurSuivant);
-        this.textViewPage =(TextView) findViewById(R.id.listeUtilisateurAffichagePage);
+        this.textViewPage = (TextView) findViewById(R.id.listeUtilisateurAffichagePage);
         this.addActionListnerForAllGraphicalObjects();
     }
 
     private void addActionListnerForAllGraphicalObjects() {
-//        this.listeDesUtilisateurs.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent i = new Intent(MenuUtilisateur.this,ListeUtilisateur.class);
-//                startActivity(i);
-//            }
-//        });
+        this.listUtilisateurs.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                    int position, long id) {
+                pos= position;
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListeUtilisateur.this);
+                builder.setTitle("Utilisateur séléctionné.");
+                builder.setMessage(u.get(position).toString()+" à été séléctionné voulez vous le modifier ?");
+                builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						Intent i = new Intent(ListeUtilisateur.this, ModifierUtilisateur.class);
+                                                i.putExtra("id", u.get(pos).getId());
+                                                startActivityForResult(i, 0);
+						dialog.cancel();
+					}
+				});
+                builder.setNegativeButton("Non",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, just close
+						// the dialog box and do nothing
+						dialog.cancel();
+					}
+				});
+
+                builder.show();
+               
+            }
+        });
         this.precedent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pagePrécédente();
