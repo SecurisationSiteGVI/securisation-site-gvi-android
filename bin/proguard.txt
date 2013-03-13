@@ -10,3 +10,9 @@
 # view AndroidManifest.xml #generated:29
 -keep class fr.securisation_site_gvi.client.MenuUtilisateur { <init>(...); }
 
+# view AndroidManifest.xml #generated:41
+-keep class fr.securisation_site_gvi.client.ModifierUtilisateur { <init>(...); }
+
+# view AndroidManifest.xml #generated:37
+-keep class fr.securisation_site_gvi.client.Parametres { <init>(...); }
+
