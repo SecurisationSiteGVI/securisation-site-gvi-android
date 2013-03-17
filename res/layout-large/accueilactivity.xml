@@ -17,46 +17,46 @@
 
     <Button
         android:id="@+id/voirHistorique"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/voirHistorique" 
-  
             />
 
     <Button
         android:id="@+id/gererLesBadges"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesBadges" />
 
     <Button
         android:id="@+id/gererLesUtilisateurs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesUtilisateurs" />
         
     <Button
         android:id="@+id/gererLesSecteur"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesSecteur" />
 
     <Button
         android:id="@+id/gererLesAppareils"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesAppareils" />
 
     <Button
         android:id="@+id/gererLesNumerosPredéfinis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesNumerosPredéfinis" />
 
     <Button
         android:id="@+id/gererLesAuthorisationDacces"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/gererLesAuthorisationDacces" />
         
 </LinearLayout>
