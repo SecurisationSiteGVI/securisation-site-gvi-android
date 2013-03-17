@@ -1,10 +1,10 @@
 package fr.securisation_site_gvi.client;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
-
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,14 +14,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import physique.dataOut.PhysiqueDataOutFactory;
-import physique.dataOut.UtilisateurServiceWeb;
-import metier.entitys.Utilisateur;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
+import metier.entitys.Utilisateur;
+import physique.dataOut.PhysiqueDataOutFactory;
+import physique.dataOut.UtilisateurServiceWeb;
 
 public class ListeUtilisateur extends Activity {
 
@@ -51,7 +49,7 @@ public class ListeUtilisateur extends Activity {
     private void remplirListView() {
         List<Utilisateur> utilisateurs = null;
         try {
-            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge);
+            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge,ListeUtilisateur.this);
             this.u = utilisateurs;
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
