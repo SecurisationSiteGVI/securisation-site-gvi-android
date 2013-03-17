@@ -581,11 +581,14 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             this.context = c;
         }
 
-        protected void onPostExecute(Void result) {
+       
+
+        @Override
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
             this.progressDialog.cancel();
-            this.progressDialog.hide();
-            this.progressDialog.dismiss();
         }
+        
 
         @Override
         protected Object doInBackground(Object... params) {
