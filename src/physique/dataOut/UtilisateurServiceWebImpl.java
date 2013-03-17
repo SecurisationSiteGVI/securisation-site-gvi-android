@@ -5,8 +5,8 @@
 package physique.dataOut;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 import fr.securisation_site_gvi.client.MainActivity;
 import metier.entitys.Technicien;
 import java.io.*;
@@ -23,13 +23,14 @@ import org.w3c.dom.NodeList;
 import metier.entitys.Utilisateur;
 import java.net.MalformedURLException;
 
-import java.net.ProtocolException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.Ressource;
 import org.xml.sax.SAXException;
-import ressources.Ressources;
+import physique.dataIn.PhysiqueDataInFactory;
+import physique.dataIn.RessourcesServiceDataIn;
 
 /**
  *
@@ -51,70 +52,79 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
     }
 
     @Override
-    public List<Utilisateur> getAll() throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTGetAll().execute();
+    public List<Utilisateur> getAll(Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTGetAll().execute(context);
         List<Utilisateur> retour = (List<Utilisateur>) ret.get();
         return retour;
     }
 
     @Override
-    public boolean add(Utilisateur utilisateur) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTAdd().execute(utilisateur);
+    public boolean add(Utilisateur utilisateur, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTAdd().execute(utilisateur, context);
         Boolean retour = (Boolean) ret.get();
         return retour;
     }
 
     @Override
-    public boolean remove(Utilisateur utilisateur) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTRemove().execute(utilisateur);
+    public boolean remove(Utilisateur utilisateur, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTRemove().execute(utilisateur, context);
         Boolean retour = (Boolean) ret.get();
         return retour;
     }
 
     @Override
-    public boolean update(Utilisateur utilisateur) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUpdate().execute(utilisateur);
+    public boolean update(Utilisateur utilisateur, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTUpdate().execute(utilisateur, context);
         Boolean retour = (Boolean) ret.get();
         return retour;
     }
 
     @Override
-    public boolean loginIsUse(String loginn) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTLoginIsUse().execute(loginn);
+    public boolean loginIsUse(String loginn, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTLoginIsUse().execute(loginn, context);
         Boolean retour = (Boolean) ret.get();
         return retour;
     }
 
     @Override
-    public Technicien verificationConnexion(Technicien utilisateur) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTVerifConnexionBackGround().execute(utilisateur);
+    public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTVerifConnexionBackGround(context).execute(utilisateur, context);
         Technicien technicien = (Technicien) ret.get();
         return technicien;
     }
 
     @Override
-    public List<Utilisateur> getAll(int from, int nbResut) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTGetAllByRange().execute(from, nbResut);
+    public List<Utilisateur> getAll(int from, int nbResut, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTGetAllByRange().execute(from, nbResut, context);
         List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
         return utilisateurs;
 
     }
 
-    public Utilisateur getById(Long id) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTGetById().execute(id);
+    public Utilisateur getById(Long id, Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTGetById().execute(id, context);
         List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
         return utilisateurs.get(0);
     }
+
     private class RESTGetById extends AsyncTask<Object, Void, Object> {
 
         @Override
         protected Object doInBackground(Object... params) {
+            Context c = (Context) params[1];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
             List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-            try {System.out.println("PASSAAAAAAAAAAAAAAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE !!!!!!!!!!!!!!!\n\n\n\n");
+            try {
+                System.out.println("PASSAAAAAAAAAAAAAAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE !!!!!!!!!!!!!!!\n\n\n\n");
                 Long id = (Long) params[0];
-                
                 InputStream fluxLecture = null;
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + id );
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + id);
                 fluxLecture = url.openStream();
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -157,10 +167,18 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
         @Override
         protected Object doInBackground(Object... params) {
+            Context c = (Context) params[0];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
             List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
             try {
                 InputStream fluxLecture = null;
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur");
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
                 fluxLecture = url.openStream();
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -200,6 +218,14 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
         @Override
         protected Object doInBackground(Object... params) {
+            Context c = (Context) params[1];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Boolean retour = true;
             try {
                 Utilisateur utilisateur = (Utilisateur) params[0];
@@ -213,7 +239,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String adresse = utilisateur.getAdresse();
                 boolean homme = utilisateur.isHomme();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur");
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
@@ -253,10 +279,20 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             Boolean retour = true;
             try {
                 Utilisateur utilisateur = (Utilisateur) params[0];
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + utilisateur.getId());
+                Context c = (Context) params[1];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + utilisateur.getId());
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setDoOutput(true);
                 conn.setRequestMethod("DELETE");
+                conn.setDoOutput(true);
+
+
                 conn.setRequestProperty("Content-Type", "application/json");
                 String input = "{\"id\":" + utilisateur.getId() + "}";
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
@@ -290,7 +326,14 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         protected Object doInBackground(Object... params) {
             Boolean retour = true;
             try {
-
+                Context c = (Context) params[1];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Utilisateur utilisateur = (Utilisateur) params[0];
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -303,7 +346,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String adresse = utilisateur.getAdresse();
                 boolean homme = utilisateur.isHomme();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                String surl = Ressources.getPathToAccesWebService() + "utilisateur";
+                String surl = ressource.getPathToAccesWebService() + "utilisateur";
                 URL url = new URL(surl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
@@ -347,6 +390,14 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             BufferedReader br = null;
             Boolean ret = false;
             try {
+                Context c = (Context) params[1];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Technicien utilisateur = new Technicien();
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -361,7 +412,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String login = (String) params[0];
                 String password = utilisateur.getPassword();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/loginIsUse");
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/loginIsUse");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
@@ -411,8 +462,16 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             try {
                 Integer from = (Integer) params[0];
                 Integer nbResut = (Integer) params[1];
+                Context c = (Context) params[2];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 InputStream fluxLecture = null;
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
                 fluxLecture = url.openStream();
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -453,11 +512,44 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     private class RESTVerifConnexionBackGround extends AsyncTask<Object, Void, Object> {
 
+        private Context context;
+        private ProgressDialog progressDialog;
+
+        private Context getApplicationContext() {
+            return context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(this.getApplicationContext(), "", "Vérification ...", true);
+        }
+
+        public RESTVerifConnexionBackGround(Context c) {
+            this.context = c;
+        }
+
+        protected void onPostExecute(Void result) {
+            this.progressDialog.cancel();
+            this.progressDialog.hide();
+            this.progressDialog.dismiss();
+        }
+
         @Override
         protected Object doInBackground(Object... params) {
+            Context c = (Context) params[1];
             Technicien technicien = new Technicien();
             try {
                 Technicien utilisateur = (Technicien) params[0];
+
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
                 String nom = utilisateur.getNom();
@@ -471,7 +563,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String login = utilisateur.getLogin();
                 String password = utilisateur.getPassword();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                URL url = new URL(Ressources.getPathToAccesWebService() + "utilisateur/verificationConnexion");
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/verificationConnexion");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
