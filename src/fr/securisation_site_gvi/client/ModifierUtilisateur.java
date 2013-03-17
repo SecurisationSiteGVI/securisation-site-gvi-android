@@ -153,23 +153,30 @@ public class ModifierUtilisateur extends Activity {
         this.buttonDateDeNaissance.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Date date;
+                int year;
+                int month;
+                int day;
                 if (utilisateurSelected.getDateDeNaissance() != null) {
                     date = utilisateurSelected.getDateDeNaissance();
+                    year = date.getYear();
+                    month = date.getMonth();
+                    day = date.getDay();
                 } else {
-                    date = new Date();
-                    date.setYear(Calendar.getInstance().YEAR);
-                    date.setMonth(Calendar.getInstance().MONTH);
-                    date.setDate(Calendar.getInstance().DATE);
+                    Calendar c = Calendar.getInstance();
+                    year = 1990;
+                    month = c.MONTH;
+                    day = c.DAY_OF_MONTH;
                 }
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ModifierUtilisateur.this, new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Date d = new Date(year, monthOfYear, dayOfMonth);
+                        Date d = new Date(year, monthOfYear + 1, dayOfMonth + 1);
                         utilisateurSelected.setDateDeNaissance(d);
                         afficherDate();
                     }
-                }, date.getYear(), date.getMonth(), date.getDay());
+                }, year, month-1, day+1);
+               
                 datePickerDialog.setTitle("Date de naissance");
-                datePickerDialog.setCancelable(true);     
+                datePickerDialog.setCancelable(true);
                 datePickerDialog.show();
             }
         });
@@ -177,10 +184,10 @@ public class ModifierUtilisateur extends Activity {
 
     private void afficherDate() {
         Date d = this.utilisateurSelected.getDateDeNaissance();
-        int day = d.getDay();
+        int day = d.getDay()+1;
         int year = d.getYear();
         int month = d.getMonth();
-        String ret = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+        String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
     }
 
