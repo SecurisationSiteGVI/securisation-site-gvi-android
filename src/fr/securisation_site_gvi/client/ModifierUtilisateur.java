@@ -2,11 +2,18 @@ package fr.securisation_site_gvi.client;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.os.Message;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.MetierFactory;
@@ -19,7 +26,7 @@ public class ModifierUtilisateur extends Activity {
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
     private EditText editTextNom;
     private EditText editTextPrenom;
-    private EditText editTextDateDeNaissance;
+    private Button buttonDateDeNaissance;
     private EditText editTextEmail;
     private EditText editTextSexe;
     private EditText editTextTelephoneFixe;
@@ -30,6 +37,7 @@ public class ModifierUtilisateur extends Activity {
     private Button buttonSupprimerUtilisateur;
     private Button buttonModifierUtilisateur;
     private Utilisateur utilisateurSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,46 +46,50 @@ public class ModifierUtilisateur extends Activity {
         Bundle extras = getIntent().getExtras();
         Long id = extras.getLong("id");
         this.setTextInAllEditText(id);
-//        
     }
-    private void setTextInAllEditText(Long id){
-        Utilisateur utilisateur =null;
+
+    private void setTextInAllEditText(Long id) {
+        Utilisateur utilisateur = null;
+
         try {
-           utilisateur  = utilisateurSrv.getById(id);
+            utilisateur = utilisateurSrv.getById(id, ModifierUtilisateur.this);
         } catch (Exception ex) {
             Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.utilisateurSelected = utilisateur;
         this.editTextNom.setText(utilisateur.getNom());
-        
+
         this.editTextPrenom.setText(utilisateur.getPrenom());
-        if(utilisateur.getDateDeNaissance()!=null){
-            this.editTextDateDeNaissance.setText(utilisateur.getDateDeNaissance().toString());
+        if (utilisateur.getDateDeNaissance() != null) {
+            this.afficherDate();
+        } else {
+            this.buttonDateDeNaissance.setText("Séléctionner");
         }
-        if(utilisateur.getEmail()!=null){
+        if (utilisateur.getEmail() != null) {
             this.editTextEmail.setText(utilisateur.getEmail());
         }
-        
-        if(utilisateur.isHomme()){
+
+        if (utilisateur.isHomme()) {
             this.editTextSexe.setText("homme");
-        }else{
+        } else {
             this.editTextSexe.setText("femme");
         }
-        if(utilisateur.getTelephoneFixe()!=null){
+        if (utilisateur.getTelephoneFixe() != null) {
             this.editTextTelephoneFixe.setText(utilisateur.getTelephoneFixe());
         }
-        if(utilisateur.getTelephonePortable()!=null){
+        if (utilisateur.getTelephonePortable() != null) {
             this.editTextTelephonePortable.setText(utilisateur.getTelephonePortable());
         }
-        if(utilisateur.getAdresse()!=null){
-           this.editTextAdresse.setText(utilisateur.getAdresse()); 
+        if (utilisateur.getAdresse() != null) {
+            this.editTextAdresse.setText(utilisateur.getAdresse());
         }
-        if(utilisateur.getCodePostale()>200){
+        if (utilisateur.getCodePostale() > 200) {
             this.editTextCodePostale.setText(String.valueOf(utilisateur.getCodePostale()));
         }
-        if(utilisateur.getVille()!=null){
+        if (utilisateur.getVille() != null) {
             this.editTextVille.setText(utilisateur.getVille());
         }
-        
+
     }
 
     private void initGraphicalObjects() {
@@ -85,7 +97,7 @@ public class ModifierUtilisateur extends Activity {
         this.buttonModifierUtilisateur = (Button) findViewById(R.id.buttonModifierUtilisateur);
         this.editTextNom = (EditText) findViewById(R.id.editTextNom);
         this.editTextPrenom = (EditText) findViewById(R.id.editTextPrenom);
-        this.editTextDateDeNaissance = (EditText) findViewById(R.id.editTextDateDeNaissance);
+        this.buttonDateDeNaissance = (Button) findViewById(R.id.buttonDateDeNaissance);
         this.editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         this.editTextSexe = (EditText) findViewById(R.id.editTextSexe);
         this.editTextTelephoneFixe = (EditText) findViewById(R.id.editTextFixe);
@@ -99,14 +111,77 @@ public class ModifierUtilisateur extends Activity {
     private void addActionListnerForAllGraphicalObjects() {
         this.buttonModifierUtilisateur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               Toast.makeText(ModifierUtilisateur.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                String nom = editTextNom.getText().toString();
+                String prenom = editTextPrenom.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String telephoneFixe = editTextTelephoneFixe.getText().toString();
+                String telephonePortable = editTextTelephonePortable.getText().toString();
+                String adresse = editTextAdresse.getText().toString();
+                int codePostale = Integer.valueOf(editTextCodePostale.getText().toString());
+                String ville = editTextVille.getText().toString();
+                Utilisateur u = new Utilisateur();
+                u.setNom(nom);
+                u.setPrenom(prenom);
+                u.setEmail(email);
+                u.setTelephoneFixe(telephoneFixe);
+                u.setTelephonePortable(telephonePortable);
+                u.setAdresse(adresse);
+                u.setCodePostale(codePostale);
+                u.setVille(ville);
+                u.setId(utilisateurSelected.getId());
+                if (utilisateurSelected.getDateDeNaissance() != null) {
+                    u.setDateDeNaissance(utilisateurSelected.getDateDeNaissance());
+                }
+                try {
+                    utilisateurSrv.update(u, ModifierUtilisateur.this);
+                } catch (Exception ex) {
+                    Toast.makeText(ModifierUtilisateur.this, "Impossible d'éffectuer une modification.", Toast.LENGTH_LONG);
+                    Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-         this.buttonSupprimerUtilisateur.setOnClickListener(new View.OnClickListener() {
+        this.buttonSupprimerUtilisateur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               Toast.makeText(ModifierUtilisateur.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                try {
+                    utilisateurSrv.remove(utilisateurSelected, ModifierUtilisateur.this);
+                    Toast.makeText(ModifierUtilisateur.this, "Utilisateur supprimé.", Toast.LENGTH_LONG).show();
+                } catch (Exception ex) {
+                    Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
+        this.buttonDateDeNaissance.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Date date;
+                if (utilisateurSelected.getDateDeNaissance() != null) {
+                    date = utilisateurSelected.getDateDeNaissance();
+                } else {
+                    date = new Date();
+                    date.setYear(Calendar.getInstance().YEAR);
+                    date.setMonth(Calendar.getInstance().MONTH);
+                    date.setDate(Calendar.getInstance().DATE);
+                }
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ModifierUtilisateur.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        Date d = new Date(year, monthOfYear, dayOfMonth);
+                        utilisateurSelected.setDateDeNaissance(d);
+                        afficherDate();
+                    }
+                }, date.getYear(), date.getMonth(), date.getDay());
+                datePickerDialog.setTitle("Date de naissance");
+                datePickerDialog.setCancelable(true);     
+                datePickerDialog.show();
+            }
+        });
+    }
+
+    private void afficherDate() {
+        Date d = this.utilisateurSelected.getDateDeNaissance();
+        int day = d.getDay();
+        int year = d.getYear();
+        int month = d.getMonth();
+        String ret = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+        this.buttonDateDeNaissance.setText(ret);
     }
 
     @Override
