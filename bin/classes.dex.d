@@ -24,7 +24,6 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/metier/RessourceService.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/metier/RessourceServiceImpl.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/metier/UtilisateurService.class \
-/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/ressources/Ressources.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ListeUtilisateur.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$dimen.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$4.class \

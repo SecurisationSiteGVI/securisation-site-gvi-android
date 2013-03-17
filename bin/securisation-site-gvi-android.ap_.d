@@ -29,9 +29,12 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-mdpi/ic_action_settings.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-xlarge/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-xlarge/main.xml \
-/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/main.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/modifier_utilisateur.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/accueilactivity.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_menu_utilisateur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_parametres.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_liste_utilisateur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/values-v14/styles.xml \
