@@ -22,6 +22,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import metier.entitys.Utilisateur;
 import java.net.MalformedURLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.logging.Level;
@@ -121,7 +123,6 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             }
             List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
             try {
-                System.out.println("PASSAAAAAAAAAAAAAAGEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE !!!!!!!!!!!!!!!\n\n\n\n");
                 Long id = (Long) params[0];
                 InputStream fluxLecture = null;
                 URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + id);
@@ -141,6 +142,19 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                         utilisateur.setVille(getTagValue("ville", eElement));
                         utilisateur.setNom(getTagValue("nom", eElement));
                         utilisateur.setPrenom(getTagValue("prenom", eElement));
+                        if (getTagValue("dateDeNaissance", eElement) != null) {
+                            String dateStr = getTagValue("dateDeNaissance", eElement);
+                            final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            Date d = new Date();
+                            try {
+                                d=dateFormat.parse(dateStr);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                            }            
+                            utilisateur.setDateDeNaissance(d);
+
+                        }
+
                         utilisateur.setCodePostale(Integer.parseInt(getTagValue("codePostale", eElement)));
                         utilisateur.setAdresse(getTagValue("adresse", eElement));
                         utilisateur.setTelephonePortable(getTagValue("telephonePortable", eElement));
@@ -334,6 +348,18 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 } catch (Exception ex) {
                     Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+
+
+
+                final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+
+
+
+
+
+
                 Utilisateur utilisateur = (Utilisateur) params[0];
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -346,13 +372,14 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String adresse = utilisateur.getAdresse();
                 boolean homme = utilisateur.isHomme();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
+                String formattedDate = dateFormat.format(dateDeNaissance);
                 String surl = ressource.getPathToAccesWebService() + "utilisateur";
                 URL url = new URL(surl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("PUT");
                 conn.setRequestProperty("Content-Type", "application/json");
-                String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\"}";
+                String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + formattedDate + "\"}";
                 System.out.println(input);
                 OutputStream os = conn.getOutputStream();
                 os.write(input.getBytes());
