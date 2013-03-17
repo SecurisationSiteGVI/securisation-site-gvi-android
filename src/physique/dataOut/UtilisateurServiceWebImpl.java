@@ -532,6 +532,18 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                         utilisateur.setTelephonePortable(getTagValue("telephonePortable", eElement));
                         utilisateur.setTelephoneFixe(getTagValue("telephoneFixe", eElement));
                         utilisateur.setHomme(Boolean.parseBoolean(getTagValue("homme", eElement)));
+                        if (getTagValue("dateDeNaissance", eElement) != null) {
+                            String dateStr = getTagValue("dateDeNaissance", eElement);
+                            final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            Date d = new Date();
+                            try {
+                                d=dateFormat.parse(dateStr);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                            }            
+                            utilisateur.setDateDeNaissance(d);
+
+                        }
                         utilisateurs.add(utilisateur);
                     }
                 }
