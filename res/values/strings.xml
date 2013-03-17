@@ -53,4 +53,5 @@
     <string name="ville">Ville :</string>
     <string name="deleteUtilisateur">Supprimer l\'utilisateur</string>
     <string name="updateUtilisateur">Modifier l\'utilisateur</string>
+    
 </resources>
