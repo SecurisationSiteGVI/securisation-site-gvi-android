@@ -41,29 +41,22 @@ public class MainActivity extends Activity {
                 t.setLogin(editTextLogin.getText().toString());
                 t.setPassword(editTextPassword.getText().toString());
                 Technicien tech = null;
-                ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this, "", "Vérification ...", true);
                 try {
-                    tech = utilisateurSrv.verificationConnexion(t);
+                    tech = utilisateurSrv.verificationConnexion(t,MainActivity.this);
                 } catch (Exception ex) {
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 if (tech == null) {
                     textView.setText("Connexion erreur.");
                     Toast to = Toast.makeText(MainActivity.this, "Il y à une erreur dans votre login ou votre mot de passe.", Toast.LENGTH_LONG);
                     to.show();
-                    progressDialog.dismiss();
                 } else {
                     textView.setText("Connexion réussi.");
                     Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
                     startActivity(intent);
-                    progressDialog.dismiss();
                 }
             }
         });
-
-
-
     }
 
     @Override
