@@ -31,6 +31,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-xlarge/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/main.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_parametres.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/values-v14/styles.xml \

@@ -32,7 +32,9 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ListeUtilisateur$1$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$1.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur$3$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$6.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur$3.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$3.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/MainActivity.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$attr.class \
