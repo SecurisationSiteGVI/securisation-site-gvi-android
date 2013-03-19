@@ -80,12 +80,14 @@ public class Parametres extends Activity {
                 if (IsinBDD) {
                     try {
                         ressourceSrv.update(res);
+                        Toast.makeText(Parametres.this, "Paramètres bien modifié", Toast.LENGTH_SHORT).show();
                     } catch (Exception ex) {
                         Logger.getLogger(Parametres.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
+                } else {
                     try {
                         ressourceSrv.add(res);
+                        Toast.makeText(Parametres.this, "Paramètres bien ajouté", Toast.LENGTH_SHORT).show();
                     } catch (Exception ex) {
                         Logger.getLogger(Parametres.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -94,10 +96,5 @@ public class Parametres extends Activity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+    
 }
