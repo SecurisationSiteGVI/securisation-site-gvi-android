@@ -17,19 +17,22 @@
     <Button
         android:id="@+id/listeUtilisateurs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_height="100dp"
         android:text="@string/listeUtilisateurs" 
             />
     <Button
         android:id="@+id/ajouterUtilisateur"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/ajouterUtilisateur" />
 
     <Button
         android:id="@+id/ajouterTechnicien"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="@string/ajouterTechnicien" />
         
 </LinearLayout>
