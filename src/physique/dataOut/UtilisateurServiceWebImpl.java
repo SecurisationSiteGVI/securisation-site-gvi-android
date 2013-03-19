@@ -7,9 +7,11 @@ package physique.dataOut;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 import fr.securisation_site_gvi.client.MainActivity;
 import metier.entitys.Technicien;
 import java.io.*;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import org.xml.sax.SAXException;
@@ -147,10 +150,10 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                             final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             Date d = new Date();
                             try {
-                                d=dateFormat.parse(dateStr);
+                                d = dateFormat.parse(dateStr);
                             } catch (ParseException ex) {
                                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                            }            
+                            }
                             utilisateur.setDateDeNaissance(d);
 
                         }
@@ -219,10 +222,10 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                             final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             Date d = new Date();
                             try {
-                                d=dateFormat.parse(dateStr);
+                                d = dateFormat.parse(dateStr);
                             } catch (ParseException ex) {
                                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                            }            
+                            }
                             utilisateur.setDateDeNaissance(d);
 
                         }
@@ -315,7 +318,8 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 }
                 URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + utilisateur.getId());
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("DELETE");
+//                conn.addRequestProperty("delete", "true");
+                conn.setRequestMethod("PUT");
                 conn.setDoOutput(true);
 
 
@@ -384,7 +388,15 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String adresse = utilisateur.getAdresse();
                 boolean homme = utilisateur.isHomme();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                String formattedDate = dateFormat.format(dateDeNaissance);
+                String formattedDate = null;
+                if (dateDeNaissance != null) {
+                    formattedDate = dateFormat.format(dateDeNaissance);
+                } else {
+                    Date d = new Date(0l);
+                    formattedDate = dateFormat.format(d);
+
+                }
+
                 String surl = ressource.getPathToAccesWebService() + "utilisateur";
                 URL url = new URL(surl);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -537,10 +549,10 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                             final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             Date d = new Date();
                             try {
-                                d=dateFormat.parse(dateStr);
+                                d = dateFormat.parse(dateStr);
                             } catch (ParseException ex) {
                                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                            }            
+                            }
                             utilisateur.setDateDeNaissance(d);
 
                         }
@@ -581,14 +593,11 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             this.context = c;
         }
 
-       
-
         @Override
         protected void onPostExecute(Object result) {
             super.onPostExecute(result);
             this.progressDialog.cancel();
         }
-        
 
         @Override
         protected Object doInBackground(Object... params) {
@@ -688,6 +697,12 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
             } catch (SAXException ex) {
                 technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ConnectException e) {
+                technicien = null;
+                Toast.makeText(this.context, "Les paramètres d'acces au serveur sont incorrect.", Toast.LENGTH_LONG);
+            } catch (SSLPeerUnverifiedException e) {
+                technicien = null;
+                Toast.makeText(this.context, "Les paramètres d'acces au serveur sont incorrect.", Toast.LENGTH_LONG);
             } catch (IOException ex) {
                 technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);

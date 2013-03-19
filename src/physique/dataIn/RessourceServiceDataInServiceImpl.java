@@ -38,7 +38,7 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
         db = connexion.getBDD();
         this.connexion.open();
         ContentValues values = new ContentValues();
-          values.put(RESSOURCE_KEY, 1);
+        values.put(RESSOURCE_KEY, 1);
         values.put(RESSOURCE_PROTOCOL, ressource.getProtocol());
         values.put(RESSOURCE_SERVEUR_URL, ressource.getServeurURL());
         values.put(RESSOURCE_PORT, ressource.getPort());
@@ -57,14 +57,14 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
 //        
         Ressource ressource = new Ressource();
 //        if (c.getCount()>0) {
-            c.moveToNext();
-            int columnIndex = c.getColumnIndex(RESSOURCE_PROTOCOL);
-            String string = c.getString(columnIndex);
-            ressource.setProtocol(string);
-            ressource.setPort(c.getInt(c.getColumnIndex(RESSOURCE_PORT)));
-            ressource.setServeurURL(c.getString(c.getColumnIndex(RESSOURCE_SERVEUR_URL)));
-            ressource.setResourcesPath(c.getString(c.getColumnIndex(RESSOURCE_RESSOURCES_PATH)));
-            ressource.setApplicationName(c.getString(c.getColumnIndex(RESSOURCE_APPLICATION_NAME)));
+        c.moveToNext();
+        int columnIndex = c.getColumnIndex(RESSOURCE_PROTOCOL);
+        String string = c.getString(columnIndex);
+        ressource.setProtocol(string);
+        ressource.setPort(c.getInt(c.getColumnIndex(RESSOURCE_PORT)));
+        ressource.setServeurURL(c.getString(c.getColumnIndex(RESSOURCE_SERVEUR_URL)));
+        ressource.setResourcesPath(c.getString(c.getColumnIndex(RESSOURCE_RESSOURCES_PATH)));
+        ressource.setApplicationName(c.getString(c.getColumnIndex(RESSOURCE_APPLICATION_NAME)));
 //        }
         this.connexion.close();
         return ressource;
@@ -73,7 +73,7 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
     public void update(Ressource ressource) throws Exception {
         this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         connexion.open();
-       
+
         ContentValues values = new ContentValues();
         values.put(RESSOURCE_KEY, 1);
         values.put(RESSOURCE_PROTOCOL, ressource.getProtocol());

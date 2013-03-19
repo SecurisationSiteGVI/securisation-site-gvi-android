@@ -11,7 +11,8 @@ import android.content.Context;
  * @author damien
  */
 public class PhysiqueDataInFactory {
-    private static RessourcesServiceDataIn ressourceSrv ;
+
+    private static RessourcesServiceDataIn ressourceSrv;
 
     /**
      * @return the ressourceSrv
@@ -20,5 +21,4 @@ public class PhysiqueDataInFactory {
         ressourceSrv = new RessourceServiceDataInServiceImpl(context);
         return ressourceSrv;
     }
-    
 }
