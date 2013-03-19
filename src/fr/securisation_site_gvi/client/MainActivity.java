@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
                 t.setPassword(editTextPassword.getText().toString());
                 Technicien tech = null;
                 try {
-                    tech = utilisateurSrv.verificationConnexion(t,MainActivity.this);
+                    tech = utilisateurSrv.verificationConnexion(t, MainActivity.this);
                 } catch (Exception ex) {
                     Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
                 }
