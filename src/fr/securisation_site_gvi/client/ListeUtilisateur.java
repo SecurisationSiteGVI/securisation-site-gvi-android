@@ -1,11 +1,14 @@
 package fr.securisation_site_gvi.client;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -32,6 +35,7 @@ public class ListeUtilisateur extends Activity {
     private TextView textViewPage;
     private List<Utilisateur> u;
     private int pos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +53,7 @@ public class ListeUtilisateur extends Activity {
     private void remplirListView() {
         List<Utilisateur> utilisateurs = null;
         try {
-            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge,ListeUtilisateur.this);
+            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge, ListeUtilisateur.this);
             this.u = utilisateurs;
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,28 +95,28 @@ public class ListeUtilisateur extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                     int position, long id) {
-                pos= position;
+                pos = position;
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListeUtilisateur.this);
                 builder.setTitle("Utilisateur séléctionné.");
-                builder.setMessage(u.get(position).toString()+" à été séléctionné voulez vous le modifier ?");
+                builder.setMessage(u.get(position).toString() + " à été séléctionné voulez vous le modifier ?");
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
-						Intent i = new Intent(ListeUtilisateur.this, ModifierUtilisateur.class);
-                                                i.putExtra("id", u.get(pos).getId());
-                                                startActivityForResult(i, 0);
-						dialog.cancel();
-					}
-				});
-                builder.setNegativeButton("Non",new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog,int id) {
-						// if this button is clicked, just close
-						// the dialog box and do nothing
-						dialog.cancel();
-					}
-				});
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(ListeUtilisateur.this, ModifierUtilisateur.class);
+                        i.putExtra("id", u.get(pos).getId());
+                        startActivityForResult(i, 0);
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
 
                 builder.show();
-               
+
             }
         });
         this.precedent.setOnClickListener(new View.OnClickListener() {
@@ -127,10 +131,28 @@ public class ListeUtilisateur extends Activity {
         });
     }
 
-    @Override
+     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_accueil, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            ActionBar actionBar = getActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+            case R.id.menu_settings:
+                Intent intent = new Intent(ListeUtilisateur.this, Parametres.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
