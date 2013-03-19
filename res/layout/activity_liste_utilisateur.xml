@@ -11,7 +11,7 @@
     <ListView
         android:id="@+id/listeUtilisateurs"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_above="@+id/boutonUtilisateurSuivant"
         android:layout_alignParentTop="true" >
 
