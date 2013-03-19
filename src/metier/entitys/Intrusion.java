@@ -8,11 +8,11 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Intrusion extends Evenement  {
+public class Intrusion extends Evenement {
 
     private Long id;
     private DetecteurIntrusion detecteurIntrusion;
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -35,7 +35,7 @@ public class Intrusion extends Evenement  {
 
     @Override
     public String toString() {
-        return "evenement sur : "+detecteurIntrusion;
+        return "evenement sur : " + detecteurIntrusion;
     }
 
     public DetecteurIntrusion getDetecteurIntrusion() {
@@ -45,5 +45,4 @@ public class Intrusion extends Evenement  {
     public void setDetecteurIntrusion(DetecteurIntrusion detecteurIntrusion) {
         this.detecteurIntrusion = detecteurIntrusion;
     }
-    
 }

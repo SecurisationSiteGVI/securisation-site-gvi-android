@@ -10,11 +10,12 @@ import java.util.List;
  *
  * @author damien
  */
-public class AttributionSecteurCamera  {
+public class AttributionSecteurCamera {
 
     private Long id;
     private Secteur secteur;
     private List<Camera> cameras;
+
     public Long getId() {
         return id;
     }
@@ -45,7 +46,7 @@ public class AttributionSecteurCamera  {
 
     @Override
     public String toString() {
-        return "AttributionSecteur sur secteur :"+getSecteur();
+        return "AttributionSecteur sur secteur :" + getSecteur();
     }
 
     public Secteur getSecteur() {
@@ -63,5 +64,4 @@ public class AttributionSecteurCamera  {
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
     }
-    
 }

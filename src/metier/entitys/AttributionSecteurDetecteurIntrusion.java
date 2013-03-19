@@ -7,12 +7,11 @@ package metier.entitys;
 import java.io.Serializable;
 import java.util.List;
 
-
 /**
  *
  * @author damien
  */
-public class AttributionSecteurDetecteurIntrusion  {
+public class AttributionSecteurDetecteurIntrusion {
 
     private Long id;
     private Secteur secteur;
@@ -48,7 +47,7 @@ public class AttributionSecteurDetecteurIntrusion  {
 
     @Override
     public String toString() {
-        return "Attribution secteur "+secteur;
+        return "Attribution secteur " + secteur;
     }
 
     public Secteur getSecteur() {
@@ -66,5 +65,4 @@ public class AttributionSecteurDetecteurIntrusion  {
     public void setDetecteurIntrusions(List<DetecteurIntrusion> detecteurIntrusions) {
         this.detecteurIntrusions = detecteurIntrusions;
     }
-    
 }

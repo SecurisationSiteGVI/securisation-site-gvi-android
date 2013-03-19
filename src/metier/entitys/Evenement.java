@@ -10,11 +10,11 @@ import java.util.Date;
  *
  * @author damien
  */
-public class Evenement  {
+public class Evenement {
 
     private Long id;
-   private Date dateEvt;
-    
+    private Date dateEvt;
+
     public Long getId() {
         return id;
     }
@@ -45,7 +45,7 @@ public class Evenement  {
 
     @Override
     public String toString() {
-        return "Evenement id="+id;
+        return "Evenement id=" + id;
     }
 
     public Date getDateEvt() {
@@ -55,5 +55,4 @@ public class Evenement  {
     public void setDateEvt(Date dateEvt) {
         this.dateEvt = dateEvt;
     }
-    
 }

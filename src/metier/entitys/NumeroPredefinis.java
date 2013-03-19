@@ -4,17 +4,17 @@
  */
 package metier.entitys;
 
-
 import java.util.List;
 
 /**
  *
  * @author damien
  */
-public class NumeroPredefinis  {
+public class NumeroPredefinis {
 
     private Long id;
     private List<String> numeros;
+
     public Long getId() {
         return id;
     }
@@ -55,6 +55,4 @@ public class NumeroPredefinis  {
     public void setNumeros(List<String> numeros) {
         this.numeros = numeros;
     }
-
-    
 }

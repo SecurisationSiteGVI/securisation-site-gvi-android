@@ -13,7 +13,7 @@ public class Position {
     private Long id;
     private double longitude;
     private double latitude;
-    
+
     public Long getId() {
         return id;
     }
@@ -44,7 +44,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "longitude : "+longitude +"latitude : "+latitude;
+        return "longitude : " + longitude + "latitude : " + latitude;
     }
 
     public double getLongitude() {
@@ -62,5 +62,4 @@ public class Position {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-    
 }

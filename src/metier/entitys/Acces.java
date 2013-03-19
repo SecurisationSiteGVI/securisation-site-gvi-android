@@ -8,8 +8,7 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Acces extends Evenement  {
-
+public class Acces extends Evenement {
 
     private Long id;
     private Utilisateur utilisateur;
@@ -38,7 +37,7 @@ public class Acces extends Evenement  {
 
     @Override
     public String toString() {
-        return "passege de l'utilisateur : "+utilisateur;
+        return "passege de l'utilisateur : " + utilisateur;
     }
 
     public Utilisateur getUtilisateur() {
@@ -64,5 +63,4 @@ public class Acces extends Evenement  {
     public void setBorneAcces(BorneAcces borneAcces) {
         this.borneAcces = borneAcces;
     }
-    
 }

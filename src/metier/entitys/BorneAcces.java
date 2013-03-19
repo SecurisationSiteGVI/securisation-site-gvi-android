@@ -8,12 +8,13 @@ package metier.entitys;
  *
  * @author damien
  */
-public class BorneAcces  {
+public class BorneAcces {
+
     private Long id;
     private Position position;
     private String nom;
     private Boolean entrer;
-    
+
     public Long getId() {
         return id;
     }
@@ -44,12 +45,12 @@ public class BorneAcces  {
 
     @Override
     public String toString() {
-        
-        String entr= "sorie";
-        if(this.entrer){
+
+        String entr = "sorie";
+        if (this.entrer) {
             entr = "entré";
         }
-        return nom+" "+entr;
+        return nom + " " + entr;
     }
 
     public Position getPosition() {
@@ -75,5 +76,4 @@ public class BorneAcces  {
     public void setEntrer(Boolean entrer) {
         this.entrer = entrer;
     }
-    
 }

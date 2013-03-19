@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author damien
  */
-public class Utilisateur  {
+public class Utilisateur {
 
     private Long id;
     private String nom;
@@ -127,7 +127,7 @@ public class Utilisateur  {
         if (dateDeNaissance != null) {
             int yearH = dateDeNaissance.getYear();
             int yearN = new Date().getYear();
-            agen =  yearN-yearH;
+            agen = yearN - yearH;
         }
         return agen;
     }
@@ -147,6 +147,4 @@ public class Utilisateur  {
     public void setTelephoneFixe(String telephoneFixe) {
         this.telephoneFixe = telephoneFixe;
     }
-
-    
 }

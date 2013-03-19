@@ -11,14 +11,14 @@ import java.util.List;
  *
  * @author damien
  */
+public class AuthorisationAcces {
 
-public class AuthorisationAcces  {
-    
     private Long id;
     private Date heureOuverture;
     private Date heureFermeture;
     private Utilisateur utilisateur;
     private List<Secteur> secteurs;
+
     public Long getId() {
         return id;
     }
@@ -83,5 +83,4 @@ public class AuthorisationAcces  {
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }
-    
 }

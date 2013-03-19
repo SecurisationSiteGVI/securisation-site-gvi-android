@@ -11,13 +11,12 @@ import java.util.List;
  *
  * @author damien
  */
-
-public class AttributionSecteurBorneAcces  {
+public class AttributionSecteurBorneAcces {
 
     private Long id;
     private Secteur secteur;
     private List<BorneAcces> borneAccess;
-    
+
     public Long getId() {
         return id;
     }
@@ -48,7 +47,7 @@ public class AttributionSecteurBorneAcces  {
 
     @Override
     public String toString() {
-        return "AttributionSecteurBorneAcces sur secteur : "+getSecteur();
+        return "AttributionSecteurBorneAcces sur secteur : " + getSecteur();
     }
 
     public Secteur getSecteur() {
@@ -66,5 +65,4 @@ public class AttributionSecteurBorneAcces  {
     public void setBorneAccess(List<BorneAcces> borneAccess) {
         this.borneAccess = borneAccess;
     }
-    
 }

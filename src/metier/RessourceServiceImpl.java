@@ -13,19 +13,22 @@ import physique.dataIn.RessourcesServiceDataIn;
  *
  * @author damien
  */
-public class RessourceServiceImpl implements RessourceService{
+public class RessourceServiceImpl implements RessourceService {
+
     private RessourcesServiceDataIn ressourceSrv;
-    public RessourceServiceImpl(Context context){
+
+    public RessourceServiceImpl(Context context) {
         this.ressourceSrv = PhysiqueDataInFactory.getRessourceSrv(context);
     }
+
     public void add(Ressource ressource) throws Exception {
-        if(ressource!=null){
-            if(ressource instanceof Ressource){
+        if (ressource != null) {
+            if (ressource instanceof Ressource) {
                 this.ressourceSrv.add(ressource);
-            }else{
+            } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
-        }else{
+        } else {
             throw new NullPointerException("Objet passé en parametre égale à null");
         }
     }
@@ -35,15 +38,14 @@ public class RessourceServiceImpl implements RessourceService{
     }
 
     public void update(Ressource ressource) throws Exception {
-        if(ressource!=null){
-            if(ressource instanceof Ressource){
+        if (ressource != null) {
+            if (ressource instanceof Ressource) {
                 this.ressourceSrv.update(ressource);
-            }else{
+            } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
-        }else{
+        } else {
             throw new NullPointerException("Objet passé en parametre égale à null");
         }
     }
-    
 }

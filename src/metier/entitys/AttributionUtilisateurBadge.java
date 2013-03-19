@@ -6,17 +6,17 @@ package metier.entitys;
 
 import java.io.Serializable;
 
-
 /**
  *
  * @author damien
  */
+public class AttributionUtilisateurBadge {
 
-public class AttributionUtilisateurBadge  {
     private static final long serialVersionUID = 1L;
     private Long id;
     private Utilisateur utilisateur;
     private Badge badge;
+
     public Long getId() {
         return id;
     }
@@ -47,7 +47,7 @@ public class AttributionUtilisateurBadge  {
 
     @Override
     public String toString() {
-        return getUtilisateur() +" "+getBadge();
+        return getUtilisateur() + " " + getBadge();
     }
 
     public Utilisateur getUtilisateur() {
@@ -65,5 +65,4 @@ public class AttributionUtilisateurBadge  {
     public void setBadge(Badge badge) {
         this.badge = badge;
     }
-    
 }

@@ -8,13 +8,11 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
 /**
  *
  * @author damien
  */
-
-public class Technicien extends Utilisateur  {
+public class Technicien extends Utilisateur {
 
     private Long id;
     private String login;

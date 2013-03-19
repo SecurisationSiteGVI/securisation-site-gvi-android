@@ -4,13 +4,14 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Camera  {
+public class Camera {
 
     private Long id;
     private Position position;
     private String nom;
     private String ip;
     private String type;
+
     public Long getId() {
         return id;
     }
@@ -59,7 +60,8 @@ public class Camera  {
     public void setNom(String nom) {
         this.nom = nom;
     }
-     public String getIp() {
+
+    public String getIp() {
         return ip;
     }
 

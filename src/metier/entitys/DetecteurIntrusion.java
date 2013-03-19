@@ -15,7 +15,7 @@ public class DetecteurIntrusion implements Serializable {
     private Long id;
     private String nom;
     private Position position;
-    
+
     public Long getId() {
         return id;
     }
@@ -64,5 +64,4 @@ public class DetecteurIntrusion implements Serializable {
     public void setPosition(Position position) {
         this.position = position;
     }
-    
 }

@@ -8,11 +8,11 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Secteur  {
+public class Secteur {
 
     private Long id;
     private String nom;
-    
+
     public Long getId() {
         return id;
     }
@@ -53,5 +53,4 @@ public class Secteur  {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
 }

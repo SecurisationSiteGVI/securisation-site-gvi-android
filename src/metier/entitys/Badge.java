@@ -8,11 +8,11 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Badge  {
+public class Badge {
 
     private Long id;
     private int numero;
-    
+
     public Long getId() {
         return id;
     }
@@ -43,7 +43,7 @@ public class Badge  {
 
     @Override
     public String toString() {
-        return "Badge n°"+numero;
+        return "Badge n°" + numero;
     }
 
     public int getNumero() {
@@ -53,5 +53,4 @@ public class Badge  {
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    
 }

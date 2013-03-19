@@ -8,7 +8,8 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Photo extends Evenement  {
+public class Photo extends Evenement {
+
     private static final long serialVersionUID = 1L;
 
     public static long getSerialVersionUID() {
@@ -17,7 +18,6 @@ public class Photo extends Evenement  {
     private Long id;
     private byte[] image;
     private Camera camera;
-    
 
     @Override
     public int hashCode() {
@@ -41,7 +41,7 @@ public class Photo extends Evenement  {
 
     @Override
     public String toString() {
-        return "photo de la camera" +getCamera();
+        return "photo de la camera" + getCamera();
     }
 
     public byte[] getImage() {
@@ -59,7 +59,4 @@ public class Photo extends Evenement  {
     public void setCamera(Camera camera) {
         this.camera = camera;
     }
-
-   
-    
 }

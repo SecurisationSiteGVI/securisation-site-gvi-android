@@ -8,10 +8,9 @@ package metier.entitys;
  *
  * @author damien
  */
-public class Administrateur extends Technicien  {
+public class Administrateur extends Technicien {
 
     private Long id;
-
 
     @Override
     public int hashCode() {
@@ -32,6 +31,4 @@ public class Administrateur extends Technicien  {
         }
         return true;
     }
-
-    
 }

@@ -9,6 +9,7 @@ package metier.entitys;
  * @author damien
  */
 public class Ressource {
+
     private String protocol;
     private String serveurURL;
     private int port;
@@ -84,8 +85,9 @@ public class Ressource {
     public void setResourcesPath(String resourcesPath) {
         this.resourcesPath = resourcesPath;
     }
+
     public String getPathToAccesWebService() {
-        String cr =protocol+serveurURL+":"+port+"/"+applicationName+"/"+resourcesPath+"/";
+        String cr = protocol + serveurURL + ":" + port + "/" + applicationName + "/" + resourcesPath + "/";
         return cr;
     }
 }
