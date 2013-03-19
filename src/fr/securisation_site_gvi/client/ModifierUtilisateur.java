@@ -1,19 +1,25 @@
 package fr.securisation_site_gvi.client;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.MetierFactory;
@@ -22,13 +28,13 @@ import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
 
 public class ModifierUtilisateur extends Activity {
-
+    private ToggleButton toggleButtonSexe;
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
     private EditText editTextNom;
     private EditText editTextPrenom;
     private Button buttonDateDeNaissance;
     private EditText editTextEmail;
-    private EditText editTextSexe;
+//    private EditText editTextSexe;
     private EditText editTextTelephoneFixe;
     private EditText editTextTelephonePortable;
     private EditText editTextAdresse;
@@ -70,9 +76,9 @@ public class ModifierUtilisateur extends Activity {
         }
 
         if (utilisateur.isHomme()) {
-            this.editTextSexe.setText("homme");
+            this.toggleButtonSexe.setChecked(true);
         } else {
-            this.editTextSexe.setText("femme");
+            this.toggleButtonSexe.setChecked(false);
         }
         if (utilisateur.getTelephoneFixe() != null) {
             this.editTextTelephoneFixe.setText(utilisateur.getTelephoneFixe());
@@ -99,7 +105,7 @@ public class ModifierUtilisateur extends Activity {
         this.editTextPrenom = (EditText) findViewById(R.id.editTextPrenom);
         this.buttonDateDeNaissance = (Button) findViewById(R.id.buttonDateDeNaissance);
         this.editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        this.editTextSexe = (EditText) findViewById(R.id.editTextSexe);
+        this.toggleButtonSexe = (ToggleButton) findViewById(R.id.toggleButton1);
         this.editTextTelephoneFixe = (EditText) findViewById(R.id.editTextFixe);
         this.editTextTelephonePortable = (EditText) findViewById(R.id.editTextPortable);
         this.editTextAdresse = (EditText) findViewById(R.id.editTextAdresse);
@@ -126,6 +132,7 @@ public class ModifierUtilisateur extends Activity {
                 u.setTelephoneFixe(telephoneFixe);
                 u.setTelephonePortable(telephonePortable);
                 u.setAdresse(adresse);
+                u.setHomme(toggleButtonSexe.isChecked());
                 u.setCodePostale(codePostale);
                 u.setVille(ville);
                 u.setId(utilisateurSelected.getId());
@@ -173,8 +180,8 @@ public class ModifierUtilisateur extends Activity {
                         utilisateurSelected.setDateDeNaissance(d);
                         afficherDate();
                     }
-                }, year, month-1, day+1);
-               
+                }, year, month - 1, day + 1);
+
                 datePickerDialog.setTitle("Date de naissance");
                 datePickerDialog.setCancelable(true);
                 datePickerDialog.show();
@@ -184,17 +191,36 @@ public class ModifierUtilisateur extends Activity {
 
     private void afficherDate() {
         Date d = this.utilisateurSelected.getDateDeNaissance();
-        int day = d.getDay()+1;
+        int day = d.getDay() + 1;
         int year = d.getYear();
         int month = d.getMonth();
         String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
     }
 
-    @Override
+      
+     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            ActionBar actionBar = getActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+            case R.id.menu_settings:
+                Intent intent = new Intent(ModifierUtilisateur.this, Parametres.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
