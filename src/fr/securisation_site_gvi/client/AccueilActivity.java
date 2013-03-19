@@ -49,7 +49,7 @@ public class AccueilActivity extends Activity {
         });
         this.gererLesBadges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
         this.gererLesUtilisateurs.setOnClickListener(new View.OnClickListener() {
@@ -60,31 +60,32 @@ public class AccueilActivity extends Activity {
         });
         this.gererLesSecteurs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
         this.gererLesAppareils.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
         this.gererLesNumeroPredefinis.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
         this.gererLesAuthorisationAcces.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
 
-    @Override
+   
+     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_accueil, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             ActionBar actionBar = getActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -92,35 +93,16 @@ public class AccueilActivity extends Activity {
         return true;
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.activity_accueil, menu);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-//            ActionBar actionBar = getActionBar();
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
-//        return true;
-//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-            case R.id.menu_about:
-                // Comportement du bouton "A Propos"
-                return true;
-//		case R.id.menu_help:
-//			// Comportement du bouton "Aide"
-//			return true;
-//		case R.id.menu_refresh:
-//			// Comportement du bouton "Rafraichir"
-//			return true;
-//		case R.id.menu_search:
-//			// Comportement du bouton "Recherche"
-//			return true;
             case R.id.menu_settings:
-                // Comportement du bouton "Param�tres"
+                Intent intent = new Intent(AccueilActivity.this, Parametres.class);
+                startActivity(intent);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
