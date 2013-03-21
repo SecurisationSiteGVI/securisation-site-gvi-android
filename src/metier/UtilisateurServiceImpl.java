@@ -40,6 +40,19 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         }
         return b;
     }
+    public boolean addTechnicien(Technicien utilisateur, Context context) throws Exception {
+        Boolean b = false;
+        if (utilisateur != null) {
+            if (utilisateur instanceof Utilisateur) {
+                b = utilisateurSrv.addTechnicien(utilisateur, context);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
+    }
 
     public boolean remove(Utilisateur utilisateur, Context context) throws Exception {
         Boolean b = false;
@@ -102,6 +115,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         if (id != null) {
             if (id instanceof Long) {
                 u = utilisateurSrv.getById(id, context);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return u;
+    }
+
+    public int count(Context c) throws Exception {
+        int u = 0;
+        if (c != null) {
+            if (c instanceof Context) {
+                u = utilisateurSrv.count(c);
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
