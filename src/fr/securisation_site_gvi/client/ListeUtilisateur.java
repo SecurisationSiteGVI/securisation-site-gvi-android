@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,7 +25,7 @@ import metier.entitys.Utilisateur;
 import physique.dataOut.PhysiqueDataOutFactory;
 import physique.dataOut.UtilisateurServiceWeb;
 
-public class ListeUtilisateur extends Activity {
+public class ListeUtilisateur extends TemplateActivity {
 
     private ListView listUtilisateurs;
     private Button precedent;
@@ -35,13 +36,22 @@ public class ListeUtilisateur extends Activity {
     private TextView textViewPage;
     private List<Utilisateur> u;
     private int pos;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_utilisateur);
-        this.initGraphicalObjects();
+        this.setThisActivityOn(ListeUtilisateur.this);
         this.index = 0;
+        if (this.isTablette7()) {
+            this.nbLinge = 15;
+        }
+        try {
+            this.count = this.utilisateurSrv.count(this.activityContext);
+        } catch (Exception ex) {
+            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.remplirListView();
     }
 
@@ -51,9 +61,19 @@ public class ListeUtilisateur extends Activity {
     }
 
     private void remplirListView() {
+        if (index == 0) {
+            this.precedent.setEnabled(false);
+        } else {
+            this.precedent.setEnabled(true);
+        }
+        if (this.getPage() + 1 == this.getNbPages()) {
+            this.suivant.setEnabled(false);
+        }else{
+            this.suivant.setEnabled(true);
+        }
         List<Utilisateur> utilisateurs = null;
         try {
-            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge, ListeUtilisateur.this);
+            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge, this.activityContext);
             this.u = utilisateurs;
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,7 +83,7 @@ public class ListeUtilisateur extends Activity {
             listeStrings[i] = utilisateurs.get(i).toString();
         }
         listUtilisateurs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-        this.textViewPage.setText("Page " + this.getPage());
+        this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
     }
 
     public void pagePrécédente() {
@@ -82,7 +102,13 @@ public class ListeUtilisateur extends Activity {
 
     }
 
-    private void initGraphicalObjects() {
+    private int getNbPages() {
+        int nbPages = this.count / this.nbLinge;
+        return nbPages;
+    }
+
+    @Override
+    public void initGraphicalObjects() {
         this.listUtilisateurs = (ListView) findViewById(R.id.listeUtilisateurs);
         this.precedent = (Button) findViewById(R.id.boutonUtilisateurPrecedent);
         this.suivant = (Button) findViewById(R.id.boutonUtilisateurSuivant);
@@ -90,7 +116,8 @@ public class ListeUtilisateur extends Activity {
         this.addActionListnerForAllGraphicalObjects();
     }
 
-    private void addActionListnerForAllGraphicalObjects() {
+    @Override
+    public void addActionListnerForAllGraphicalObjects() {
         this.listUtilisateurs.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -101,7 +128,7 @@ public class ListeUtilisateur extends Activity {
                 builder.setMessage(u.get(position).toString() + " à été séléctionné voulez vous le modifier ?");
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(ListeUtilisateur.this, ModifierUtilisateur.class);
+                        Intent i = new Intent(activityContext, ModifierUtilisateur.class);
                         i.putExtra("id", u.get(pos).getId());
                         startActivityForResult(i, 0);
                         dialog.cancel();
@@ -109,14 +136,10 @@ public class ListeUtilisateur extends Activity {
                 });
                 builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
                         dialog.cancel();
                     }
                 });
-
                 builder.show();
-
             }
         });
         this.precedent.setOnClickListener(new View.OnClickListener() {
@@ -129,30 +152,5 @@ public class ListeUtilisateur extends Activity {
                 pageSuivante();
             }
         });
-    }
-
-     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            ActionBar actionBar = getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-            case R.id.menu_settings:
-                Intent intent = new Intent(ListeUtilisateur.this, Parametres.class);
-                startActivity(intent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
