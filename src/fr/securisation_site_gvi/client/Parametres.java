@@ -1,9 +1,7 @@
 package fr.securisation_site_gvi.client;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +12,9 @@ import metier.MetierFactory;
 import metier.RessourceService;
 import metier.entitys.Ressource;
 
-public class Parametres extends Activity {
+public class Parametres extends TemplateActivity {
 
-    private RessourceService ressourceSrv;
+    private RessourceService ressourceSrv=MetierFactory.getRessourceSrv(Parametres.this);
     private Button valider;
     private EditText editTextProtocol;
     private EditText editTextServeurURL;
@@ -29,13 +27,13 @@ public class Parametres extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
-        this.ressourceSrv = MetierFactory.getRessourceSrv(Parametres.this);
-        this.initGraphicalObjects();
-        this.initEditText();
+        this.setThisActivityOn(Parametres.this);
+
     }
 
-    private void initEditText() {
-        Ressource ressource = null;
+    @Override
+    public void addInitialValueForGraphicalObjects(){
+        Ressource ressource =null;
         try {
             ressource = this.ressourceSrv.getRessource();
         } catch (Exception ex) {
@@ -58,17 +56,18 @@ public class Parametres extends Activity {
         }
     }
 
-    private void initGraphicalObjects() {
+    @Override
+    public void initGraphicalObjects() {
         this.valider = (Button) findViewById(R.id.buttonValider);
         this.editTextProtocol = (EditText) findViewById(R.id.editTextProtocol);
         this.editTextServeurURL = (EditText) findViewById(R.id.EditTextServeurURL);
         this.editTextPort = (EditText) findViewById(R.id.editTextPort);
         this.editTextApplicationName = (EditText) findViewById(R.id.editTextApplicationName);
         this.editTextRessourcesPath = (EditText) findViewById(R.id.editTextRessoucesPath);
-        this.addActionListnerForAllGraphicalObjects();
     }
 
-    private void addActionListnerForAllGraphicalObjects() {
+    @Override
+    public void addActionListnerForAllGraphicalObjects() {
         this.valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Ressource res = new Ressource();
@@ -95,6 +94,4 @@ public class Parametres extends Activity {
             }
         });
     }
-
-    
 }
