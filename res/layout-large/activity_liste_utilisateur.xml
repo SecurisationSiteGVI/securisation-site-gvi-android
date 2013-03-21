@@ -14,8 +14,6 @@
         android:layout_height="400dp"
         android:layout_above="@+id/boutonUtilisateurSuivant"
         android:paddingTop="20dp"
-        android:dividerHeight="20dp"
-        android:background="#FFFFFF" 
         android:layout_alignParentTop="true" >
 
     </ListView>
