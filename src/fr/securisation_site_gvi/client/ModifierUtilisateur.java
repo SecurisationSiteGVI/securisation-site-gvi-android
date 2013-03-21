@@ -1,15 +1,7 @@
 package fr.securisation_site_gvi.client;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Message;
-import android.provider.ContactsContract;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,23 +10,20 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.TooManyListenersException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.MetierFactory;
 import metier.UtilisateurService;
-import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
 
-public class ModifierUtilisateur extends Activity {
+public class ModifierUtilisateur extends TemplateActivity {
+
     private ToggleButton toggleButtonSexe;
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
     private EditText editTextNom;
     private EditText editTextPrenom;
     private Button buttonDateDeNaissance;
     private EditText editTextEmail;
-//    private EditText editTextSexe;
     private EditText editTextTelephoneFixe;
     private EditText editTextTelephonePortable;
     private EditText editTextAdresse;
@@ -43,22 +32,22 @@ public class ModifierUtilisateur extends Activity {
     private Button buttonSupprimerUtilisateur;
     private Button buttonModifierUtilisateur;
     private Utilisateur utilisateurSelected;
-
+    private Long id;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modifier_utilisateur);
-        this.initGraphicalObjects();
+        this.setThisActivityOn(ModifierUtilisateur.this);
         Bundle extras = getIntent().getExtras();
-        Long id = extras.getLong("id");
-        this.setTextInAllEditText(id);
+        this.id = extras.getLong("id");
     }
 
-    private void setTextInAllEditText(Long id) {
+    @Override
+    public void addInitialValueForGraphicalObjects() {
         Utilisateur utilisateur = null;
-
         try {
-            utilisateur = utilisateurSrv.getById(id, ModifierUtilisateur.this);
+            utilisateur = utilisateurSrv.getById(this.id, ModifierUtilisateur.this);
         } catch (Exception ex) {
             Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +63,6 @@ public class ModifierUtilisateur extends Activity {
         if (utilisateur.getEmail() != null) {
             this.editTextEmail.setText(utilisateur.getEmail());
         }
-
         if (utilisateur.isHomme()) {
             this.toggleButtonSexe.setChecked(true);
         } else {
@@ -95,10 +83,10 @@ public class ModifierUtilisateur extends Activity {
         if (utilisateur.getVille() != null) {
             this.editTextVille.setText(utilisateur.getVille());
         }
-
     }
 
-    private void initGraphicalObjects() {
+    @Override
+    public void initGraphicalObjects() {
         this.buttonSupprimerUtilisateur = (Button) findViewById(R.id.buttonSupprimerUtilisateur);
         this.buttonModifierUtilisateur = (Button) findViewById(R.id.buttonModifierUtilisateur);
         this.editTextNom = (EditText) findViewById(R.id.editTextNom);
@@ -111,10 +99,10 @@ public class ModifierUtilisateur extends Activity {
         this.editTextAdresse = (EditText) findViewById(R.id.editTextAdresse);
         this.editTextCodePostale = (EditText) findViewById(R.id.editTextCodePostale);
         this.editTextVille = (EditText) findViewById(R.id.editTextVille);
-        this.addActionListnerForAllGraphicalObjects();
     }
 
-    private void addActionListnerForAllGraphicalObjects() {
+    @Override
+    public void addActionListnerForAllGraphicalObjects() {
         this.buttonModifierUtilisateur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String nom = editTextNom.getText().toString();
@@ -196,31 +184,5 @@ public class ModifierUtilisateur extends Activity {
         int month = d.getMonth();
         String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
-    }
-
-      
-     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            ActionBar actionBar = getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-            case R.id.menu_settings:
-                Intent intent = new Intent(ModifierUtilisateur.this, Parametres.class);
-                startActivity(intent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
