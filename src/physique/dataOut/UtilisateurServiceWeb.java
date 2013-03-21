@@ -30,4 +30,8 @@ public interface UtilisateurServiceWeb {
     public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Exception;
 
     public Utilisateur getById(Long id, Context context) throws Exception;
+
+    public int count(Context c) throws Exception;
+    
+    public boolean addTechnicien(Technicien technicien,Context context) throws Exception;
 }
