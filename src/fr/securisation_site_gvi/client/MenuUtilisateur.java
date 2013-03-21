@@ -42,7 +42,8 @@ public class MenuUtilisateur extends TemplateActivity {
         });
         this.ajouterUnTechnicien.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(activityContext, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(activityContext, AjouterTechnicien.class);
+                startActivity(i);
             }
         });
     }
