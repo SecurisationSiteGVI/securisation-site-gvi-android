@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import metier.entitys.Technicien;
 import physique.dataOut.UtilisateurServiceWeb;
 
-public class MainActivity extends Activity {
+public class MainActivity extends TemplateActivity {
 
     private Button buttonConnnexion;
     private EditText editTextLogin;
@@ -28,13 +28,21 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        this.setThisActivityOn(MainActivity.this);
+        this.editTextLogin.setText("damienChes");
+        this.editTextPassword.setText("damien");
+    }
 
+    @Override
+    public void initGraphicalObjects() {
         this.buttonConnnexion = (Button) findViewById(R.id.buttonConnexion);
         this.editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         this.textView = (TextView) findViewById(R.id.textView1);
         this.editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        this.editTextLogin.setText("damienChes");
-        this.editTextPassword.setText("damien");
+    }
+
+    @Override
+    public void addActionListnerForAllGraphicalObjects() {
         this.buttonConnnexion.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Technicien t = new Technicien();
@@ -57,24 +65,5 @@ public class MainActivity extends Activity {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_settings:
-                Intent intent = new Intent(MainActivity.this, Parametres.class);
-                startActivity(intent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
