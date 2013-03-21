@@ -113,7 +113,6 @@ public class ListeUtilisateur extends TemplateActivity {
         this.precedent = (Button) findViewById(R.id.boutonUtilisateurPrecedent);
         this.suivant = (Button) findViewById(R.id.boutonUtilisateurSuivant);
         this.textViewPage = (TextView) findViewById(R.id.listeUtilisateurAffichagePage);
-        this.addActionListnerForAllGraphicalObjects();
     }
 
     @Override
