@@ -24,7 +24,6 @@ public class MenuUtilisateur extends TemplateActivity {
         this.listeDesUtilisateurs = (Button) findViewById(R.id.listeUtilisateurs);
         this.ajouterUnUtilisateur = (Button) findViewById(R.id.ajouterUtilisateur);
         this.ajouterUnTechnicien = (Button) findViewById(R.id.ajouterTechnicien);
-        this.addActionListnerForAllGraphicalObjects();
     }
 
     @Override
