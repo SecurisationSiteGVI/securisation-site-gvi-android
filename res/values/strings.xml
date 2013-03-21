@@ -53,5 +53,6 @@
     <string name="ville">Ville :</string>
     <string name="deleteUtilisateur">Supprimer l\'utilisateur</string>
     <string name="updateUtilisateur">Modifier l\'utilisateur</string>
-    
+    <string name="creeUtilisateur">Crée utilisateur</string>
+    <string name="title_activity_ajouter_utilisateur">Ajouter un utilisateur</string>
 </resources>
