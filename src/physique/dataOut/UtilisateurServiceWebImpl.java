@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import fr.securisation_site_gvi.client.MainActivity;
 import metier.entitys.Technicien;
 import java.io.*;
 import java.net.ConnectException;
@@ -110,6 +109,18 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         AsyncTask<Object, Void, Object> ret = new RESTGetById().execute(id, context);
         List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
         return utilisateurs.get(0);
+    }
+
+    public int count(Context c) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTCount().execute(c);
+        Integer count = (Integer) ret.get();
+        return count;
+    }
+
+    public boolean addTechnicien(Technicien technicien,Context context) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTAddTechniecien().execute(technicien, context);
+        Boolean retour = (Boolean) ret.get();
+        return retour;
     }
 
     private class RESTGetById extends AsyncTask<Object, Void, Object> {
@@ -363,19 +374,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                     ressource = r.getRessource();
                 } catch (Exception ex) {
                     Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-
-
-
-                final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-
-
-
-
-
-
+                }final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 Utilisateur utilisateur = (Utilisateur) params[0];
                 Long id = utilisateur.getId();
                 String prenom = utilisateur.getPrenom();
@@ -708,6 +707,102 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
             return technicien;
+        }
+    }
+
+    private class RESTCount extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            int ret = 0;
+            try {
+                Context c = (Context) params[0];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                BufferedReader br = null;
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/count");
+                InputStream fluxLecture = url.openStream();
+                br = new BufferedReader(new InputStreamReader((fluxLecture)));
+                String output;
+                while ((output = br.readLine()) != null) {
+                    System.out.println(output);
+                    ret = Integer.parseInt(output);
+                }
+                br.close();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTAddTechniecien extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Context c = (Context) params[1];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Boolean retour = true;
+            try {
+                Technicien utilisateur = (Technicien) params[0];
+                utilisateur.encode(true);
+                String prenom = utilisateur.getPrenom();
+                String nom = utilisateur.getNom();
+                String email = utilisateur.getEmail();
+                String login = utilisateur.getLogin();
+                String password = utilisateur.getPassword();
+                String telephoneFixe = utilisateur.getTelephoneFixe();
+                String telephonePortable = utilisateur.getTelephonePortable();
+                String ville = utilisateur.getVille();
+                int codePostale = utilisateur.getCodePostale();
+                String adresse = utilisateur.getAdresse();
+                boolean homme = utilisateur.isHomme();
+                Date dateDeNaissance = utilisateur.getDateDeNaissance();
+                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                String input = "{\"id\":0,\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephone"
+                        + "Fixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"cod"
+                        + "ePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\""
+                        + "dateDeNaissance\":\"" + dateDeNaissance + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
+                OutputStream os = conn.getOutputStream();
+                System.out.println(input);
+                os.write(input.getBytes());
+                os.flush();
+                if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+                    if (conn.getResponseCode() != 204) {
+                        throw new RuntimeException("Failed : HTTP error code : "
+                                + conn.getResponseCode());
+                    } else {
+                        System.out.println("Requete envoyé mais pas de réponse du serveur.");
+                    }
+                }
+                BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                String output;
+                System.out.println("Output from Server .... \n");
+                while ((output = br.readLine()) != null) {
+                    System.out.println(output);
+                }
+                conn.disconnect();
+
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return retour;
         }
     }
 }
