@@ -55,4 +55,7 @@
     <string name="updateUtilisateur">Modifier l\'utilisateur</string>
     <string name="creeUtilisateur">Crée utilisateur</string>
     <string name="title_activity_ajouter_utilisateur">Ajouter un utilisateur</string>
+    <string name="title_activity_ajouter_technicien">Ajouter un technicien</string>
+    <string name="title_activity_historique">Historique</string>
+    <string name="creeTechnicien">Crée technicien</string>
 </resources>
