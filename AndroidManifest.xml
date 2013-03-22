@@ -46,6 +46,14 @@
             android:name=".AjouterUtilisateur"
             android:label="@string/title_activity_ajouter_utilisateur" >
         </activity>
+        <activity
+            android:name=".AjouterTechnicien"
+            android:label="@string/title_activity_ajouter_technicien" >
+        </activity>
+        <activity
+            android:name=".Historique"
+            android:label="@string/title_activity_historique" >
+        </activity>
     </application> 
     
 </manifest>
