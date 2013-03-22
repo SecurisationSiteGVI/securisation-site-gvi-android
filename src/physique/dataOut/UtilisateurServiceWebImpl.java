@@ -770,7 +770,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 String adresse = utilisateur.getAdresse();
                 boolean homme = utilisateur.isHomme();
                 Date dateDeNaissance = utilisateur.getDateDeNaissance();
-                URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
+                URL url = new URL(ressource.getPathToAccesWebService() + "technicien");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
