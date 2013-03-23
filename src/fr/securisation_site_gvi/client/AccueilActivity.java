@@ -39,7 +39,8 @@ public class AccueilActivity extends TemplateActivity {
     public void addActionListnerForAllGraphicalObjects() {
         this.voirHistorique.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent  = new Intent(activityContext, VoirHistorique.class);
+                startActivity(intent);
             }
         });
         this.gererLesBadges.setOnClickListener(new View.OnClickListener() {
