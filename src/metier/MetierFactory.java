@@ -14,7 +14,11 @@ public class MetierFactory {
 
     private static RessourceService ressourceSrv;
     private static UtilisateurService utilisateurSrv = new UtilisateurServiceImpl();
-
+    private static EvenementService evenementSrv = new EvenementServiceImpl();
+    
+    public static EvenementService getEvenementSrv() {
+        return evenementSrv;
+    }
     public static RessourceService getRessourceSrv(Context context) {
         MetierFactory.ressourceSrv = new RessourceServiceImpl(context);
         return ressourceSrv;
