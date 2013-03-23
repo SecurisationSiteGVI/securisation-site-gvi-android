@@ -18,6 +18,8 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.EvenementService;
+import metier.MetierFactory;
 import metier.entitys.Evenement;
 
 /**
@@ -35,7 +37,7 @@ public class VoirHistorique extends TemplateActivity {
     private int nbLinge = 10;
     private List<Evenement> u;
     private int count;
-
+    private EvenementService evenementSrv = MetierFactory.getEvenementSrv();
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -100,16 +102,16 @@ public class VoirHistorique extends TemplateActivity {
         } else {
             this.buttonSuivant.setEnabled(true);
         }
-        List<Evenement> utilisateurs = null;
+        List<Evenement> evenements = null;
         try {
-            //utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge, this.activityContext);
-            this.u = utilisateurs;
+            evenements = this.evenementSrv.getAll(this.activityContext);
+            this.u = evenements;
         } catch (Exception ex) {
             Logger.getLogger(VoirHistorique.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String[] listeStrings = new String[utilisateurs.size()];
-        for (int i = 0; i < utilisateurs.size(); i++) {
-            listeStrings[i] = utilisateurs.get(i).toString();
+        String[] listeStrings = new String[evenements.size()];
+        for (int i = 0; i < evenements.size(); i++) {
+            listeStrings[i] = evenements.get(i).toString();
         }
         this.listeHistorique.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
         this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
