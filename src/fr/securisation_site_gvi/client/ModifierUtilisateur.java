@@ -38,9 +38,10 @@ public class ModifierUtilisateur extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modifier_utilisateur);
-        this.setThisActivityOn(ModifierUtilisateur.this);
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
+        this.setThisActivityOn(ModifierUtilisateur.this);
+        
     }
 
     @Override
