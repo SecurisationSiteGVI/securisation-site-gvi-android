@@ -45,7 +45,7 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
     }
 
     public List<Evenement> getAll(Context context ,int index, int nbResultat) throws Exception{
-        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAll().execute(context,index,nbResultat);
+        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAllByRange().execute(context,index,nbResultat);
         List<Evenement> retour = (List<Evenement>) ret.get();
         return retour;
     }
