@@ -1,11 +1,7 @@
 package fr.securisation_site_gvi.client;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +24,7 @@ public class MainActivity extends TemplateActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        this.setThisActivityOn(MainActivity.this);
+        this.setThisActivityOn();
         this.editTextLogin.setText("damienChes");
         this.editTextPassword.setText("damien");
     }

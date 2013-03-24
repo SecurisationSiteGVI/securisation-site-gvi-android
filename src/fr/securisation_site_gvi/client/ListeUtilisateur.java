@@ -36,7 +36,7 @@ public class ListeUtilisateur extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_utilisateur);
-        this.setThisActivityOn(ListeUtilisateur.this);
+        this.setThisActivityOn();
         this.index = 0;
         if (this.isTablette7()) {
             this.nbLinge = 15;

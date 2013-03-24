@@ -40,7 +40,7 @@ public class ModifierUtilisateur extends TemplateActivity {
         setContentView(R.layout.modifier_utilisateur);
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
-        this.setThisActivityOn(ModifierUtilisateur.this);
+        this.setThisActivityOn();
         
     }
 

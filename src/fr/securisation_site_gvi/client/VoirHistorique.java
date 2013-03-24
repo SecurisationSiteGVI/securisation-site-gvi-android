@@ -41,20 +41,20 @@ public class VoirHistorique extends TemplateActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.ajouter_utilisateur);
-        this.setThisActivityOn(VoirHistorique.this);
+        setContentView(R.layout.activity_historique);
+        this.setThisActivityOn();
     }
 
     @Override
     public void initGraphicalObjects() {
-        this.listeHistorique = (ListView) findViewById(R.id.listeHistorique);
-        this.buttonPrecendent = (Button) findViewById(R.id.boutonHistoriquePrecedent);
-        this.buttonSuivant = (Button) findViewById(R.id.boutonHistoriqueSuivant);
-        this.textViewPage = (TextView) findViewById(R.id.listeHistoriqueAffichagePage);
+//        this.listeHistorique = (ListView) findViewById(R.id.listeHistorique);
+//        this.buttonPrecendent = (Button) findViewById(R.id.boutonHistoriquePrecedent);
+//        this.buttonSuivant = (Button) findViewById(R.id.boutonHistoriqueSuivant);
+//        this.textViewPage = (TextView) findViewById(R.id.listeHistoriqueAffichagePage);
     }
 
     @Override
-    public void addActionListnerForAllGraphicalObjects() {
+    public void addActionListnerForAllGraphicalObjects() {/*
         this.listeHistorique.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -88,7 +88,7 @@ public class VoirHistorique extends TemplateActivity {
             public void onClick(View v) {
                 pageSuivante();
             }
-        });
+        });*/
     }
 
     private void remplirListView() {

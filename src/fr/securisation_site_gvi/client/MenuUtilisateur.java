@@ -16,7 +16,7 @@ public class MenuUtilisateur extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_utilisateur);
-        this.setThisActivityOn(MenuUtilisateur.this);
+        this.setThisActivityOn();
     }
 
     @Override

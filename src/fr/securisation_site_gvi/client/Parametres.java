@@ -27,7 +27,7 @@ public class Parametres extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
-        this.setThisActivityOn(Parametres.this);
+        this.setThisActivityOn();
 
     }
 

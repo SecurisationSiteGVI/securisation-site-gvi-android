@@ -20,7 +20,7 @@ public class AccueilActivity extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accueilactivity);
-        this.setThisActivityOn(AccueilActivity.this);
+        this.setThisActivityOn();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class AccueilActivity extends TemplateActivity {
     public void addActionListnerForAllGraphicalObjects() {
         this.voirHistorique.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent  = new Intent(activityContext, VoirHistorique.class);
+                Intent intent  = new Intent(AccueilActivity.this, Historique.class);
                 startActivity(intent);
             }
         });

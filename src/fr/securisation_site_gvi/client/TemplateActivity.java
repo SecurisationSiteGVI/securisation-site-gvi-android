@@ -22,10 +22,9 @@ public class TemplateActivity extends Activity {
      * Toujours surcharger les methodes :initGraphicalObjects et
      * addActionListnerForAllGraphicalObjects
      */
-    protected Context activityContext;
+    protected Context activityContext=TemplateActivity.this;
 
-    public void setThisActivityOn(Context context) {
-        this.activityContext = context;
+    public void setThisActivityOn() {
         this.initGraphicalObjects();
         this.addActionListnerForAllGraphicalObjects();
         this.addInitialValueForGraphicalObjects();

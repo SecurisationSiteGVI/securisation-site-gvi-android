@@ -45,7 +45,7 @@ public class AjouterUtilisateur extends TemplateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajouter_utilisateur);
-        this.setThisActivityOn(AjouterUtilisateur.this);
+        this.setThisActivityOn();
     }
 
     @Override

@@ -48,7 +48,7 @@ public class AjouterTechnicien extends TemplateActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajouter_technicien);
-        this.setThisActivityOn(AjouterTechnicien.this);
+        this.setThisActivityOn();
     }
 
     @Override
