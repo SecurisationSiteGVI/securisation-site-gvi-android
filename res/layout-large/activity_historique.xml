@@ -13,9 +13,9 @@
     <ListView
         android:id="@+id/HistoriquelisteEvenements"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="740dp"
         android:layout_above="@+id/boutonUtilisateurSuivant"
-        android:paddingTop="20dp"
+        android:paddingTop="0dp"
         android:layout_alignParentTop="true" >
 
     </ListView>
