@@ -6,8 +6,11 @@ package physique.dataOut;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,6 +46,44 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
 
     public List<Evenement> getAll(Context context ,int index, int nbResultat) throws Exception{
         throw new UnsupportedOperationException("TO DO THAT ! ");
+    }
+
+    public int count(Context c) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTCount().execute(c);
+        Integer count = (Integer) ret.get();
+        return count;
+    }
+    private class RESTCount extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            int ret = 0;
+            try {
+                Context c = (Context) params[0];
+                RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = r.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                BufferedReader br = null;
+                URL url = new URL(ressource.getPathToAccesWebService() + "evenement/count");
+                InputStream fluxLecture = url.openStream();
+                br = new BufferedReader(new InputStreamReader((fluxLecture)));
+                String output;
+                while ((output = br.readLine()) != null) {
+                    System.out.println(output);
+                    ret = Integer.parseInt(output);
+                }
+                br.close();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
     }
 
     
