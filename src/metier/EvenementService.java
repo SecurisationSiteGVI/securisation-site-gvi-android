@@ -15,4 +15,5 @@ import metier.entitys.Evenement;
 public interface EvenementService {
     public List<Evenement> getAll(Context context) throws Exception;
     public List<Evenement> getAll(Context context,int index, int nbResultat) throws Exception;
+    public int count(Context c) throws Exception;
 }
