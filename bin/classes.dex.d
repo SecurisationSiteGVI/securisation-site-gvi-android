@@ -98,6 +98,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$RESTAdd.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/EvenementServiceWebImpl$1.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/EvenementServiceWebImpl$RESTGetAllByRange.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/EvenementServiceWebImpl$RESTCount.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$RESTAddTechniecien.class \
