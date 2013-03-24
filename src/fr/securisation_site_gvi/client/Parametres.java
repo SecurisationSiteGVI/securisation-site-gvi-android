@@ -90,7 +90,7 @@ public class Parametres extends TemplateActivity {
                     } catch (Exception ex) {
                         Logger.getLogger(Parametres.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+                }finish();
             }
         });
     }
