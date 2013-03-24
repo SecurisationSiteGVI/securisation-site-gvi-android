@@ -46,6 +46,15 @@
             android:name=".AjouterUtilisateur"
             android:label="@string/title_activity_ajouter_utilisateur" >
         </activity>
+        <activity
+            android:name="fr.securisation_site_gvi.client.Historique"
+            android:label="@string/title_activity_historique" >
+        </activity>
+        <activity
+            android:name=".AjouterTechnicien"
+            android:label="@string/title_activity_ajouter_technicien" >
+        </activity>
+        
     </application> 
     
 </manifest>

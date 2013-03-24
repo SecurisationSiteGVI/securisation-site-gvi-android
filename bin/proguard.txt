@@ -1,8 +1,14 @@
 # view AndroidManifest.xml #generated:25
 -keep class fr.securisation_site_gvi.client.AccueilActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:53
+-keep class fr.securisation_site_gvi.client.AjouterTechnicien { <init>(...); }
+
 # view AndroidManifest.xml #generated:45
 -keep class fr.securisation_site_gvi.client.AjouterUtilisateur { <init>(...); }
+
+# view AndroidManifest.xml #generated:49
+-keep class fr.securisation_site_gvi.client.Historique { <init>(...); }
 
 # view AndroidManifest.xml #generated:33
 -keep class fr.securisation_site_gvi.client.ListeUtilisateur { <init>(...); }
