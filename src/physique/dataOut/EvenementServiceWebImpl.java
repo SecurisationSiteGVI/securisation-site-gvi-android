@@ -45,7 +45,9 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
     }
 
     public List<Evenement> getAll(Context context ,int index, int nbResultat) throws Exception{
-        throw new UnsupportedOperationException("TO DO THAT ! ");
+        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAll().execute(context,index,nbResultat);
+        List<Evenement> retour = (List<Evenement>) ret.get();
+        return retour;
     }
 
     public int count(Context c) throws Exception {
@@ -103,6 +105,60 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
             try {
                 InputStream fluxLecture = null;
                 URL url = new URL(ressource.getPathToAccesWebService() + "evenement");
+                fluxLecture = url.openStream();
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(fluxLecture);
+                doc.getDocumentElement().normalize();
+                NodeList nList = doc.getElementsByTagName("evenement");
+                for (int temp = 0; temp < nList.getLength(); temp++) {
+                    Evenement evenement = new Evenement();
+                    Node nNode = nList.item(temp);
+                    if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element eElement = (Element) nNode;
+                        evenement.setId(Long.parseLong(getTagValue("id", eElement)));
+                        if (getTagValue("dateEvt", eElement) != null) {
+                            String dateStr = getTagValue("dateEvt", eElement);
+                            final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            Date d = new Date();
+                            try {
+                                d = dateFormat.parse(dateStr);
+                            } catch (ParseException ex) {
+                                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            evenement.setDateEvt(d);
+                        }
+                        utilisateurs.add(evenement);
+                    }
+                }
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return utilisateurs;
+        }
+    }
+    private class RESTGetAllByRange extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Context c = (Context) params[0];
+            Integer index = (Integer) params[1];
+            Integer nbResult = (Integer) params[2];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            List<Evenement> utilisateurs = new ArrayList<Evenement>();
+            try {
+                InputStream fluxLecture = null;
+                URL url = new URL(ressource.getPathToAccesWebService() + "evenement/"+index+"/"+nbResult);
                 fluxLecture = url.openStream();
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
