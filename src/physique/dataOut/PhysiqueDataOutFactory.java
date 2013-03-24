@@ -12,9 +12,14 @@ import java.util.List;
  */
 public class PhysiqueDataOutFactory {
 
-    private static UtilisateurServiceWeb personneClientSrv = new UtilisateurServiceWebImpl();
+    private static UtilisateurServiceWeb personneSrv = new UtilisateurServiceWebImpl();
+    private static EvenementServiceWeb evenementSrv = new EvenementServiceWebImpl();
 
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
-        return personneClientSrv;
+        return personneSrv;
+    }
+
+    public static EvenementServiceWeb getEvenementServiceWeb() {
+        return evenementSrv;
     }
 }
