@@ -8,38 +8,5 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Historique" >
 
-    <ListView
-        android:id="@+id/listeHistorique"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_above="@+id/boutonHistoriqueSuivant"
-        android:paddingTop="20dp"
-        android:layout_alignParentTop="true" >
-
-    </ListView>
-
-    <Button
-        android:id="@+id/boutonHistoriquePrecedent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listeUtilisateurs"
-        android:layout_alignTop="@+id/boutonUtilisateurSuivant"
-        android:text="@string/precedent" />
-
-    <Button
-        android:id="@+id/boutonHistoriqueSuivant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/listeUtilisateurs"
-        android:text="@string/suivant" />
-    <TextView
-        android:id="@+id/listeHistoriqueAffichagePage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/boutonUtilisateurSuivant"
-        android:layout_alignBottom="@+id/boutonUtilisateurSuivant"
-        android:layout_centerHorizontal="true"
-        android:text=" " />
 
 </RelativeLayout>
