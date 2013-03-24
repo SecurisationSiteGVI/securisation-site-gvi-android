@@ -2,7 +2,6 @@ package fr.securisation_site_gvi.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,16 +16,13 @@ import java.util.logging.Logger;
 import metier.EvenementService;
 import metier.MetierFactory;
 import metier.entitys.Evenement;
-import metier.entitys.Utilisateur;
-import physique.dataOut.PhysiqueDataOutFactory;
-import physique.dataOut.UtilisateurServiceWeb;
 
 public class Historique extends TemplateActivity {
 
-    private ListView listUtilisateurs;
+    private ListView listEvenements;
     private Button precedent;
     private Button suivant;
-    private EvenementService utilisateurSrv = MetierFactory.getEvenementSrv();
+    private EvenementService evenementSrv = MetierFactory.getEvenementSrv();
     private int index;
     private int nbLinge = 10;
     private TextView textViewPage;
@@ -44,7 +40,7 @@ public class Historique extends TemplateActivity {
             this.nbLinge = 15;
         }
         try {
-            this.count = this.utilisateurSrv.count(this.activityContext);
+            this.count = this.evenementSrv.count(this.activityContext);
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,7 +60,7 @@ public class Historique extends TemplateActivity {
         }
         List<Evenement> utilisateurs = null;
         try {
-            utilisateurs = this.utilisateurSrv.getAll(activityContext);
+            utilisateurs = this.evenementSrv.getAll(this.activityContext, this.index, this.nbLinge);
             this.u = utilisateurs;
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +69,7 @@ public class Historique extends TemplateActivity {
         for (int i = 0; i < utilisateurs.size(); i++) {
             listeStrings[i] = utilisateurs.get(i).toString();
         }
-        listUtilisateurs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
+        listEvenements.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
         this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
     }
 
@@ -109,7 +105,7 @@ public class Historique extends TemplateActivity {
 
     @Override
     public void initGraphicalObjects() {
-        this.listUtilisateurs = (ListView) findViewById(R.id.HistoriquelisteEvenements);
+        this.listEvenements = (ListView) findViewById(R.id.HistoriquelisteEvenements);
         this.precedent = (Button) findViewById(R.id.HistoriqueboutonPrecedent);
         this.suivant = (Button) findViewById(R.id.HistoriqueboutonSuivant);
         this.textViewPage = (TextView) findViewById(R.id.HistoriquetextPage);
@@ -117,19 +113,19 @@ public class Historique extends TemplateActivity {
 
     @Override
     public void addActionListnerForAllGraphicalObjects() {
-        this.listUtilisateurs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listEvenements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                     int position, long id) {
                 pos = position;
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
-                builder.setTitle("Utilisateur séléctionné.");
-                builder.setMessage(u.get(position).toString() + " à été séléctionné voulez vous le modifier ?");
+                builder.setTitle("Evenement séléctionné.");
+                builder.setMessage("Vous avez séléctionné un évement voulez vous avoir des détails ?");
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(activityContext, ModifierUtilisateur.class);
-                        i.putExtra("id", u.get(pos).getId());
-                        startActivityForResult(i, 0);
+//                        Intent i = new Intent(activityContext, ModifierUtilisateur.class);
+//                        i.putExtra("id", u.get(pos).getId());
+//                        startActivityForResult(i, 0);
                         dialog.cancel();
                     }
                 });
