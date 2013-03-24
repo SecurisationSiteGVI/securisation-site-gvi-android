@@ -37,6 +37,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur$3$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$6.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur$3.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique$3.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AjouterUtilisateur.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$3.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/TemplateActivity.class \
@@ -62,17 +63,21 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/VoirHistorique.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ListeUtilisateur$2.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ListeUtilisateur$3.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique$2.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ModifierUtilisateur$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$7.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AjouterUtilisateur$2.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique$1$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Parametres.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$style.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$menu.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/MenuUtilisateur.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AjouterTechnicien$2$1.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique$1$2.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/R$drawable.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/AccueilActivity$5.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/Historique$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/fr/securisation_site_gvi/client/ListeUtilisateur$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataIn/RessourceServiceDataInServiceImpl.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataIn/Connexion.class \
@@ -93,6 +98,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$1.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$RESTAdd.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/EvenementServiceWebImpl$1.class \
+/home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/EvenementServiceWebImpl$RESTCount.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$RESTAddTechniecien.class \
 /home/damien/ProjetBTS/securisation-site-gvi-android/bin/classes/physique/dataOut/UtilisateurServiceWebImpl$RESTGetAllByRange.class \
