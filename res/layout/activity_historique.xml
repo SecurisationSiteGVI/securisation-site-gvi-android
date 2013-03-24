@@ -21,8 +21,8 @@
         android:id="@+id/HistoriqueboutonPrecedent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listeUtilisateurs"
-        android:layout_alignTop="@+id/boutonUtilisateurSuivant"
+        android:layout_alignLeft="@+id/HistoriquelisteEvenements"
+        android:layout_alignTop="@+id/HistoriqueboutonSuivant"
         android:text="@string/precedent" />
 
     <Button
@@ -30,14 +30,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/listeUtilisateurs"
+        android:layout_alignRight="@+id/HistoriquelisteEvenements"
         android:text="@string/suivant" />
     <TextView
-        android:id="@+id/HistoriqueboutonSuivant"
+        android:id="@+id/HistoriquetextPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/boutonUtilisateurSuivant"
-        android:layout_alignBottom="@+id/boutonUtilisateurSuivant"
+        android:layout_alignBaseline="@+id/HistoriqueboutonSuivant"
+        android:layout_alignBottom="@+id/HistoriqueboutonSuivant"
         android:layout_centerHorizontal="true"
         android:text=" " />
 </RelativeLayout>
