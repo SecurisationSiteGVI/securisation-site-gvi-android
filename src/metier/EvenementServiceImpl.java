@@ -7,19 +7,56 @@ package metier;
 import android.content.Context;
 import java.util.List;
 import metier.entitys.Evenement;
+import physique.dataOut.EvenementServiceWeb;
+import physique.dataOut.PhysiqueDataOutFactory;
 
 /**
  *
  * @author damien
  */
-public class EvenementServiceImpl implements EvenementService{
+public class EvenementServiceImpl implements EvenementService {
+
+    private EvenementServiceWeb evenementSrv = PhysiqueDataOutFactory.getEvenementServiceWeb();
 
     public List<Evenement> getAll(Context context) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Evenement> b = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                b = evenementSrv.getAll(context);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
     }
 
     public List<Evenement> getAll(Context context, int index, int nbResultat) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Evenement> b = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                b = evenementSrv.getAll(context, index, nbResultat);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
     }
-    
+
+    public int count(Context context) throws Exception {
+        int b = 0;
+        if (context != null) {
+            if (context instanceof Context) {
+                b = evenementSrv.count(context);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
+    }
 }
