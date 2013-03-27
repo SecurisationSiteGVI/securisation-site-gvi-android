@@ -22,8 +22,15 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.Acces;
+import metier.entitys.BorneAcces;
+import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Evenement;
+import metier.entitys.Intrusion;
+import metier.entitys.Photo;
+import metier.entitys.Position;
 import metier.entitys.Ressource;
+import metier.entitys.Utilisateur;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -36,16 +43,16 @@ import physique.dataIn.RessourcesServiceDataIn;
  *
  * @author damien
  */
-public class EvenementServiceWebImpl implements EvenementServiceWeb{
+public class EvenementServiceWebImpl implements EvenementServiceWeb {
 
-    public List<Evenement> getAll(Context context) throws Exception{
+    public List<Evenement> getAll(Context context) throws Exception {
         AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAll().execute(context);
         List<Evenement> retour = (List<Evenement>) ret.get();
         return retour;
     }
 
-    public List<Evenement> getAll(Context context ,int index, int nbResultat) throws Exception{
-        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAllByRange().execute(context,index,nbResultat);
+    public List<Evenement> getAll(Context context, int index, int nbResultat) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetAllByRange().execute(context, index, nbResultat);
         List<Evenement> retour = (List<Evenement>) ret.get();
         return retour;
     }
@@ -55,6 +62,144 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
         Integer count = (Integer) ret.get();
         return count;
     }
+
+    public Evenement getById(Context context, Long id) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new EvenementServiceWebImpl.RESTGetByID().execute(context, id);
+        Evenement retour = (Evenement) ret.get();
+        return retour;
+    }
+
+    private class RESTGetByID extends AsyncTask<Object, Void, Object> {
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Context c = (Context) params[0];
+            Long id = (Long) params[1];
+            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+            Ressource ressource = null;
+            try {
+                ressource = r.getRessource();
+            } catch (Exception ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Evenement evenement = null;
+            Acces acces = null;
+            Photo photo = null;
+            Intrusion intrusion = null;
+            try {
+                InputStream fluxLecture = null;
+                URL url = new URL(ressource.getPathToAccesWebService() + "evenement/" + id);
+                fluxLecture = url.openStream();
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(fluxLecture);
+                doc.getDocumentElement().normalize();
+                try {
+                    NodeList nList = doc.getElementsByTagName("acces");
+                    acces = new Acces();
+                    for (int temp = 0; temp < nList.getLength(); temp++) {
+                        Node nNode = nList.item(temp);
+                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                            Element eElement = (Element) nNode;
+                            acces.setId(Long.parseLong(getTagValue("id", eElement)));
+                            
+                            Long idborne = null;
+                            Boolean entre = null;
+                            String nom = null;
+                            Long idPos = null;
+                            Double latitude = null;
+                            Double longitude = null;
+                            NodeList nodeBorneAcces = doc.getElementsByTagName("borneAcces");
+                            
+                            for (int temp2 = 0; temp2 < nodeBorneAcces.getLength(); temp2++) {
+                                Node nNodeBorneAcces = nodeBorneAcces.item(temp2);
+                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element eElementBorneAcces = (Element) nNodeBorneAcces;
+                                    idborne = Long.parseLong(getTagValue("id", eElementBorneAcces));
+                                    entre = Boolean.parseBoolean(getTagValue("entrer", eElementBorneAcces));
+                                    nom = getTagValue("nom", eElementBorneAcces);
+                                    NodeList nodePosition = doc.getElementsByTagName("borneAcces");
+                                    for (int tempPosition = 0; tempPosition < nodePosition.getLength(); tempPosition++) {
+                                        Node nNodePosition = nodePosition.item(tempPosition);
+                                        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                                            Element eElementPosition = (Element) nNodePosition;
+                                            latitude = Double.parseDouble(getTagValue("latitude", eElementPosition));
+                                            longitude = Double.parseDouble(getTagValue("longitude", eElementPosition));
+                                            idPos = Long.parseLong(getTagValue("id", eElementPosition));
+                                        }
+                                    }
+                                }
+                            }acces.setPassage(Boolean.parseBoolean(getTagValue("passage", eElement)));
+                            BorneAcces b = new BorneAcces();
+                            b.setId(idborne);
+                            b.setEntrer(entre);
+                            b.setNom(nom);
+                            Position pos = new Position();
+                            pos.setLongitude(longitude);
+                            pos.setLatitude(latitude);
+                            pos.setId(id);
+                            b.setPosition(pos);
+                            acces.setBorneAcces(b);
+                            NodeList nodeUtilisateur = doc.getElementsByTagName("utilisateur");
+                            String adresse = null;
+                            Integer codePostale = null;
+                            Boolean homme = null;
+                            Long idUtilisateur = null;
+                            String nomUtilisateur = null;
+                            String prenom = null;
+                            String ville = null;
+                            for (int tempUtilisateur = 0; tempUtilisateur < nodeUtilisateur.getLength(); tempUtilisateur++) {
+                                Node nNodeUtilisateur = nodeUtilisateur.item(tempUtilisateur);
+                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element eElementUtilisateur = (Element) nNodeUtilisateur;
+                                    idUtilisateur = Long.parseLong(getTagValue("id", eElementUtilisateur));
+                                    homme = Boolean.parseBoolean(getTagValue("homme", eElementUtilisateur));
+                                    adresse = getTagValue("adresse", eElementUtilisateur);
+                                    codePostale = Integer.parseInt(getTagValue("codePostale", eElementUtilisateur));
+                                    nomUtilisateur = getTagValue("nom", eElementUtilisateur);
+                                    prenom = getTagValue("prenom", eElementUtilisateur);
+                                    ville = getTagValue("ville", eElementUtilisateur);
+
+                                }
+                            }
+                            Utilisateur utilisateur = new Utilisateur();
+                            utilisateur.setAdresse(adresse);
+                            utilisateur.setCodePostale(codePostale);
+                            utilisateur.setHomme(homme);
+                            utilisateur.setId(idUtilisateur);
+                            utilisateur.setNom(nomUtilisateur);
+                            utilisateur.setPrenom(prenom);
+                            utilisateur.setVille(ville);
+                            acces.setUtilisateur(utilisateur);
+                            evenement = acces;
+                            if (getTagValue("dateEvt", eElement) != null) {
+                                String dateStr = getTagValue("dateEvt", eElement);
+                                final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                                Date d = new Date();
+                                try {
+                                    d = dateFormat.parse(dateStr);
+                                } catch (ParseException ex) {
+                                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                acces.setDateEvt(d);
+                            }
+
+                        }
+                    }
+                } catch (Exception e) {
+                }
+
+            } catch (ParserConfigurationException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return evenement;
+        }
+    }
+
     private class RESTCount extends AsyncTask<Object, Void, Object> {
 
         @Override
@@ -88,7 +233,6 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
         }
     }
 
-    
     private class RESTGetAll extends AsyncTask<Object, Void, Object> {
 
         @Override
@@ -141,6 +285,7 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
             return utilisateurs;
         }
     }
+
     private class RESTGetAllByRange extends AsyncTask<Object, Void, Object> {
 
         @Override
@@ -158,7 +303,7 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
             List<Evenement> utilisateurs = new ArrayList<Evenement>();
             try {
                 InputStream fluxLecture = null;
-                URL url = new URL(ressource.getPathToAccesWebService() + "evenement/"+index+"/"+nbResult);
+                URL url = new URL(ressource.getPathToAccesWebService() + "evenement/" + index + "/" + nbResult);
                 fluxLecture = url.openStream();
                 DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -195,6 +340,7 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
             return utilisateurs;
         }
     }
+
     private static String getTagValue(String sTag, Element eElement) {
         String ret = null;
 
@@ -207,5 +353,4 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb{
         }
         return ret;
     }
-
 }
