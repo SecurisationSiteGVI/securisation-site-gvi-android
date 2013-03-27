@@ -31,7 +31,7 @@
                 android:ems="10" >
 
                 <requestFocus />
-            </EditText>
+            </TextView>
 
         </LinearLayout>
 
@@ -43,10 +43,10 @@
                 android:id="@+id/textView2"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:text="@string/serveurURL" />
+                android:text="@string/utilisateur" />
 
-            <EditText
-                android:id="@+id/EditTextServeurURL"
+            <TextView
+                android:id="@+id/textViewAccesUtilisateur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -62,10 +62,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:text="@string/port" />
+                android:text="@string/passage" />
 
-            <EditText
-                android:id="@+id/editTextPort"
+            <TextView
+                android:id="@+id/textViewAccesPassage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -81,29 +81,10 @@
                 android:id="@+id/textView4"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:text="@string/applicationName" />
-
-            <EditText
-                android:id="@+id/editTextApplicationName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp" >
+                android:text="@string/borneAcces" />
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="@string/ressourcesPth" />
-
-            <EditText
-                android:id="@+id/editTextRessoucesPath"
+                android:id="@+id/textViewAccesBorneAcces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -116,10 +97,10 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/buttonValider"
+                android:id="@+id/buttonRetour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/valider" />
+                android:text="@string/retour" />
 
         </LinearLayout>
 
