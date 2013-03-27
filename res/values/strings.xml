@@ -56,6 +56,14 @@
     <string name="creeUtilisateur">Crée utilisateur</string>
     <string name="title_activity_ajouter_utilisateur">Ajouter un utilisateur</string>
     <string name="title_activity_ajouter_technicien">Ajouter un technicien</string>
+    <string name="title_activity_historique_acces">Détail de l\'acces</string>
     <string name="title_activity_historique">Historique</string>
+    <string name="title_activity_historique_photo">Détail de l\'evenement photo</string>
     <string name="creeTechnicien">Crée technicien</string>
+    <string name="date">Date :</string>
+    <string name="utilisateur">Utilisateur :</string>
+    <string name="passage">Passage :</string>
+    <string name="photo">Photo :</string>
+    <string name="borneAcces">Borne d\'acces :</string>
+    <string name="retour">Retour</string>
 </resources>
