@@ -10,6 +10,12 @@
 # view AndroidManifest.xml #generated:49
 -keep class fr.securisation_site_gvi.client.Historique { <init>(...); }
 
+# view AndroidManifest.xml #generated:57
+-keep class fr.securisation_site_gvi.client.HistoriqueAcces { <init>(...); }
+
+# view AndroidManifest.xml #generated:61
+-keep class fr.securisation_site_gvi.client.HistoriquePhoto { <init>(...); }
+
 # view AndroidManifest.xml #generated:33
 -keep class fr.securisation_site_gvi.client.ListeUtilisateur { <init>(...); }
 

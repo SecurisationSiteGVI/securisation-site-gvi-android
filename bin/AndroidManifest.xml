@@ -54,6 +54,14 @@
             android:name=".AjouterTechnicien"
             android:label="@string/title_activity_ajouter_technicien" >
         </activity>
+        <activity
+            android:name=".HistoriqueAcces"
+            android:label="@string/title_activity_historique_acces" >
+        </activity>
+        <activity
+            android:name=".HistoriquePhoto"
+            android:label="@string/title_activity_historique_photo" >
+        </activity>
         
     </application> 
     
