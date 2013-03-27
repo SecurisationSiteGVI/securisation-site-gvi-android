@@ -690,7 +690,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                     }
                 }
                 conn.disconnect();
-            } catch (ParserConfigurationException ex) {
+            }catch (ParserConfigurationException ex) {
                 technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SAXException ex) {
@@ -698,13 +698,13 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ConnectException e) {
                 technicien = null;
-                Toast.makeText(this.context, "Les paramètres d'acces au serveur sont incorrect.", Toast.LENGTH_LONG);
             } catch (SSLPeerUnverifiedException e) {
                 technicien = null;
-                Toast.makeText(this.context, "Les paramètres d'acces au serveur sont incorrect.", Toast.LENGTH_LONG);
             } catch (IOException ex) {
                 technicien = null;
                 Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }catch(Throwable e){
+                System.out.println("Throwable");
             }
             return technicien;
         }
