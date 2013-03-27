@@ -59,4 +59,18 @@ public class EvenementServiceImpl implements EvenementService {
         }
         return b;
     }
+
+    public Evenement getById(Context context, Long id) throws Exception {
+        Evenement b = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                b = evenementSrv.getById(context, id);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
+    }
 }
