@@ -6,9 +6,13 @@ package fr.securisation_site_gvi.client;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -100,5 +104,28 @@ public class TemplateActivity extends Activity {
             ret = true;
         }
         return ret;
+    }
+    public void addNotification(String content,int id){
+          NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_action_about)
+                .setContentTitle("Sécurisation site gvi")
+                .setContentText(content);
+        Intent resultIntent = new Intent(this, AccueilActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(AccueilActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                0,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(id, mBuilder.build());
+    }
+    public void removeNotification(int id){
+        NotificationManager o = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        o.cancel(id);
     }
 }
