@@ -5,6 +5,8 @@
 package fr.securisation_site_gvi.client;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,7 @@ public class HistoriqueAcces extends TemplateActivity {
     private TextView textViewPassage;
     private TextView textViewBorneAcces;
     private Acces acces;
+    private Button buttonretour;
     private EvenementService evenementSrv = MetierFactory.getEvenementSrv();
     @Override
     public void onCreate(Bundle icicle) {
@@ -42,10 +45,21 @@ public class HistoriqueAcces extends TemplateActivity {
 
     @Override
     public void initGraphicalObjects() {
+        this.buttonretour =(Button) findViewById(R.id.buttonAccesRetour);
         this.textViewDate  = (TextView) findViewById(R.id.textViewAccesDate);
         this.textViewBorneAcces  = (TextView) findViewById(R.id.textViewAccesBorneAcces);
         this.textViewUtilisateur = (TextView) findViewById(R.id.textViewAccesUtilisateur);
         this.textViewPassage = (TextView) findViewById(R.id.textViewAccesPassage);
+    }
+
+    @Override
+    public void addActionListnerForAllGraphicalObjects() {
+        this.buttonretour.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     
