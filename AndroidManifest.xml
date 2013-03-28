@@ -67,6 +67,10 @@
             android:name=".HistoriqueIntrusion"
             android:label="@string/title_activity_historique_intrusion" >
         </activity>
+        <activity
+            android:name=".MenuBadge"
+            android:label="@string/title_activity_menu_badge" >
+        </activity>
     </application> 
     
 </manifest>
