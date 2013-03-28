@@ -143,6 +143,9 @@ public class Historique extends TemplateActivity {
                             i.putExtra("id", u.get(pos).getId());
                             startActivityForResult(i, 0);
                         } else if (evenement instanceof Intrusion) {
+                            Intent i = new Intent(activityContext, HistoriqueIntrusion.class);
+                            i.putExtra("id", u.get(pos).getId());
+                            startActivityForResult(i, 0);
                         }
                         dialog.cancel();
                     }
