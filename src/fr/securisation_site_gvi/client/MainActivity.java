@@ -1,12 +1,22 @@
 package fr.securisation_site_gvi.client;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.entitys.Technicien;
@@ -27,6 +37,7 @@ public class MainActivity extends TemplateActivity {
         this.setThisActivityOn();
         this.editTextLogin.setText("damienChes");
         this.editTextPassword.setText("damien");
+      
     }
 
     @Override
@@ -55,10 +66,17 @@ public class MainActivity extends TemplateActivity {
                     textView.setText("Il y à une erreur dans votre login ou votre mot de passe.");
                 } else {
                     textView.setText("Connexion réussi.");
+                    addNotification("Conncté", 12);
                     Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
                     startActivity(intent);
                 }
             }
         });
+    }
+    
+    @Override
+    protected void onDestroy() {
+        this.removeNotification(12);
+        super.onDestroy(); 
     }
 }
