@@ -60,6 +60,7 @@
     <string name="title_activity_historique">Historique</string>
     <string name="title_activity_historique_intrusion">Détail de l\'intrusion</string>
     <string name="title_activity_historique_photo">Détail de l\'evenement photo</string>
+    <string name="title_activity_menu_badge">Gérer les badges</string>
     <string name="creeTechnicien">Crée technicien</string>
     <string name="date">Date :</string>
     <string name="utilisateur">Utilisateur :</string>
@@ -69,4 +70,7 @@
     <string name="retour">Retour</string>
     <string name="camera">Camera :</string>
     <string name="detecteurIntr">Détecteur intrusion :</string>
+    <string name="listebadges">Liste des badges</string>
+    <string name="ajouterBadge">Ajouter un badge</string>
+    <string name="attributionbadges">Attribution badge</string>
 </resources>
