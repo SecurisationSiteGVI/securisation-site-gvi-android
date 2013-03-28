@@ -44,7 +44,7 @@ public class Camera {
     public String toString() {
         return getNom();
     }
-
+   
     public Position getPosition() {
         return position;
     }
