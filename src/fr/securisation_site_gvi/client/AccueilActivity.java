@@ -2,6 +2,8 @@ package fr.securisation_site_gvi.client;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -77,5 +79,28 @@ public class AccueilActivity extends TemplateActivity {
         });
 
 
+    }
+     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                this.removeNotification(12);
+                return true;
+            case R.id.menu_settings:
+                Intent intent = new Intent(this.activityContext, Parametres.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            removeNotification(12);
+            this.finish();
+        }
+        return true;
     }
 }
