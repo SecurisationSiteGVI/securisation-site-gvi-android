@@ -45,7 +45,8 @@ public class AccueilActivity extends TemplateActivity {
         });
         this.gererLesBadges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent  = new Intent(activityContext, MenuBadge.class);
+                startActivity(intent);
             }
         });
         this.gererLesUtilisateurs.setOnClickListener(new View.OnClickListener() {
