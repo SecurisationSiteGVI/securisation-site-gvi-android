@@ -4,7 +4,8 @@
  */
 package physique.dataOut;
 
-import java.util.List;
+import physique.dataOut.badge.BadgeServiceWeb;
+import physique.dataOut.badge.BadgeServiceWebImpl;
 
 /**
  *
@@ -12,14 +13,26 @@ import java.util.List;
  */
 public class PhysiqueDataOutFactory {
 
-    private static UtilisateurServiceWeb personneSrv = new UtilisateurServiceWebImpl();
-    private static EvenementServiceWeb evenementSrv = new EvenementServiceWebImpl();
-
+    private static UtilisateurServiceWeb personneSrv;
+    private static EvenementServiceWeb evenementSrv;
+    private static BadgeServiceWeb badgeSrv;
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
+        if(personneSrv==null){
+            personneSrv   = new UtilisateurServiceWebImpl();
+        }
         return personneSrv;
     }
 
     public static EvenementServiceWeb getEvenementServiceWeb() {
+        if(evenementSrv==null){
+            evenementSrv  = new EvenementServiceWebImpl();
+        }
         return evenementSrv;
+    }
+    public static BadgeServiceWeb getBadgeServiceWeb() {
+        if(badgeSrv==null){
+            badgeSrv = new BadgeServiceWebImpl();
+        }
+        return badgeSrv;
     }
 }
