@@ -12,6 +12,7 @@ import metier.entitys.Ressource;
 import physique.dataOut.badge.asyncTask.RESTBadgeCount;
 import physique.dataOut.badge.asyncTask.RESTBadgeGetAll;
 import physique.dataOut.badge.asyncTask.RESTBadgeGetAllByRange;
+import physique.dataOut.badge.asyncTask.RESTBadgeRemove;
 
 /**
  *
@@ -34,6 +35,12 @@ public class BadgeServiceWebImpl implements BadgeServiceWeb {
     public int count(Context context, Ressource ressource) throws Exception {
         AsyncTask<Object, Void, Object> ret = new RESTBadgeCount().execute(context, ressource);
         Integer retour = (Integer) ret.get();
+        return retour;
+    }
+
+    public boolean remove(Context context, Ressource ressource, Badge badge) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTBadgeRemove().execute(context, ressource,badge);
+        Boolean retour = (Boolean) ret.get();
         return retour;
     }
 }
