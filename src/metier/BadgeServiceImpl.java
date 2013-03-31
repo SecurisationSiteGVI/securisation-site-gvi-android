@@ -87,4 +87,25 @@ public class BadgeServiceImpl implements BadgeService {
         }
         return count;
     }
+
+    public boolean remove(Context c, Badge badge) throws Exception {
+        Boolean ret = null;
+        if (c != null) {
+            if (c instanceof Context) {
+                this.ressourcesSrv=PhysiqueDataInFactory.getRessourceSrv(c);
+                Ressource ressource = null;
+                try {
+                    ressource = this.ressourcesSrv.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ret = badgeSrv.remove(c,ressource,badge);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return ret;
+    }
 }
