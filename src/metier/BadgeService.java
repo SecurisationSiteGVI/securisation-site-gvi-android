@@ -7,6 +7,7 @@ package metier;
 import android.content.Context;
 import java.util.List;
 import metier.entitys.Badge;
+import metier.entitys.Ressource;
 
 /**
  *
@@ -16,4 +17,5 @@ public interface BadgeService {
     public List<Badge> getAll(Context context) throws Exception;
     public List<Badge> getAll(Context context,int index, int nbResultat) throws Exception;
     public int count(Context c) throws Exception;
+    public boolean remove(Context c,Badge badge)throws Exception;
 }
