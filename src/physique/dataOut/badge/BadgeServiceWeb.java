@@ -18,4 +18,5 @@ public interface BadgeServiceWeb {
     public List<Badge> getAll(Context context,Ressource ressource) throws Exception;
     public List<Badge> getAll(Context context,Ressource ressource,int index, int nbResultat) throws Exception;
     public int count(Context c,Ressource ressource) throws Exception;
+    public boolean remove(Context c,Ressource ressource,Badge badge)throws Exception;
 }
