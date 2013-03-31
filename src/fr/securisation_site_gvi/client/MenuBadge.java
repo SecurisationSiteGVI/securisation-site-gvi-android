@@ -4,6 +4,7 @@
  */
 package fr.securisation_site_gvi.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +49,8 @@ public class MenuBadge extends TemplateActivity {
         });
         this.buttonListeBadge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(activityContext, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityContext,ListeBadges.class);
+                startActivity(intent);
             }
         });
     }
