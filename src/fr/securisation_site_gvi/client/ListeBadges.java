@@ -47,7 +47,7 @@ public class ListeBadges extends TemplateActivity{
             this.nbLinge = 15;
         }
         try {
-            //this.count = this.evenementSrv.count(this.activityContext);
+            this.count = this.badgeSrv.count(this.activityContext);
         } catch (Exception ex) {
             Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -130,6 +130,12 @@ public class ListeBadges extends TemplateActivity{
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Badge badgeCliked = u.get(pos);
+                        try {
+                            badgeSrv.remove(activityContext, badgeCliked);
+                        } catch (Exception ex) {
+                            Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        remplirListView();
                         dialog.cancel();
                     }
                 });
