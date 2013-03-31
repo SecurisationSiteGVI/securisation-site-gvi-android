@@ -10,6 +10,7 @@ import java.util.List;
 import metier.entitys.Badge;
 import metier.entitys.Ressource;
 import physique.dataOut.badge.asyncTask.RESTBadgeGetAll;
+import physique.dataOut.badge.asyncTask.RESTBadgeGetAllByRange;
 
 /**
  *
@@ -24,7 +25,7 @@ public class BadgeServiceWebImpl implements BadgeServiceWeb{
     }
 
     public List<Badge> getAll(Context context, Ressource ressource, int index, int nbResultat) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeGetAll().execute(context,ressource,index,nbResultat);
+        AsyncTask<Object, Void, Object> ret = new RESTBadgeGetAllByRange().execute(context,ressource,index,nbResultat);
         List<Badge> retour = (List<Badge>) ret.get();
         return retour;
     }
