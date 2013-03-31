@@ -29,7 +29,7 @@ public class BadgeServiceImpl implements BadgeService {
         List<Badge> b = null;
         if (context != null) {
             if (context instanceof Context) {
-                PhysiqueDataInFactory.getRessourceSrv(context);
+                this.ressourcesSrv=PhysiqueDataInFactory.getRessourceSrv(context);
                 Ressource ressource = null;
                 try {
                     ressource = this.ressourcesSrv.getRessource();
@@ -50,7 +50,7 @@ public class BadgeServiceImpl implements BadgeService {
         List<Badge> b = null;
         if (context != null) {
             if (context instanceof Context) {
-                PhysiqueDataInFactory.getRessourceSrv(context);
+               this.ressourcesSrv= PhysiqueDataInFactory.getRessourceSrv(context);
                 Ressource ressource = null;
                 try {
                     ressource = this.ressourcesSrv.getRessource();
@@ -71,7 +71,7 @@ public class BadgeServiceImpl implements BadgeService {
         Integer count = null;
         if (context != null) {
             if (context instanceof Context) {
-                PhysiqueDataInFactory.getRessourceSrv(context);
+                this.ressourcesSrv=PhysiqueDataInFactory.getRessourceSrv(context);
                 Ressource ressource = null;
                 try {
                     ressource = this.ressourcesSrv.getRessource();
