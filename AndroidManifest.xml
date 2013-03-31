@@ -71,6 +71,10 @@
             android:name=".MenuBadge"
             android:label="@string/title_activity_menu_badge" >
         </activity>
+        <activity
+            android:name=".ListeBadges"
+            android:label="@string/title_activity_liste_badges" >
+        </activity>
     </application> 
     
 </manifest>
