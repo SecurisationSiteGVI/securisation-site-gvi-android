@@ -1,17 +1,20 @@
 package fr.securisation_site_gvi.client;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +27,7 @@ import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.entitys.Technicien;
-import physique.dataOut.UtilisateurServiceWeb;
+import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 
 public class MainActivity extends TemplateActivity {
 
@@ -83,7 +86,7 @@ public class MainActivity extends TemplateActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             this.dismitDialog();
         }
-        return true;
+        return false;
     }
 
     private void dismitDialog() {
