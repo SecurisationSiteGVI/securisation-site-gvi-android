@@ -39,12 +39,14 @@ public class MenuBadge extends TemplateActivity {
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAttributionbadges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(activityContext, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityContext,AttributionBadge.class);
+                startActivity(intent);
             }
         });
         this.buttonAjouterBadge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(activityContext, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityContext,AjouterBadge.class);
+                startActivity(intent);
             }
         });
         this.buttonListeBadge.setOnClickListener(new View.OnClickListener() {
