@@ -18,4 +18,5 @@ public interface BadgeService {
     public List<Badge> getAll(Context context,int index, int nbResultat) throws Exception;
     public int count(Context c) throws Exception;
     public boolean remove(Context c,Badge badge)throws Exception;
+    public boolean add(Context context,Badge badge) throws Exception;
 }

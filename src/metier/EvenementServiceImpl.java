@@ -7,7 +7,7 @@ package metier;
 import android.content.Context;
 import java.util.List;
 import metier.entitys.Evenement;
-import physique.dataOut.EvenementServiceWeb;
+import physique.dataOut.evenement.EvenementServiceWeb;
 import physique.dataOut.PhysiqueDataOutFactory;
 
 /**

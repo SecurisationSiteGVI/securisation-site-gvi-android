@@ -9,7 +9,7 @@ import java.util.List;
 import metier.entitys.Technicien;
 import metier.entitys.Utilisateur;
 import physique.dataOut.PhysiqueDataOutFactory;
-import physique.dataOut.UtilisateurServiceWeb;
+import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 
 /**
  *

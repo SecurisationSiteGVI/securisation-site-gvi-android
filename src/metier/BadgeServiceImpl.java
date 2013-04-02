@@ -14,7 +14,7 @@ import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.badge.BadgeServiceWeb;
 import physique.dataOut.PhysiqueDataOutFactory;
-import physique.dataOut.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *
@@ -100,6 +100,27 @@ public class BadgeServiceImpl implements BadgeService {
                     Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ret = badgeSrv.remove(c,ressource,badge);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return ret;
+    }
+
+    public boolean add(Context context, Badge badge) throws Exception {
+        Boolean ret = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                this.ressourcesSrv=PhysiqueDataInFactory.getRessourceSrv(context);
+                Ressource ressource = null;
+                try {
+                    ressource = this.ressourcesSrv.getRessource();
+                } catch (Exception ex) {
+                    Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ret = badgeSrv.add(context,ressource,badge);
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
