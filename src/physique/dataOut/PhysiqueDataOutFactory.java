@@ -4,6 +4,10 @@
  */
 package physique.dataOut;
 
+import physique.dataOut.utilisateur.UtilisateurServiceWeb;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.evenement.EvenementServiceWeb;
+import physique.dataOut.evenement.EvenementServiceWebImpl;
 import physique.dataOut.badge.BadgeServiceWeb;
 import physique.dataOut.badge.BadgeServiceWebImpl;
 
