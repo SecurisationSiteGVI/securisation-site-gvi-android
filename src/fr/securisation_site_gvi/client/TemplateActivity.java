@@ -26,7 +26,7 @@ public class TemplateActivity extends Activity {
      * Toujours surcharger les methodes :initGraphicalObjects et
      * addActionListnerForAllGraphicalObjects
      */
-    protected Context activityContext=TemplateActivity.this;
+    protected Context activityContext = TemplateActivity.this;
 
     public void setThisActivityOn() {
         this.initGraphicalObjects();
@@ -105,8 +105,8 @@ public class TemplateActivity extends Activity {
         }
         return ret;
     }
-    public void addNotification(String content,int id){
-          NotificationCompat.Builder mBuilder =
+    public void addNotification(String content, int id) {
+        NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_action_about)
                 .setContentTitle("Sécurisation site gvi")
@@ -124,7 +124,8 @@ public class TemplateActivity extends Activity {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(id, mBuilder.build());
     }
-    public void removeNotification(int id){
+
+    public void removeNotification(int id) {
         NotificationManager o = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         o.cancel(id);
     }
