@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import metier.entitys.Ressource;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
-import physique.dataOut.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *

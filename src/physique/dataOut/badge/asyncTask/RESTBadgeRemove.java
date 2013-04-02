@@ -19,7 +19,7 @@ import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
-import physique.dataOut.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *

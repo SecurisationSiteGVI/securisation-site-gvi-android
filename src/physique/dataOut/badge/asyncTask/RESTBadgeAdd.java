@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.entitys.Badge;
 import metier.entitys.Ressource;
-import physique.dataOut.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *
