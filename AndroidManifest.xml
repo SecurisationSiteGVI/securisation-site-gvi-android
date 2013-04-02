@@ -75,6 +75,14 @@
             android:name=".ListeBadges"
             android:label="@string/title_activity_liste_badges" >
         </activity>
+        <activity
+            android:name=".AjouterBadge"
+            android:label="@string/title_activity_ajouter_badge" >
+        </activity>
+        <activity
+            android:name=".AttributionBadge"
+            android:label="@string/title_activity_attributionBadge" >
+        </activity>
     </application> 
     
 </manifest>
