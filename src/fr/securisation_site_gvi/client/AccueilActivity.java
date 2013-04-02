@@ -101,6 +101,6 @@ public class AccueilActivity extends TemplateActivity {
             removeNotification(12);
             this.finish();
         }
-        return true;
+        return false;
     }
 }
