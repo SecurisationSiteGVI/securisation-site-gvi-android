@@ -15,16 +15,16 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.MetierFactory;
+import metier.UtilisateurService;
 import metier.entitys.Utilisateur;
-import physique.dataOut.PhysiqueDataOutFactory;
-import physique.dataOut.UtilisateurServiceWeb;
 
 public class ListeUtilisateur extends TemplateActivity {
 
     private ListView listUtilisateurs;
     private Button precedent;
     private Button suivant;
-    private UtilisateurServiceWeb utilisateurSrv = PhysiqueDataOutFactory.getPersonneClientServiceWeb();
+    private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
     private int index;
     private int nbLinge = 10;
     private TextView textViewPage;
