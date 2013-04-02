@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import java.util.List;
 import metier.entitys.Badge;
 import metier.entitys.Ressource;
+import physique.dataOut.badge.asyncTask.RESTBadgeAdd;
 import physique.dataOut.badge.asyncTask.RESTBadgeCount;
 import physique.dataOut.badge.asyncTask.RESTBadgeGetAll;
 import physique.dataOut.badge.asyncTask.RESTBadgeGetAllByRange;
@@ -40,6 +41,12 @@ public class BadgeServiceWebImpl implements BadgeServiceWeb {
 
     public boolean remove(Context context, Ressource ressource, Badge badge) throws Exception {
         AsyncTask<Object, Void, Object> ret = new RESTBadgeRemove().execute(context, ressource,badge);
+        Boolean retour = (Boolean) ret.get();
+        return retour;
+    }
+
+    public boolean add(Context context, Ressource ressource, Badge badge) throws Exception {
+        AsyncTask<Object, Void, Object> ret = new RESTBadgeAdd().execute(context, ressource,badge);
         Boolean retour = (Boolean) ret.get();
         return retour;
     }
