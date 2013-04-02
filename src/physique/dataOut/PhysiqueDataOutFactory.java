@@ -20,21 +20,23 @@ public class PhysiqueDataOutFactory {
     private static UtilisateurServiceWeb personneSrv;
     private static EvenementServiceWeb evenementSrv;
     private static BadgeServiceWeb badgeSrv;
+
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
-        if(personneSrv==null){
-            personneSrv   = new UtilisateurServiceWebImpl();
+        if (personneSrv == null) {
+            personneSrv = new UtilisateurServiceWebImpl();
         }
         return personneSrv;
     }
 
     public static EvenementServiceWeb getEvenementServiceWeb() {
-        if(evenementSrv==null){
-            evenementSrv  = new EvenementServiceWebImpl();
+        if (evenementSrv == null) {
+            evenementSrv = new EvenementServiceWebImpl();
         }
         return evenementSrv;
     }
+
     public static BadgeServiceWeb getBadgeServiceWeb() {
-        if(badgeSrv==null){
+        if (badgeSrv == null) {
             badgeSrv = new BadgeServiceWebImpl();
         }
         return badgeSrv;
