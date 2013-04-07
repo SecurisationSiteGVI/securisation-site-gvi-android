@@ -106,7 +106,7 @@ public class AjouterTechnicien extends TemplateActivity {
                         Toast.makeText(activityContext, "Impossible d'éffectuer une modification.", Toast.LENGTH_LONG);
                         Logger.getLogger(AjouterTechnicien.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }else{
+                } else {
                     Toast.makeText(activityContext, "Les mot de passe ne sont pas identique.", Toast.LENGTH_LONG);
                 }
 
