@@ -43,7 +43,7 @@ public class HistoriqueAcces extends TemplateActivity {
         setContentView(R.layout.activity_historique_acces);
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
-        new RESTEvenementGetById().execute();
+        new HistoriqueAcces.RESTEvenementGetById().execute();
     }
 
     @Override
