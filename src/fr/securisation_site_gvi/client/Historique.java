@@ -1,8 +1,10 @@
 package fr.securisation_site_gvi.client;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,15 +13,18 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.EvenementService;
 import metier.MetierFactory;
 import metier.entitys.Acces;
 import metier.entitys.Evenement;
 import metier.entitys.Intrusion;
 import metier.entitys.Photo;
+import org.xml.sax.SAXException;
 
 public class Historique extends TemplateActivity {
 
@@ -43,12 +48,8 @@ public class Historique extends TemplateActivity {
         if (this.isTablette7()) {
             this.nbLinge = 15;
         }
-        try {
-            this.count = this.evenementSrv.count(this.activityContext);
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.remplirListView();
+        new RESTEvenementCount().execute();
+        
     }
 
     private void remplirListView() {
@@ -62,19 +63,7 @@ public class Historique extends TemplateActivity {
         } else {
             this.suivant.setEnabled(true);
         }
-        List<Evenement> utilisateurs = null;
-        try {
-            utilisateurs = this.evenementSrv.getAll(this.activityContext, this.index, this.nbLinge);
-            this.u = utilisateurs;
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] listeStrings = new String[utilisateurs.size()];
-        for (int i = 0; i < utilisateurs.size(); i++) {
-            listeStrings[i] = utilisateurs.get(i).toString();
-        }
-        listEvenements.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-        this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
+        new RESTEvenementGetAllByRange().execute();
     }
 
     public void pagePrécédente() {
@@ -168,5 +157,101 @@ public class Historique extends TemplateActivity {
                 pageSuivante();
             }
         });
+    }
+
+    private class RESTEvenementGetAllByRange extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                List<Evenement> evenements = (List<Evenement>) result;
+                u = evenements;
+                String[] listeStrings = new String[evenements.size()];
+                for (int i = 0; i < evenements.size(); i++) {
+                    listeStrings[i] = evenements.get(i).toString();
+                }
+                listEvenements.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            }else if (result instanceof SAXException) {
+                throwSAXException();
+            }else if (result instanceof IOException) {
+                throwIOException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = evenementSrv.getAll(activityContext, index, nbLinge);
+            } catch (ParserConfigurationException ex) {
+                erreur =true;
+                ret= new ParserConfigurationException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur =true;
+                ret= new SAXException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur =true;
+                ret= new IOException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur =true;
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTEvenementCount extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                count = (Integer) result;
+                remplirListView();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            }else{
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = evenementSrv.count(activityContext);
+            } catch (IOException ex) {
+                erreur =true;
+                ret=new IOException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur =true;
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } return ret;
+        }
     }
 }
