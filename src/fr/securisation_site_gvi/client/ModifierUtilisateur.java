@@ -33,7 +33,7 @@ public class ModifierUtilisateur extends TemplateActivity {
     private Button buttonModifierUtilisateur;
     private Utilisateur utilisateurSelected;
     private Long id;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class ModifierUtilisateur extends TemplateActivity {
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
         this.setThisActivityOn();
-        
+
     }
 
     @Override
