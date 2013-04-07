@@ -4,41 +4,28 @@
  */
 package physique.dataOut.utilisateur.rest;
 
-import android.content.Context;
-import android.os.AsyncTask;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import metier.entitys.Ressource;
 import metier.entitys.Technicien;
-import physique.dataIn.PhysiqueDataInFactory;
-import physique.dataIn.RessourcesServiceDataIn;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *
  * @author damien
  */
-public class RESTUtilisateurAddTechniecien extends AsyncTask<Object, Void, Object> {
+public class RESTUtilisateurAddTechniecien  {
 
-    @Override
-    protected Object doInBackground(Object... params) {
-        Context c = (Context) params[1];
-        RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
-        Ressource ressource = null;
-        try {
-            ressource = r.getRessource();
-        } catch (Exception ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+  
+    public Object execute(Object... params) throws MalformedURLException, IOException {
+        Ressource ressource = (Ressource) params[1];
         Boolean retour = true;
-        try {
+
             Technicien utilisateur = (Technicien) params[0];
             utilisateur.encode(true);
             String prenom = utilisateur.getPrenom();
@@ -82,9 +69,7 @@ public class RESTUtilisateurAddTechniecien extends AsyncTask<Object, Void, Objec
             }
             conn.disconnect();
 
-        } catch (IOException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         return retour;
     }
 }
