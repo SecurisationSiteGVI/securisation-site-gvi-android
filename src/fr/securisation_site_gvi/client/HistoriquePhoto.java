@@ -39,6 +39,7 @@ public class HistoriquePhoto extends TemplateActivity {
     private ImageView imageView;
     private TextView textViewCamera;
     private Button buttonretour;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -57,17 +58,16 @@ public class HistoriquePhoto extends TemplateActivity {
 
     @Override
     public void initGraphicalObjects() {
-        this.buttonretour=(Button) findViewById(R.id.buttonPhotoRetour);
+        this.buttonretour = (Button) findViewById(R.id.buttonPhotoRetour);
         this.textViewDate = (TextView) findViewById(R.id.textViewPhotoDate);
         this.textViewPhoto = (TextView) findViewById(R.id.textViewPhoto);
         this.imageView = (ImageView) findViewById(R.id.ImageViewPhoto);
-        this.textViewCamera = (TextView)findViewById(R.id.textViewCamera);
+        this.textViewCamera = (TextView) findViewById(R.id.textViewCamera);
     }
 
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonretour.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 finish();
             }
@@ -98,7 +98,8 @@ public class HistoriquePhoto extends TemplateActivity {
             } catch (IOException ex) {
                 Logger.getLogger(HistoriquePhoto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }this.textViewPhoto.setText("Connectez vous sur le site pour visionner la photo");
+        }
+        this.textViewPhoto.setText("Connectez vous sur le site pour visionner la photo");
         this.textViewCamera.setText(this.photo.getCamera().toString());
     }
 }
