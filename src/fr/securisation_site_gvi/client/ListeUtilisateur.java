@@ -49,8 +49,6 @@ public class ListeUtilisateur extends TemplateActivity {
         this.remplirListView();
     }
 
-    
-
     private void remplirListView() {
         if (index == 0) {
             this.precedent.setEnabled(false);
@@ -59,7 +57,7 @@ public class ListeUtilisateur extends TemplateActivity {
         }
         if (this.getPage() + 1 == this.getNbPages()) {
             this.suivant.setEnabled(false);
-        }else{
+        } else {
             this.suivant.setEnabled(true);
         }
         List<Utilisateur> utilisateurs = null;
@@ -85,6 +83,7 @@ public class ListeUtilisateur extends TemplateActivity {
             this.remplirListView();
         }
     }
+
     public void pageSuivante() {
         this.index = this.index + nbLinge;
         this.remplirListView();
