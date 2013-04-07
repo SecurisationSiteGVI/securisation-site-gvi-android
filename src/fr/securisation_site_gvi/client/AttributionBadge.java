@@ -1,27 +1,31 @@
 package fr.securisation_site_gvi.client;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.AttributionUtilisateurBadgeService;
 import metier.BadgeService;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Badge;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -44,7 +48,7 @@ public class AttributionBadge extends TemplateActivity {
     private List u;
     private int pos;
     private int countBadge = 0;
-    private int countUtilisateur=0;
+    private int countUtilisateur = 0;
     private Badge badgeSelected;
     private Utilisateur utilisateurSelected;
     private AlertDialog alertDialogInCurrent;
@@ -57,16 +61,8 @@ public class AttributionBadge extends TemplateActivity {
         if (this.isTablette7()) {
             this.nbLinge = 14;
         }
-        try {
-            this.countUtilisateur = this.utilisateurSrv.count(this.activityContext);
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            this.countBadge = this.badgeSrv.count(this.activityContext);
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new AttributionBadge.RESTUtilisateurCount().execute();
+        new AttributionBadge.RESTBadgeCount().execute();
         this.setThisActivityOn();
     }
 
@@ -74,13 +70,14 @@ public class AttributionBadge extends TemplateActivity {
     public void initGraphicalObjects() {
         this.buttonBadge = (Button) findViewById(R.id.spinnerAttributionBadgeBadge);
         this.buttonUtilisateur = (Button) findViewById(R.id.spinnerAttributionBadgeUtilisateur);
-        this.buttonAttribuer=(Button) findViewById(R.id.buttonAttributionBadgeValider);
+        this.buttonAttribuer = (Button) findViewById(R.id.buttonAttributionBadgeValider);
     }
 
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonBadge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                index=0;
                 isUtilisateur = false;
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
                 LayoutInflater inflater = getLayoutInflater();
@@ -139,6 +136,7 @@ public class AttributionBadge extends TemplateActivity {
         });
         this.buttonUtilisateur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                index=0;
                 isUtilisateur = true;
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
                 LayoutInflater inflater = getLayoutInflater();
@@ -157,11 +155,11 @@ public class AttributionBadge extends TemplateActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                             int position, long id) {
-                        pos=position;
+                        pos = position;
                         AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
                         builder.setTitle("utilisateur séléctionné.");
                         List<Utilisateur> badges = (List<Utilisateur>) u;
-                        builder.setMessage("Voulez-vous séléctionner le badge n°" + badges.get(position).toString()+ " ?");
+                        builder.setMessage("Voulez-vous séléctionner le badge n°" + badges.get(position).toString() + " ?");
                         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Utilisateur utilisateurCliked = (Utilisateur) u.get(pos);
@@ -196,18 +194,15 @@ public class AttributionBadge extends TemplateActivity {
             }
         });
         this.buttonAttribuer.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
-                if((utilisateurSelected==null)&& (badgeSelected==null)){
+                if ((utilisateurSelected == null) && (badgeSelected == null)) {
                     Toast.makeText(activityContext, "Le badge est l'utilisateur ne sont pas séléctionner", Toast.LENGTH_LONG).show();
-                }else if( badgeSelected==null){
+                } else if (badgeSelected == null) {
                     Toast.makeText(activityContext, "Le badge n'est pas séléctionner", Toast.LENGTH_LONG).show();
-                }else if( utilisateurSelected==null){
+                } else if (utilisateurSelected == null) {
                     Toast.makeText(activityContext, "Le badge n'est pas séléctionner", Toast.LENGTH_LONG).show();
-                }else if( (utilisateurSelected!=null)&& (badgeSelected!=null)){
-                    attributionUtilisateurBadgeSrv.attribuer(activityContext, utilisateurSelected, badgeSelected);
-                    Toast.makeText(activityContext, "Badge bien attribuer.", Toast.LENGTH_LONG).show();
-                    
+                } else if ((utilisateurSelected != null) && (badgeSelected != null)) {
+                    new AttributionBadge.RESTAttributionUtilisateurBadgeAttribuer().execute();
                 }
             }
         });
@@ -231,20 +226,8 @@ public class AttributionBadge extends TemplateActivity {
             } else {
                 this.suivant.setEnabled(true);
             }
-            List<Utilisateur> utilisateurs = null;
-            try {
-                utilisateurs = this.attributionUtilisateurBadgeSrv.getUtilisateurNotAssign(this.activityContext, this.index, this.nbLinge);
-                this.u = utilisateurs;
-            } catch (Exception ex) {
-                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String[] listeStrings = new String[utilisateurs.size()];
-            for (int i = 0; i < utilisateurs.size(); i++) {
-                listeStrings[i] = utilisateurs.get(i).toString();
-            }
-            list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-            this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
-        }else{
+            new AttributionBadge.RESTAttributionUtilisateurGetUtilisateurNotAssign().execute();
+        } else {
             if (index == 0) {
                 this.precedent.setEnabled(false);
             } else {
@@ -255,19 +238,7 @@ public class AttributionBadge extends TemplateActivity {
             } else {
                 this.suivant.setEnabled(true);
             }
-            List<Badge> badges = null;
-            try {
-                badges = this.attributionUtilisateurBadgeSrv.getBadgesNotAssign(this.activityContext,this.index, this.nbLinge);
-                this.u = badges;
-            } catch (Exception ex) {
-                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String[] listeStrings = new String[badges.size()];
-            for (int i = 0; i < badges.size(); i++) {
-                listeStrings[i] = badges.get(i).toString();
-            }
-            list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-            this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
+            new AttributionBadge.RESTAttributionUtilisateurGetBadgesNotAssign().execute();
         }
 
     }
@@ -297,12 +268,270 @@ public class AttributionBadge extends TemplateActivity {
     }
 
     private int getNbPages() {
-        int nbPages=0;
-        if(isUtilisateur){
-            nbPages = this.countUtilisateur/this.nbLinge;
-        }else{
+        int nbPages = 0;
+        if (isUtilisateur) {
+            nbPages = this.countUtilisateur / this.nbLinge;
+        } else {
             nbPages = this.countBadge / this.nbLinge;
         }
         return nbPages + 1;
+    }
+
+    private class RESTAttributionUtilisateurGetUtilisateurNotAssign extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                List<Utilisateur> utilisateurs = (List<Utilisateur>) result;
+                u = utilisateurs;
+                String[] listeStrings = new String[utilisateurs.size()];
+                for (int i = 0; i < utilisateurs.size(); i++) {
+                    listeStrings[i] = utilisateurs.get(i).toString();
+                }
+                list.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = attributionUtilisateurBadgeSrv.getUtilisateurNotAssign(activityContext, index, nbLinge);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return ret;
+        }
+    }
+
+    private class RESTAttributionUtilisateurGetBadgesNotAssign extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                List<Badge> badges = (List<Badge>) result;
+                u = badges;
+                String[] listeStrings = new String[badges.size()];
+                for (int i = 0; i < badges.size(); i++) {
+                    listeStrings[i] = badges.get(i).toString();
+                }
+                list.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = attributionUtilisateurBadgeSrv.getBadgesNotAssign(activityContext, index, nbLinge);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTAttributionUtilisateurBadgeAttribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Badge bien attribuer.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionUtilisateurBadgeSrv.attribuer(activityContext, utilisateurSelected, badgeSelected);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTBadgeCount extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                countBadge = (Integer) result;
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = badgeSrv.count(activityContext);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTUtilisateurCount extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                countUtilisateur = (Integer) result;
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = utilisateurSrv.count(activityContext);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
     }
 }
