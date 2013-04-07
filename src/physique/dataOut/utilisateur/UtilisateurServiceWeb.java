@@ -8,6 +8,7 @@ import android.content.Context;
 import metier.entitys.Technicien;
 import metier.entitys.Utilisateur;
 import java.util.List;
+import metier.entitys.Ressource;
 
 /**
  *
@@ -27,11 +28,11 @@ public interface UtilisateurServiceWeb {
 
     public boolean loginIsUse(String login, Context context) throws Exception;
 
-    public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Exception;
+    public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Exception;
 
     public Utilisateur getById(Long id, Context context) throws Exception;
 
     public int count(Context c) throws Exception;
-    
-    public boolean addTechnicien(Technicien technicien,Context context) throws Exception;
+
+    public boolean addTechnicien(Technicien technicien, Context context) throws Exception;
 }

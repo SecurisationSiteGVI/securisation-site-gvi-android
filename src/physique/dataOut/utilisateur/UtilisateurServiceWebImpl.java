@@ -4,21 +4,23 @@
  */
 package physique.dataOut.utilisateur;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import metier.entitys.Technicien;
 import java.util.List;
+import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurAdd;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurAddTechniecien;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurCount;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurGetAll;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurGetAllByRange;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurGetById;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurLoginIsUse;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurRemove;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurUpdate;
-import physique.dataOut.utilisateur.asynctask.RESTUtilisateurVerificationConnexion;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurAdd;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurAddTechniecien;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurCount;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurGetAll;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurGetAllByRange;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurGetById;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurLoginIsUse;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurRemove;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurUpdate;
+import physique.dataOut.utilisateur.rest.RESTUtilisateurVerificationConnexion;
 
 /**
  *
@@ -62,9 +64,9 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
     }
 
     @Override
-    public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurVerificationConnexion(context).execute(utilisateur, context);
-        Technicien technicien = (Technicien) ret.get();
+    public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Exception {
+        RESTUtilisateurVerificationConnexion rest = new RESTUtilisateurVerificationConnexion();
+        Technicien technicien = (Technicien) rest.execute(utilisateur, ressource);
         return technicien;
     }
 
@@ -88,7 +90,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         return count;
     }
 
-    public boolean addTechnicien(Technicien technicien,Context context) throws Exception {
+    public boolean addTechnicien(Technicien technicien, Context context) throws Exception {
         AsyncTask<Object, Void, Object> ret = new RESTUtilisateurAddTechniecien().execute(technicien, context);
         Boolean retour = (Boolean) ret.get();
         return retour;
