@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.badge.asyncTask;
+package physique.dataOut.badge.rest;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -35,7 +35,7 @@ public class RESTBadgeGetAll extends AsyncTask<Object, Void, Object> {
     @Override
     protected Object doInBackground(Object... params) {
         Context c = (Context) params[0];
-        Ressource ressource = (Ressource)params[1];
+        Ressource ressource = (Ressource) params[1];
         List<Badge> badges = new ArrayList<Badge>();
         try {
             InputStream fluxLecture = null;

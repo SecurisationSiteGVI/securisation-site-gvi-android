@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.badge.asyncTask;
+package physique.dataOut.badge.rest;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -35,13 +35,13 @@ public class RESTBadgeGetAllByRange extends AsyncTask<Object, Void, Object> {
     @Override
     protected Object doInBackground(Object... params) {
         Context c = (Context) params[0];
-        Ressource ressource = (Ressource)params[1];
-        Integer index =(Integer)params[2];
-        Integer nbResult = (Integer)params[3];
+        Ressource ressource = (Ressource) params[1];
+        Integer index = (Integer) params[2];
+        Integer nbResult = (Integer) params[3];
         List<Badge> badges = new ArrayList<Badge>();
         try {
             InputStream fluxLecture = null;
-            URL url = new URL(ressource.getPathToAccesWebService() + "badge/"+index+"/"+nbResult);
+            URL url = new URL(ressource.getPathToAccesWebService() + "badge/" + index + "/" + nbResult);
             fluxLecture = url.openStream();
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
