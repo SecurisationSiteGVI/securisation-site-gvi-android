@@ -4,8 +4,6 @@
  */
 package physique.dataOut.evenement.rest;
 
-import android.content.Context;
-import android.os.AsyncTask;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -13,8 +11,6 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,62 +29,29 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import physique.dataIn.PhysiqueDataInFactory;
-import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.BoiteAOutils;
-import physique.dataOut.evenement.EvenementServiceWebImpl;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *
  * @author damien
  */
-public class RESTEvenementGetByID extends AsyncTask<Object, Void, Object> {
+public class RESTEvenementGetByID {
 
-    @Override
-    protected Object doInBackground(Object... params) {
-        Context c = (Context) params[0];
+    public static Object execute(Object... params) throws MalformedURLException, IOException, SAXException, ParseException, ParserConfigurationException {
+        Ressource ressource = (Ressource) params[0];
         Long id = (Long) params[1];
-        RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
-        Ressource ressource = null;
-        try {
-            ressource = r.getRessource();
-        } catch (Exception ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
         Evenement evenement = null;
         Acces acces = null;
         Photo photo = null;
         Intrusion intrusion = null;
         InputStream fluxLecture = null;
         URL url = null;
-        try {
-            url = new URL(ressource.getPathToAccesWebService() + "evenement/" + id);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(EvenementServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            fluxLecture = url.openStream();
-        } catch (IOException ex) {
-            Logger.getLogger(EvenementServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        url = new URL(ressource.getPathToAccesWebService() + "evenement/" + id);
+        fluxLecture = url.openStream();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(EvenementServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Document doc = null;
-        try {
-            doc = dBuilder.parse(fluxLecture);
-        } catch (SAXException ex) {
-            Logger.getLogger(EvenementServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(EvenementServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(fluxLecture);
         doc.getDocumentElement().normalize();
-
         NodeList nList = doc.getElementsByTagName("acces");
         acces = new Acces();
         for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -169,11 +132,7 @@ public class RESTEvenementGetByID extends AsyncTask<Object, Void, Object> {
                     String dateStr = BoiteAOutils.getTagValue("dateEvt", eElement);
                     final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                     Date d = new Date();
-                    try {
-                        d = dateFormat.parse(dateStr);
-                    } catch (ParseException ex) {
-                        Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    d = dateFormat.parse(dateStr);
                     acces.setDateEvt(d);
                 }
                 evenement = acces;
@@ -231,11 +190,7 @@ public class RESTEvenementGetByID extends AsyncTask<Object, Void, Object> {
                         String dateStr = BoiteAOutils.getTagValue("dateEvt", eElement);
                         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                         Date d = new Date();
-                        try {
-                            d = dateFormat.parse(dateStr);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        d = dateFormat.parse(dateStr);
                         p.setDateEvt(d);
                     }
                     evenement = p;
@@ -251,7 +206,6 @@ public class RESTEvenementGetByID extends AsyncTask<Object, Void, Object> {
                     Element eElement = (Element) nNode;
                     p.setId(Long.parseLong(BoiteAOutils.getTagValue("id", eElement)));
                     String img = BoiteAOutils.getTagValue("image", eElement);
-
                     NodeList nodeDetecteur = doc.getElementsByTagName("detecteurIntrusion");
                     Long idDetecteur = null;
                     String ip = null;
@@ -290,11 +244,7 @@ public class RESTEvenementGetByID extends AsyncTask<Object, Void, Object> {
                         String dateStr = BoiteAOutils.getTagValue("dateEvt", eElement);
                         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                         Date d = new Date();
-                        try {
-                            d = dateFormat.parse(dateStr);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        d = dateFormat.parse(dateStr);
                         p.setDateEvt(d);
                     }
                     evenement = p;
