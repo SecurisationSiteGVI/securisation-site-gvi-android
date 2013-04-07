@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
  * @author damien
  */
 public class BoiteAOutils {
+
     public static String getTagValue(String sTag, Element eElement) {
         String ret = null;
 
@@ -21,7 +22,7 @@ public class BoiteAOutils {
             Node nValue = (Node) nlList.item(0);
             ret = nValue.getNodeValue();
         } catch (NullPointerException e) {
-            // System.out.println("Null pour l'item : " + sTag);
+            // System.t.println("Null pour l'item : " + sTag);
         }
         return ret;
     }
