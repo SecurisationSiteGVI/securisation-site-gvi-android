@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  *
@@ -39,19 +38,19 @@ public class MenuBadge extends TemplateActivity {
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAttributionbadges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activityContext,AttributionBadge.class);
+                Intent intent = new Intent(activityContext, AttributionBadge.class);
                 startActivity(intent);
             }
         });
         this.buttonAjouterBadge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activityContext,AjouterBadge.class);
+                Intent intent = new Intent(activityContext, AjouterBadge.class);
                 startActivity(intent);
             }
         });
         this.buttonListeBadge.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activityContext,ListeBadges.class);
+                Intent intent = new Intent(activityContext, ListeBadges.class);
                 startActivity(intent);
             }
         });
