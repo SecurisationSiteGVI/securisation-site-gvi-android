@@ -6,9 +6,13 @@ package physique.dataOut.badge;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Badge;
 import metier.entitys.Ressource;
+import org.xml.sax.SAXException;
 import physique.dataOut.badge.rest.RESTBadgeAdd;
 import physique.dataOut.badge.rest.RESTBadgeCount;
 import physique.dataOut.badge.rest.RESTBadgeGetAll;
@@ -21,33 +25,28 @@ import physique.dataOut.badge.rest.RESTBadgeRemove;
  */
 public class BadgeServiceWebImpl implements BadgeServiceWeb {
 
-    public List<Badge> getAll(Context context, Ressource ressource) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeGetAll().execute(context, ressource);
-        List<Badge> retour = (List<Badge>) ret.get();
+    public List<Badge> getAll(Context context, Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
+        List<Badge> retour = (List<Badge>) RESTBadgeGetAll.execute(ressource);
         return retour;
     }
 
-    public List<Badge> getAll(Context context, Ressource ressource, int index, int nbResultat) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeGetAllByRange().execute(context, ressource, index, nbResultat);
-        List<Badge> retour = (List<Badge>) ret.get();
+    public List<Badge> getAll(Context context, Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException {
+        List<Badge> retour = (List<Badge>) RESTBadgeGetAllByRange.execute( ressource, index, nbResultat);
         return retour;
     }
 
-    public int count(Context context, Ressource ressource) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeCount().execute(context, ressource);
-        Integer retour = (Integer) ret.get();
+    public int count(Context context, Ressource ressource) throws MalformedURLException, IOException {
+        Integer retour = (Integer)  RESTBadgeCount.execute( ressource);
         return retour;
     }
 
-    public boolean remove(Context context, Ressource ressource, Badge badge) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeRemove().execute(context, ressource, badge);
-        Boolean retour = (Boolean) ret.get();
+    public boolean remove(Context context, Ressource ressource, Badge badge) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean)  RESTBadgeRemove.execute( ressource, badge);
         return retour;
     }
 
-    public boolean add(Context context, Ressource ressource, Badge badge) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTBadgeAdd().execute(context, ressource, badge);
-        Boolean retour = (Boolean) ret.get();
+    public boolean add(Context context, Ressource ressource, Badge badge) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean)  RESTBadgeAdd.execute( ressource, badge);
         return retour;
     }
 }

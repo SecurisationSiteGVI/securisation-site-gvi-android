@@ -25,41 +25,34 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  *
  * @author damien
  */
-public class RESTBadgeRemove extends AsyncTask<Object, Void, Object> {
+public class RESTBadgeRemove {
 
-    @Override
-    protected Object doInBackground(Object... params) {
+    public static Object execute(Object... params) throws MalformedURLException, IOException {
         Boolean retour = false;
         Context c = (Context) params[0];
         Ressource ressource = (Ressource) params[1];
         Badge badge = (Badge) params[2];
-        try {
-            URL url = new URL(ressource.getPathToAccesWebService() + "badge/" + badge.getId());
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("PUT");
-            conn.setDoOutput(true);
-            conn.setRequestProperty("Content-Type", "application/json");
-            String input = "{\"id\":" + badge.getId() + "}";
-            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-                if (conn.getResponseCode() != 204) {
-                    throw new RuntimeException("Failed : HTTP error code : "
-                            + conn.getResponseCode());
-                } else {
-                    System.out.println("Requete envoyé mais pas de réponse du serveur.");
-                }
+        URL url = new URL(ressource.getPathToAccesWebService() + "badge/" + badge.getId());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Type", "application/json");
+        String input = "{\"id\":" + badge.getId() + "}";
+        if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+            if (conn.getResponseCode() != 204) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + conn.getResponseCode());
+            } else {
+                System.out.println("Requete envoyé mais pas de réponse du serveur.");
             }
-            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-            String output;
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-            }
-            conn.disconnect();
-            retour = true;
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        String output;
+        while ((output = br.readLine()) != null) {
+            System.out.println(output);
+        }
+        conn.disconnect();
+        retour = true;
         return retour;
     }
 }
