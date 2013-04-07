@@ -25,7 +25,8 @@ import metier.entitys.Badge;
  *
  * @author damien
  */
-public class ListeBadges extends TemplateActivity{
+public class ListeBadges extends TemplateActivity {
+
     private ListView listBadges;
     private Button precedent;
     private Button suivant;
@@ -35,7 +36,7 @@ public class ListeBadges extends TemplateActivity{
     private TextView textViewPage;
     private List<Badge> u;
     private int pos;
-    private int count=0;
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class ListeBadges extends TemplateActivity{
                 pos = position;
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
                 builder.setTitle("badge séléctionné.");
-                builder.setMessage("Voulez-vous supprimer le badge n°"+u.get(pos).getNumero()+" ?");
+                builder.setMessage("Voulez-vous supprimer le badge n°" + u.get(pos).getNumero() + " ?");
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Badge badgeCliked = u.get(pos);
