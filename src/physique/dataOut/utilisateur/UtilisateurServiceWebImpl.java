@@ -4,16 +4,11 @@
  */
 package physique.dataOut.utilisateur;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import metier.entitys.Technicien;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
@@ -37,69 +32,60 @@ import physique.dataOut.utilisateur.rest.RESTUtilisateurVerificationConnexion;
 public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
     @Override
-    public List<Utilisateur> getAll(Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurGetAll().execute(context);
-        List<Utilisateur> retour = (List<Utilisateur>) ret.get();
+    public List<Utilisateur> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
+        List<Utilisateur> retour = (List<Utilisateur>) new RESTUtilisateurGetAll().execute(ressource);
         return retour;
     }
 
     @Override
-    public boolean add(Utilisateur utilisateur, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurAdd().execute(utilisateur, context);
-        Boolean retour = (Boolean) ret.get();
+    public boolean add(Utilisateur utilisateur, Ressource ressource) throws IOException {
+        Boolean retour = (Boolean) new RESTUtilisateurAdd().execute(utilisateur, ressource);
         return retour;
     }
 
     @Override
-    public boolean remove(Utilisateur utilisateur, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurRemove().execute(utilisateur, context);
-        Boolean retour = (Boolean) ret.get();
+    public boolean remove(Utilisateur utilisateur, Ressource ressource) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean) new RESTUtilisateurRemove().execute(utilisateur, ressource);
         return retour;
     }
 
     @Override
-    public boolean update(Utilisateur utilisateur, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurUpdate().execute(utilisateur, context);
-        Boolean retour = (Boolean) ret.get();
+    public boolean update(Utilisateur utilisateur, Ressource ressource) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean) new RESTUtilisateurUpdate().execute(utilisateur, ressource);
         return retour;
     }
 
     @Override
-    public boolean loginIsUse(String loginn, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurLoginIsUse().execute(loginn, context);
-        Boolean retour = (Boolean) ret.get();
+    public boolean loginIsUse(String loginn, Ressource ressource) throws IOException {
+        Boolean retour = (Boolean) new RESTUtilisateurLoginIsUse().execute(loginn, ressource);
         return retour;
     }
 
     @Override
     public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException {
-        RESTUtilisateurVerificationConnexion rest = new RESTUtilisateurVerificationConnexion();
-        Technicien technicien = (Technicien) rest.execute(utilisateur, ressource);
+        Technicien technicien = (Technicien) new RESTUtilisateurVerificationConnexion().execute(utilisateur, ressource);
         return technicien;
     }
 
     @Override
-    public List<Utilisateur> getAll(int from, int nbResut, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurGetAllByRange().execute(from, nbResut, context);
-        List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
+    public List<Utilisateur> getAll(int from, int nbResut, Ressource ressource) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
+        List<Utilisateur> utilisateurs = (List<Utilisateur>)  new RESTUtilisateurGetAllByRange().execute(from, nbResut, ressource);
         return utilisateurs;
 
     }
 
-    public Utilisateur getById(Long id, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurGetById().execute(id, context);
-        List<Utilisateur> utilisateurs = (List<Utilisateur>) ret.get();
+    public Utilisateur getById(Long id, Ressource ressource) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
+         List<Utilisateur> utilisateurs = (List<Utilisateur>) new RESTUtilisateurGetById().execute(id, ressource);
         return utilisateurs.get(0);
     }
 
-    public int count(Context c) throws MalformedURLException, IOException {
-        Integer count = (Integer) new RESTUtilisateurCount().execute(c);
+    public int count(Ressource ressource) throws MalformedURLException, IOException {
+        Integer count = (Integer) new RESTUtilisateurCount().execute(ressource);
         return count;
     }
 
-    public boolean addTechnicien(Technicien technicien, Context context) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurAddTechniecien().execute(technicien, context);
-        Boolean retour = (Boolean) ret.get();
+    public boolean addTechnicien(Technicien technicien, Ressource ressource) throws MalformedURLException, IOException {
+         Boolean retour = (Boolean) new RESTUtilisateurAddTechniecien().execute(technicien, ressource);
         return retour;
     }
 }

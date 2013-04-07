@@ -22,23 +22,23 @@ import org.xml.sax.SAXException;
  */
 public interface UtilisateurServiceWeb {
 
-    public List<Utilisateur> getAll(Context context) throws Exception;
+    public List<Utilisateur> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException;
 
-    public List<Utilisateur> getAll(int from, int nbResut, Context context) throws Exception;
+    public List<Utilisateur> getAll(int from, int nbResut, Ressource ressource) throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 
-    public boolean add(Utilisateur utilisateur, Context context) throws Exception;
+    public boolean add(Utilisateur utilisateur, Ressource ressource) throws IOException;
 
-    public boolean remove(Utilisateur utilisateur, Context context) throws Exception;
+    public boolean remove(Utilisateur utilisateur, Ressource ressource) throws MalformedURLException, IOException;
 
-    public boolean update(Utilisateur utilisateur, Context context) throws Exception;
+    public boolean update(Utilisateur utilisateur, Ressource ressource) throws MalformedURLException, IOException;
 
-    public boolean loginIsUse(String login, Context context) throws Exception;
+    public boolean loginIsUse(String login, Ressource ressource) throws IOException;
 
     public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException;
 
-    public Utilisateur getById(Long id, Context context) throws Exception;
+    public Utilisateur getById(Long id, Ressource ressource) throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 
-    public int count(Context c) throws MalformedURLException, IOException;
+    public int count(Ressource ressource) throws MalformedURLException, IOException;
 
-    public boolean addTechnicien(Technicien technicien, Context context) throws Exception;
+    public boolean addTechnicien(Technicien technicien, Ressource ressource)throws MalformedURLException, IOException;
 }
