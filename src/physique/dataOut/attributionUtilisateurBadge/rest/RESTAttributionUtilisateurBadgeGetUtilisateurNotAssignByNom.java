@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,17 +34,14 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  *
  * @author damien
  */
-public class RESTAttributionUtilisateurBadgeGetUtilisateurNotAssignByNom  extends AsyncTask<Object, Void, Object> {
+public class RESTAttributionUtilisateurBadgeGetUtilisateurNotAssignByNom  {
 
-    @Override
-    protected Object doInBackground(Object... params) {
-        Context c = (Context) params[0];
-        Ressource ressource = (Ressource) params[1];
-        Integer debut = (Integer) params[2];
-        Integer nbResult = (Integer) params[3];
-        String nom =(String) params[4];
+   public static Object execute(Object... params) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, ParseException {
+        Ressource ressource = (Ressource) params[0];
+        Integer debut = (Integer) params[1];
+        Integer nbResult = (Integer) params[2];
+        String nom =(String) params[3];
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-        try {
             InputStream fluxLecture = null;
             URL url = new URL(ressource.getPathToAccesWebService() + "attributionutilisateurbadge/getUtilisateurNotAssignByNom/"+nom+"/"+debut+"/"+nbResult);
             fluxLecture = url.openStream();
@@ -71,23 +69,12 @@ public class RESTAttributionUtilisateurBadgeGetUtilisateurNotAssignByNom  extend
                         String dateStr = BoiteAOutils.getTagValue("dateDeNaissance", eElement);
                         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                         Date d = new Date();
-                        try {
                             d = dateFormat.parse(dateStr);
-                        } catch (ParseException ex) {
-                            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                         utilisateur.setDateDeNaissance(d);
                     }
                     utilisateurs.add(utilisateur);
                 }
             }
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return utilisateurs;
     }
 }

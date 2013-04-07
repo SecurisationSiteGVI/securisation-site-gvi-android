@@ -5,19 +5,24 @@
 package physique.dataOut.attributionUtilisateurBadge;
 
 import android.content.Context;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Badge;
 import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author damien
  */
 public interface AttributionUtilisateurBadgeServiceWeb {
-    public List<Badge> getBadgesNotAssign(Context context, Ressource ressource, int debut, int nbResult);
-    public List<Badge> getBadgesNotAssignByNumero(Context context, Ressource ressource, String numero,int debut, int nbResult);
-    public List<Utilisateur> getUtilisateurNotAssign(Context context, Ressource ressource,int debut,int nbResult);
-    public List<Utilisateur> getUtilisateurNotAssignByNom(Context context, Ressource ressource,String nom,int debut,int nbResult);
-    public boolean attribuer(Context context, Ressource ressource, Utilisateur utilisateur, Badge badge);
+    public List<Badge> getBadgesNotAssign( Ressource ressource, int debut, int nbResult)throws ParserConfigurationException, SAXException, IOException;
+    public List<Badge> getBadgesNotAssignByNumero( Ressource ressource, String numero,int debut, int nbResult)throws ParserConfigurationException, SAXException, IOException;
+    public List<Utilisateur> getUtilisateurNotAssign( Ressource ressource,int debut,int nbResult)throws ParseException, ParserConfigurationException, SAXException, IOException, MalformedURLException;
+    public List<Utilisateur> getUtilisateurNotAssignByNom( Ressource ressource,String nom,int debut,int nbResult)throws MalformedURLException, IOException, ParserConfigurationException, SAXException, ParseException;
+    public boolean attribuer( Ressource ressource, Utilisateur utilisateur, Badge badge)throws MalformedURLException, IOException;
 }
