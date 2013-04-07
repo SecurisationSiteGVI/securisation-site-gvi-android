@@ -67,6 +67,30 @@
             android:name=".HistoriqueIntrusion"
             android:label="@string/title_activity_historique_intrusion" >
         </activity>
+        <activity
+            android:name=".MenuBadge"
+            android:label="@string/title_activity_menu_badge" >
+        </activity>
+        <activity
+            android:name=".ListeBadges"
+            android:label="@string/title_activity_liste_badges" >
+        </activity>
+        <activity
+            android:name=".AjouterBadge"
+            android:label="@string/title_activity_ajouter_badge" >
+        </activity>
+        <activity
+            android:name=".AttributionBadge"
+            android:label="@string/title_activity_attributionBadge" >
+        </activity>
+        <activity
+            android:name=".MenuSecteur"
+            android:label="@string/title_activity_gerer_secteur" >
+        </activity>
+        <activity
+            android:name=".AjoutSecteur"
+            android:label="@string/title_activity_ajouter_secteur" >
+        </activity>
     </application> 
     
 </manifest>
