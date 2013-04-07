@@ -8,10 +8,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import java.util.List;
 import metier.entitys.Evenement;
-import physique.dataOut.evenement.asynctask.RESTEvenementCount;
-import physique.dataOut.evenement.asynctask.RESTEvenementGetAll;
-import physique.dataOut.evenement.asynctask.RESTEvenementGetAllByRange;
-import physique.dataOut.evenement.asynctask.RESTEvenementGetByID;
+import physique.dataOut.evenement.rest.RESTEvenementCount;
+import physique.dataOut.evenement.rest.RESTEvenementGetAll;
+import physique.dataOut.evenement.rest.RESTEvenementGetAllByRange;
+import physique.dataOut.evenement.rest.RESTEvenementGetByID;
 
 /**
  *
@@ -42,5 +42,4 @@ public class EvenementServiceWebImpl implements EvenementServiceWeb {
         Evenement retour = (Evenement) ret.get();
         return retour;
     }
-
 }

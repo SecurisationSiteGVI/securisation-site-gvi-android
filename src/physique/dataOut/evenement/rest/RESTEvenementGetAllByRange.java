@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.evenement.asynctask;
+package physique.dataOut.evenement.rest;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -88,6 +88,4 @@ public class RESTEvenementGetAllByRange extends AsyncTask<Object, Void, Object> 
         }
         return utilisateurs;
     }
-
-  
 }
