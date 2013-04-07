@@ -12,11 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.io.IOException;
+import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Technicien;
+import org.xml.sax.SAXException;
 
 public class MainActivity extends TemplateActivity {
 
@@ -100,6 +104,7 @@ public class MainActivity extends TemplateActivity {
     private class RESTConexion extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
+        private boolean erreur = false;
 
         @Override
         protected void onPreExecute() {
@@ -110,23 +115,50 @@ public class MainActivity extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            if (result == null) {
-                textView.setText("Il y à une erreur dans votre login ou votre mot de passe.");
-            } else {
-                textView.setText("Connexion réussi.");
-                addNotification("Conncté", 12);
-                Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
-                startActivity(intent);
+            if (!erreur) {
+                if (result == null) {
+                    textView.setText("Il y à une erreur dans votre login ou votre mot de passe.");
+                } else {
+                    textView.setText("Connexion réussi.");
+                    addNotification("Conncté", 12);
+                    Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                    startActivity(intent);
+                }
+            }else if(result instanceof ConnectException){
+                throwConnectException();
+            }else if(result instanceof IOException){
+                throwIOException();
+            }else if(result instanceof SAXException){
+                throwSAXException();
+            }else if(result instanceof ParserConfigurationException){
+                throwParserConfigurationException();
             }
         }
 
         @Override
         protected Object doInBackground(Object... params) {
-            Technicien technicien =null;
+            Object technicien = null;
             Technicien utilisateur = (Technicien) params[0];
             try {
                 technicien = utilisateurSrv.verificationConnexion(utilisateur, activityContext);
-            } catch (Exception ex) {
+            } catch (ConnectException ex) {
+                erreur=true;
+               technicien = new ConnectException();
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur=true;
+                technicien = new IOException();
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur=true;
+                technicien = new SAXException();
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur=true;
+                technicien = new ParserConfigurationException();
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Throwable ex) {
+                erreur=true;
                 Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
             }
             return technicien;
