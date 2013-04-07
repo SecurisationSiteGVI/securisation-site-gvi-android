@@ -14,7 +14,7 @@ import metier.entitys.Ressource;
 
 public class Parametres extends TemplateActivity {
 
-    private RessourceService ressourceSrv=MetierFactory.getRessourceSrv(Parametres.this);
+    private RessourceService ressourceSrv = MetierFactory.getRessourceSrv(Parametres.this);
     private Button valider;
     private EditText editTextProtocol;
     private EditText editTextServeurURL;
@@ -32,8 +32,8 @@ public class Parametres extends TemplateActivity {
     }
 
     @Override
-    public void addInitialValueForGraphicalObjects(){
-        Ressource ressource =null;
+    public void addInitialValueForGraphicalObjects() {
+        Ressource ressource = null;
         try {
             ressource = this.ressourceSrv.getRessource();
         } catch (Exception ex) {
@@ -90,7 +90,8 @@ public class Parametres extends TemplateActivity {
                     } catch (Exception ex) {
                         Logger.getLogger(Parametres.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }finish();
+                }
+                finish();
             }
         });
     }
