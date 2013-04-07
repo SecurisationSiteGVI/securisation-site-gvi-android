@@ -73,10 +73,10 @@ public class AjouterUtilisateur extends TemplateActivity {
                 String telephoneFixe = editTextTelephoneFixe.getText().toString();
                 String telephonePortable = editTextTelephonePortable.getText().toString();
                 String adresse = editTextAdresse.getText().toString();
-                int codePostale=0;
-                if(editTextCodePostale.getText().toString().length()>0){
-                    codePostale= Integer.valueOf(editTextCodePostale.getText().toString());
-                }                 
+                int codePostale = 0;
+                if (editTextCodePostale.getText().toString().length() > 0) {
+                    codePostale = Integer.valueOf(editTextCodePostale.getText().toString());
+                }
                 String ville = editTextVille.getText().toString();
                 utilisateur.setNom(nom);
                 utilisateur.setPrenom(prenom);
