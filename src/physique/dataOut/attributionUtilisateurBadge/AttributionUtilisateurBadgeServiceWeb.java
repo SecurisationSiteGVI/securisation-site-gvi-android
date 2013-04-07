@@ -4,7 +4,6 @@
  */
 package physique.dataOut.attributionUtilisateurBadge;
 
-import android.content.Context;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
