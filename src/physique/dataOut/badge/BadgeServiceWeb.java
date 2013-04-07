@@ -19,13 +19,13 @@ import org.xml.sax.SAXException;
  */
 public interface BadgeServiceWeb {
 
-    public List<Badge> getAll(Context context, Ressource ressource) throws ParserConfigurationException, SAXException, IOException;
+    public List<Badge> getAll( Ressource ressource) throws ParserConfigurationException, SAXException, IOException;
 
-    public List<Badge> getAll(Context context, Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException;
+    public List<Badge> getAll( Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException;
 
-    public int count(Context c, Ressource ressource) throws MalformedURLException, IOException;
+    public int count( Ressource ressource) throws MalformedURLException, IOException;
 
-    public boolean remove(Context c, Ressource ressource, Badge badge) throws MalformedURLException, IOException;
+    public boolean remove( Ressource ressource, Badge badge) throws MalformedURLException, IOException;
 
-    public boolean add(Context context, Ressource ressource, Badge badge) throws MalformedURLException, IOException;
+    public boolean add(Ressource ressource, Badge badge) throws MalformedURLException, IOException;
 }

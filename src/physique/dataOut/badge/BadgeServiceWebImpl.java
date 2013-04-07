@@ -25,28 +25,28 @@ import physique.dataOut.badge.rest.RESTBadgeRemove;
  */
 public class BadgeServiceWebImpl implements BadgeServiceWeb {
 
-    public List<Badge> getAll(Context context, Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
+    public List<Badge> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
         List<Badge> retour = (List<Badge>) RESTBadgeGetAll.execute(ressource);
         return retour;
     }
 
-    public List<Badge> getAll(Context context, Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException {
-        List<Badge> retour = (List<Badge>) RESTBadgeGetAllByRange.execute( ressource, index, nbResultat);
+    public List<Badge> getAll(Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException {
+        List<Badge> retour = (List<Badge>) RESTBadgeGetAllByRange.execute(ressource, index, nbResultat);
         return retour;
     }
 
-    public int count(Context context, Ressource ressource) throws MalformedURLException, IOException {
-        Integer retour = (Integer)  RESTBadgeCount.execute( ressource);
+    public int count(Ressource ressource) throws MalformedURLException, IOException {
+        Integer retour = (Integer) RESTBadgeCount.execute(ressource);
         return retour;
     }
 
-    public boolean remove(Context context, Ressource ressource, Badge badge) throws MalformedURLException, IOException {
-        Boolean retour = (Boolean)  RESTBadgeRemove.execute( ressource, badge);
+    public boolean remove(Ressource ressource, Badge badge) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean) RESTBadgeRemove.execute(ressource, badge);
         return retour;
     }
 
-    public boolean add(Context context, Ressource ressource, Badge badge) throws MalformedURLException, IOException {
-        Boolean retour = (Boolean)  RESTBadgeAdd.execute( ressource, badge);
+    public boolean add(Ressource ressource, Badge badge) throws MalformedURLException, IOException {
+        Boolean retour = (Boolean) RESTBadgeAdd.execute(ressource, badge);
         return retour;
     }
 }
