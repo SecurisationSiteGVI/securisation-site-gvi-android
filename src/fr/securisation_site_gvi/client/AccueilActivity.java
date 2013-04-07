@@ -41,13 +41,13 @@ public class AccueilActivity extends TemplateActivity {
     public void addActionListnerForAllGraphicalObjects() {
         this.voirHistorique.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent  = new Intent(AccueilActivity.this, Historique.class);
+                Intent intent = new Intent(AccueilActivity.this, Historique.class);
                 startActivity(intent);
             }
         });
         this.gererLesBadges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent  = new Intent(activityContext, MenuBadge.class);
+                Intent intent = new Intent(activityContext, MenuBadge.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,8 @@ public class AccueilActivity extends TemplateActivity {
         });
         this.gererLesSecteurs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityContext, MenuSecteur.class);
+                startActivity(intent);
             }
         });
         this.gererLesAppareils.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +78,9 @@ public class AccueilActivity extends TemplateActivity {
                 Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-     @Override
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -95,7 +95,8 @@ public class AccueilActivity extends TemplateActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-     @Override
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             removeNotification(12);
