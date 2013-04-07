@@ -105,6 +105,7 @@ public class TemplateActivity extends Activity {
         }
         return ret;
     }
+
     public void addNotification(String content, int id) {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
