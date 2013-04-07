@@ -7,10 +7,18 @@ package physique.dataOut.utilisateur;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
 import metier.entitys.Technicien;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurAdd;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurAddTechniecien;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurCount;
@@ -64,7 +72,7 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
     }
 
     @Override
-    public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Exception {
+    public Technicien verificationConnexion(Technicien utilisateur, Ressource ressource) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException {
         RESTUtilisateurVerificationConnexion rest = new RESTUtilisateurVerificationConnexion();
         Technicien technicien = (Technicien) rest.execute(utilisateur, ressource);
         return technicien;
@@ -84,9 +92,8 @@ public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
         return utilisateurs.get(0);
     }
 
-    public int count(Context c) throws Exception {
-        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurCount().execute(c);
-        Integer count = (Integer) ret.get();
+    public int count(Context c) throws MalformedURLException, IOException {
+        Integer count = (Integer) new RESTUtilisateurCount().execute(c);
         return count;
     }
 

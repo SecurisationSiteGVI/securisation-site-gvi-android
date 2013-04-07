@@ -23,35 +23,28 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  *
  * @author damien
  */
-public class RESTUtilisateurCount extends AsyncTask<Object, Void, Object> {
+public class RESTUtilisateurCount {
 
-    @Override
-    protected Object doInBackground(Object... params) {
+    public Object execute(Object... params) throws MalformedURLException, IOException {
         int ret = 0;
+        Context c = (Context) params[0];
+        RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
+        Ressource ressource = null;
         try {
-            Context c = (Context) params[0];
-            RessourcesServiceDataIn r = PhysiqueDataInFactory.getRessourceSrv(c);
-            Ressource ressource = null;
-            try {
-                ressource = r.getRessource();
-            } catch (Exception ex) {
-                Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            BufferedReader br = null;
-            URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/count");
-            InputStream fluxLecture = url.openStream();
-            br = new BufferedReader(new InputStreamReader((fluxLecture)));
-            String output;
-            while ((output = br.readLine()) != null) {
-                System.out.println(output);
-                ret = Integer.parseInt(output);
-            }
-            br.close();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            ressource = r.getRessource();
+        } catch (Exception ex) {
             Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        BufferedReader br = null;
+        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/count");
+        InputStream fluxLecture = url.openStream();
+        br = new BufferedReader(new InputStreamReader((fluxLecture)));
+        String output;
+        while ((output = br.readLine()) != null) {
+            System.out.println(output);
+            ret = Integer.parseInt(output);
+        }
+        br.close();
         return ret;
     }
 }
