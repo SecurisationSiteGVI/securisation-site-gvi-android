@@ -4,26 +4,29 @@
  */
 package fr.securisation_site_gvi.client;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.EvenementService;
 import metier.MetierFactory;
-import metier.entitys.Acces;
+import metier.entitys.Intrusion;
 import metier.entitys.Photo;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -46,14 +49,7 @@ public class HistoriquePhoto extends TemplateActivity {
         setContentView(R.layout.activity_historique_photo);
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
-        try {
-            this.photo = (Photo) this.evenementSrv.getById(this.activityContext, this.id);
-        } catch (Exception ex) {
-            Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setThisActivityOn();
-
-
+        new HistoriquePhoto.RESTEvenementGetById().execute();
     }
 
     @Override
@@ -101,5 +97,71 @@ public class HistoriquePhoto extends TemplateActivity {
         }
         this.textViewPhoto.setText("Connectez vous sur le site pour visionner la photo");
         this.textViewCamera.setText(this.photo.getCamera().toString());
+    }
+    
+    private class RESTEvenementGetById extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des informations ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            Boolean ret = (Boolean) result;
+            if (!erreur) {
+                photo = (Photo) result;
+                setThisActivityOn();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof ParseException) {
+                throwParseException();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParseException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = evenementSrv.getById(activityContext, id);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                erreur = true;
+                ret = new ParseException(" ", 1);
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
     }
 }
