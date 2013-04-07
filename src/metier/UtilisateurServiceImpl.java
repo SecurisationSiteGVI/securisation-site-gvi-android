@@ -6,8 +6,11 @@ package metier;
 
 import android.content.Context;
 import java.util.List;
+import metier.entitys.Ressource;
 import metier.entitys.Technicien;
 import metier.entitys.Utilisateur;
+import physique.dataIn.PhysiqueDataInFactory;
+import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.PhysiqueDataOutFactory;
 import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 
@@ -18,7 +21,7 @@ import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 public class UtilisateurServiceImpl implements UtilisateurService {
 
     private UtilisateurServiceWeb utilisateurSrv = PhysiqueDataOutFactory.getPersonneClientServiceWeb();
-
+private RessourcesServiceDataIn ressourcesSrv;
     public List<Utilisateur> getAll(Context context) throws Exception {
         return this.utilisateurSrv.getAll(context);
     }
@@ -40,6 +43,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         }
         return b;
     }
+
     public boolean addTechnicien(Technicien utilisateur, Context context) throws Exception {
         Boolean b = false;
         if (utilisateur != null) {
@@ -100,7 +104,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         Technicien technicien = null;
         if (utilisateur != null) {
             if (utilisateur instanceof Utilisateur) {
-                technicien = utilisateurSrv.verificationConnexion(utilisateur, context);
+                this.ressourcesSrv = PhysiqueDataInFactory.getRessourceSrv(context);
+                Ressource ressource = null;
+                ressource = this.ressourcesSrv.getRessource();
+                technicien = utilisateurSrv.verificationConnexion(utilisateur,ressource);
+                Thread.sleep(500);
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }

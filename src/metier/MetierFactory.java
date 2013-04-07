@@ -16,26 +16,42 @@ public class MetierFactory {
     private static UtilisateurService utilisateurSrv;
     private static EvenementService evenementSrv;
     private static BadgeService badgeSrv;
-    
+    private static AttributionUtilisateurBadgeService attributionUtilisateurBadgeSrv;
+    private static SecteurService secteurSrv;
     public static BadgeService getBadgeSrv() {
-        if(badgeSrv==null){
+        if (badgeSrv == null) {
             badgeSrv = new BadgeServiceImpl();
         }
         return badgeSrv;
     }
+    public static SecteurService getSecteurServ() {
+        if (secteurSrv == null) {
+            secteurSrv = new SecteurServiceImpl();
+        }
+        return secteurSrv;
+    }
+
+    public static AttributionUtilisateurBadgeService getAttributionUtilisateurBadgeService() {
+        if (attributionUtilisateurBadgeSrv == null) {
+            attributionUtilisateurBadgeSrv = new AttributionUtilisateurBadgeServiceImpl();
+        }
+        return attributionUtilisateurBadgeSrv;
+    }
+
     public static EvenementService getEvenementSrv() {
-        if(evenementSrv==null){
+        if (evenementSrv == null) {
             evenementSrv = new EvenementServiceImpl();
         }
         return evenementSrv;
     }
+
     public static RessourceService getRessourceSrv(Context context) {
         MetierFactory.ressourceSrv = new RessourceServiceImpl(context);
         return ressourceSrv;
     }
 
     public static UtilisateurService getUtilisateurSrv() {
-        if(utilisateurSrv==null){
+        if (utilisateurSrv == null) {
             utilisateurSrv = new UtilisateurServiceImpl();
         }
         return utilisateurSrv;
