@@ -5,10 +5,16 @@
 package metier;
 
 import android.content.Context;
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
 import java.util.List;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Technicien;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.PhysiqueDataOutFactory;
@@ -100,7 +106,7 @@ private RessourcesServiceDataIn ressourcesSrv;
         return b;
     }
 
-    public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Exception {
+    public Technicien verificationConnexion(Technicien utilisateur, Context context) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException {
         Technicien technicien = null;
         if (utilisateur != null) {
             if (utilisateur instanceof Utilisateur) {
@@ -132,7 +138,7 @@ private RessourcesServiceDataIn ressourcesSrv;
         return u;
     }
 
-    public int count(Context c) throws Exception {
+    public int count(Context c) throws MalformedURLException, IOException  {
         int u = 0;
         if (c != null) {
             if (c instanceof Context) {
