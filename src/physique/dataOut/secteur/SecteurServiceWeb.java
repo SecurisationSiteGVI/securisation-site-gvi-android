@@ -5,6 +5,7 @@
 package physique.dataOut.secteur;
 
 import android.content.Context;
+import java.io.IOException;
 import java.util.List;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
@@ -15,7 +16,7 @@ import metier.entitys.Secteur;
  */
 public interface SecteurServiceWeb {
 
-    public boolean ajouter(Ressource ressource, Secteur secteur) throws Exception;
+    public boolean ajouter(Ressource ressource, Secteur secteur) throws IOException;
 
     public List<Secteur> getAll(Ressource ressource, int index, int nbResutltat) throws Exception;
 
