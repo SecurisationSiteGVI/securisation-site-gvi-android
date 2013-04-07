@@ -2,5 +2,19 @@
 <resources>
 	
     <style name="AppTheme" parent="android:Theme.Light" />
-	
+    
+    <style name="MyDialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowTitleStyle">@style/DialogWindowTitle</item>
+    </style>
+
+    <style name="DialogWindowTitle">
+        <item name="android:textAppearance">@style/TextAppearance.DialogWindowTitle</item>
+        <item name="android:background">#044592</item>
+    </style>
+
+    <style name="TextAppearance.DialogWindowTitle" parent="android:TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
