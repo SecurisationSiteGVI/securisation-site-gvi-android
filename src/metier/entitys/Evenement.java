@@ -45,8 +45,8 @@ public class Evenement {
 
     @Override
     public String toString() {
-        
-        return "Evenement à "+this.dateEvt.toLocaleString();
+
+        return "Evenement à " + this.dateEvt.toLocaleString();
     }
 
     public Date getDateEvt() {
