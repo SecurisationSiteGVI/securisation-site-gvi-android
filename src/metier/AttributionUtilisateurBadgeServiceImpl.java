@@ -27,7 +27,7 @@ import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeS
  */
 public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilisateurBadgeService {
 
-    private RessourcesServiceDataIn ressourcesSrv;
+
     private AttributionUtilisateurBadgeServiceWeb attributionUtilisateurBadgeSrv = PhysiqueDataOutFactory.getAttributionUtilisateurBadgeSrv();
     public List<Badge> getBadgesNotAssign(Context context,  int debut, int nbResult)throws ParserConfigurationException, SAXException, IOException, Exception {
         List<Badge> b = null;

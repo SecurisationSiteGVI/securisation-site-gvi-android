@@ -20,7 +20,6 @@ import physique.dataOut.secteur.SecteurServiceWeb;
  */
 public class SecteurServiceImpl implements SecteurService {
 
-    private RessourcesServiceDataIn ressourcesSrv;
     private SecteurServiceWeb secteurSrv = PhysiqueDataOutFactory.getSecteurServiceWeb();
 
     public boolean ajouter(Context context, Secteur secteur) throws IOException, Exception {
