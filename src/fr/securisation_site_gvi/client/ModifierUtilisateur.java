@@ -2,19 +2,25 @@ package fr.securisation_site_gvi.client;
 
 import android.os.Bundle;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 
 public class ModifierUtilisateur extends TemplateActivity {
 
@@ -46,44 +52,7 @@ public class ModifierUtilisateur extends TemplateActivity {
 
     @Override
     public void addInitialValueForGraphicalObjects() {
-        Utilisateur utilisateur = null;
-        try {
-            utilisateur = utilisateurSrv.getById(this.id, ModifierUtilisateur.this);
-        } catch (Exception ex) {
-            Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.utilisateurSelected = utilisateur;
-        this.editTextNom.setText(utilisateur.getNom());
-
-        this.editTextPrenom.setText(utilisateur.getPrenom());
-        if (utilisateur.getDateDeNaissance() != null) {
-            this.afficherDate();
-        } else {
-            this.buttonDateDeNaissance.setText("Séléctionner");
-        }
-        if (utilisateur.getEmail() != null) {
-            this.editTextEmail.setText(utilisateur.getEmail());
-        }
-        if (utilisateur.isHomme()) {
-            this.toggleButtonSexe.setChecked(true);
-        } else {
-            this.toggleButtonSexe.setChecked(false);
-        }
-        if (utilisateur.getTelephoneFixe() != null) {
-            this.editTextTelephoneFixe.setText(utilisateur.getTelephoneFixe());
-        }
-        if (utilisateur.getTelephonePortable() != null) {
-            this.editTextTelephonePortable.setText(utilisateur.getTelephonePortable());
-        }
-        if (utilisateur.getAdresse() != null) {
-            this.editTextAdresse.setText(utilisateur.getAdresse());
-        }
-        if (utilisateur.getCodePostale() > 200) {
-            this.editTextCodePostale.setText(String.valueOf(utilisateur.getCodePostale()));
-        }
-        if (utilisateur.getVille() != null) {
-            this.editTextVille.setText(utilisateur.getVille());
-        }
+        new RESTUtilisateurGetById().execute();
     }
 
     @Override
@@ -128,22 +97,12 @@ public class ModifierUtilisateur extends TemplateActivity {
                 if (utilisateurSelected.getDateDeNaissance() != null) {
                     u.setDateDeNaissance(utilisateurSelected.getDateDeNaissance());
                 }
-                try {
-                    utilisateurSrv.update(u, ModifierUtilisateur.this);
-                } catch (Exception ex) {
-                    Toast.makeText(ModifierUtilisateur.this, "Impossible d'éffectuer une modification.", Toast.LENGTH_LONG);
-                    Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new RESTUtilisateurUpdate().execute(u);
             }
         });
         this.buttonSupprimerUtilisateur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                try {
-                    utilisateurSrv.remove(utilisateurSelected, ModifierUtilisateur.this);
-                    Toast.makeText(ModifierUtilisateur.this, "Utilisateur supprimé.", Toast.LENGTH_LONG).show();
-                } catch (Exception ex) {
-                    Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new RESTUtilisateurRemove().execute();
             }
         });
         this.buttonDateDeNaissance.setOnClickListener(new View.OnClickListener() {
@@ -185,5 +144,187 @@ public class ModifierUtilisateur extends TemplateActivity {
         int month = d.getMonth();
         String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
+    }
+
+    private class RESTUtilisateurGetById extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            Utilisateur utilisateur = (Utilisateur) result;
+            if (!erreur) {
+                utilisateurSelected = utilisateur;
+                editTextNom.setText(utilisateur.getNom());
+
+                editTextPrenom.setText(utilisateur.getPrenom());
+                if (utilisateur.getDateDeNaissance() != null) {
+                    afficherDate();
+                } else {
+                    buttonDateDeNaissance.setText("Séléctionner");
+                }
+                if (utilisateur.getEmail() != null) {
+                    editTextEmail.setText(utilisateur.getEmail());
+                }
+                if (utilisateur.isHomme()) {
+                    toggleButtonSexe.setChecked(true);
+                } else {
+                    toggleButtonSexe.setChecked(false);
+                }
+                if (utilisateur.getTelephoneFixe() != null) {
+                    editTextTelephoneFixe.setText(utilisateur.getTelephoneFixe());
+                }
+                if (utilisateur.getTelephonePortable() != null) {
+                    editTextTelephonePortable.setText(utilisateur.getTelephonePortable());
+                }
+                if (utilisateur.getAdresse() != null) {
+                    editTextAdresse.setText(utilisateur.getAdresse());
+                }
+                if (utilisateur.getCodePostale() > 200) {
+                    editTextCodePostale.setText(String.valueOf(utilisateur.getCodePostale()));
+                }
+                if (utilisateur.getVille() != null) {
+                    editTextVille.setText(utilisateur.getVille());
+                }
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object list = null;
+            try {
+                list = utilisateurSrv.getById(id, activityContext);
+            } catch (SAXException ex) {
+                erreur = true;
+                list = new SAXException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                list = new ParserConfigurationException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                list = new MalformedURLException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                list = new IOException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return list;
+        }
+    }
+    private class RESTUtilisateurUpdate extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Mise à jour de l'utilisateur ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            Boolean utilisateur = (Boolean) result;
+            if (!erreur) {
+                Toast.makeText(ModifierUtilisateur.this, "Utilisateur modifié.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object list = null;
+            try {
+                utilisateurSrv.update((Utilisateur)params[0], activityContext);
+            } catch (MalformedURLException ex) {
+                erreur=true;
+                list = new MalformedURLException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur=true;
+                list = new IOException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur=true;
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return list;
+        }
+    }
+    private class RESTUtilisateurRemove extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Suppression de l'utilisateur ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            Boolean ret = (Boolean) result;
+            if (!erreur) {
+                Toast.makeText(ModifierUtilisateur.this, "Utilisateur supprimé.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object list = null;
+            try {
+                utilisateurSrv.remove(utilisateurSelected, activityContext);
+            } catch (MalformedURLException ex) {
+                erreur =true;
+                list= new MalformedURLException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur =true;
+                list= new IOException();
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur =true;
+                Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return list;
+        }
     }
 }

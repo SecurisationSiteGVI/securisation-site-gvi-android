@@ -66,6 +66,10 @@ public class TemplateActivity extends Activity {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Veuillez verifier l'url que vous avez saisie.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    public  void throwException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Impossible de dététerminer le probléme.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
     @Deprecated
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

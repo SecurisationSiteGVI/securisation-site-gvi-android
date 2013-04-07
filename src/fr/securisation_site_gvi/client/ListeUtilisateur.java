@@ -60,21 +60,10 @@ public class ListeUtilisateur extends TemplateActivity {
         } else {
             this.suivant.setEnabled(true);
         }
-        List<Utilisateur> utilisateurs = null;
-        try {
-            utilisateurs = this.utilisateurSrv.getAll(this.index, this.nbLinge, this.activityContext);
-            this.u = utilisateurs;
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] listeStrings = new String[utilisateurs.size()];
-        for (int i = 0; i < utilisateurs.size(); i++) {
-            listeStrings[i] = utilisateurs.get(i).toString();
-        }
-        listUtilisateurs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
-        this.setTextViewPageText();
+        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurGetAllByRange().execute();
     }
-    public void setTextViewPageText(){
+
+    public void setTextViewPageText() {
         this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
     }
 
@@ -149,10 +138,12 @@ public class ListeUtilisateur extends TemplateActivity {
             }
         });
     }
+
     private class RESTUtilisateurCont extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
-        private boolean erreur=false;
+        private boolean erreur = false;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -162,29 +153,75 @@ public class ListeUtilisateur extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            if(!erreur){
-               count = (Integer)result;
-            setTextViewPageText(); 
-            }else if(result instanceof MalformedURLException){
+            if (!erreur) {
+                count = (Integer) result;
+                setTextViewPageText();
+            } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
-            }else if(result instanceof IOException){
+            } else if (result instanceof IOException) {
                 throwIOException();
+            } else {
+                throwException();
             }
-            
         }
 
         @Override
         protected Object doInBackground(Object... params) {
-            Integer count=null;
+            Object count = null;
             try {
-                count = utilisateurSrv.count( activityContext);
+                count = utilisateurSrv.count(activityContext);
             } catch (MalformedURLException ex) {
-                
+                erreur = true;
+                count = new MalformedURLException();
                 Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                erreur = true;
+                count = new IOException();
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
                 Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
             }
             return count;
+        }
+    }
+
+    private class RESTUtilisateurGetAllByRange extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                String[] listeStrings = new String[u.size()];
+                for (int i = 0; i < u.size(); i++) {
+                    listeStrings[i] = u.get(i).toString();
+                }
+                listUtilisateurs.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                setTextViewPageText();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object list = null;
+            try {
+                list = utilisateurSrv.getAll(index, nbLinge, activityContext);
+                u = (List<Utilisateur>) list;
+            } catch (Exception ex) {
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return list;
         }
     }
 }

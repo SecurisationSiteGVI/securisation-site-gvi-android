@@ -1,6 +1,8 @@
 package fr.securisation_site_gvi.client;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -90,13 +93,7 @@ public class AjouterUtilisateur extends TemplateActivity {
                 if (utilisateur.getDateDeNaissance() != null) {
                     utilisateur.setDateDeNaissance(utilisateur.getDateDeNaissance());
                 }
-                try {
-                    utilisateurSrv.add(utilisateur, AjouterUtilisateur.this);
-                    Toast.makeText(AjouterUtilisateur.this, "Utilisateur bien ajouté", Toast.LENGTH_LONG);
-                } catch (Exception ex) {
-                    Toast.makeText(AjouterUtilisateur.this, "Impossible d'éffectuer une modification.", Toast.LENGTH_LONG);
-                    Logger.getLogger(ModifierUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new RESTUtilisateurAjout().execute();
             }
         });
         this.buttonDateDeNaissance.setOnClickListener(new View.OnClickListener() {
@@ -137,5 +134,44 @@ public class AjouterUtilisateur extends TemplateActivity {
         int month = d.getMonth();
         String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
+    }
+    private class RESTUtilisateurAjout extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Utilisateur bien ajouté", Toast.LENGTH_LONG).show();
+            }else if(result instanceof IOException){
+                throwIOException();
+            }else{
+              throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object technicien = null;
+            try {            
+                utilisateurSrv.add(utilisateur, activityContext);
+            } catch (IOException ex) {
+                erreur = true;
+                technicien = new IOException();
+                Logger.getLogger(AjouterUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur=true;
+                Logger.getLogger(AjouterUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+            return technicien;
+        }
     }
 }

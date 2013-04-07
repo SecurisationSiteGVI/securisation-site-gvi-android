@@ -5,20 +5,27 @@
 package fr.securisation_site_gvi.client;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Technicien;
+import metier.entitys.Utilisateur;
 
 /**
  *
@@ -99,13 +106,7 @@ public class AjouterTechnicien extends TemplateActivity {
                     if (utilisateur.getDateDeNaissance() != null) {
                         utilisateur.setDateDeNaissance(utilisateur.getDateDeNaissance());
                     }
-                    try {
-                        utilisateurSrv.addTechnicien(utilisateur, activityContext);
-                        Toast.makeText(activityContext, "Utilisateur bien ajouté", Toast.LENGTH_LONG);
-                    } catch (Exception ex) {
-                        Toast.makeText(activityContext, "Impossible d'éffectuer une modification.", Toast.LENGTH_LONG);
-                        Logger.getLogger(AjouterTechnicien.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    new RESTUtilisateurAddTechnicien().execute();
                 } else {
                     Toast.makeText(activityContext, "Les mot de passe ne sont pas identique.", Toast.LENGTH_LONG);
                 }
@@ -150,5 +151,49 @@ public class AjouterTechnicien extends TemplateActivity {
         int month = d.getMonth();
         String ret = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         this.buttonDateDeNaissance.setText(ret);
+    }
+    private class RESTUtilisateurAddTechnicien extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+             
+                        Toast.makeText(activityContext, "Utilisateur bien ajouté", Toast.LENGTH_LONG);
+                    
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object boolea = null;
+            try {
+               boolea=  utilisateurSrv.addTechnicien(utilisateur, activityContext);
+            } catch (MalformedURLException ex) {
+                erreur=true;
+                boolea = new MalformedURLException();
+                Logger.getLogger(AjouterTechnicien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur=true;
+                boolea = new IOException();
+                Logger.getLogger(AjouterTechnicien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur=true;
+                Logger.getLogger(AjouterTechnicien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return boolea;
+        }
     }
 }
