@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  *
@@ -59,6 +60,10 @@ public class TemplateActivity extends Activity {
     }
     public  void throwParserConfigurationException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. L'application ne peut pas récuperer les informations.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+    public  void throwMalformedURLException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Veuillez verifier l'url que vous avez saisie.", Toast.LENGTH_SHORT);
         toast.show();
     }
     @Deprecated
