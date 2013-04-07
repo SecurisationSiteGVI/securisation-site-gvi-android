@@ -83,6 +83,14 @@
             android:name=".AttributionBadge"
             android:label="@string/title_activity_attributionBadge" >
         </activity>
+        <activity
+            android:name=".MenuSecteur"
+            android:label="@string/title_activity_gerer_secteur" >
+        </activity>
+        <activity
+            android:name=".AjoutSecteur"
+            android:label="@string/title_activity_ajouter_secteur" >
+        </activity>
     </application> 
     
 </manifest>
