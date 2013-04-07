@@ -1,8 +1,10 @@
 package fr.securisation_site_gvi.client;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,11 +45,7 @@ public class ListeUtilisateur extends TemplateActivity {
         if (this.isTablette7()) {
             this.nbLinge = 15;
         }
-        try {
-            this.count = this.utilisateurSrv.count(this.activityContext);
-        } catch (Exception ex) {
-            Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        AsyncTask<Object, Void, Object> ret = new RESTUtilisateurCont().execute();
         this.remplirListView();
     }
 
@@ -72,6 +72,9 @@ public class ListeUtilisateur extends TemplateActivity {
             listeStrings[i] = utilisateurs.get(i).toString();
         }
         listUtilisateurs.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listeStrings));
+        this.setTextViewPageText();
+    }
+    public void setTextViewPageText(){
         this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
     }
 
@@ -145,5 +148,43 @@ public class ListeUtilisateur extends TemplateActivity {
                 pageSuivante();
             }
         });
+    }
+    private class RESTUtilisateurCont extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur=false;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if(!erreur){
+               count = (Integer)result;
+            setTextViewPageText(); 
+            }else if(result instanceof MalformedURLException){
+                throwMalformedURLException();
+            }else if(result instanceof IOException){
+                throwIOException();
+            }
+            
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Integer count=null;
+            try {
+                count = utilisateurSrv.count( activityContext);
+            } catch (MalformedURLException ex) {
+                
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return count;
+        }
     }
 }
