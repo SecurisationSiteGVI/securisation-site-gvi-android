@@ -28,6 +28,7 @@ public class HistoriqueAcces extends TemplateActivity {
     private Acces acces;
     private Button buttonretour;
     private EvenementService evenementSrv = MetierFactory.getEvenementSrv();
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -35,19 +36,19 @@ public class HistoriqueAcces extends TemplateActivity {
         Bundle extras = getIntent().getExtras();
         this.id = extras.getLong("id");
         try {
-            this.acces = (Acces)this.evenementSrv.getById(this.activityContext, this.id);
+            this.acces = (Acces) this.evenementSrv.getById(this.activityContext, this.id);
         } catch (Exception ex) {
             Logger.getLogger(HistoriqueAcces.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.setThisActivityOn();
-        
+
     }
 
     @Override
     public void initGraphicalObjects() {
-        this.buttonretour =(Button) findViewById(R.id.buttonAccesRetour);
-        this.textViewDate  = (TextView) findViewById(R.id.textViewAccesDate);
-        this.textViewBorneAcces  = (TextView) findViewById(R.id.textViewAccesBorneAcces);
+        this.buttonretour = (Button) findViewById(R.id.buttonAccesRetour);
+        this.textViewDate = (TextView) findViewById(R.id.textViewAccesDate);
+        this.textViewBorneAcces = (TextView) findViewById(R.id.textViewAccesBorneAcces);
         this.textViewUtilisateur = (TextView) findViewById(R.id.textViewAccesUtilisateur);
         this.textViewPassage = (TextView) findViewById(R.id.textViewAccesPassage);
     }
@@ -55,24 +56,22 @@ public class HistoriqueAcces extends TemplateActivity {
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonretour.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 finish();
             }
         });
     }
 
-    
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.textViewDate.setText(this.acces.getDateEvt().toLocaleString());
         this.textViewUtilisateur.setText(this.acces.getUtilisateur().toString());
-        if(this.acces.getPassage()){
+        if (this.acces.getPassage()) {
             this.textViewPassage.setText("Authorisé");
-        }else{
+        } else {
             this.textViewPassage.setText("Refusé");
         }
         this.textViewBorneAcces.setText(this.acces.getBorneAcces().toString());
-        
+
     }
 }
