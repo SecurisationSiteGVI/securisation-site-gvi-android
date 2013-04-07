@@ -43,7 +43,7 @@ public class AjouterBadge extends TemplateActivity {
         this.buttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String numero = edittextNumero.getText().toString();
-                Badge b= new Badge();
+                Badge b = new Badge();
                 b.setNumero(numero);
                 try {
                     badgeSrv.add(activityContext, b);
