@@ -1,41 +1,30 @@
 package fr.securisation_site_gvi.client;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.view.ActionMode;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.MetierFactory;
+import metier.UtilisateurService;
 import metier.entitys.Technicien;
-import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 
 public class MainActivity extends TemplateActivity {
 
-    private Button buttonConnnexion;
-    private EditText editTextLogin;
-    private TextView textView;
-    private EditText editTextPassword;
-    private UtilisateurServiceWeb utilisateurSrv = physique.dataOut.PhysiqueDataOutFactory.getPersonneClientServiceWeb();
+    public Button buttonConnnexion;
+    public EditText editTextLogin;
+    public TextView textView;
+    public EditText editTextPassword;
+    private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,21 +51,7 @@ public class MainActivity extends TemplateActivity {
                 Technicien t = new Technicien();
                 t.setLogin(editTextLogin.getText().toString());
                 t.setPassword(editTextPassword.getText().toString());
-                Technicien tech = null;
-                try {
-                    tech = utilisateurSrv.verificationConnexion(t, MainActivity.this);
-                } catch (Exception ex) {
-                    Toast.makeText(activityContext, "Erreur du serveur", Toast.LENGTH_SHORT);
-                    Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (tech == null) {
-                    textView.setText("Il y à une erreur dans votre login ou votre mot de passe.");
-                } else {
-                    textView.setText("Connexion réussi.");
-                    addNotification("Conncté", 12);
-                    Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
-                    startActivity(intent);
-                }
+                AsyncTask<Object, Void, Object> ret = new RESTConexion().execute(t);
             }
         });
     }
@@ -106,11 +81,12 @@ public class MainActivity extends TemplateActivity {
         });
         builder.show();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.dismitDialog();                
+                this.dismitDialog();
                 return true;
             case R.id.menu_settings:
                 Intent intent = new Intent(this.activityContext, Parametres.class);
@@ -118,6 +94,42 @@ public class MainActivity extends TemplateActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class RESTConexion extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Vérification ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (result == null) {
+                textView.setText("Il y à une erreur dans votre login ou votre mot de passe.");
+            } else {
+                textView.setText("Connexion réussi.");
+                addNotification("Conncté", 12);
+                Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Technicien technicien =null;
+            Technicien utilisateur = (Technicien) params[0];
+            try {
+                technicien = utilisateurSrv.verificationConnexion(utilisateur, activityContext);
+            } catch (Exception ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return technicien;
         }
     }
 }
