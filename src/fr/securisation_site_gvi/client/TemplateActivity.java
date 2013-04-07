@@ -15,6 +15,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+import java.io.IOException;
 
 /**
  *
@@ -43,6 +45,22 @@ public class TemplateActivity extends Activity {
     public void addInitialValueForGraphicalObjects() {
     }
 
+    public  void throwConnectException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Celui-ci est surement éteint.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+    public  void throwIOException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Le réseau est défaillant, vérifier les paramétres d'accès.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+    public  void throwSAXException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. Le document xml comporte des érreurs.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+    public  void throwParserConfigurationException() {
+        Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. L'application ne peut pas récuperer les informations.", Toast.LENGTH_SHORT);
+        toast.show();
+    }
     @Deprecated
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
