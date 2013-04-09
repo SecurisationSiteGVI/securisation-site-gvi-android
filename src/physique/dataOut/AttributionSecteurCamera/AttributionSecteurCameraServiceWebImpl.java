@@ -9,6 +9,8 @@ import java.net.MalformedURLException;
 import metier.entitys.Camera;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCameraAttribuer;
+import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCameraDesattribuer;
 
 /**
  *
@@ -17,11 +19,11 @@ import metier.entitys.Secteur;
 public class AttributionSecteurCameraServiceWebImpl implements AttributionSecteurCameraServiceWeb{
 
     public void attribuer(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RESTAttributionSecteurCameraAttribuer.execute(ressource, secteur, camera);
     }
 
     public void desattribuer(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RESTAttributionSecteurCameraDesattribuer.execute(ressource, secteur, camera);
     }
     
 }
