@@ -4,6 +4,10 @@
  */
 package physique.dataOut;
 
+import fr.securisation_site_gvi.client.AttributionBadge;
+import metier.AttributionSecteurBorneAcces;
+import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
+import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWebImpl;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWeb;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWebImpl;
 import physique.dataOut.utilisateur.UtilisateurServiceWeb;
@@ -26,6 +30,7 @@ public class PhysiqueDataOutFactory {
     private static BadgeServiceWeb badgeSrv;
     private static AttributionUtilisateurBadgeServiceWeb attributionUtilisateurBadgeSrv;
     private static SecteurServiceWeb secteurSrv;
+    private static AttributionSecteurBorneAccesServiceWeb attributionSecteurBorneAccesSrv;
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
             personneSrv = new UtilisateurServiceWebImpl();
@@ -57,5 +62,15 @@ public class PhysiqueDataOutFactory {
             attributionUtilisateurBadgeSrv = new AttributionUtilisateurBadgeServiceWebImpl();
         }
         return attributionUtilisateurBadgeSrv;
+    }
+
+    /**
+     * @return the attributionSecteurBorneAccesSrv
+     */
+    public static AttributionSecteurBorneAccesServiceWeb getAttributionSecteurBorneAccesSrv() {
+        if(attributionSecteurBorneAccesSrv==null){
+            attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceWebImpl();
+        }
+        return attributionSecteurBorneAccesSrv;
     }
 }
