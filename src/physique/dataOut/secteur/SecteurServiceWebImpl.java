@@ -4,12 +4,17 @@
  */
 package physique.dataOut.secteur;
 
-import android.content.Context;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataOut.secteur.rest.RESTSecteurAjout;
+import physique.dataOut.secteur.rest.RESTSecteurCount;
+import physique.dataOut.secteur.rest.RESTSecteurGetAllByRange;
+import physique.dataOut.secteur.rest.RESTSecteurRemove;
 
 /**
  *
@@ -22,12 +27,16 @@ public class SecteurServiceWebImpl implements SecteurServiceWeb{
         return true;
     }
 
-    public List<Secteur> getAll( Ressource ressource, int index, int nbResutltat) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Secteur> getAll( Ressource ressource, int index, int nbResutltat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException  {
+        return RESTSecteurGetAllByRange.execute(ressource, index, nbResutltat);
     }
 
-    public boolean remove( Ressource ressource, Secteur secteur) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean remove( Ressource ressource, Secteur secteur) throws MalformedURLException, IOException  {
+        return RESTSecteurRemove.execute(ressource, secteur);
+    }
+
+    public int count(Ressource ressource) throws MalformedURLException, IOException {
+        return RESTSecteurCount.execute(ressource);
     }
     
 }

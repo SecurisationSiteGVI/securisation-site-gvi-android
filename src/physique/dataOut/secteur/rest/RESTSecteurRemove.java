@@ -7,29 +7,26 @@ package physique.dataOut.secteur.rest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import metier.entitys.Utilisateur;
 
 /**
  *
  * @author damien
  */
-public class RESTSecteurAjout {
-
-    public static void execute(Ressource ressource,Secteur secteur) throws IOException {
-        URL url = new URL(ressource.getPathToAccesWebService() + "secteur");
+public class RESTSecteurRemove {
+    public static boolean execute(Ressource ressource,Secteur secteur) throws MalformedURLException, IOException {
+        Boolean retour = true;
+        URL url = new URL(ressource.getPathToAccesWebService() + "secteur/" + secteur.getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
         conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
-        String input = "{\"id\":0,\"nom\":\"" + secteur.getNom()+ "\"}";
-        OutputStream os = conn.getOutputStream();
-        System.out.println(input);
-        os.write(input.getBytes());
-        os.flush();
+        String input = "{\"id\":" + secteur.getId() + "}";
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
             if (conn.getResponseCode() != 204) {
                 throw new RuntimeException("Failed : HTTP error code : "
@@ -40,10 +37,10 @@ public class RESTSecteurAjout {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output;
-        System.out.println("Output from Server .... \n");
         while ((output = br.readLine()) != null) {
             System.out.println(output);
         }
         conn.disconnect();
+        return retour;
     }
 }

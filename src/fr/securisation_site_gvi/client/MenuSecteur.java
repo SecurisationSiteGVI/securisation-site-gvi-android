@@ -43,7 +43,7 @@ public class MenuSecteur extends TemplateActivity{
         });
         this.buttonlisteDesSecteurs.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activityContext, AjouterBadge.class);
+                Intent intent = new Intent(activityContext, ListeSecteur.class);
                 startActivity(intent);
             }
         });

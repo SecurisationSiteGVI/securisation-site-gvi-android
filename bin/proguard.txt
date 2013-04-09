@@ -31,6 +31,9 @@
 # view AndroidManifest.xml #generated:74
 -keep class fr.securisation_site_gvi.client.ListeBadges { <init>(...); }
 
+# view AndroidManifest.xml #generated:94
+-keep class fr.securisation_site_gvi.client.ListeSecteur { <init>(...); }
+
 # view AndroidManifest.xml #generated:34
 -keep class fr.securisation_site_gvi.client.ListeUtilisateur { <init>(...); }
 

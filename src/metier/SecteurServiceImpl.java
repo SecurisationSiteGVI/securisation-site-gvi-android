@@ -5,10 +5,14 @@
 package metier;
 
 import android.content.Context;
+import android.support.v4.app.NotificationCompat;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.PhysiqueDataOutFactory;
@@ -36,7 +40,7 @@ public class SecteurServiceImpl implements SecteurService {
         return b;
     }
 
-    public List<Secteur> getAll(Context context, int index, int nbResutltat) throws Exception {
+    public List<Secteur> getAll(Context context, int index, int nbResutltat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<Secteur> b = null;
         if (context != null) {
             if (context instanceof Context) {
@@ -50,7 +54,7 @@ public class SecteurServiceImpl implements SecteurService {
         return b;
     }
 
-    public boolean remove(Context context, Secteur secteur) throws Exception {
+    public boolean remove(Context context, Secteur secteur) throws MalformedURLException, IOException, Exception {
         Boolean b = null;
         if ((context != null)&&(secteur!=null)) {
             if ((context instanceof Context)&&(secteur instanceof Secteur)) {
@@ -68,5 +72,19 @@ public class SecteurServiceImpl implements SecteurService {
         Ressource ressource = null;
         ressource = ressourcesSrv.getRessource();
         return ressource;
+    }
+
+    public int count(Context context) throws MalformedURLException, IOException, Exception {
+        Integer b = null;
+        if ((context != null)) {
+            if ((context instanceof Context)) {
+                b = this.secteurSrv.count(this.getRessource(context));
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return b;
     }
 }
