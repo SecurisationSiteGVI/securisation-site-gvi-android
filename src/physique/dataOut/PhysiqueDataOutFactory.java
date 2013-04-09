@@ -22,6 +22,10 @@ import physique.dataOut.badge.BadgeServiceWeb;
 import physique.dataOut.badge.BadgeServiceWebImpl;
 import physique.dataOut.borneAcces.BorneAccesServiceWeb;
 import physique.dataOut.borneAcces.BorneAccesServiceWebImpl;
+import physique.dataOut.camera.CameraServiceWeb;
+import physique.dataOut.camera.CameraServiceWebImpl;
+import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWeb;
+import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWebImpl;
 import physique.dataOut.secteur.SecteurServiceWeb;
 import physique.dataOut.secteur.SecteurServiceWebImpl;
 
@@ -40,6 +44,20 @@ public class PhysiqueDataOutFactory {
     private static AttributionSecteurCameraServiceWeb attributionSecteurCameraSrv;
     private static AttributionSecteurDetecteurIntrusionServiceWeb attributionSecteurDetecteurIntrusionSrv;
     private static BorneAccesServiceWeb borneAccesSrv;
+    private static CameraServiceWeb cameraSrv;
+    private static DetecteurIntrusionServiceWeb detecteurIntrusionSrv;
+    public static CameraServiceWeb getCameraServiceWeb() {
+        if (cameraSrv == null) {
+            cameraSrv = new CameraServiceWebImpl();
+        }
+        return cameraSrv;
+    }
+    public static DetecteurIntrusionServiceWeb getDetecteurIntrusionServiceWeb() {
+        if (detecteurIntrusionSrv == null) {
+            detecteurIntrusionSrv = new DetecteurIntrusionServiceWebImpl();
+        }
+        return detecteurIntrusionSrv;
+    }
     
     public static BorneAccesServiceWeb getBorneAccesServiceWeb() {
         if (borneAccesSrv == null) {
