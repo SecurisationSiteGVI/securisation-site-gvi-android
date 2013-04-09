@@ -20,7 +20,15 @@ public class MetierFactory {
     private static SecteurService secteurSrv;
     private static AttributionSecteurCameraService attributionSecteurCameraSrv;
     private static BorneAccesService borneAccesSrv;
+    private static CameraService cameraSrv;
     
+    
+    public static CameraService getCameraService() {
+        if (cameraSrv == null) {
+            cameraSrv = new CameraServiceImpl();
+        }
+        return cameraSrv;
+    }
     public static BorneAccesService getBorneAccesService() {
         if (borneAccesSrv == null) {
             borneAccesSrv = new BorneAccesServiceImpl();
