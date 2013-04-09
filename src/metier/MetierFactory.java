@@ -18,6 +18,7 @@ public class MetierFactory {
     private static BadgeService badgeSrv;
     private static AttributionUtilisateurBadgeService attributionUtilisateurBadgeSrv;
     private static SecteurService secteurSrv;
+    private static AttributionSecteurCameraService attributionSecteurCameraSrv;
     public static BadgeService getBadgeSrv() {
         if (badgeSrv == null) {
             badgeSrv = new BadgeServiceImpl();
@@ -55,5 +56,12 @@ public class MetierFactory {
             utilisateurSrv = new UtilisateurServiceImpl();
         }
         return utilisateurSrv;
+    }
+
+    public static AttributionSecteurCameraService getAttributionSecteurCameraSrv() {
+        if (attributionSecteurCameraSrv == null) {
+            attributionSecteurCameraSrv = new AttributionSecteurCameraServiceImpl();
+        }
+        return attributionSecteurCameraSrv;
     }
 }
