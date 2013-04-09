@@ -6,6 +6,8 @@ package physique.dataOut;
 
 import fr.securisation_site_gvi.client.AttributionBadge;
 import metier.AttributionSecteurBorneAcces;
+import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
+import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWebImpl;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWebImpl;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWeb;
@@ -31,6 +33,7 @@ public class PhysiqueDataOutFactory {
     private static AttributionUtilisateurBadgeServiceWeb attributionUtilisateurBadgeSrv;
     private static SecteurServiceWeb secteurSrv;
     private static AttributionSecteurBorneAccesServiceWeb attributionSecteurBorneAccesSrv;
+    private static AttributionSecteurCameraServiceWeb attributionSecteurCameraSrv;
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
             personneSrv = new UtilisateurServiceWebImpl();
@@ -64,13 +67,16 @@ public class PhysiqueDataOutFactory {
         return attributionUtilisateurBadgeSrv;
     }
 
-    /**
-     * @return the attributionSecteurBorneAccesSrv
-     */
     public static AttributionSecteurBorneAccesServiceWeb getAttributionSecteurBorneAccesSrv() {
         if(attributionSecteurBorneAccesSrv==null){
             attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceWebImpl();
         }
         return attributionSecteurBorneAccesSrv;
+    }
+    public static AttributionSecteurCameraServiceWeb getAttributionSecteurCameraSrv() {
+        if(attributionSecteurCameraSrv==null){
+            attributionSecteurCameraSrv = new AttributionSecteurCameraServiceWebImpl();
+        }
+        return attributionSecteurCameraSrv;
     }
 }
