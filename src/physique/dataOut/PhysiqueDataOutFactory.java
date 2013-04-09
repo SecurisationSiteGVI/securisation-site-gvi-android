@@ -10,6 +10,8 @@ import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraService
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWebImpl;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWebImpl;
+import physique.dataOut.attributionSecteurDetecteurIntrusion.AttributionSecteurDetecteurIntrusionServiceWeb;
+import physique.dataOut.attributionSecteurDetecteurIntrusion.AttributionSecteurDetecteurIntrusionServiceWebImpl;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWeb;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWebImpl;
 import physique.dataOut.utilisateur.UtilisateurServiceWeb;
@@ -34,6 +36,7 @@ public class PhysiqueDataOutFactory {
     private static SecteurServiceWeb secteurSrv;
     private static AttributionSecteurBorneAccesServiceWeb attributionSecteurBorneAccesSrv;
     private static AttributionSecteurCameraServiceWeb attributionSecteurCameraSrv;
+    private static AttributionSecteurDetecteurIntrusionServiceWeb attributionSecteurDetecteurIntrusionSrv;
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
             personneSrv = new UtilisateurServiceWebImpl();
@@ -78,5 +81,12 @@ public class PhysiqueDataOutFactory {
             attributionSecteurCameraSrv = new AttributionSecteurCameraServiceWebImpl();
         }
         return attributionSecteurCameraSrv;
+    }
+
+    public static AttributionSecteurDetecteurIntrusionServiceWeb getAttributionSecteurDetecteurIntrusionSrv() {
+        if(attributionSecteurDetecteurIntrusionSrv==null){
+            attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceWebImpl();
+        }
+        return attributionSecteurDetecteurIntrusionSrv;
     }
 }
