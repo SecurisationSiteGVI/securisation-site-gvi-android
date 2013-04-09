@@ -72,7 +72,7 @@ public class AjoutSecteur extends TemplateActivity {
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
-                Toast.makeText(activityContext, "Le secteur n'a pas put être ajouté.", Toast.LENGTH_LONG).show();
+                Toast.makeText(activityContext, "Le secteur à bien été ajouté.", Toast.LENGTH_LONG).show();
             } else if(result instanceof IOException){
                 throwIOException();
             }else {
