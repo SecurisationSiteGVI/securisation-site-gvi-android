@@ -21,8 +21,14 @@ public class MetierFactory {
     private static AttributionSecteurCameraService attributionSecteurCameraSrv;
     private static BorneAccesService borneAccesSrv;
     private static CameraService cameraSrv;
+    private static DetecteurIntrusionService detecteurIntrusionSrv;
     
-    
+    public static DetecteurIntrusionService getDetecteurIntrusionService() {
+        if (detecteurIntrusionSrv == null) {
+            detecteurIntrusionSrv = new DetecteurIntrusionServiceImpl();
+        }
+        return detecteurIntrusionSrv;
+    }
     public static CameraService getCameraService() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceImpl();
