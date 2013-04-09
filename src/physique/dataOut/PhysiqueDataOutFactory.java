@@ -5,7 +5,7 @@
 package physique.dataOut;
 
 import fr.securisation_site_gvi.client.AttributionBadge;
-import metier.AttributionSecteurBorneAcces;
+import metier.AttributionSecteurBorneAccesService;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWebImpl;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
