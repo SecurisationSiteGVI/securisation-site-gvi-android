@@ -80,6 +80,7 @@
     <string name="title_activity_attributionBadge">Attribuer un badge</string>
     <string name="title_activity_gerer_secteur">Gérer les secteurs</string>
     <string name="title_activity_ajouter_secteur">Ajouter un secteur</string>
+    <string name="title_activity_liste_secteur">Liste des secteurs</string>
     <string name="badge">Badge :</string>
     <string name="attributionBa">Attribuer le badge</string>
     <string name="ajouterSecteur">Ajouter un secteur</string>
