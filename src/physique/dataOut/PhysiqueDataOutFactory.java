@@ -20,6 +20,8 @@ import physique.dataOut.evenement.EvenementServiceWeb;
 import physique.dataOut.evenement.EvenementServiceWebImpl;
 import physique.dataOut.badge.BadgeServiceWeb;
 import physique.dataOut.badge.BadgeServiceWebImpl;
+import physique.dataOut.borneAcces.BorneAccesServiceWeb;
+import physique.dataOut.borneAcces.BorneAccesServiceWebImpl;
 import physique.dataOut.secteur.SecteurServiceWeb;
 import physique.dataOut.secteur.SecteurServiceWebImpl;
 
@@ -37,6 +39,15 @@ public class PhysiqueDataOutFactory {
     private static AttributionSecteurBorneAccesServiceWeb attributionSecteurBorneAccesSrv;
     private static AttributionSecteurCameraServiceWeb attributionSecteurCameraSrv;
     private static AttributionSecteurDetecteurIntrusionServiceWeb attributionSecteurDetecteurIntrusionSrv;
+    private static BorneAccesServiceWeb borneAccesSrv;
+    
+    public static BorneAccesServiceWeb getBorneAccesServiceWeb() {
+        if (borneAccesSrv == null) {
+            borneAccesSrv = new BorneAccesServiceWebImpl();
+        }
+        return borneAccesSrv;
+    }
+    
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
             personneSrv = new UtilisateurServiceWebImpl();
