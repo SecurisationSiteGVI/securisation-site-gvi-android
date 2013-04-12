@@ -16,8 +16,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
 /**
  *
@@ -55,7 +53,7 @@ public class TemplateActivity extends Activity {
         toast.show();
     }
     public  void throwSAXException() {
-        Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. Le document xml comporte des érreurs.", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this.activityContext, "Aucun résultat dans la base de données.", Toast.LENGTH_SHORT);
         toast.show();
     }
     public  void throwParserConfigurationException() {
