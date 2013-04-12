@@ -147,10 +147,10 @@ public class AttributionBadge extends TemplateActivity {
                 builder.setView(view);
                 builder.setCancelable(true);
                 View content = View.inflate(activityContext, R.layout.activity_liste_utilisateur, null);
-                list = (ListView) content.findViewById(R.id.listeUtilisateurs);
-                precedent = (Button) content.findViewById(R.id.boutonUtilisateurPrecedent);
-                suivant = (Button) content.findViewById(R.id.boutonUtilisateurSuivant);
-                textViewPage = (TextView) content.findViewById(R.id.listeUtilisateurAffichagePage);
+                list = (ListView) content.findViewById(R.id.SecteurListView);
+                precedent = (Button) content.findViewById(R.id.SecteurButtonPrecedent);
+                suivant = (Button) content.findViewById(R.id.SecteurButtonSuivant);
+                textViewPage = (TextView) content.findViewById(R.id.SecteurTextviewPage);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
@@ -211,7 +211,6 @@ public class AttributionBadge extends TemplateActivity {
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.buttonBadge.setText("Selectionner un badge");
-        this.buttonUtilisateur.setText("Selectionner un utilisateur");
     }
 
     private void remplirListView() {
