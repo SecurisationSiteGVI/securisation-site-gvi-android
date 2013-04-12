@@ -24,6 +24,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_parametres.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_historique_intrusion.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_liste_utilisateur.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/attribution_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_about.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_search_1.png \
@@ -62,6 +63,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_parametres.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_historique_intrusion.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_liste_utilisateur.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/attribution_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/main.xml \

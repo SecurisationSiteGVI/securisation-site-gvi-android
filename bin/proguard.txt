@@ -16,6 +16,9 @@
 # view AndroidManifest.xml #generated:82
 -keep class fr.securisation_site_gvi.client.AttributionBadge { <init>(...); }
 
+# view AndroidManifest.xml #generated:98
+-keep class fr.securisation_site_gvi.client.AttributionSecteur { <init>(...); }
+
 # view AndroidManifest.xml #generated:50
 -keep class fr.securisation_site_gvi.client.Historique { <init>(...); }
 

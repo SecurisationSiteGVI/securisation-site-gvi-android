@@ -95,6 +95,10 @@
             android:name=".ListeSecteur"
             android:label="@string/title_activity_liste_secteur" >
         </activity>
+        <activity
+            android:name=".AttributionSecteur"
+            android:label="@string/title_activity_attribution_secteur" >
+        </activity>
     </application> 
     
 </manifest>
