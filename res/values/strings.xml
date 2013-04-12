@@ -81,10 +81,15 @@
     <string name="title_activity_gerer_secteur">Gérer les secteurs</string>
     <string name="title_activity_ajouter_secteur">Ajouter un secteur</string>
     <string name="title_activity_liste_secteur">Liste des secteurs</string>
+    <string name="title_activity_attribution_secteur">Attribution des secteurs</string>
     <string name="badge">Badge :</string>
     <string name="attributionBa">Attribuer le badge</string>
     <string name="ajouterSecteur">Ajouter un secteur</string>
     <string name="listeDesSecteurs">Liste des secteurs</string>
     <string name="attributionSecteur">Attribution des secteurs</string>
     <string name="cree_secteur">Crée le secteur</string>
+    <string name="selectsecteur">Séléctionner un secteur</string>
+    <string name="select_borne">Ajouter une borne d\'acces</string>
+    <string name="select_camera">Ajouter une caméra</string>
+    <string name="select_detecteur">Ajouter un détecteur intrusion</string>
 </resources>
