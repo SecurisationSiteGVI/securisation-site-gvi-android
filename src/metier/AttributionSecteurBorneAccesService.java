@@ -8,7 +8,6 @@ import android.content.Context;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import metier.entitys.BorneAcces;
-import metier.entitys.Ressource;
 import metier.entitys.Secteur;
 
 /**
@@ -18,4 +17,5 @@ import metier.entitys.Secteur;
 public interface AttributionSecteurBorneAccesService {
     public void attribuer(Context context, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException,Exception;
     public void desattribuer(Context context, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException,Exception;
+    
 }
