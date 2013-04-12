@@ -7,9 +7,12 @@ package metier;
 import android.content.Context;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurCamera;
 import metier.entitys.Camera;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
@@ -49,5 +52,19 @@ public class AttributionSecteurCameraServiceImpl implements AttributionSecteurCa
         Ressource ressource = null;
         ressource = ressourcesSrv.getRessource();
         return ressource;
+    }
+
+    public AttributionSecteurCamera getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
+        AttributionSecteurCamera  attributionSecteurCamera = null;
+        if ((context != null)&&(secteur != null)&&(secteur != null)) {
+            if ((context instanceof Context)&&(secteur instanceof Secteur)&&(secteur instanceof Secteur)) {
+                attributionSecteurCamera=this.attributionSecteurCameraSrv.getBySecteur(this.getRessource(context), secteur);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return attributionSecteurCamera;
     }
 }
