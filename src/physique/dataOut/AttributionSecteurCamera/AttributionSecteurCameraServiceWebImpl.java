@@ -6,11 +6,16 @@ package physique.dataOut.AttributionSecteurCamera;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurCamera;
 import metier.entitys.Camera;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCameraAttribuer;
 import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCameraDesattribuer;
+import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCameraGetBySecteur;
 
 /**
  *
@@ -24,6 +29,10 @@ public class AttributionSecteurCameraServiceWebImpl implements AttributionSecteu
 
     public void desattribuer(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurCameraDesattribuer.execute(ressource, secteur, camera);
+    }
+
+    public AttributionSecteurCamera getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException{
+        return RESTAttributionSecteurCameraGetBySecteur.execute(ressource, secteur);
     }
     
 }

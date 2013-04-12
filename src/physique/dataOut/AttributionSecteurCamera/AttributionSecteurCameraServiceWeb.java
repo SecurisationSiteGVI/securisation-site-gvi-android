@@ -6,9 +6,12 @@ package physique.dataOut.AttributionSecteurCamera;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurCamera;
 import metier.entitys.Camera;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -17,4 +20,5 @@ import metier.entitys.Secteur;
 public interface AttributionSecteurCameraServiceWeb {
     public void attribuer(Ressource ressource, Secteur secteur, Camera camera)throws MalformedURLException, IOException, RuntimeException;
     public void desattribuer(Ressource ressource, Secteur secteur, Camera camera)throws MalformedURLException, IOException, RuntimeException;
+    public AttributionSecteurCamera getBySecteur(Ressource ressource,Secteur secteur)throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 }
