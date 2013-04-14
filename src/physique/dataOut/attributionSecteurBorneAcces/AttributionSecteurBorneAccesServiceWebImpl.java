@@ -6,11 +6,15 @@ package physique.dataOut.attributionSecteurBorneAcces;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurBorneAcces;
 import metier.entitys.BorneAcces;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataOut.attributionSecteurBorneAcces.rest.RESTAttributionSecteurBorneAccesAttribuer;
 import physique.dataOut.attributionSecteurBorneAcces.rest.RESTAttributionSecteurBorneAccesDesattribuer;
+import physique.dataOut.attributionSecteurBorneAcces.rest.RESTAttributionSecteurBorneAccesGetBySecteur;
 
 /**
  *
@@ -24,6 +28,9 @@ public class AttributionSecteurBorneAccesServiceWebImpl implements AttributionSe
 
     public void desattribuer(Ressource ressource, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurBorneAccesDesattribuer.execute(ressource, secteur, borneAcces);
+    }
+    public AttributionSecteurBorneAcces getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException{
+        return RESTAttributionSecteurBorneAccesGetBySecteur.execute(ressource, secteur);
     }
     
 }
