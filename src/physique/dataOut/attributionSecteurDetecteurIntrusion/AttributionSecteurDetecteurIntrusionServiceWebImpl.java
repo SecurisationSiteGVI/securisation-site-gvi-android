@@ -6,11 +6,15 @@ package physique.dataOut.attributionSecteurDetecteurIntrusion;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import metier.entitys.BorneAcces;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurDetecteurIntrusion;
 import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataOut.attributionSecteurDetecteurIntrusion.rest.RESTAttributionSecteurDetecteurIntrusionAttribuer;
+import physique.dataOut.attributionSecteurDetecteurIntrusion.rest.RESTAttributionSecteurDetecteurIntrusionDesattribuer;
+import physique.dataOut.attributionSecteurDetecteurIntrusion.rest.RESTAttributionSecteurDetecteurIntrusionGetBySecteur;
 
 /**
  *
@@ -23,7 +27,11 @@ public class AttributionSecteurDetecteurIntrusionServiceWebImpl implements Attri
     }
 
     public void desattribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion  detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RESTAttributionSecteurDetecteurIntrusionDesattribuer.execute(ressource, secteur, detecteurIntrusion);
+    }
+
+    public AttributionSecteurDetecteurIntrusion getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
+        return RESTAttributionSecteurDetecteurIntrusionGetBySecteur.execute(ressource, secteur);
     }
     
 }

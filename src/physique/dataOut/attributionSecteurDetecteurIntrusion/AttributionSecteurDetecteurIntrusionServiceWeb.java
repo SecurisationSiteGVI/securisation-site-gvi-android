@@ -6,10 +6,12 @@ package physique.dataOut.attributionSecteurDetecteurIntrusion;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import metier.entitys.BorneAcces;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurDetecteurIntrusion;
 import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -18,4 +20,5 @@ import metier.entitys.Secteur;
 public interface AttributionSecteurDetecteurIntrusionServiceWeb {
     public void attribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion)throws MalformedURLException, IOException, RuntimeException;
     public void desattribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion)throws MalformedURLException, IOException, RuntimeException;
+    public AttributionSecteurDetecteurIntrusion getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 }
