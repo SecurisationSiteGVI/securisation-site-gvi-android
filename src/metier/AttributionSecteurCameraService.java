@@ -20,5 +20,6 @@ import org.xml.sax.SAXException;
 public interface AttributionSecteurCameraService {
     public void attribuer(Context context, Secteur secteur, Camera camera)throws MalformedURLException, IOException, RuntimeException,Exception;
     public void desattribuer(Context context, Secteur secteur, Camera camera)throws MalformedURLException, IOException, RuntimeException,Exception;
+   
     public AttributionSecteurCamera getBySecteur(Context context,Secteur secteur)throws SAXException, ParserConfigurationException, MalformedURLException, IOException,Exception;
 }
