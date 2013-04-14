@@ -4,9 +4,12 @@ package metier;
 import android.content.Context;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import javax.xml.parsers.ParserConfigurationException;
+import metier.entitys.AttributionSecteurDetecteurIntrusion;
 import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
+import org.xml.sax.SAXException;
 import physique.dataIn.PhysiqueDataInFactory;
 import physique.dataIn.RessourcesServiceDataIn;
 import physique.dataOut.PhysiqueDataOutFactory;
@@ -49,5 +52,18 @@ public class AttributionSecteurDetecteurIntrusionServiceImpl implements Attribut
         Ressource ressource = null;
         ressource = ressourcesSrv.getRessource();
         return ressource;
+    }
+    public AttributionSecteurDetecteurIntrusion getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
+        AttributionSecteurDetecteurIntrusion  attributionSecteurBorneAcces = null;
+        if ((context != null)&&(secteur != null)&&(secteur != null)) {
+            if ((context instanceof Context)&&(secteur instanceof Secteur)&&(secteur instanceof Secteur)) {
+                attributionSecteurBorneAcces=this.attributionSecteurDetecteurIntrusionSrv.getBySecteur(this.getRessource(context), secteur);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return attributionSecteurBorneAcces;
     }
 }

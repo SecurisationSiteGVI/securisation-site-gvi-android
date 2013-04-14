@@ -19,9 +19,25 @@ public class MetierFactory {
     private static AttributionUtilisateurBadgeService attributionUtilisateurBadgeSrv;
     private static SecteurService secteurSrv;
     private static AttributionSecteurCameraService attributionSecteurCameraSrv;
+    private static AttributionSecteurBorneAccesService attributionSecteurBorneAccesSrv;
     private static BorneAccesService borneAccesSrv;
     private static CameraService cameraSrv;
     private static DetecteurIntrusionService detecteurIntrusionSrv;
+    private static AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv;
+    
+    public static AttributionSecteurDetecteurIntrusionService getAttributionSecteurDetecteurIntrusionService() {
+        if (attributionSecteurDetecteurIntrusionSrv == null) {
+            attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceImpl();
+        }
+        return attributionSecteurDetecteurIntrusionSrv;
+    }
+    
+    public static AttributionSecteurBorneAccesService getAttributionSecteurBorneAccesService() {
+        if (attributionSecteurBorneAccesSrv == null) {
+            attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceImpl();
+        }
+        return attributionSecteurBorneAccesSrv;
+    }
     
     public static DetecteurIntrusionService getDetecteurIntrusionService() {
         if (detecteurIntrusionSrv == null) {
