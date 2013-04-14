@@ -7,6 +7,7 @@ package fr.securisation_site_gvi.client;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.media.JetPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,17 +20,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
+import metier.AttributionSecteurBorneAccesService;
 import metier.AttributionSecteurCameraService;
+import metier.AttributionSecteurDetecteurIntrusionService;
 import metier.BorneAccesService;
 import metier.MetierFactory;
 import metier.SecteurService;
+import metier.entitys.AttributionSecteurBorneAcces;
 import metier.entitys.AttributionSecteurCamera;
+import metier.entitys.AttributionSecteurDetecteurIntrusion;
 import metier.entitys.BorneAcces;
 import metier.entitys.Camera;
+import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Secteur;
 import org.xml.sax.SAXException;
 
@@ -39,6 +46,7 @@ import org.xml.sax.SAXException;
  */
 public class AttributionSecteur extends TemplateActivity {
 
+    List<Object> listViewObjects;
     private int nbLinge = 8;
     private Button buttonSelectSecteur;
     private ListView listViewSecteur;
@@ -53,13 +61,18 @@ public class AttributionSecteur extends TemplateActivity {
     private List<Secteur> secteurs;
     private List<BorneAcces> borneAcceses;
     private int pos;
+    private BorneAcces borneAccesSelected;
     private Secteur secteurSelected;
     private AlertDialog alertDialogInCurrent;
+    private Camera cameraSelected;
+    private DetecteurIntrusion detecteurIntrusionSelected;
     private int countSecteurs;
     private String switchs;
     private SecteurService secteurSrv = MetierFactory.getSecteurServ();
     private BorneAccesService borneAccesSrv = MetierFactory.getBorneAccesService();
     private AttributionSecteurCameraService attributionSecteurCameraSrv = MetierFactory.getAttributionSecteurCameraSrv();
+    private AttributionSecteurBorneAccesService attributionSecteurBorneAccesSrv = MetierFactory.getAttributionSecteurBorneAccesService();
+    private AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv = MetierFactory.getAttributionSecteurDetecteurIntrusionService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +87,9 @@ public class AttributionSecteur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    public @interface p {
+    }
+
     @Override
     public void initGraphicalObjects() {
         this.buttonSelectSecteur = (Button) findViewById(R.id.AttributionSecteurButtonSelectsecteur);
@@ -85,12 +101,15 @@ public class AttributionSecteur extends TemplateActivity {
 
     public void listerListe() {
         new AttributionSecteur.RESTAttributionSecteurCameraGetBySecteur().execute();
+        new AttributionSecteur.RESTAttributionSecteurBorneAccesGetBySecteur().execute();
+        new AttributionSecteur.RESTAttributionSecteurDetecteurIntrusionGetBySecteur().execute();
     }
 
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonSelectSecteur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                listViewObjects=null;
                 switchs = "Secteur";
                 index = 0;
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
@@ -177,8 +196,9 @@ public class AttributionSecteur extends TemplateActivity {
                         builder.setMessage("Voulez-vous séléctionner la borne d'acces " + acceses.get(pos).getNom() + " ?");
                         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                BorneAcces secteurCliked = (BorneAcces) borneAcceses.get(pos);
-                                // TO DO
+                                BorneAcces borneAccesCliced = (BorneAcces) borneAcceses.get(pos);
+                                borneAccesSelected = borneAccesCliced;
+                                new RESTAttributionSecteurBorneAccesAttribuer().execute();
                                 alertDialogInCurrent.cancel();
                                 dialog.cancel();
 
@@ -231,6 +251,7 @@ public class AttributionSecteur extends TemplateActivity {
 
     @Override
     public void addInitialValueForGraphicalObjects() {
+        this.buttonSelectSecteur.setText("faites votre choix");
     }
 
     public void pagePrécédente() {
@@ -409,17 +430,27 @@ public class AttributionSecteur extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            if (!erreur) {
+            if (!erreur) {                
                 AttributionSecteurCamera attributionSecteurCameras = (AttributionSecteurCamera) result;
                 List<Camera> cameras = attributionSecteurCameras.getCameras();
-
-                String[] listeStrings = new String[cameras.size()];
-                for (int i = 0; i < cameras.size(); i++) {
-                    listeStrings[i] = cameras.get(i).toString();
+                if (listViewObjects == null) {
+                    listViewObjects = new ArrayList<Object>();
+                    listViewObjects.addAll(cameras);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+                }else{
+                    listViewObjects.addAll(cameras);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
                 }
-                listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
-                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
-
             } else if (result instanceof ParserConfigurationException) {
                 throwParserConfigurationException();
             } else if (result instanceof IOException) {
@@ -435,10 +466,10 @@ public class AttributionSecteur extends TemplateActivity {
 
         @Override
         protected Object doInBackground(Object... params) {
-
             Object ret = null;
             try {
                 ret = attributionSecteurCameraSrv.getBySecteur(activityContext, secteurSelected);
+
             } catch (ParserConfigurationException ex) {
                 erreur = true;
                 ret = new ParserConfigurationException();
@@ -460,6 +491,339 @@ public class AttributionSecteur extends TemplateActivity {
                 Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            return ret;
+        }
+    }
+
+    private class RESTAttributionSecteurBorneAccesGetBySecteur extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {                
+                AttributionSecteurBorneAcces attributionSecteurBorneAcces = (AttributionSecteurBorneAcces) result;
+                List<BorneAcces> borneAcceses = attributionSecteurBorneAcces.getBorneAccess();
+                if (listViewObjects == null) {
+                    listViewObjects = new ArrayList<Object>();
+                    listViewObjects.addAll(borneAcceses);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+                }else{
+                    listViewObjects.addAll(borneAcceses);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+                }
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = attributionSecteurBorneAccesSrv.getBySecteur(activityContext, secteurSelected);
+
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return ret;
+        }
+    }
+    private class RESTAttributionSecteurDetecteurIntrusionGetBySecteur extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                AttributionSecteurDetecteurIntrusion attributionSecteurDetecteurIntrusion = (AttributionSecteurDetecteurIntrusion) result;
+                List<DetecteurIntrusion> detecteurIntrusions = attributionSecteurDetecteurIntrusion.getDetecteurIntrusions();
+                if (listViewObjects == null) {
+                    listViewObjects = new ArrayList<Object>();
+                    listViewObjects.addAll(detecteurIntrusions);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+                }else{
+                    listViewObjects.addAll(detecteurIntrusions);
+                    String[] listeStrings = new String[listViewObjects.size()];
+                    for (int i = 0; i < listViewObjects.size(); i++) {
+                        listeStrings[i] = listViewObjects.get(i).toString();
+                    }
+                    listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                    textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+                }
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+
+            Object ret = null;
+            try {
+                ret = attributionSecteurDetecteurIntrusionSrv.getBySecteur(activityContext, secteurSelected);
+
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return ret;
+        }
+    }
+
+    private class RESTAttributionSecteurBorneAccesAttribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Borne d'acces bien attribué.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurBorneAccesSrv.attribuer(activityContext, secteurSelected, borneAccesSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return ret;
+        }
+    }
+
+    private class RESTAttributionSecteurCameraAttribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Caméra bien attribué.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurCameraSrv.attribuer(activityContext, secteurSelected, cameraSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTAttributionSecteurDetcteurIntrusionAttribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Détecteur intrusion bien attribué.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurDetecteurIntrusionSrv.attribuer(activityContext, secteurSelected, detecteurIntrusionSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return ret;
         }
     }
