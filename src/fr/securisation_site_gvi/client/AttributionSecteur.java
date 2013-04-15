@@ -29,6 +29,8 @@ import metier.AttributionSecteurBorneAccesService;
 import metier.AttributionSecteurCameraService;
 import metier.AttributionSecteurDetecteurIntrusionService;
 import metier.BorneAccesService;
+import metier.CameraService;
+import metier.DetecteurIntrusionService;
 import metier.MetierFactory;
 import metier.SecteurService;
 import metier.entitys.AttributionSecteurBorneAcces;
@@ -60,6 +62,7 @@ public class AttributionSecteur extends TemplateActivity {
     private int index;
     private List<Secteur> secteurs;
     private List<BorneAcces> borneAcceses;
+    private List<Camera> cameras;
     private int pos;
     private BorneAcces borneAccesSelected;
     private Secteur secteurSelected;
@@ -73,7 +76,9 @@ public class AttributionSecteur extends TemplateActivity {
     private AttributionSecteurCameraService attributionSecteurCameraSrv = MetierFactory.getAttributionSecteurCameraSrv();
     private AttributionSecteurBorneAccesService attributionSecteurBorneAccesSrv = MetierFactory.getAttributionSecteurBorneAccesService();
     private AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv = MetierFactory.getAttributionSecteurDetecteurIntrusionService();
-
+    private CameraService cameraSrv = MetierFactory.getCameraService();
+    private DetecteurIntrusionService detecteurIntrusionSrv = MetierFactory.getDetecteurIntrusionService();
+    private List<DetecteurIntrusion> detecteurIntrusions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +105,7 @@ public class AttributionSecteur extends TemplateActivity {
     }
 
     public void listerListe() {
+        listViewObjects =null;
         new AttributionSecteur.RESTAttributionSecteurCameraGetBySecteur().execute();
         new AttributionSecteur.RESTAttributionSecteurBorneAccesGetBySecteur().execute();
         new AttributionSecteur.RESTAttributionSecteurDetecteurIntrusionGetBySecteur().execute();
@@ -228,6 +234,139 @@ public class AttributionSecteur extends TemplateActivity {
                 alertDialogInCurrent.show();
             }
         });
+        this.buttonAjouterCamera.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                switchs = "Camera";
+                index = 0;
+                AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_custom_titile, null);
+                TextView title = (TextView) view.findViewById(R.id.myTitle);
+                title.setText("Sélectonner une caméra.");
+                builder.setCustomTitle(view);
+                builder.setView(view);
+                builder.setCancelable(true);
+                View content = View.inflate(activityContext, R.layout.activity_liste_secteur, null);
+                list = (ListView) content.findViewById(R.id.SecteurListView);
+                precedent = (Button) content.findViewById(R.id.SecteurButtonPrecedent);
+                suivant = (Button) content.findViewById(R.id.SecteurButtonSuivant);
+                textViewPage = (TextView) content.findViewById(R.id.SecteurTextviewPage);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        pos = position;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
+                        builder.setTitle("Caméra séléctionné.");
+                        List<Camera> acceses = (List<Camera>) cameras;
+                        builder.setMessage("Voulez-vous séléctionner la camera " + acceses.get(pos).getNom() + " ?");
+                        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Camera borneAccesCliced = (Camera) cameras.get(pos);
+                                cameraSelected = borneAccesCliced;
+                                new AttributionSecteur.RESTAttributionSecteurCameraAttribuer().execute();
+                                alertDialogInCurrent.cancel();
+                                dialog.cancel();
+
+                            }
+                        });
+                        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+                precedent.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pagePrécédente();
+                    }
+                });
+                suivant.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pageSuivante();
+                    }
+                });
+                remplirListView();
+                builder.setView(content);
+                alertDialogInCurrent = builder.create();
+                alertDialogInCurrent.show();
+            }
+        });
+        this.buttonAjouterDetecteurIntrusion.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                switchs = "DetecteurIntrusion";
+                index = 0;
+                AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.dialog_custom_titile, null);
+                TextView title = (TextView) view.findViewById(R.id.myTitle);
+                title.setText("Sélectonner un détecteur intrusion.");
+                builder.setCustomTitle(view);
+                builder.setView(view);
+                builder.setCancelable(true);
+                View content = View.inflate(activityContext, R.layout.activity_liste_secteur, null);
+                list = (ListView) content.findViewById(R.id.SecteurListView);
+                precedent = (Button) content.findViewById(R.id.SecteurButtonPrecedent);
+                suivant = (Button) content.findViewById(R.id.SecteurButtonSuivant);
+                textViewPage = (TextView) content.findViewById(R.id.SecteurTextviewPage);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        pos = position;
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
+                        builder.setTitle("Détécteur intrusion séléctionné.");
+                        List<DetecteurIntrusion> acceses = (List<DetecteurIntrusion>) detecteurIntrusions;
+                        builder.setMessage("Voulez-vous séléctionner le detecteur " + acceses.get(pos).getNom() + " ?");
+                        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                DetecteurIntrusion borneAccesCliced = (DetecteurIntrusion) detecteurIntrusions.get(pos);
+                                detecteurIntrusionSelected = borneAccesCliced;
+                                new AttributionSecteur.RESTAttributionSecteurDetcteurIntrusionAttribuer().execute();
+                                alertDialogInCurrent.cancel();
+                                dialog.cancel();
+
+                            }
+                        });
+                        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+                precedent.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pagePrécédente();
+                    }
+                });
+                suivant.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        pageSuivante();
+                    }
+                });
+                remplirListView();
+                builder.setView(content);
+                alertDialogInCurrent = builder.create();
+                alertDialogInCurrent.show();
+            }
+        });
+        this.listViewSecteur.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(listViewObjects.get(position) instanceof DetecteurIntrusion){
+                    detecteurIntrusionSelected = (DetecteurIntrusion) listViewObjects.get(position);
+                    new AttributionSecteur.RESTAttributionSecteurDetcteurIntrusionDesattribuer().execute();
+                }else if(listViewObjects.get(position) instanceof Camera){
+                    cameraSelected = (Camera) listViewObjects.get(position);
+                    new AttributionSecteur.RESTAttributionSecteurCameraDesattribuer().execute();
+                }else if(listViewObjects.get(position) instanceof BorneAcces){
+                    borneAccesSelected = (BorneAcces) listViewObjects.get(position);
+                    new AttributionSecteur.RESTAttributionSecteurBorneAccesDesattribuer().execute();
+                }
+            }
+        });
     }
 
     private void remplirListView() {
@@ -246,6 +385,10 @@ public class AttributionSecteur extends TemplateActivity {
             new AttributionSecteur.RESTSecteurGetAll().execute();
         } else if (switchs.equals("BorneAcces")) {
             new AttributionSecteur.RESTBorneAccesGetAll().execute();
+        }else if (switchs.equals("Camera")) {
+            new AttributionSecteur.RESTCameraGetAll().execute();
+        }else if (switchs.equals("DetecteurIntrusion")) {
+            new AttributionSecteur.RESTDetecteurIntrusionGetAll().execute();
         }
     }
 
@@ -668,6 +811,7 @@ public class AttributionSecteur extends TemplateActivity {
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
+                listerListe();
                 Toast.makeText(activityContext, "Borne d'acces bien attribué.", Toast.LENGTH_LONG).show();
             } else if (result instanceof ParserConfigurationException) {
                 throwParserConfigurationException();
@@ -711,6 +855,65 @@ public class AttributionSecteur extends TemplateActivity {
             return ret;
         }
     }
+    private class RESTAttributionSecteurBorneAccesDesattribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                listerListe();
+                Toast.makeText(activityContext, "Borne d'acces bien désattribuer.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurBorneAccesSrv.desattribuer(activityContext, secteurSelected, borneAccesSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return ret;
+        }
+    }
 
     private class RESTAttributionSecteurCameraAttribuer extends AsyncTask<Object, Void, Object> {
 
@@ -727,6 +930,7 @@ public class AttributionSecteur extends TemplateActivity {
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
+                listerListe();
                 Toast.makeText(activityContext, "Caméra bien attribué.", Toast.LENGTH_LONG).show();
             } else if (result instanceof ParserConfigurationException) {
                 throwParserConfigurationException();
@@ -769,6 +973,60 @@ public class AttributionSecteur extends TemplateActivity {
             return ret;
         }
     }
+    private class RESTAttributionSecteurCameraDesattribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                listerListe();
+                Toast.makeText(activityContext, "Caméra bien desattribué.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurCameraSrv.desattribuer(activityContext, secteurSelected, cameraSelected);
+            }catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (RuntimeException ex) {
+                erreur = true;
+                ret = new RuntimeException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            return ret;
+        }
+    }
 
     private class RESTAttributionSecteurDetcteurIntrusionAttribuer extends AsyncTask<Object, Void, Object> {
 
@@ -785,7 +1043,9 @@ public class AttributionSecteur extends TemplateActivity {
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
+                listerListe();
                 Toast.makeText(activityContext, "Détecteur intrusion bien attribué.", Toast.LENGTH_LONG).show();
+                
             } else if (result instanceof ParserConfigurationException) {
                 throwParserConfigurationException();
             } else if (result instanceof IOException) {
@@ -804,6 +1064,193 @@ public class AttributionSecteur extends TemplateActivity {
             Object ret = null;
             try {
                 attributionSecteurDetecteurIntrusionSrv.attribuer(activityContext, secteurSelected, detecteurIntrusionSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTAttributionSecteurDetcteurIntrusionDesattribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                listerListe();
+                Toast.makeText(activityContext, "Détecteur intrusion bien desattribué.", Toast.LENGTH_LONG).show();
+                
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                attributionSecteurDetecteurIntrusionSrv.desattribuer(activityContext, secteurSelected, detecteurIntrusionSelected);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTCameraGetAll extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                List<Camera> camera = (List<Camera>) result;
+                cameras = camera;
+                String[] listeStrings = new String[cameras.size()];
+                for (int i = 0; i < cameras.size(); i++) {
+                    listeStrings[i] = cameras.get(i).toString();
+                }
+                list.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = cameraSrv.getAll(activityContext, index, nbLinge);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTDetecteurIntrusionGetAll extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                List<DetecteurIntrusion> detecteurIntrusiosns = (List<DetecteurIntrusion>) result;
+                detecteurIntrusions = detecteurIntrusiosns;
+                String[] listeStrings = new String[detecteurIntrusions.size()];
+                for (int i = 0; i < detecteurIntrusions.size(); i++) {
+                    listeStrings[i] = detecteurIntrusions.get(i).toString();
+                }
+                list.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
+                textViewPage.setText("Page " + getPage() + "/" + getNbPages());
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = detecteurIntrusionSrv.getAll(activityContext, index, nbLinge);
             } catch (ParserConfigurationException ex) {
                 erreur = true;
                 ret = new ParserConfigurationException();
