@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import metier.entitys.Camera;
 import metier.entitys.DetecteurIntrusion;
 import metier.entitys.Ressource;
 import metier.entitys.Secteur;
@@ -21,7 +20,7 @@ import metier.entitys.Secteur;
  */
 public class RESTAttributionSecteurDetecteurIntrusionDesattribuer {
     public static void execute(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException  {
-        URL url = new URL(ressource.getPathToAccesWebService() + "attributionsecteurcamera/desattribuer/"+secteur.getId()+"/"+detecteurIntrusion.getId());
+        URL url = new URL(ressource.getPathToAccesWebService() + "attributionsecteurdetecteurintrusion/desattribuer/"+secteur.getId()+"/"+detecteurIntrusion.getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("PUT");
         conn.setDoOutput(true);
