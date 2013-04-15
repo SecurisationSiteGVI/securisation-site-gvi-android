@@ -37,7 +37,7 @@ public class RESTDetecteurIntrusionGetAllByRange {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document doc = dBuilder.parse(fluxLecture);
         doc.getDocumentElement().normalize();
-        NodeList nList = doc.getElementsByTagName("detecteurintrusion");
+        NodeList nList = doc.getElementsByTagName("detecteurIntrusion");
         for (int temp = 0; temp < nList.getLength(); temp++) {
             DetecteurIntrusion detecteurIntrusion = new DetecteurIntrusion();
             Node nNode = nList.item(temp);
