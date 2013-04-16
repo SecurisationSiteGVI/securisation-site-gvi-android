@@ -83,6 +83,7 @@
     <string name="title_activity_liste_secteur">Liste des secteurs</string>
     <string name="title_activity_attribution_secteur">Attribution des secteurs</string>
     <string name="badge">Badge :</string>
+    <string name="title_activity_menu_appareil">Menu des appareils</string>
     <string name="attributionBa">Attribuer le badge</string>
     <string name="ajouterSecteur">Ajouter un secteur</string>
     <string name="listeDesSecteurs">Liste des secteurs</string>
@@ -92,4 +93,9 @@
     <string name="select_borne">Ajouter une borne d\'acces</string>
     <string name="select_camera">Ajouter une caméra</string>
     <string name="select_detecteur">Ajouter un détecteur intrusion</string>
+    
+    <string name="gererBorneAcces">Gérer les bornes d'acces</string>
+    <string name="gererCamera">Gérer les caméras</string>
+    <string name="gererDetecteursIntrusion">Gérer les détecteurs intrusion</string>
+    <string name="gererPosition">Gérer les positions</string>
 </resources>

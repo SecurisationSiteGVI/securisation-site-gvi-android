@@ -99,6 +99,11 @@
             android:name=".AttributionSecteur"
             android:label="@string/title_activity_attribution_secteur" >
         </activity>
+        <activity
+            android:name=".MenuAppareil"
+            android:label="@string/title_activity_menu_appareil" >
+        </activity>
+
     </application> 
     
 </manifest>
