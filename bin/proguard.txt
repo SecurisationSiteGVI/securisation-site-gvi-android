@@ -43,6 +43,9 @@
 # view AndroidManifest.xml #generated:18
 -keep class fr.securisation_site_gvi.client.MainActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:102
+-keep class fr.securisation_site_gvi.client.MenuAppareil { <init>(...); }
+
 # view AndroidManifest.xml #generated:70
 -keep class fr.securisation_site_gvi.client.MenuBadge { <init>(...); }
 
