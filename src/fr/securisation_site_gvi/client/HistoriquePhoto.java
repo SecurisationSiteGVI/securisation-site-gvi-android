@@ -113,7 +113,6 @@ public class HistoriquePhoto extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            Boolean ret = (Boolean) result;
             if (!erreur) {
                 photo = (Photo) result;
                 setThisActivityOn();

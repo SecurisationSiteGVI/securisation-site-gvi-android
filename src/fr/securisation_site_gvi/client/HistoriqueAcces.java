@@ -91,7 +91,6 @@ public class HistoriqueAcces extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            Boolean ret = (Boolean) result;
             if (!erreur) {
                 acces = (Acces) result;
                 setThisActivityOn();

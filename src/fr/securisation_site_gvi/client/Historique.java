@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +40,7 @@ public class Historique extends TemplateActivity {
     private List<Evenement> u;
     private int pos;
     private int count;
-
+    private Evenement evenementReturn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,25 +119,8 @@ public class Historique extends TemplateActivity {
                 builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Long idCliked = u.get(pos).getId();
-                        Evenement evenement = null;
-                        try {
-                            evenement = evenementSrv.getById(activityContext, idCliked);
-                        } catch (Exception ex) {
-                            Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        if (evenement instanceof Acces) {
-                            Intent i = new Intent(activityContext, HistoriqueAcces.class);
-                            i.putExtra("id", u.get(pos).getId());
-                            startActivityForResult(i, 0);
-                        } else if (evenement instanceof Photo) {
-                            Intent i = new Intent(activityContext, HistoriquePhoto.class);
-                            i.putExtra("id", u.get(pos).getId());
-                            startActivityForResult(i, 0);
-                        } else if (evenement instanceof Intrusion) {
-                            Intent i = new Intent(activityContext, HistoriqueIntrusion.class);
-                            i.putExtra("id", u.get(pos).getId());
-                            startActivityForResult(i, 0);
-                        }
+                        new Historique.RESTEvenementGetById().execute(idCliked);
+                        
                         dialog.cancel();
                     }
                 });
@@ -252,6 +237,87 @@ public class Historique extends TemplateActivity {
                 erreur =true;
                 Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
             } return ret;
+        }
+    }
+    
+    
+    private class RESTEvenementGetById extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Evenement evenement = (Evenement) result;
+                if (evenement instanceof Acces) {
+                            Intent i = new Intent(activityContext, HistoriqueAcces.class);
+                            i.putExtra("id", u.get(pos).getId());
+                            startActivityForResult(i, 0);
+                        } else if (evenement instanceof Photo) {
+                            Intent i = new Intent(activityContext, HistoriquePhoto.class);
+                            i.putExtra("id", u.get(pos).getId());
+                            startActivityForResult(i, 0);
+                        } else if (evenement instanceof Intrusion) {
+                            Intent i = new Intent(activityContext, HistoriqueIntrusion.class);
+                            i.putExtra("id", u.get(pos).getId());
+                            startActivityForResult(i, 0);
+                        }
+               
+            } else if (result instanceof IOException) {
+                throwIOException();
+            }
+             else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            }
+              else if (result instanceof SAXException) {
+                throwSAXException();
+            }
+               else if (result instanceof ParseException) {
+                throwParseException();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            }else{
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = evenementSrv.getById(activityContext,(Long) params[0]);
+            } catch (MalformedURLException ex) {
+                erreur =true;
+                ret=new MalformedURLException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur =true;
+                ret=new IOException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SAXException ex) {
+                erreur =true;
+                ret=new SAXException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                erreur =true;
+                ret=new ParseException(POWER_SERVICE, count);
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur =true;
+                ret=new ParserConfigurationException();
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur =true;
+                Logger.getLogger(Historique.class.getName()).log(Level.SEVERE, null, ex);
+            }return ret;
         }
     }
 }

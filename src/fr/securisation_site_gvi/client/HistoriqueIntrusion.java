@@ -81,7 +81,6 @@ public class HistoriqueIntrusion extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
-            Boolean ret = (Boolean) result;
             if (!erreur) {
                 intrusion = (Intrusion) result;
                 setThisActivityOn();
