@@ -103,7 +103,10 @@
             android:name=".MenuAppareil"
             android:label="@string/title_activity_menu_appareil" >
         </activity>
-
+<activity
+            android:name=".MenuPosition"
+            android:label="@string/title_activity_menu_position" >
+        </activity>
     </application> 
     
 </manifest>

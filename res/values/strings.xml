@@ -93,9 +93,11 @@
     <string name="select_borne">Ajouter une borne d\'acces</string>
     <string name="select_camera">Ajouter une caméra</string>
     <string name="select_detecteur">Ajouter un détecteur intrusion</string>
-    
+    <string name="title_activity_menu_position">Menu position</string>
     <string name="gererBorneAcces">Gérer les bornes d\'acces</string>
     <string name="gererCamera">Gérer les caméras</string>
     <string name="gererDetecteursIntrusion">Gérer les détecteurs intrusion</string>
     <string name="gererPosition">Gérer les positions</string>
+    <string name="listeposition">Liste des positions diponible</string>
+    <string name="ajouterpos">Ajouter une position</string>
 </resources>
