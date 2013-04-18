@@ -4,6 +4,7 @@
  */
 package fr.securisation_site_gvi.client;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +56,8 @@ public class MenuAppareil extends TemplateActivity{
          this.buttonGererLesPositions.setOnClickListener(new View.OnClickListener() {
 
              public void onClick(View v) {
-                 throw new UnsupportedOperationException("Not supported yet."); 
+                 Intent intent = new Intent(activityContext, MenuPosition.class);
+                 startActivity(intent);
              }
          });
     }
