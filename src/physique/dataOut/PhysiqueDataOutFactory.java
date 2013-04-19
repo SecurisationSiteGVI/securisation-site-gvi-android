@@ -26,6 +26,8 @@ import physique.dataOut.camera.CameraServiceWeb;
 import physique.dataOut.camera.CameraServiceWebImpl;
 import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWeb;
 import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWebImpl;
+import physique.dataOut.position.PositionServiceWeb;
+import physique.dataOut.position.PositionServiceWebImpl;
 import physique.dataOut.secteur.SecteurServiceWeb;
 import physique.dataOut.secteur.SecteurServiceWebImpl;
 
@@ -46,6 +48,15 @@ public class PhysiqueDataOutFactory {
     private static BorneAccesServiceWeb borneAccesSrv;
     private static CameraServiceWeb cameraSrv;
     private static DetecteurIntrusionServiceWeb detecteurIntrusionSrv;
+    private static PositionServiceWeb positionSrv;
+    
+    public static PositionServiceWeb getPositionServiceWeb() {
+        if (positionSrv == null) {
+            positionSrv = new PositionServiceWebImpl();
+        }
+        return positionSrv;
+    }
+    
     public static CameraServiceWeb getCameraServiceWeb() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceWebImpl();
