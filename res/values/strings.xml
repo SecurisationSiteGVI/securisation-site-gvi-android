@@ -82,6 +82,7 @@
     <string name="title_activity_ajouter_secteur">Ajouter un secteur</string>
     <string name="title_activity_liste_secteur">Liste des secteurs</string>
     <string name="title_activity_attribution_secteur">Attribution des secteurs</string>
+    <string name="title_activity_ajouter_position">Ajouter une position</string>
     <string name="badge">Badge :</string>
     <string name="title_activity_menu_appareil">Menu des appareils</string>
     <string name="attributionBa">Attribuer le badge</string>
@@ -100,4 +101,8 @@
     <string name="gererPosition">Gérer les positions</string>
     <string name="listeposition">Liste des positions diponible</string>
     <string name="ajouterpos">Ajouter une position</string>
+    <string name="cree">Crée</string>
+    <string name="longitude">Longitude :</string>
+    <string name="latitude">Latitude :</string>
+    <string name="title_activity_liste_positions">Liste des positions</string>
 </resources>
