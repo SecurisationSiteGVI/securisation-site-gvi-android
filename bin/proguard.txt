@@ -7,6 +7,9 @@
 # view AndroidManifest.xml #generated:78
 -keep class fr.securisation_site_gvi.client.AjouterBadge { <init>(...); }
 
+# view AndroidManifest.xml #generated:110
+-keep class fr.securisation_site_gvi.client.AjouterPosition { <init>(...); }
+
 # view AndroidManifest.xml #generated:54
 -keep class fr.securisation_site_gvi.client.AjouterTechnicien { <init>(...); }
 
@@ -33,6 +36,9 @@
 
 # view AndroidManifest.xml #generated:74
 -keep class fr.securisation_site_gvi.client.ListeBadges { <init>(...); }
+
+# view AndroidManifest.xml #generated:114
+-keep class fr.securisation_site_gvi.client.ListePositions { <init>(...); }
 
 # view AndroidManifest.xml #generated:94
 -keep class fr.securisation_site_gvi.client.ListeSecteur { <init>(...); }

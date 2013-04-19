@@ -107,6 +107,14 @@
             android:name=".MenuPosition"
             android:label="@string/title_activity_menu_position" >
         </activity>
+        <activity
+            android:name=".AjouterPosition"
+            android:label="@string/title_activity_ajouter_position" >
+        </activity>
+        <activity
+            android:name=".ListePositions"
+            android:label="@string/title_activity_liste_positions" >
+        </activity>
     </application> 
     
 </manifest>
