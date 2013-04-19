@@ -24,46 +24,57 @@ public class MetierFactory {
     private static CameraService cameraSrv;
     private static DetecteurIntrusionService detecteurIntrusionSrv;
     private static AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv;
-    
+    private static PositionService positionSrv;
+
     public static AttributionSecteurDetecteurIntrusionService getAttributionSecteurDetecteurIntrusionService() {
         if (attributionSecteurDetecteurIntrusionSrv == null) {
             attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceImpl();
         }
         return attributionSecteurDetecteurIntrusionSrv;
     }
-    
+
+    public static PositionService getPositionService() {
+        if (positionSrv == null) {
+            positionSrv = new PositionServiceImpl();
+        }
+        return positionSrv;
+    }
+
     public static AttributionSecteurBorneAccesService getAttributionSecteurBorneAccesService() {
         if (attributionSecteurBorneAccesSrv == null) {
             attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceImpl();
         }
         return attributionSecteurBorneAccesSrv;
     }
-    
+
     public static DetecteurIntrusionService getDetecteurIntrusionService() {
         if (detecteurIntrusionSrv == null) {
             detecteurIntrusionSrv = new DetecteurIntrusionServiceImpl();
         }
         return detecteurIntrusionSrv;
     }
+
     public static CameraService getCameraService() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceImpl();
         }
         return cameraSrv;
     }
+
     public static BorneAccesService getBorneAccesService() {
         if (borneAccesSrv == null) {
             borneAccesSrv = new BorneAccesServiceImpl();
         }
         return borneAccesSrv;
     }
-    
+
     public static BadgeService getBadgeSrv() {
         if (badgeSrv == null) {
             badgeSrv = new BadgeServiceImpl();
         }
         return badgeSrv;
     }
+
     public static SecteurService getSecteurServ() {
         if (secteurSrv == null) {
             secteurSrv = new SecteurServiceImpl();

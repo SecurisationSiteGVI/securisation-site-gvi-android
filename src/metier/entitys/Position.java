@@ -44,7 +44,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "longitude : " + longitude + "latitude : " + latitude;
+        return "longitude : " + longitude + " latitude : " + latitude;
     }
 
     public double getLongitude() {
