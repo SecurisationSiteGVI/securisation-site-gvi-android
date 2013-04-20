@@ -115,6 +115,10 @@
             android:name=".ListePositions"
             android:label="@string/title_activity_liste_positions" >
         </activity>
+        <activity
+            android:name=".MenuDetecteurIntrusion"
+            android:label="@string/title_activity_menu_detecteur" >
+        </activity>
     </application> 
     
 </manifest>

@@ -55,6 +55,9 @@
 # view AndroidManifest.xml #generated:70
 -keep class fr.securisation_site_gvi.client.MenuBadge { <init>(...); }
 
+# view AndroidManifest.xml #generated:118
+-keep class fr.securisation_site_gvi.client.MenuDetecteurIntrusion { <init>(...); }
+
 # view AndroidManifest.xml #generated:106
 -keep class fr.securisation_site_gvi.client.MenuPosition { <init>(...); }
 

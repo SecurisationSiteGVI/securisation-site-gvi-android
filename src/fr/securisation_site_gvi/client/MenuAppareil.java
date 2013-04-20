@@ -50,7 +50,8 @@ public class MenuAppareil extends TemplateActivity{
          this.buttonGererLesDetecteursIntrusion.setOnClickListener(new View.OnClickListener() {
 
              public void onClick(View v) {
-                 throw new UnsupportedOperationException("Not supported yet."); 
+                 Intent intent = new Intent(activityContext, MenuDetecteurIntrusion.class);
+                 startActivity(intent);
              }
          });
          this.buttonGererLesPositions.setOnClickListener(new View.OnClickListener() {
