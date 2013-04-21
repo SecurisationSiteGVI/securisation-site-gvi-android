@@ -34,14 +34,14 @@ public class MenuDetecteurIntrusion extends TemplateActivity{
          this.buttonAjouterUnDetecteur.setOnClickListener(new View.OnClickListener() {
 
              public void onClick(View v) {
-                 Intent i = new Intent(activityContext, AjouterPosition.class);
+                 Intent i = new Intent(activityContext, AjouterDetecteurIntrusion.class);
                  startActivity(i);
              }
          });
          this.buttonListerLesDetecteurs.setOnClickListener(new View.OnClickListener() {
 
              public void onClick(View v) {
-                 Intent i = new Intent(activityContext, ListePositions.class);
+                 Intent i = new Intent(activityContext, ListeDetecteurIntrusion.class);
                  startActivity(i); 
                  
              }
