@@ -104,6 +104,14 @@
     <string name="cree">Crée</string>
     <string name="longitude">Longitude :</string>
     <string name="latitude">Latitude :</string>
+    <string name="pos">Position :</string>
     <string name="title_activity_liste_positions">Liste des positions</string>
     <string name="title_activity_menu_detecteur">Gérer les détecteurs</string>
+    <string name="title_activity_liste_detecteur">Liste des détecteurs</string>
+    <string name="title_activity_ajouter_detecteur">Ajouter un détecteur</string>
+    <string name="title_activity_menu_camera">Gérer les caméras</string>
+     <string name="title_activity_liste_camera">Liste des caméras</string>
+     <string name="title_activity_ajout_camera">Ajout d\'une caméra</string>
+     <string name="ip">Ip :</string>
+     <string name="type">Type :</string>
 </resources>
