@@ -17,7 +17,14 @@ import org.xml.sax.SAXException;
  * @author damien
  */
 public interface DetecteurIntrusionServiceWeb {
+
     public List<DetecteurIntrusion> getAll(Ressource ressource) throws MalformedURLException, IOException, ParserConfigurationException, SAXException;
 
+    public int count(Ressource ressource) throws MalformedURLException, IOException;
+
     public List<DetecteurIntrusion> getAll(Ressource ressource, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException;
+
+    public void add(Ressource ressource, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException;
+
+    public void remove(Ressource ressource, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException;
 }
