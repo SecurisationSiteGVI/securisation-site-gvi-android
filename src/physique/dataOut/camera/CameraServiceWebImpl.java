@@ -11,8 +11,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Camera;
 import metier.entitys.Ressource;
 import org.xml.sax.SAXException;
+import physique.dataOut.camera.rest.RESTCameraAdd;
+import physique.dataOut.camera.rest.RESTCameraCount;
 import physique.dataOut.camera.rest.RESTCameraGetAll;
 import physique.dataOut.camera.rest.RESTCameraGetAllByRange;
+import physique.dataOut.camera.rest.RESTCameraRemove;
 
 /**
  *
@@ -26,6 +29,18 @@ public class CameraServiceWebImpl implements CameraServiceWeb{
 
     public List<Camera> getAll(Ressource ressource, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         return RESTCameraGetAllByRange.execute(ressource, index, nbResultat);
+    }
+
+    public int count(Ressource ressource) throws MalformedURLException, IOException {
+        return RESTCameraCount.execute(ressource);
+    }
+
+    public void add(Ressource ressource, Camera camera) throws MalformedURLException, IOException {
+        RESTCameraAdd.execute(ressource, camera);
+    }
+
+    public void remove(Ressource ressource, Camera camera) throws MalformedURLException, IOException {
+        RESTCameraRemove.execute(ressource, camera);
     }
     
 }

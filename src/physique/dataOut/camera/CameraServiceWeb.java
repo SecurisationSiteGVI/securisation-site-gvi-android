@@ -21,4 +21,11 @@ public interface CameraServiceWeb {
     public List<Camera> getAll(Ressource ressource) throws MalformedURLException, IOException, ParserConfigurationException, SAXException;
 
     public List<Camera> getAll(Ressource ressource, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException;
+    
+    public int count(Ressource ressource) throws MalformedURLException, IOException;
+
+    public void add(Ressource ressource, Camera camera) throws MalformedURLException, IOException;
+
+    public void remove(Ressource ressource, Camera camera) throws MalformedURLException, IOException;
+
 }
