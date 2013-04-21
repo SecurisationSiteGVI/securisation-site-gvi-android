@@ -115,9 +115,29 @@
             android:name=".ListePositions"
             android:label="@string/title_activity_liste_positions" >
         </activity>
-        <activity
+        <activity 
             android:name=".MenuDetecteurIntrusion"
             android:label="@string/title_activity_menu_detecteur" >
+        </activity>
+        <activity 
+            android:name="ListeDetecteurIntrusion"
+            android:label="@string/title_activity_liste_detecteur" >
+        </activity>
+         <activity 
+            android:name=".AjouterDetecteurIntrusion"
+            android:label="@string/title_activity_ajouter_detecteur" >
+        </activity>
+        <activity 
+            android:name=".MenuCamera"
+            android:label="@string/title_activity_menu_camera" >
+        </activity>
+        <activity 
+            android:name=".ListeDesCameras"
+            android:label="@string/title_activity_liste_camera" >
+        </activity>
+        <activity 
+            android:name=".AjoutCamera"
+            android:label="@string/title_activity_ajout_camera" >
         </activity>
     </application> 
     

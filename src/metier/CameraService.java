@@ -20,4 +20,9 @@ public interface CameraService {
     public List<Camera> getAll(Context context)throws MalformedURLException, IOException, ParserConfigurationException, SAXException,Exception;
 
     public List<Camera> getAll(Context context, int index, int nbResultat)throws MalformedURLException, IOException, ParserConfigurationException, SAXException,Exception ;
+    public int count(Context contex) throws MalformedURLException, IOException,Exception;
+
+    public void add(Context contex, Camera camera) throws MalformedURLException, IOException,Exception;
+
+    public void remove(Context contex, Camera camera) throws MalformedURLException, IOException,Exception;
 }

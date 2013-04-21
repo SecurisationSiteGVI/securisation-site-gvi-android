@@ -29,11 +29,7 @@ public class CameraServiceImpl implements CameraService{
         List<Camera> ret = null;
         if (context != null) {
             if (context instanceof Context) {
-                try {
                     ret = this.cameraSrv.getAll(this.getRessource(context));
-                } catch (Exception ex) {
-                    Logger.getLogger(BorneAccesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
@@ -47,11 +43,9 @@ public class CameraServiceImpl implements CameraService{
         List<Camera> ret = null;
         if (context != null) {
             if (context instanceof Context) {
-                try {
+               
                     ret = this.cameraSrv.getAll(this.getRessource(context), index, nbResultat);
-                } catch (Exception ex) {
-                    Logger.getLogger(BorneAccesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
@@ -65,6 +59,43 @@ public class CameraServiceImpl implements CameraService{
         Ressource ressource = null;
         ressource = ressourcesSrv.getRessource();
         return ressource;
+    }
+    public int count(Context context) throws MalformedURLException, IOException, Exception {
+        Integer ret = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                    ret = this.cameraSrv.count(this.getRessource(context));
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return ret;
+    }
+
+    public void add(Context context, Camera camera) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(camera!=null)) {
+            if ((context instanceof Context)&&(camera instanceof Camera)) {
+                    this.cameraSrv.add(this.getRessource(context),camera);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+    }
+
+    public void remove(Context context, Camera camera) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(camera!=null)) {
+            if ((context instanceof Context)&&(camera instanceof Camera)) {
+                    this.cameraSrv.remove(this.getRessource(context),camera);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
     }
     
 }

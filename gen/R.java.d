@@ -19,6 +19,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_liste_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_menu_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_historique.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_detecteur_intrusion.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/accueilactivity.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_menu_utilisateur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_historique_acces.xml \
@@ -29,6 +30,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/attribution_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_liste_positions.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_camera.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_menu_appareil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_about.png \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/drawable-hdpi/ic_action_search_1.png \
@@ -62,6 +64,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_liste_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_menu_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_historique.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_detecteur_intrusion.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/accueilactivity.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_menu_utilisateur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_historique_acces.xml \
@@ -72,6 +75,7 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/attribution_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_secteur.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_liste_positions.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_camera.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_menu_appareil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/activity_accueil.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/menu/main.xml \
