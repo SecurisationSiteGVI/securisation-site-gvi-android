@@ -43,8 +43,8 @@ public class MenuAppareil extends TemplateActivity{
          this.buttonGererLesCameras.setOnClickListener(new View.OnClickListener() {
 
              public void onClick(View v) {
-                 throw new UnsupportedOperationException("Not supported yet."); 
-                 
+                 Intent intent = new Intent(activityContext, MenuCamera.class);
+                 startActivity(intent);
              }
          });
          this.buttonGererLesDetecteursIntrusion.setOnClickListener(new View.OnClickListener() {
