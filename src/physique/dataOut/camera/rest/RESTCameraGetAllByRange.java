@@ -51,7 +51,8 @@ public class RESTCameraGetAllByRange {
                 Double longitude = null;
                 Long idPos = null;
                 NodeList nodePosition = doc.getElementsByTagName("position");
-                for (int tempPosition = 0; tempPosition < nodePosition.getLength(); tempPosition++) {
+                if(nodePosition.getLength()!=0){
+                    for (int tempPosition = 0; tempPosition < nodePosition.getLength(); tempPosition++) {
                     Node nNodePosition = nodePosition.item(tempPosition);
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element eElementPosition = (Element) nNodePosition;
@@ -59,12 +60,15 @@ public class RESTCameraGetAllByRange {
                         longitude = Double.parseDouble(BoiteAOutils.getTagValue("longitude", eElementPosition));
                         idPos = Long.parseLong(BoiteAOutils.getTagValue("id", eElementPosition));
                     }
-                }
-                Position position = new Position();
+                }Position position = new Position();
                 position.setId(idPos);
                 position.setLongitude(longitude);
                 position.setLatitude(latitude);
                 camera.setPosition(position);
+                }
+                
+                
+                
                 cameras.add(camera);
             }
         }
