@@ -56,4 +56,43 @@ public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
         ressource = ressourcesSrv.getRessource();
         return ressource;
     }
+
+    public int count(Context context) throws MalformedURLException, IOException, Exception {
+        Integer ret = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                    ret = this.detecteurIntrusionSrv.count(this.getRessource(context));
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return ret;
+    }
+
+    public void add(Context context, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(detecteurIntrusion!=null)) {
+            if ((context instanceof Context)&&(detecteurIntrusion instanceof DetecteurIntrusion)) {
+                    this.detecteurIntrusionSrv.add(this.getRessource(context),detecteurIntrusion);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+    }
+
+    public void remove(Context context, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(detecteurIntrusion!=null)) {
+            if ((context instanceof Context)&&(detecteurIntrusion instanceof DetecteurIntrusion)) {
+                    this.detecteurIntrusionSrv.remove(this.getRessource(context),detecteurIntrusion);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+    }
+
 }
