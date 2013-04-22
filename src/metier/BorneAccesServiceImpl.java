@@ -31,11 +31,7 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         List<BorneAcces> ret = null;
         if (context != null) {
             if (context instanceof Context) {
-                try {
                     ret = this.borneAccesSrv.getAll(this.getRessource(context));
-                } catch (Exception ex) {
-                    Logger.getLogger(BorneAccesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
@@ -49,11 +45,7 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         List<BorneAcces> ret = null;
         if (context != null) {
             if (context instanceof Context) {
-                try {
                     ret = this.borneAccesSrv.getAll(this.getRessource(context), index, nbResultat);
-                } catch (Exception ex) {
-                    Logger.getLogger(BorneAccesServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-                }
             } else {
                 System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
             }
@@ -68,5 +60,43 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         Ressource ressource = null;
         ressource = ressourcesSrv.getRessource();
         return ressource;
+    }
+
+    public int count(Context  context) throws MalformedURLException, IOException, Exception {
+       Integer ret = null;
+        if (context != null) {
+            if (context instanceof Context) {
+                    ret = this.borneAccesSrv.count(this.getRessource(context));
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+        return ret;
+    }
+
+    public void add(Context context, BorneAcces borneAcces) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(borneAcces!=null)) {
+            if ((context instanceof Context)&&(borneAcces instanceof BorneAcces)) {
+                   this.borneAccesSrv.add(this.getRessource(context),borneAcces);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
+    }
+
+    public void remove(Context context, BorneAcces borneAcces) throws MalformedURLException, IOException, Exception {
+        if ((context != null)&&(borneAcces!=null)) {
+            if ((context instanceof Context)&&(borneAcces instanceof BorneAcces)) {
+                   this.borneAccesSrv.remove(this.getRessource(context),borneAcces);
+            } else {
+                System.out.println("L'instance de l'objet ne coresspond pas veuiller utiliser la bonne classe de service.");
+            }
+        } else {
+            throw new NullPointerException("Objet passé en parametre égale à null");
+        }
     }
 }

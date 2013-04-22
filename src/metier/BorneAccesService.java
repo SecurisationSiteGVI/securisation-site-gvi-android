@@ -20,4 +20,10 @@ public interface BorneAccesService {
     public List<BorneAcces> getAll(Context context)throws MalformedURLException, IOException, ParserConfigurationException, SAXException,Exception;
 
     public List<BorneAcces> getAll(Context context, int index, int nbResultat)throws MalformedURLException, IOException, ParserConfigurationException, SAXException,Exception ;
+    public int count(Context contex) throws MalformedURLException, IOException,Exception;
+
+    public void add(Context contex, BorneAcces borneAcces) throws MalformedURLException, IOException,Exception;
+
+    public void remove(Context contex, BorneAcces borneAcces) throws MalformedURLException, IOException,Exception;
+
 }
