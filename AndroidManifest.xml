@@ -139,6 +139,18 @@
             android:name=".AjoutCamera"
             android:label="@string/title_activity_ajout_camera" >
         </activity>
+         <activity 
+            android:name=".ListeDesBorneAcces"
+            android:label="@string/title_activity_liste_borne_acess" >
+        </activity>
+        <activity 
+            android:name=".MenuBorneAcces"
+            android:label="@string/title_activity_menu_borne_acess" >
+        </activity>
+        <activity 
+            android:name=".AjoutBorneAcces"
+            android:label="@string/title_activity_ajout_borne_acess" >
+        </activity>
     </application> 
     
 </manifest>
