@@ -50,6 +50,7 @@ public class RESTBorneAccesGetAllByRange {
                 Double longitude = null;
                 Long idPos = null;
                 NodeList nodePosition = doc.getElementsByTagName("position");
+                 if(nodePosition.getLength()!=0){
                 for (int tempPosition = 0; tempPosition < nodePosition.getLength(); tempPosition++) {
                     Node nNodePosition = nodePosition.item(tempPosition);
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -64,6 +65,7 @@ public class RESTBorneAccesGetAllByRange {
                 position.setLongitude(longitude);
                 position.setLatitude(latitude);
                 borneAcces.setPosition(position);
+                 }
                 borneAcceses.add(borneAcces);
             }
         }

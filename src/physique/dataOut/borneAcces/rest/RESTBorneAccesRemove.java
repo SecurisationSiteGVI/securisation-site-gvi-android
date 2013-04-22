@@ -20,7 +20,7 @@ import metier.entitys.Ressource;
 public class RESTBorneAccesRemove {
     public static boolean execute(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException {
         Boolean retour = true;
-        URL url = new URL(ressource.getPathToAccesWebService() + "borneAcces/" + borneAcces.getId());
+        URL url = new URL(ressource.getPathToAccesWebService() + "borneacces/" + borneAcces.getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("PUT");
         conn.setDoOutput(true);
