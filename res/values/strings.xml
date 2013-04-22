@@ -114,4 +114,7 @@
      <string name="title_activity_ajout_camera">Ajout d\'une caméra</string>
      <string name="ip">Ip :</string>
      <string name="type">Type :</string>
+     <string name="title_activity_liste_borne_acess">Liste des borne d\'acces</string>
+     <string name="title_activity_ajout_borne_acess">Ajouter une borne d\'acces</string>
+     <string name="title_activity_menu_borne_acess">Gérer les borne d\'acces</string>
 </resources>
