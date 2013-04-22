@@ -20,4 +20,9 @@ public interface BorneAccesServiceWeb {
     public List<BorneAcces> getAll(Ressource ressource)throws MalformedURLException, IOException, ParserConfigurationException, SAXException;
 
     public List<BorneAcces> getAll(Ressource ressource, int index, int nbResultat)throws MalformedURLException, IOException, ParserConfigurationException, SAXException ;
+    public int count(Ressource ressource) throws MalformedURLException, IOException;
+
+    public void add(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException;
+
+    public void remove(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException;
 }
