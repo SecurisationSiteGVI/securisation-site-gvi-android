@@ -11,7 +11,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.BorneAcces;
 import metier.entitys.Ressource;
 import org.xml.sax.SAXException;
-import physique.dataOut.attributionUtilisateurBadge.rest.RESTAttributionBadgeAttribuer;
 import physique.dataOut.borneAcces.rest.RESTBorneAccesAdd;
 import physique.dataOut.borneAcces.rest.RESTBorneAccesCount;
 import physique.dataOut.borneAcces.rest.RESTBorneAccesGetAll;
