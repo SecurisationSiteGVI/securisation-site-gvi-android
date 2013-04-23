@@ -30,6 +30,17 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTNumeroPredefiniGetAllByRange {
 
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static NumeroPredefinis execute(Ressource ressource, int index, int nbResult) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         NumeroPredefinis numeroPredefinis = new NumeroPredefinis();
         InputStream fluxLecture = null;

@@ -25,6 +25,15 @@ public class BadgeServiceImpl implements BadgeService {
 
     private BadgeServiceWeb badgeSrv = PhysiqueDataOutFactory.getBadgeServiceWeb();
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Badge> getAll(Context context) throws ParserConfigurationException, SAXException, IOException, Exception  {
         List<Badge> b = null;
         if (context != null) {
@@ -39,6 +48,17 @@ public class BadgeServiceImpl implements BadgeService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Badge> getAll(Context context, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException, Exception  {
         List<Badge> b = null;
         if (context != null) {
@@ -53,6 +73,14 @@ public class BadgeServiceImpl implements BadgeService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception  {
         Integer count = null;
         if (context != null) {
@@ -67,6 +95,15 @@ public class BadgeServiceImpl implements BadgeService {
         return count;
     }
 
+    /**
+     *
+     * @param c
+     * @param badge
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public boolean remove(Context c, Badge badge) throws MalformedURLException, IOException, Exception  {
         Boolean ret = null;
         if (c != null) {
@@ -81,6 +118,15 @@ public class BadgeServiceImpl implements BadgeService {
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param badge
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public boolean add(Context context, Badge badge) throws MalformedURLException, IOException, Exception  {
         Boolean ret = null;
         if (context != null) {

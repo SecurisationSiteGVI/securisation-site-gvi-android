@@ -36,6 +36,9 @@ public class AjouterPosition extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonCree = (Button) findViewById(R.id.AjouterPositionButtonCree);
@@ -43,6 +46,9 @@ public class AjouterPosition extends TemplateActivity {
         this.editTextLongitude = (EditText) findViewById(R.id.AjouterPositionEditTextLongitude);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonCree.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +65,9 @@ public class AjouterPosition extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
     }

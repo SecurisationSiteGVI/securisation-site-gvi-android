@@ -36,7 +36,17 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTAttributionUtilisateurBadgeGetUtilisateurNotAssignByNom  {
 
-   public static Object execute(Object... params) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, ParseException {
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws ParseException
+     */
+    public static Object execute(Object... params) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, ParseException {
         Ressource ressource = (Ressource) params[0];
         Integer debut = (Integer) params[1];
         Integer nbResult = (Integer) params[2];

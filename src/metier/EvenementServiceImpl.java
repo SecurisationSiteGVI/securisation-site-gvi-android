@@ -26,6 +26,15 @@ public class EvenementServiceImpl implements EvenementService {
 
     private EvenementServiceWeb evenementSrv = PhysiqueDataOutFactory.getEvenementServiceWeb();
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Evenement> getAll(Context context) throws ParserConfigurationException, SAXException, IOException, Exception  {
         List<Evenement> b = null;
         if (context != null) {
@@ -40,6 +49,17 @@ public class EvenementServiceImpl implements EvenementService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Evenement> getAll(Context context, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException, Exception  {
         List<Evenement> b = null;
         if (context != null) {
@@ -54,6 +74,13 @@ public class EvenementServiceImpl implements EvenementService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws IOException, Exception  {
         int b = 0;
         if (context != null) {
@@ -68,6 +95,18 @@ public class EvenementServiceImpl implements EvenementService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param id
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     * @throws Exception
+     */
     public Evenement getById(Context context, Long id) throws MalformedURLException, IOException, SAXException, ParseException, ParserConfigurationException, Exception  {
         Evenement b = null;
         if ((context != null)&&(id!=null)) {

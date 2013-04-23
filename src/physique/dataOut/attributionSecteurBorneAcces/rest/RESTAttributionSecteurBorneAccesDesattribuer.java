@@ -19,6 +19,15 @@ import metier.entitys.Secteur;
  * @author damien
  */
 public class RESTAttributionSecteurBorneAccesDesattribuer {
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public static void execute(Ressource ressource, Secteur secteur, BorneAcces borneAcces) throws MalformedURLException, IOException, RuntimeException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "attributionsecteurborneacces/desattribuer/"+secteur.getId()+"/"+borneAcces.getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

@@ -19,6 +19,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTPositionAdd {
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static void execute(Ressource ressource, Position position) throws MalformedURLException, IOException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "position");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

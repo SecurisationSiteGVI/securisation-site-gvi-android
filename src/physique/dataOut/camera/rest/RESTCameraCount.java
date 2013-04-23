@@ -19,7 +19,14 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTCameraCount {
- public static Integer execute(Ressource ressource) throws MalformedURLException, IOException {
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    public static Integer execute(Ressource ressource) throws MalformedURLException, IOException {
         int ret = 0;
         BufferedReader br = null;
         URL url = new URL(ressource.getPathToAccesWebService() + "camera/count");

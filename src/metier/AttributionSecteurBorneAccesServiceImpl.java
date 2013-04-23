@@ -26,6 +26,16 @@ public class AttributionSecteurBorneAccesServiceImpl implements AttributionSecte
 
     private AttributionSecteurBorneAccesServiceWeb attributionSecteurBorneAccesSrv = PhysiqueDataOutFactory.getAttributionSecteurBorneAccesSrv();
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void attribuer(Context context, Secteur secteur, BorneAcces borneAcces) throws MalformedURLException, IOException, RuntimeException, Exception {
         if ((context != null)&&(secteur != null)&&(borneAcces != null)) {
             if ((context instanceof Context)&&(secteur instanceof Secteur)&&(borneAcces instanceof BorneAcces)) {
@@ -38,6 +48,16 @@ public class AttributionSecteurBorneAccesServiceImpl implements AttributionSecte
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void desattribuer(Context context, Secteur secteur, BorneAcces borneAcces) throws MalformedURLException, IOException, RuntimeException, Exception {
         if ((context != null)&&(secteur != null)&&(borneAcces != null)) {
             if ((context instanceof Context)&&(secteur instanceof Secteur)&&(borneAcces instanceof BorneAcces)) {
@@ -56,6 +76,17 @@ public class AttributionSecteurBorneAccesServiceImpl implements AttributionSecte
         ressource = ressourcesSrv.getRessource();
         return ressource;
     }
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public AttributionSecteurBorneAcces getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
         AttributionSecteurBorneAcces  attributionSecteurBorneAcces = null;
         if ((context != null)&&(secteur != null)&&(secteur != null)) {

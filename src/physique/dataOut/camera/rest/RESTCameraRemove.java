@@ -23,6 +23,14 @@ import metier.entitys.Secteur;
  * @author damien
  */
 public class RESTCameraRemove {
+    /**
+     *
+     * @param ressource
+     * @param camera
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static boolean execute(Ressource ressource, Camera camera) throws MalformedURLException, IOException {
         Boolean retour = true;
         URL url = new URL(ressource.getPathToAccesWebService() + "camera/" + camera.getId());

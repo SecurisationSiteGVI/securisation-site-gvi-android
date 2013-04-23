@@ -15,10 +15,18 @@ public class NumeroPredefinis {
     private Long id;
     private List<String> numeros;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -48,10 +56,18 @@ public class NumeroPredefinis {
         return "liste de numeros";
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getNumeros() {
         return numeros;
     }
 
+    /**
+     *
+     * @param numeros
+     */
     public void setNumeros(List<String> numeros) {
         this.numeros = numeros;
     }

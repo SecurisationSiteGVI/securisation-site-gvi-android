@@ -54,6 +54,10 @@ public class PhysiqueDataOutFactory {
     private static NumeroPredefiniServiceWeb numeroPredefiniSrv;
     
     
+    /**
+     *
+     * @return
+     */
     public static NumeroPredefiniServiceWeb getNumeroPredefiniServiceWeb() {
         if (numeroPredefiniSrv == null) {
             numeroPredefiniSrv = new NumeroPredefiniServiceWebImpl() ;
@@ -61,6 +65,10 @@ public class PhysiqueDataOutFactory {
         return numeroPredefiniSrv;
     }
     
+    /**
+     *
+     * @return
+     */
     public static PositionServiceWeb getPositionServiceWeb() {
         if (positionSrv == null) {
             positionSrv = new PositionServiceWebImpl();
@@ -68,12 +76,20 @@ public class PhysiqueDataOutFactory {
         return positionSrv;
     }
     
+    /**
+     *
+     * @return
+     */
     public static CameraServiceWeb getCameraServiceWeb() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceWebImpl();
         }
         return cameraSrv;
     }
+    /**
+     *
+     * @return
+     */
     public static DetecteurIntrusionServiceWeb getDetecteurIntrusionServiceWeb() {
         if (detecteurIntrusionSrv == null) {
             detecteurIntrusionSrv = new DetecteurIntrusionServiceWebImpl();
@@ -81,6 +97,10 @@ public class PhysiqueDataOutFactory {
         return detecteurIntrusionSrv;
     }
     
+    /**
+     *
+     * @return
+     */
     public static BorneAccesServiceWeb getBorneAccesServiceWeb() {
         if (borneAccesSrv == null) {
             borneAccesSrv = new BorneAccesServiceWebImpl();
@@ -88,6 +108,10 @@ public class PhysiqueDataOutFactory {
         return borneAccesSrv;
     }
     
+    /**
+     *
+     * @return
+     */
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
             personneSrv = new UtilisateurServiceWebImpl();
@@ -95,12 +119,20 @@ public class PhysiqueDataOutFactory {
         return personneSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static SecteurServiceWeb getSecteurServiceWeb() {
         if (secteurSrv == null) {
             secteurSrv = new SecteurServiceWebImpl();
         }
         return secteurSrv;
     }
+    /**
+     *
+     * @return
+     */
     public static EvenementServiceWeb getEvenementServiceWeb() {
         if (evenementSrv == null) {
             evenementSrv = new EvenementServiceWebImpl();
@@ -108,12 +140,20 @@ public class PhysiqueDataOutFactory {
         return evenementSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static BadgeServiceWeb getBadgeServiceWeb() {
         if (badgeSrv == null) {
             badgeSrv = new BadgeServiceWebImpl();
         }
         return badgeSrv;
     }
+    /**
+     *
+     * @return
+     */
     public static AttributionUtilisateurBadgeServiceWeb getAttributionUtilisateurBadgeSrv() {
         if (attributionUtilisateurBadgeSrv == null) {
             attributionUtilisateurBadgeSrv = new AttributionUtilisateurBadgeServiceWebImpl();
@@ -121,12 +161,20 @@ public class PhysiqueDataOutFactory {
         return attributionUtilisateurBadgeSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurBorneAccesServiceWeb getAttributionSecteurBorneAccesSrv() {
         if(attributionSecteurBorneAccesSrv==null){
             attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceWebImpl();
         }
         return attributionSecteurBorneAccesSrv;
     }
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurCameraServiceWeb getAttributionSecteurCameraSrv() {
         if(attributionSecteurCameraSrv==null){
             attributionSecteurCameraSrv = new AttributionSecteurCameraServiceWebImpl();
@@ -134,6 +182,10 @@ public class PhysiqueDataOutFactory {
         return attributionSecteurCameraSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurDetecteurIntrusionServiceWeb getAttributionSecteurDetecteurIntrusionSrv() {
         if(attributionSecteurDetecteurIntrusionSrv==null){
             attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceWebImpl();

@@ -17,10 +17,18 @@ public class AttributionSecteurDetecteurIntrusion {
     private Secteur secteur;
     private List<DetecteurIntrusion> detecteurIntrusions;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,18 +58,34 @@ public class AttributionSecteurDetecteurIntrusion {
         return "Attribution secteur " + secteur;
     }
 
+    /**
+     *
+     * @return
+     */
     public Secteur getSecteur() {
         return secteur;
     }
 
+    /**
+     *
+     * @param secteur
+     */
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<DetecteurIntrusion> getDetecteurIntrusions() {
         return detecteurIntrusions;
     }
 
+    /**
+     *
+     * @param detecteurIntrusions
+     */
     public void setDetecteurIntrusions(List<DetecteurIntrusion> detecteurIntrusions) {
         this.detecteurIntrusions = detecteurIntrusions;
     }

@@ -12,6 +12,10 @@ public class Photo extends Evenement {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     *
+     * @return
+     */
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -44,18 +48,34 @@ public class Photo extends Evenement {
         return "photo de la camera" + getCamera();
     }
 
+    /**
+     *
+     * @return
+     */
     public byte[] getImage() {
         return image;
     }
 
+    /**
+     *
+     * @param image
+     */
     public void setImage(byte[] image) {
         this.image = image;
     }
 
+    /**
+     *
+     * @return
+     */
     public Camera getCamera() {
         return camera;
     }
 
+    /**
+     *
+     * @param camera
+     */
     public void setCamera(Camera camera) {
         this.camera = camera;
     }

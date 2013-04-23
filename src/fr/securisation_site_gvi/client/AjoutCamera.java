@@ -66,6 +66,9 @@ private int index;
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.editTextNom = (EditText) findViewById(R.id.AjoutCameraEditTextNom);
@@ -75,6 +78,9 @@ private int index;
         this.buttonPosition = (Button) findViewById(R.id.AjoutCameraButtonPosition);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonCree.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +165,9 @@ private int index;
         });
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         String[] listeStrings = new String[TypeCamera.values().length];
@@ -182,6 +191,9 @@ private int index;
         new AjoutCamera.RESTPositionGetAll().execute();
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -191,6 +203,9 @@ private int index;
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -200,6 +215,10 @@ private int index;
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;

@@ -21,6 +21,14 @@ import metier.entitys.Secteur;
  * @author damien
  */
 public class RESTDetecteurIntrusionRemove {
+    /**
+     *
+     * @param ressource
+     * @param detecteurIntrusion
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static boolean execute(Ressource ressource, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException {
         Boolean retour = true;
         URL url = new URL(ressource.getPathToAccesWebService() + "detecteurintrusion/" + detecteurIntrusion.getId());

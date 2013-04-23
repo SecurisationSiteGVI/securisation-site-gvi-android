@@ -16,10 +16,18 @@ public class DetecteurIntrusion implements Serializable {
     private String nom;
     private Position position;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -49,18 +57,34 @@ public class DetecteurIntrusion implements Serializable {
         return nom;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     *
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     *
+     * @return
+     */
     public Position getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @param position
+     */
     public void setPosition(Position position) {
         this.position = position;
     }

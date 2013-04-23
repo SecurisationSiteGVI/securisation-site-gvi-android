@@ -8,6 +8,8 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/attribution_badge.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_historique_photo.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_badge.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_numero.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_borneacces.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/activity_listebadges.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout/ajouter_position.xml \
@@ -53,6 +55,8 @@
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/attribution_badge.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_historique_photo.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_badge.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_numero.xml \
+/home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_borneacces.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/main.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/activity_listebadges.xml \
 /home/damien/ProjetBTS/securisation-site-gvi-android/res/layout-large/ajouter_position.xml \

@@ -17,10 +17,18 @@ public class AttributionSecteurBorneAcces {
     private Secteur secteur;
     private List<BorneAcces> borneAccess;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -50,18 +58,34 @@ public class AttributionSecteurBorneAcces {
         return "AttributionSecteurBorneAcces sur secteur : " + getSecteur();
     }
 
+    /**
+     *
+     * @return
+     */
     public Secteur getSecteur() {
         return secteur;
     }
 
+    /**
+     *
+     * @param secteur
+     */
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<BorneAcces> getBorneAccess() {
         return borneAccess;
     }
 
+    /**
+     *
+     * @param borneAccess
+     */
     public void setBorneAccess(List<BorneAcces> borneAccess) {
         this.borneAccess = borneAccess;
     }

@@ -19,6 +19,12 @@ import metier.entitys.Secteur;
  */
 public class RESTSecteurAjout {
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @throws IOException
+     */
     public static void execute(Ressource ressource,Secteur secteur) throws IOException {
         URL url = new URL(ressource.getPathToAccesWebService() + "secteur");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

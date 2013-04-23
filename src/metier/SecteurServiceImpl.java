@@ -26,6 +26,14 @@ public class SecteurServiceImpl implements SecteurService {
 
     private SecteurServiceWeb secteurSrv = PhysiqueDataOutFactory.getSecteurServiceWeb();
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws IOException
+     * @throws Exception
+     */
     public boolean ajouter(Context context, Secteur secteur) throws IOException, Exception {
         Boolean b = null;
         if ((context != null)&&(secteur!=null)) {
@@ -40,6 +48,18 @@ public class SecteurServiceImpl implements SecteurService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResutltat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<Secteur> getAll(Context context, int index, int nbResutltat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<Secteur> b = null;
         if (context != null) {
@@ -54,6 +74,15 @@ public class SecteurServiceImpl implements SecteurService {
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public boolean remove(Context context, Secteur secteur) throws MalformedURLException, IOException, Exception {
         Boolean b = null;
         if ((context != null)&&(secteur!=null)) {
@@ -74,6 +103,14 @@ public class SecteurServiceImpl implements SecteurService {
         return ressource;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception {
         Integer b = null;
         if ((context != null)) {

@@ -17,6 +17,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTSecteurCount {
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static Integer execute(Ressource ressource) throws MalformedURLException, IOException  {
         int ret = 0;
         BufferedReader br = null;

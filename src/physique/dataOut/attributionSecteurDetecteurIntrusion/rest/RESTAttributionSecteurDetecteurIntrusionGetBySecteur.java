@@ -44,6 +44,16 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTAttributionSecteurDetecteurIntrusionGetBySecteur {
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static AttributionSecteurDetecteurIntrusion execute(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
        AttributionSecteurDetecteurIntrusion attributionSecteurDetecteurIntrusion = new AttributionSecteurDetecteurIntrusion();
         InputStream fluxLecture = null;

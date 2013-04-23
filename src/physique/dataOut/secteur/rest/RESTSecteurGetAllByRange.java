@@ -28,6 +28,17 @@ import physique.dataOut.BoiteAOutils;
  * @author damien
  */
 public class RESTSecteurGetAllByRange {
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResutltat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static List<Secteur> execute(Ressource ressource, int index, int nbResutltat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException{
         List<Secteur> secteurs = new ArrayList<Secteur>();
         InputStream fluxLecture = null;

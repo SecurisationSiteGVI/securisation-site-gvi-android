@@ -24,7 +24,10 @@ public class MenuAppareil extends TemplateActivity{
         setContentView(R.layout.activity_menu_appareil);
         this.setThisActivityOn();
     }
-     @Override
+     /**
+     *
+     */
+    @Override
      public void initGraphicalObjects() {
          this.buttonGererLesBornesAcces =(Button) findViewById(R.id.MenuAppareilButtonGererLesBornesDacces);
          this.buttonGererLesCameras = (Button) findViewById(R.id.MenuAppareilButtonGererLesCameras);
@@ -32,7 +35,10 @@ public class MenuAppareil extends TemplateActivity{
          this.buttonGererLesPositions =(Button) findViewById(R.id.MenuAppareilButtonGererLesPOsitions);
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addActionListnerForAllGraphicalObjects() {
          this.buttonGererLesBornesAcces.setOnClickListener(new View.OnClickListener() {
 
@@ -64,7 +70,10 @@ public class MenuAppareil extends TemplateActivity{
          });
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addInitialValueForGraphicalObjects() {
     }
 }

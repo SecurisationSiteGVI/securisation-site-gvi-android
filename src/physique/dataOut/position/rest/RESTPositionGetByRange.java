@@ -28,6 +28,17 @@ import physique.dataOut.BoiteAOutils;
  * @author damien
  */
 public class RESTPositionGetByRange {
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static List<Position> execute(Ressource ressource, int index, int nbResult) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
        List<Position> positions = new ArrayList<Position>();
         InputStream fluxLecture = null;

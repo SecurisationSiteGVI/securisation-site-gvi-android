@@ -19,6 +19,13 @@ import metier.entitys.Utilisateur;
  */
 public class RESTUtilisateurRemove {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public Object execute(Object... params) throws MalformedURLException, IOException {
         Boolean retour = true;
         Utilisateur utilisateur = (Utilisateur) params[0];

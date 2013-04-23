@@ -20,6 +20,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTCameraAdd {
+    /**
+     *
+     * @param ressource
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static void execute(Ressource ressource, Camera camera) throws MalformedURLException, IOException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "camera/"+camera.getPosition().getId()+"/"+camera.getNom()+"/"+camera.getIp()+"/"+camera.getType());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

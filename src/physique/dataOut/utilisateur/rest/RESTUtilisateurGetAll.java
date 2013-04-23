@@ -33,6 +33,14 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTUtilisateurGetAll {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public Object execute(Object... params) throws ParserConfigurationException, SAXException, IOException {
         Ressource ressource = (Ressource) params[0];
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();

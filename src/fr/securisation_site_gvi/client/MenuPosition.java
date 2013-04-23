@@ -22,14 +22,20 @@ public class MenuPosition extends TemplateActivity{
         setContentView(R.layout.activity_menu_position);
         this.setThisActivityOn();
     }
-     @Override
+     /**
+     *
+     */
+    @Override
      public void initGraphicalObjects() {
          this.buttonAjouterUnePosition =(Button) findViewById(R.id.MenuPositionButtonAjouterUnePosition);
          this.buttonListerLesPositions = (Button) findViewById(R.id.MenuPositionButtonListerLesPositions);
          
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addActionListnerForAllGraphicalObjects() {
          this.buttonAjouterUnePosition.setOnClickListener(new View.OnClickListener() {
 
@@ -48,7 +54,10 @@ public class MenuPosition extends TemplateActivity{
          });
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addInitialValueForGraphicalObjects() {
     }
 }

@@ -37,6 +37,16 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTEvenementGetByID {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     */
     public static Object execute(Object... params) throws MalformedURLException, IOException, SAXException, ParseException, ParserConfigurationException {
         Ressource ressource = (Ressource) params[0];
         Long id = (Long) params[1];

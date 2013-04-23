@@ -23,21 +23,57 @@ import physique.dataOut.evenement.rest.RESTEvenementGetByID;
  */
 public class EvenementServiceWebImpl implements EvenementServiceWeb {
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public List<Evenement> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
         List<Evenement> retour = (List<Evenement>) RESTEvenementGetAll.execute(ressource);
         return retour;
     }
 
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public List<Evenement> getAll(Ressource ressource, int index, int nbResultat) throws ParserConfigurationException, SAXException, IOException {
         List<Evenement> retour = (List<Evenement>) RESTEvenementGetAllByRange.execute(ressource, index, nbResultat);
         return retour;
     }
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws IOException
+     * @throws MalformedURLException
+     */
     public int count(Ressource ressource) throws IOException, MalformedURLException {
         Integer count = (Integer) RESTEvenementCount.execute(ressource);
         return count;
     }
 
+    /**
+     *
+     * @param ressource
+     * @param id
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     */
     public Evenement getById(Ressource ressource, Long id) throws MalformedURLException, IOException, SAXException, ParseException, ParserConfigurationException {
         Evenement retour = (Evenement)RESTEvenementGetByID.execute(ressource, id);
         return retour;

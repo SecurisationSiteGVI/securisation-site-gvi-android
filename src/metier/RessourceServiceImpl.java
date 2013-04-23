@@ -17,10 +17,19 @@ public class RessourceServiceImpl implements RessourceService {
 
     private RessourcesServiceDataIn ressourceSrv;
 
+    /**
+     *
+     * @param context
+     */
     public RessourceServiceImpl(Context context) {
         this.ressourceSrv = PhysiqueDataInFactory.getRessourceSrv(context);
     }
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void add(Ressource ressource) throws Exception {
         if (ressource != null) {
             if (ressource instanceof Ressource) {
@@ -33,10 +42,20 @@ public class RessourceServiceImpl implements RessourceService {
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public Ressource getRessource() throws Exception {
         return this.ressourceSrv.getRessource();
     }
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void update(Ressource ressource) throws Exception {
         if (ressource != null) {
             if (ressource instanceof Ressource) {

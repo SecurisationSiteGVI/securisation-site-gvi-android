@@ -20,6 +20,13 @@ import metier.entitys.Ressource;
  */
 public class RESTBadgeAdd {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static Object execute(Object... params) throws MalformedURLException, IOException {
         boolean ret = false;
         Ressource ressource = (Ressource) params[0];

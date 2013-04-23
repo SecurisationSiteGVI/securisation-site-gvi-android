@@ -37,12 +37,18 @@ public class AjouterBadge extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.edittextNumero = (EditText) findViewById(R.id.editTextAjouterBadgeNumero);
         this.buttonValider = (Button) findViewById(R.id.buttonAjouterBadge);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonValider.setOnClickListener(new View.OnClickListener() {

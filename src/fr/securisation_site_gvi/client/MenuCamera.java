@@ -22,14 +22,20 @@ public class MenuCamera extends TemplateActivity{
         setContentView(R.layout.activity_menu_position);
         this.setThisActivityOn();
     }
-     @Override
+     /**
+     *
+     */
+    @Override
      public void initGraphicalObjects() {
          this.buttonAjouterUnDetecteur =(Button) findViewById(R.id.MenuPositionButtonAjouterUnePosition);
          this.buttonListerLesDetecteurs = (Button) findViewById(R.id.MenuPositionButtonListerLesPositions);
          
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addActionListnerForAllGraphicalObjects() {
          this.buttonAjouterUnDetecteur.setOnClickListener(new View.OnClickListener() {
 
@@ -48,7 +54,10 @@ public class MenuCamera extends TemplateActivity{
          });
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addInitialValueForGraphicalObjects() {
          this.buttonAjouterUnDetecteur.setText("Ajouter une caméra");
          this.buttonListerLesDetecteurs.setText("Lister les caméras");

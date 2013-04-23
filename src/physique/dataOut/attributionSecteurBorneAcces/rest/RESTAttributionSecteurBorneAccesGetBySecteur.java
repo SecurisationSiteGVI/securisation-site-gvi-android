@@ -31,6 +31,16 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTAttributionSecteurBorneAccesGetBySecteur {
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static AttributionSecteurBorneAcces execute(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
        AttributionSecteurBorneAcces attributionSecteurCameras = new AttributionSecteurBorneAcces();
         InputStream fluxLecture = null;

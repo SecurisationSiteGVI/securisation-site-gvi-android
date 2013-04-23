@@ -14,6 +14,12 @@ import org.w3c.dom.NodeList;
  */
 public class BoiteAOutils {
 
+    /**
+     *
+     * @param sTag
+     * @param eElement
+     * @return
+     */
     public static String getTagValue(String sTag, Element eElement) {
         String ret = null;
 

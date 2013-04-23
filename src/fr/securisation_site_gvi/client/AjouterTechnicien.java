@@ -58,6 +58,9 @@ public class AjouterTechnicien extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonAjouterTechnicien = (Button) findViewById(R.id.buttonAjouterTechnicien);
@@ -76,6 +79,9 @@ public class AjouterTechnicien extends TemplateActivity {
         this.editTextConfirmation = (EditText) findViewById(R.id.editTextAjouterPassword2);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAjouterTechnicien.setOnClickListener(new View.OnClickListener() {

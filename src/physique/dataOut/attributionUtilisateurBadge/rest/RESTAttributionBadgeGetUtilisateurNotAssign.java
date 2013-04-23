@@ -37,6 +37,16 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTAttributionBadgeGetUtilisateurNotAssign {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws MalformedURLException
+     */
     public static Object execute(Object... params) throws ParseException, ParserConfigurationException, SAXException, IOException, MalformedURLException {
         Ressource ressource = (Ressource) params[0];
         Integer debut = (Integer) params[1];

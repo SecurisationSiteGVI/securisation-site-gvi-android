@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ *
+ * @author damien
+ */
 public class MenuUtilisateur extends TemplateActivity {
 
     private Button listeDesUtilisateurs;
@@ -19,6 +23,9 @@ public class MenuUtilisateur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.listeDesUtilisateurs = (Button) findViewById(R.id.listeUtilisateurs);
@@ -26,6 +33,9 @@ public class MenuUtilisateur extends TemplateActivity {
         this.ajouterUnTechnicien = (Button) findViewById(R.id.ajouterTechnicien);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.listeDesUtilisateurs.setOnClickListener(new View.OnClickListener() {

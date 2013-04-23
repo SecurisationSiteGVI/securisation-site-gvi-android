@@ -46,6 +46,9 @@ public class HistoriqueAcces extends TemplateActivity {
         new HistoriqueAcces.RESTEvenementGetById().execute();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonretour = (Button) findViewById(R.id.buttonAccesRetour);
@@ -55,6 +58,9 @@ public class HistoriqueAcces extends TemplateActivity {
         this.textViewPassage = (TextView) findViewById(R.id.textViewAccesPassage);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonretour.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +70,9 @@ public class HistoriqueAcces extends TemplateActivity {
         });
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.textViewDate.setText(this.acces.getDateEvt().toLocaleString());

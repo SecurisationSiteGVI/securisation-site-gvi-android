@@ -28,6 +28,10 @@ import metier.entitys.Intrusion;
 import metier.entitys.Photo;
 import org.xml.sax.SAXException;
 
+/**
+ *
+ * @author damien
+ */
 public class Historique extends TemplateActivity {
 
     private ListView listEvenements;
@@ -68,6 +72,9 @@ public class Historique extends TemplateActivity {
         new RESTEvenementGetAllByRange().execute();
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -77,6 +84,9 @@ public class Historique extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -86,6 +96,10 @@ public class Historique extends TemplateActivity {
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;
@@ -98,6 +112,9 @@ public class Historique extends TemplateActivity {
         return nbPages + 1;
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.listEvenements = (ListView) findViewById(R.id.HistoriquelisteEvenements);
@@ -106,6 +123,9 @@ public class Historique extends TemplateActivity {
         this.textViewPage = (TextView) findViewById(R.id.HistoriquetextPage);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.listEvenements.setOnItemClickListener(new AdapterView.OnItemClickListener() {

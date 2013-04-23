@@ -22,14 +22,20 @@ public class MenuBorneAcces extends TemplateActivity{
         setContentView(R.layout.activity_menu_position);
         this.setThisActivityOn();
     }
-     @Override
+     /**
+     *
+     */
+    @Override
      public void initGraphicalObjects() {
          this.buttonAjouterUneBorneAcces =(Button) findViewById(R.id.MenuPositionButtonAjouterUnePosition);
          this.buttonListerLesBorneDacces = (Button) findViewById(R.id.MenuPositionButtonListerLesPositions);
          
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addActionListnerForAllGraphicalObjects() {
          this.buttonAjouterUneBorneAcces.setOnClickListener(new View.OnClickListener() {
 
@@ -48,7 +54,10 @@ public class MenuBorneAcces extends TemplateActivity{
          });
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addInitialValueForGraphicalObjects() {
          this.buttonAjouterUneBorneAcces.setText("Ajouter une borne d'acces");
          this.buttonListerLesBorneDacces.setText("Lister les bornes d'acces");

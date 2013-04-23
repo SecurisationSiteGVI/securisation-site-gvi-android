@@ -86,6 +86,10 @@ public class Ressource {
         this.resourcesPath = resourcesPath;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPathToAccesWebService() {
         String cr = protocol + serveurURL + ":" + port + "/" + applicationName + "/" + resourcesPath + "/";
         return cr;

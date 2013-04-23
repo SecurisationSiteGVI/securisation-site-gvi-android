@@ -45,6 +45,9 @@ public class HistoriqueIntrusion extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonretour = (Button) findViewById(R.id.buttonIntrusionRetour);
@@ -52,6 +55,9 @@ public class HistoriqueIntrusion extends TemplateActivity {
         this.textViewDetecteurIntrusion = (TextView) findViewById(R.id.textViewIntrusionDetecteurIntrusion);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonretour.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +67,9 @@ public class HistoriqueIntrusion extends TemplateActivity {
         });
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.textViewDate.setText(this.intrusion.getDateEvt().toLocaleString());

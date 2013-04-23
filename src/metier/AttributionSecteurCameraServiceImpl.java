@@ -24,6 +24,16 @@ import physique.dataOut.PhysiqueDataOutFactory;
  */
 public class AttributionSecteurCameraServiceImpl implements AttributionSecteurCameraService{
     private AttributionSecteurCameraServiceWeb attributionSecteurCameraSrv = PhysiqueDataOutFactory.getAttributionSecteurCameraSrv();
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void attribuer(Context context, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException, Exception {
          if ((context != null)&&(secteur != null)&&(camera != null)) {
             if ((context instanceof Context)&&(secteur instanceof Secteur)&&(camera instanceof Camera)) {
@@ -36,6 +46,16 @@ public class AttributionSecteurCameraServiceImpl implements AttributionSecteurCa
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void desattribuer(Context context, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException, Exception {
         if ((context != null)&&(secteur != null)&&(camera != null)) {
             if ((context instanceof Context)&&(secteur instanceof Secteur)&&(camera instanceof Camera)) {
@@ -54,6 +74,17 @@ public class AttributionSecteurCameraServiceImpl implements AttributionSecteurCa
         return ressource;
     }
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public AttributionSecteurCamera getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
         AttributionSecteurCamera  attributionSecteurCamera = null;
         if ((context != null)&&(secteur != null)&&(secteur != null)) {

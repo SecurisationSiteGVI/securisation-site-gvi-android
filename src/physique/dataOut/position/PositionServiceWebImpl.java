@@ -23,22 +23,63 @@ import physique.dataOut.position.rest.RESTPositionRemove;
  */
 public class PositionServiceWebImpl implements PositionServiceWeb{
 
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void add(Ressource ressource, Position position) throws MalformedURLException, IOException{
         RESTPositionAdd.execute(ressource, position);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void remove(Ressource ressource, Position position) throws MalformedURLException, IOException{
         RESTPositionRemove.execute(ressource, position);
     }
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public List<Position> getAll(Ressource ressource)throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         return RESTPositionGetAll.execute(ressource);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public List<Position> getAll(Ressource ressource, int index, int nbResult)throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         return RESTPositionGetByRange.execute(ressource, index, nbResult);
     }
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public int count(Ressource ressource)throws MalformedURLException, IOException {
         return RESTPositionCount.execute(ressource);
     }

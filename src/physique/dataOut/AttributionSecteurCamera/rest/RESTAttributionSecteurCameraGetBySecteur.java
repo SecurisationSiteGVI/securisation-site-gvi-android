@@ -38,6 +38,16 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTAttributionSecteurCameraGetBySecteur {
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static AttributionSecteurCamera execute(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
        AttributionSecteurCamera attributionSecteurCameras = new AttributionSecteurCamera();
         InputStream fluxLecture = null;

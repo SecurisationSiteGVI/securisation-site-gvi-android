@@ -30,6 +30,17 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTUtilisateurVerificationConnexion {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws Throwable
+     * @throws IOException
+     * @throws SSLPeerUnverifiedException
+     * @throws ConnectException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
     public Object execute(Object... params) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException {
         Ressource ressource = (Ressource) params[1];
         Technicien technicien = new Technicien();

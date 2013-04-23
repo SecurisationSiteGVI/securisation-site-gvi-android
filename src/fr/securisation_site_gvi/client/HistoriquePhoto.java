@@ -52,6 +52,9 @@ public class HistoriquePhoto extends TemplateActivity {
         new HistoriquePhoto.RESTEvenementGetById().execute();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonretour = (Button) findViewById(R.id.buttonPhotoRetour);
@@ -61,6 +64,9 @@ public class HistoriquePhoto extends TemplateActivity {
         this.textViewCamera = (TextView) findViewById(R.id.textViewCamera);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonretour.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +76,9 @@ public class HistoriquePhoto extends TemplateActivity {
         });
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         FileOutputStream fos = null;

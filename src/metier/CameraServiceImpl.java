@@ -25,6 +25,16 @@ import physique.dataOut.camera.CameraServiceWeb;
  */
 public class CameraServiceImpl implements CameraService{
     private CameraServiceWeb cameraSrv = PhysiqueDataOutFactory.getCameraServiceWeb();
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<Camera> getAll(Context context) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<Camera> ret = null;
         if (context != null) {
@@ -39,6 +49,18 @@ public class CameraServiceImpl implements CameraService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<Camera> getAll(Context context, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<Camera> ret = null;
         if (context != null) {
@@ -60,6 +82,14 @@ public class CameraServiceImpl implements CameraService{
         ressource = ressourcesSrv.getRessource();
         return ressource;
     }
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception {
         Integer ret = null;
         if (context != null) {
@@ -74,6 +104,14 @@ public class CameraServiceImpl implements CameraService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void add(Context context, Camera camera) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(camera!=null)) {
             if ((context instanceof Context)&&(camera instanceof Camera)) {
@@ -86,6 +124,14 @@ public class CameraServiceImpl implements CameraService{
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void remove(Context context, Camera camera) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(camera!=null)) {
             if ((context instanceof Context)&&(camera instanceof Camera)) {

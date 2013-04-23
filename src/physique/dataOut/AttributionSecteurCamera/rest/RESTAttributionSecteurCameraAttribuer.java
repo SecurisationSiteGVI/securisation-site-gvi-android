@@ -20,6 +20,15 @@ import metier.entitys.Secteur;
  * @author damien
  */
 public class RESTAttributionSecteurCameraAttribuer {
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public static void execute(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "attributionsecteurcamera/attribuer/"+secteur.getId()+"/"+camera.getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

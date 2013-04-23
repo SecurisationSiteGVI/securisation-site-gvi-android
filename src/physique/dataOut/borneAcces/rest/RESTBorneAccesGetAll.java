@@ -35,6 +35,15 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTBorneAccesGetAll {
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static List<BorneAcces> execute(Ressource ressource) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         List<BorneAcces> borneAcceses = new ArrayList<BorneAcces>();
         InputStream fluxLecture = null;

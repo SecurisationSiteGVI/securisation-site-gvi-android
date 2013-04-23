@@ -23,6 +23,10 @@ import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Utilisateur;
 
+/**
+ *
+ * @author damien
+ */
 public class ListeUtilisateur extends TemplateActivity {
 
     private ListView listUtilisateurs;
@@ -63,10 +67,16 @@ public class ListeUtilisateur extends TemplateActivity {
         AsyncTask<Object, Void, Object> ret = new RESTUtilisateurGetAllByRange().execute();
     }
 
+    /**
+     *
+     */
     public void setTextViewPageText() {
         this.textViewPage.setText("Page " + this.getPage() + "/" + this.getNbPages());
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(ListeUtilisateur.this, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -76,11 +86,18 @@ public class ListeUtilisateur extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         this.index = this.index + nbLinge;
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;
@@ -93,6 +110,9 @@ public class ListeUtilisateur extends TemplateActivity {
         return nbPages;
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.listUtilisateurs = (ListView) findViewById(R.id.listeUtilisateurs);
@@ -101,6 +121,9 @@ public class ListeUtilisateur extends TemplateActivity {
         this.textViewPage = (TextView) findViewById(R.id.listeUtilisateurAffichagePage);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.listUtilisateurs.setOnItemClickListener(new OnItemClickListener() {

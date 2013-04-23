@@ -18,6 +18,13 @@ import metier.entitys.Ressource;
  */
 public class RESTBadgeCount {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static Object execute(Object... params) throws MalformedURLException, IOException {
         int ret = 0;
         Ressource ressource = (Ressource) params[0];

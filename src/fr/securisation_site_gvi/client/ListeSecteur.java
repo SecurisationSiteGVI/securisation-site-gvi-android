@@ -70,6 +70,9 @@ public class ListeSecteur extends TemplateActivity{
         new ListeSecteur.RESTSecteurGetAllByRAnge().execute();
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -79,6 +82,9 @@ public class ListeSecteur extends TemplateActivity{
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -88,6 +94,10 @@ public class ListeSecteur extends TemplateActivity{
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;
@@ -99,6 +109,9 @@ public class ListeSecteur extends TemplateActivity{
         return nbPages + 1;
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.listSecteur = (ListView) findViewById(R.id.SecteurListView);
@@ -107,6 +120,9 @@ public class ListeSecteur extends TemplateActivity{
         this.textViewPage = (TextView) findViewById(R.id.SecteurTextviewPage);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.listSecteur.setOnItemClickListener(new AdapterView.OnItemClickListener() {

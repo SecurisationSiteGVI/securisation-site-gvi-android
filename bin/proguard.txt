@@ -1,6 +1,9 @@
 # view AndroidManifest.xml #generated:26
 -keep class fr.securisation_site_gvi.client.AccueilActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:150
+-keep class fr.securisation_site_gvi.client.AjoutBorneAcces { <init>(...); }
+
 # view AndroidManifest.xml #generated:138
 -keep class fr.securisation_site_gvi.client.AjoutCamera { <init>(...); }
 
@@ -12,6 +15,9 @@
 
 # view AndroidManifest.xml #generated:126
 -keep class fr.securisation_site_gvi.client.AjouterDetecteurIntrusion { <init>(...); }
+
+# view AndroidManifest.xml #generated:158
+-keep class fr.securisation_site_gvi.client.AjouterNumero { <init>(...); }
 
 # view AndroidManifest.xml #generated:110
 -keep class fr.securisation_site_gvi.client.AjouterPosition { <init>(...); }
@@ -43,11 +49,17 @@
 # view AndroidManifest.xml #generated:74
 -keep class fr.securisation_site_gvi.client.ListeBadges { <init>(...); }
 
+# view AndroidManifest.xml #generated:142
+-keep class fr.securisation_site_gvi.client.ListeDesBorneAcces { <init>(...); }
+
 # view AndroidManifest.xml #generated:134
 -keep class fr.securisation_site_gvi.client.ListeDesCameras { <init>(...); }
 
 # view AndroidManifest.xml #generated:122
 -keep class fr.securisation_site_gvi.client.ListeDetecteurIntrusion { <init>(...); }
+
+# view AndroidManifest.xml #generated:162
+-keep class fr.securisation_site_gvi.client.ListeNumeroPredefini { <init>(...); }
 
 # view AndroidManifest.xml #generated:114
 -keep class fr.securisation_site_gvi.client.ListePositions { <init>(...); }
@@ -67,11 +79,17 @@
 # view AndroidManifest.xml #generated:70
 -keep class fr.securisation_site_gvi.client.MenuBadge { <init>(...); }
 
+# view AndroidManifest.xml #generated:146
+-keep class fr.securisation_site_gvi.client.MenuBorneAcces { <init>(...); }
+
 # view AndroidManifest.xml #generated:130
 -keep class fr.securisation_site_gvi.client.MenuCamera { <init>(...); }
 
 # view AndroidManifest.xml #generated:118
 -keep class fr.securisation_site_gvi.client.MenuDetecteurIntrusion { <init>(...); }
+
+# view AndroidManifest.xml #generated:154
+-keep class fr.securisation_site_gvi.client.MenuNumeropredefini { <init>(...); }
 
 # view AndroidManifest.xml #generated:106
 -keep class fr.securisation_site_gvi.client.MenuPosition { <init>(...); }

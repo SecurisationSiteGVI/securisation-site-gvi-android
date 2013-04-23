@@ -92,9 +92,15 @@ public class AttributionSecteur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     public @interface p {
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonSelectSecteur = (Button) findViewById(R.id.AttributionSecteurButtonSelectsecteur);
@@ -104,6 +110,9 @@ public class AttributionSecteur extends TemplateActivity {
         this.buttonAjouterDetecteurIntrusion = (Button) findViewById(R.id.attributionSecteurButtonAjouterDetecteurIntrusion);
     }
 
+    /**
+     *
+     */
     public void listerListe() {
         listViewObjects =null;
         new AttributionSecteur.RESTAttributionSecteurCameraGetBySecteur().execute();
@@ -111,6 +120,9 @@ public class AttributionSecteur extends TemplateActivity {
         new AttributionSecteur.RESTAttributionSecteurDetecteurIntrusionGetBySecteur().execute();
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonSelectSecteur.setOnClickListener(new View.OnClickListener() {
@@ -392,11 +404,17 @@ public class AttributionSecteur extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.buttonSelectSecteur.setText("faites votre choix");
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -406,6 +424,9 @@ public class AttributionSecteur extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -415,6 +436,10 @@ public class AttributionSecteur extends TemplateActivity {
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;

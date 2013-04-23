@@ -22,6 +22,10 @@ import metier.UtilisateurService;
 import metier.entitys.Utilisateur;
 import org.xml.sax.SAXException;
 
+/**
+ *
+ * @author damien
+ */
 public class ModifierUtilisateur extends TemplateActivity {
 
     private ToggleButton toggleButtonSexe;
@@ -50,11 +54,17 @@ public class ModifierUtilisateur extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         new RESTUtilisateurGetById().execute();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonSupprimerUtilisateur = (Button) findViewById(R.id.buttonSupprimerUtilisateur);
@@ -71,6 +81,9 @@ public class ModifierUtilisateur extends TemplateActivity {
         this.editTextVille = (EditText) findViewById(R.id.editTextVille);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonModifierUtilisateur.setOnClickListener(new View.OnClickListener() {

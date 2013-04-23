@@ -26,6 +26,9 @@ public class MenuSecteur extends TemplateActivity{
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonajouterSecteur = (Button) findViewById(R.id.ajouterSecteur);
@@ -33,6 +36,9 @@ public class MenuSecteur extends TemplateActivity{
         this.buttonattributionSecteur = (Button) findViewById(R.id.attributionSecteur);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonajouterSecteur.setOnClickListener(new View.OnClickListener() {

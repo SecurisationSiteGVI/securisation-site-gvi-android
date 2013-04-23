@@ -66,6 +66,9 @@ public class AttributionBadge extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonBadge = (Button) findViewById(R.id.spinnerAttributionBadgeBadge);
@@ -73,6 +76,9 @@ public class AttributionBadge extends TemplateActivity {
         this.buttonAttribuer = (Button) findViewById(R.id.buttonAttributionBadgeValider);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonBadge.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +214,9 @@ public class AttributionBadge extends TemplateActivity {
         });
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         this.buttonBadge.setText("Selectionner un badge");
@@ -242,6 +251,9 @@ public class AttributionBadge extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -251,6 +263,9 @@ public class AttributionBadge extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -260,6 +275,10 @@ public class AttributionBadge extends TemplateActivity {
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;

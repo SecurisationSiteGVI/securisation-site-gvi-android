@@ -28,6 +28,15 @@ import physique.dataOut.BoiteAOutils;
  * @author damien
  */
 public class RESTDetecteurIntrusionGetAll {
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static List<DetecteurIntrusion> execute(Ressource ressource) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         List<DetecteurIntrusion> detecteurIntrusions = new ArrayList<DetecteurIntrusion>();
         InputStream fluxLecture = null;

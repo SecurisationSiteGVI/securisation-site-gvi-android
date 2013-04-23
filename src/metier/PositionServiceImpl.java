@@ -21,6 +21,14 @@ public class PositionServiceImpl implements PositionService {
 
     private PositionServiceWeb positionSrv = PhysiqueDataOutFactory.getPositionServiceWeb();
 
+    /**
+     *
+     * @param context
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void add(Context context, Position position) throws MalformedURLException, IOException, Exception {
         if ((context != null) && (position != null)) {
             if ((context instanceof Context) && (position instanceof Position)) {
@@ -33,6 +41,14 @@ public class PositionServiceImpl implements PositionService {
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void remove(Context context, Position position) throws MalformedURLException, IOException, Exception {
         if ((context != null) && (position != null)) {
             if ((context instanceof Context) && (position instanceof Position)) {
@@ -45,6 +61,16 @@ public class PositionServiceImpl implements PositionService {
         }
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Position> getAll(Context context) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
         List<Position> positions = null;
         if ((context != null)) {
@@ -59,6 +85,18 @@ public class PositionServiceImpl implements PositionService {
         return positions;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Position> getAll(Context context, int index, int nbResult) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
         List<Position> positions = null;
         if ((context != null)) {
@@ -73,6 +111,14 @@ public class PositionServiceImpl implements PositionService {
         return positions;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception {
         Integer ret = null;
         if ((context != null)) {

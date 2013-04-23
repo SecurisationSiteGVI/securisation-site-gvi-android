@@ -16,21 +16,51 @@ import metier.entitys.Ressource;
  */
 public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataIn {
 
+    /**
+     *
+     */
     public static final String RESSOURCE_KEY = "id";
+    /**
+     *
+     */
     public static final String RESSOURCE_PROTOCOL = "protocol";
+    /**
+     *
+     */
     public static final String RESSOURCE_SERVEUR_URL = "serveurUrl";
+    /**
+     *
+     */
     public static final String RESSOURCE_PORT = "port";
+    /**
+     *
+     */
     public static final String RESSOURCE_APPLICATION_NAME = "appicationName";
+    /**
+     *
+     */
     public static final String RESSOURCE_RESSOURCES_PATH = "ressourcesPath";
+    /**
+     *
+     */
     public static final String RESSOURCE_TABLE_NAME = "Ressource";
     private Connexion connexion;
     private SQLiteDatabase db;
     private Context c;
 
+    /**
+     *
+     * @param c
+     */
     public RessourceServiceDataInServiceImpl(Context c) {
         this.c = c;
     }
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void add(Ressource ressource) throws Exception {
         this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         db = connexion.getBDD();
@@ -46,6 +76,11 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
         this.connexion.close();
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public Ressource getRessource() throws Exception {
         this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         this.connexion.open();
@@ -68,6 +103,11 @@ public class RessourceServiceDataInServiceImpl implements RessourcesServiceDataI
         return ressource;
     }
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void update(Ressource ressource) throws Exception {
         this.connexion = new Connexion(c, "fr.db", null, Connexion.VERSION);
         connexion.open();

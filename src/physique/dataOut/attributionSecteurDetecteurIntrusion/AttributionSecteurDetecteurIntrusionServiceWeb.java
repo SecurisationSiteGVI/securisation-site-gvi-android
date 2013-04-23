@@ -18,7 +18,35 @@ import org.xml.sax.SAXException;
  * @author damien
  */
 public interface AttributionSecteurDetecteurIntrusionServiceWeb {
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void attribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion)throws MalformedURLException, IOException, RuntimeException;
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void desattribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion)throws MalformedURLException, IOException, RuntimeException;
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public AttributionSecteurDetecteurIntrusion getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 }

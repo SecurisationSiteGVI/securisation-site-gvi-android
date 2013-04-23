@@ -17,6 +17,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTNumeroPredefiniRemove {
+    /**
+     *
+     * @param ressource
+     * @param numero
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static void execute(Ressource ressource, String numero) throws MalformedURLException, IOException {
         URL url = new URL(ressource.getPathToAccesWebService() + "numeropredefinis/remove/"+numero);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

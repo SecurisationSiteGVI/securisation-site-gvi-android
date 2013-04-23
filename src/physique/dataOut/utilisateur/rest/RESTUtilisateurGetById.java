@@ -34,6 +34,15 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTUtilisateurGetById {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public Object execute(Object... params) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         Ressource ressource = (Ressource) params[1];
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();

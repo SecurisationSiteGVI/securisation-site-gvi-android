@@ -20,6 +20,12 @@ import metier.entitys.Technicien;
  */
 public class RESTUtilisateurLoginIsUse {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws IOException
+     */
     public Object execute(Object... params) throws IOException {
         BufferedReader br = null;
         Boolean ret = false;

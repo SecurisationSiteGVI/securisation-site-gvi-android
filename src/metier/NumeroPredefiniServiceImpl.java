@@ -22,6 +22,16 @@ import physique.dataOut.numeroPredefini.NumeroPredefiniServiceWeb;
  */
 public class NumeroPredefiniServiceImpl implements NumeroPredefiniService{
     private NumeroPredefiniServiceWeb numeroPredefiniSrv = PhysiqueDataOutFactory.getNumeroPredefiniServiceWeb();
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public NumeroPredefinis getAll(Context context) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         NumeroPredefinis ret = null;
         if (context != null) {
@@ -36,6 +46,18 @@ public class NumeroPredefiniServiceImpl implements NumeroPredefiniService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public NumeroPredefinis getAll(Context context, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         NumeroPredefinis ret = null;
         if (context != null) {
@@ -50,6 +72,14 @@ public class NumeroPredefiniServiceImpl implements NumeroPredefiniService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception {
         Integer ret = null;
         if (context != null) {
@@ -64,6 +94,14 @@ public class NumeroPredefiniServiceImpl implements NumeroPredefiniService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param numero
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void add(Context context, String numero) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(numero!=null)) {
             if ((context instanceof Context)&&(numero instanceof String)) {
@@ -76,6 +114,14 @@ public class NumeroPredefiniServiceImpl implements NumeroPredefiniService{
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param numero
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void remove(Context context, String numero) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(numero!=null)) {
             if ((context instanceof Context)&&(numero instanceof String)) {

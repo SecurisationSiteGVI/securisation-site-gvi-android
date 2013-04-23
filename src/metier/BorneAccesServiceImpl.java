@@ -27,6 +27,16 @@ public class BorneAccesServiceImpl implements BorneAccesService {
 
     private BorneAccesServiceWeb borneAccesSrv = PhysiqueDataOutFactory.getBorneAccesServiceWeb();
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<BorneAcces> getAll(Context context) throws MalformedURLException, IOException, ParserConfigurationException, SAXException ,Exception{
         List<BorneAcces> ret = null;
         if (context != null) {
@@ -41,6 +51,18 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<BorneAcces> getAll(Context context, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException,Exception {
         List<BorneAcces> ret = null;
         if (context != null) {
@@ -62,6 +84,14 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         return ressource;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context  context) throws MalformedURLException, IOException, Exception {
        Integer ret = null;
         if (context != null) {
@@ -76,6 +106,14 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void add(Context context, BorneAcces borneAcces) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(borneAcces!=null)) {
             if ((context instanceof Context)&&(borneAcces instanceof BorneAcces)) {
@@ -88,6 +126,14 @@ public class BorneAccesServiceImpl implements BorneAccesService {
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void remove(Context context, BorneAcces borneAcces) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(borneAcces!=null)) {
             if ((context instanceof Context)&&(borneAcces instanceof BorneAcces)) {

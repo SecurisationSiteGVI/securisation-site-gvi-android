@@ -18,6 +18,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTDetecteurIntrusioniAdd {
+    /**
+     *
+     * @param ressource
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static void execute(Ressource ressource, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "detecteurintrusion/"+detecteurIntrusion.getPosition().getId()+"/"+detecteurIntrusion.getNom());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

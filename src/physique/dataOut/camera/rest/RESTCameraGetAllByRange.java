@@ -28,6 +28,17 @@ import physique.dataOut.BoiteAOutils;
  * @author damien
  */
 public class RESTCameraGetAllByRange {
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static List<Camera> execute(Ressource ressource,int index, int nbResult) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         List<Camera> cameras = new ArrayList<Camera>();
         InputStream fluxLecture = null;

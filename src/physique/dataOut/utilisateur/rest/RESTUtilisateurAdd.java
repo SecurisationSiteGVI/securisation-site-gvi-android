@@ -20,6 +20,12 @@ import metier.entitys.Utilisateur;
  */
 public class RESTUtilisateurAdd {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws IOException
+     */
     public Object execute(Object... params) throws IOException {
         Ressource ressource = (Ressource) params[1];
         Boolean retour = true;

@@ -19,6 +19,14 @@ import metier.entitys.Utilisateur;
  * @author damien
  */
 public class RESTSecteurRemove {
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static boolean execute(Ressource ressource,Secteur secteur) throws MalformedURLException, IOException {
         Boolean retour = true;
         URL url = new URL(ressource.getPathToAccesWebService() + "secteur/" + secteur.getId());

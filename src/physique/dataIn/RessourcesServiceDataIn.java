@@ -12,9 +12,24 @@ import metier.entitys.Ressource;
  */
 public interface RessourcesServiceDataIn {
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void add(Ressource ressource) throws Exception;
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public Ressource getRessource() throws Exception;
 
+    /**
+     *
+     * @param ressource
+     * @throws Exception
+     */
     public void update(Ressource ressource) throws Exception;
 }

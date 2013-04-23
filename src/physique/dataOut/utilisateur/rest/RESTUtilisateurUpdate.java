@@ -22,6 +22,13 @@ import metier.entitys.Utilisateur;
  */
 public class RESTUtilisateurUpdate {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public Object execute(Object... params) throws MalformedURLException, IOException {
         Boolean retour = true;
         Ressource ressource = (Ressource) params[1];

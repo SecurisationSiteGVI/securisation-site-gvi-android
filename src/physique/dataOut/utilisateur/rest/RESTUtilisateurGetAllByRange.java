@@ -34,6 +34,15 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTUtilisateurGetAllByRange {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public Object execute(Object... params) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
         Integer from = (Integer) params[0];

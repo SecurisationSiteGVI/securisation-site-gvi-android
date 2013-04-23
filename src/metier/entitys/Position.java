@@ -14,10 +14,18 @@ public class Position {
     private double longitude;
     private double latitude;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,18 +55,34 @@ public class Position {
         return "longitude : " + longitude + " latitude : " + latitude;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     *
+     * @param longitude
+     */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     *
+     * @param latitude
+     */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }

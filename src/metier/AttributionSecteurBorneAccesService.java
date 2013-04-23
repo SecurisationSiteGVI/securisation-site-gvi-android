@@ -18,7 +18,38 @@ import org.xml.sax.SAXException;
  * @author damien
  */
 public interface AttributionSecteurBorneAccesService {
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void attribuer(Context context, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException,Exception;
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void desattribuer(Context context, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException,Exception;
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public AttributionSecteurBorneAcces getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception;
 }

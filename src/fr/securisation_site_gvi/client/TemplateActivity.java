@@ -29,45 +29,78 @@ public class TemplateActivity extends Activity {
      */
     protected Context activityContext = TemplateActivity.this;
 
+    /**
+     *
+     */
     public void setThisActivityOn() {
         this.initGraphicalObjects();
         this.addActionListnerForAllGraphicalObjects();
         this.addInitialValueForGraphicalObjects();
     }
 
+    /**
+     *
+     */
     public void initGraphicalObjects() {
     }
 
+    /**
+     *
+     */
     public void addActionListnerForAllGraphicalObjects() {
     }
 
+    /**
+     *
+     */
     public void addInitialValueForGraphicalObjects() {
     }
 
+    /**
+     *
+     */
     public  void throwConnectException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Celui-ci est surement éteint.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwIOException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Le réseau est défaillant, vérifier les paramétres d'accès.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwSAXException() {
         Toast toast = Toast.makeText(this.activityContext, "Aucun résultat dans la base de données.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwParserConfigurationException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. L'application ne peut pas récuperer les informations.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwMalformedURLException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Veuillez verifier l'url que vous avez saisie.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de se connecter au serveur. Impossible de dététerminer le probléme.", Toast.LENGTH_SHORT);
         toast.show();
     }
+    /**
+     *
+     */
     public  void throwParseException() {
         Toast toast = Toast.makeText(this.activityContext, "Impossible de récupérer les informations du serveur. La chaine de caractére n'a pas pu étre recupéré.", Toast.LENGTH_SHORT);
         toast.show();
@@ -101,6 +134,11 @@ public class TemplateActivity extends Activity {
         }
     }
 
+    /**
+     *
+     * @return
+     * @deprecated
+     */
     @Deprecated
     public int getHeight() {
         int height = 0;
@@ -108,6 +146,11 @@ public class TemplateActivity extends Activity {
         return height;
     }
 
+    /**
+     *
+     * @return
+     * @deprecated
+     */
     @Deprecated
     public int getWidth() {// nexus 7 : 800dp // s3 720dp
         int height = 0;
@@ -115,6 +158,10 @@ public class TemplateActivity extends Activity {
         return height;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isTablette7() {
         int width = 0;
         width = this.getWindowManager().getDefaultDisplay().getWidth();
@@ -125,6 +172,10 @@ public class TemplateActivity extends Activity {
         return ret;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isTelephone() {
         int width = 0;
         this.getWindowManager().getDefaultDisplay().getWidth();
@@ -135,6 +186,11 @@ public class TemplateActivity extends Activity {
         return ret;
     }
 
+    /**
+     *
+     * @param content
+     * @param id
+     */
     public void addNotification(String content, int id) {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -155,6 +211,10 @@ public class TemplateActivity extends Activity {
         mNotificationManager.notify(id, mBuilder.build());
     }
 
+    /**
+     *
+     * @param id
+     */
     public void removeNotification(int id) {
         NotificationManager o = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         o.cancel(id);

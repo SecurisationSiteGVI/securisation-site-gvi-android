@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ *
+ * @author damien
+ */
 public class AccueilActivity extends TemplateActivity {
 
     private Button voirHistorique;
@@ -25,6 +29,9 @@ public class AccueilActivity extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.voirHistorique = (Button) findViewById(R.id.voirHistorique);
@@ -37,6 +44,9 @@ public class AccueilActivity extends TemplateActivity {
         this.gererLesAuthorisationAcces = (Button) findViewById(R.id.gererLesAuthorisationDacces);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.voirHistorique.setOnClickListener(new View.OnClickListener() {

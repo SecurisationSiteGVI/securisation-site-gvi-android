@@ -15,10 +15,18 @@ public class Evenement {
     private Long id;
     private Date dateEvt;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -49,10 +57,18 @@ public class Evenement {
         return "Evenement à " + this.dateEvt.toLocaleString();
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateEvt() {
         return dateEvt;
     }
 
+    /**
+     *
+     * @param dateEvt
+     */
     public void setDateEvt(Date dateEvt) {
         this.dateEvt = dateEvt;
     }

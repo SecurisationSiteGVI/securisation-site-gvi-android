@@ -15,10 +15,18 @@ public class BorneAcces {
     private String nom;
     private Boolean entrer;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -53,26 +61,50 @@ public class BorneAcces {
         return nom + " " + entr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Position getPosition() {
         return position;
     }
 
+    /**
+     *
+     * @param position
+     */
     public void setPosition(Position position) {
         this.position = position;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     *
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEntrer() {
         return entrer;
     }
 
+    /**
+     *
+     * @param entrer
+     */
     public void setEntrer(Boolean entrer) {
         this.entrer = entrer;
     }

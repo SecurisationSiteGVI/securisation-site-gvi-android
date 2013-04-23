@@ -12,6 +12,10 @@ import metier.MetierFactory;
 import metier.RessourceService;
 import metier.entitys.Ressource;
 
+/**
+ *
+ * @author damien
+ */
 public class Parametres extends TemplateActivity {
 
     private RessourceService ressourceSrv = MetierFactory.getRessourceSrv(Parametres.this);
@@ -31,6 +35,9 @@ public class Parametres extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void addInitialValueForGraphicalObjects() {
         Ressource ressource = null;
@@ -56,6 +63,9 @@ public class Parametres extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.valider = (Button) findViewById(R.id.buttonValider);
@@ -66,6 +76,9 @@ public class Parametres extends TemplateActivity {
         this.editTextRessourcesPath = (EditText) findViewById(R.id.editTextRessoucesPath);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.valider.setOnClickListener(new View.OnClickListener() {

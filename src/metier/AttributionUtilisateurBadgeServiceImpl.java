@@ -27,6 +27,17 @@ public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilis
 
 
     private AttributionUtilisateurBadgeServiceWeb attributionUtilisateurBadgeSrv = PhysiqueDataOutFactory.getAttributionUtilisateurBadgeSrv();
+    /**
+     *
+     * @param context
+     * @param debut
+     * @param nbResult
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Badge> getBadgesNotAssign(Context context,  int debut, int nbResult)throws ParserConfigurationException, SAXException, IOException, Exception {
         List<Badge> b = null;
         if (context != null) {
@@ -41,6 +52,18 @@ public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilis
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param numero
+     * @param debut
+     * @param nbResult
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws Exception
+     */
     public List<Badge> getBadgesNotAssignByNumero(Context context, String numero, int debut, int nbResult) throws ParserConfigurationException, SAXException, IOException, Exception{
         List<Badge> b = null;
         if (context != null) {
@@ -55,6 +78,19 @@ public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilis
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param debut
+     * @param nbResult
+     * @return
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     * @throws MalformedURLException
+     * @throws Exception
+     */
     public List<Utilisateur> getUtilisateurNotAssign(Context context,  int debut, int nbResult)throws ParseException, ParserConfigurationException, SAXException, IOException, MalformedURLException, Exception {
         List<Utilisateur> b = null;
         if (context != null) {
@@ -69,6 +105,20 @@ public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilis
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param nom
+     * @param debut
+     * @param nbResult
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws ParseException
+     * @throws Exception
+     */
     public List<Utilisateur> getUtilisateurNotAssignByNom(Context context,  String nom, int debut, int nbResult)throws MalformedURLException, IOException, ParserConfigurationException, SAXException, ParseException, Exception {
         List<Utilisateur> b = null;
         if (context != null) {
@@ -83,6 +133,16 @@ public class AttributionUtilisateurBadgeServiceImpl implements AttributionUtilis
         return b;
     }
 
+    /**
+     *
+     * @param context
+     * @param utilisateur
+     * @param badge
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public boolean attribuer(Context context, Utilisateur utilisateur, Badge badge) throws MalformedURLException, IOException,Exception{
         Boolean b = null;
         if (context != null) {

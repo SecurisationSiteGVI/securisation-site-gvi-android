@@ -22,11 +22,27 @@ import metier.UtilisateurService;
 import metier.entitys.Technicien;
 import org.xml.sax.SAXException;
 
+/**
+ *
+ * @author damien
+ */
 public class MainActivity extends TemplateActivity {
 
+    /**
+     *
+     */
     public Button buttonConnnexion;
+    /**
+     *
+     */
     public EditText editTextLogin;
+    /**
+     *
+     */
     public TextView textView;
+    /**
+     *
+     */
     public EditText editTextPassword;
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
 
@@ -40,6 +56,9 @@ public class MainActivity extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonConnnexion = (Button) findViewById(R.id.buttonConnexion);
@@ -48,6 +67,9 @@ public class MainActivity extends TemplateActivity {
         this.editTextPassword = (EditText) findViewById(R.id.editTextPassword);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonConnnexion.setOnClickListener(new View.OnClickListener() {

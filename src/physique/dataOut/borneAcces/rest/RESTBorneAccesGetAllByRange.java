@@ -28,6 +28,17 @@ import physique.dataOut.BoiteAOutils;
  * @author damien
  */
 public class RESTBorneAccesGetAllByRange {
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static List<BorneAcces> execute(Ressource ressource,int index,int nbResult) throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         List<BorneAcces> borneAcceses = new ArrayList<BorneAcces>();
         InputStream fluxLecture = null;

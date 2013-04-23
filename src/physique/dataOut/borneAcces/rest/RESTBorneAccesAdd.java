@@ -18,6 +18,13 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTBorneAccesAdd {
+    /**
+     *
+     * @param ressource
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static void execute(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException  {
         URL url = new URL(ressource.getPathToAccesWebService() + "borneacces/"+borneAcces.getPosition().getId()+"/"+borneAcces.getNom()+"/"+borneAcces.getEntrer());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

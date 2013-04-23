@@ -19,10 +19,18 @@ public class AuthorisationAcces {
     private Utilisateur utilisateur;
     private List<Secteur> secteurs;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -52,34 +60,66 @@ public class AuthorisationAcces {
         return "metier.entitys.AuthorisationAcces7[ id=" + getId() + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getHeureOuverture() {
         return heureOuverture;
     }
 
+    /**
+     *
+     * @param heureOuverture
+     */
     public void setHeureOuverture(Date heureOuverture) {
         this.heureOuverture = heureOuverture;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getHeureFermeture() {
         return heureFermeture;
     }
 
+    /**
+     *
+     * @param heureFermeture
+     */
     public void setHeureFermeture(Date heureFermeture) {
         this.heureFermeture = heureFermeture;
     }
 
+    /**
+     *
+     * @return
+     */
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
 
+    /**
+     *
+     * @param utilisateur
+     */
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Secteur> getSecteurs() {
         return secteurs;
     }
 
+    /**
+     *
+     * @param secteurs
+     */
     public void setSecteurs(List<Secteur> secteurs) {
         this.secteurs = secteurs;
     }

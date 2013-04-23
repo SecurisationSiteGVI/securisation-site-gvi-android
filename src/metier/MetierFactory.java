@@ -27,6 +27,10 @@ public class MetierFactory {
     private static PositionService positionSrv;
     private static NumeroPredefiniService numeroPredefiniSrv;
 
+    /**
+     *
+     * @return
+     */
     public static NumeroPredefiniService getNumeroPredefiniService() {
         if (numeroPredefiniSrv == null) {
             numeroPredefiniSrv = new NumeroPredefiniServiceImpl();
@@ -34,6 +38,10 @@ public class MetierFactory {
         return numeroPredefiniSrv;
     }
     
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurDetecteurIntrusionService getAttributionSecteurDetecteurIntrusionService() {
         if (attributionSecteurDetecteurIntrusionSrv == null) {
             attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceImpl();
@@ -41,6 +49,10 @@ public class MetierFactory {
         return attributionSecteurDetecteurIntrusionSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static PositionService getPositionService() {
         if (positionSrv == null) {
             positionSrv = new PositionServiceImpl();
@@ -48,6 +60,10 @@ public class MetierFactory {
         return positionSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurBorneAccesService getAttributionSecteurBorneAccesService() {
         if (attributionSecteurBorneAccesSrv == null) {
             attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceImpl();
@@ -55,6 +71,10 @@ public class MetierFactory {
         return attributionSecteurBorneAccesSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static DetecteurIntrusionService getDetecteurIntrusionService() {
         if (detecteurIntrusionSrv == null) {
             detecteurIntrusionSrv = new DetecteurIntrusionServiceImpl();
@@ -62,6 +82,10 @@ public class MetierFactory {
         return detecteurIntrusionSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static CameraService getCameraService() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceImpl();
@@ -69,6 +93,10 @@ public class MetierFactory {
         return cameraSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static BorneAccesService getBorneAccesService() {
         if (borneAccesSrv == null) {
             borneAccesSrv = new BorneAccesServiceImpl();
@@ -76,6 +104,10 @@ public class MetierFactory {
         return borneAccesSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static BadgeService getBadgeSrv() {
         if (badgeSrv == null) {
             badgeSrv = new BadgeServiceImpl();
@@ -83,6 +115,10 @@ public class MetierFactory {
         return badgeSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static SecteurService getSecteurServ() {
         if (secteurSrv == null) {
             secteurSrv = new SecteurServiceImpl();
@@ -90,6 +126,10 @@ public class MetierFactory {
         return secteurSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static AttributionUtilisateurBadgeService getAttributionUtilisateurBadgeService() {
         if (attributionUtilisateurBadgeSrv == null) {
             attributionUtilisateurBadgeSrv = new AttributionUtilisateurBadgeServiceImpl();
@@ -97,6 +137,10 @@ public class MetierFactory {
         return attributionUtilisateurBadgeSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static EvenementService getEvenementSrv() {
         if (evenementSrv == null) {
             evenementSrv = new EvenementServiceImpl();
@@ -104,11 +148,20 @@ public class MetierFactory {
         return evenementSrv;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     */
     public static RessourceService getRessourceSrv(Context context) {
         MetierFactory.ressourceSrv = new RessourceServiceImpl(context);
         return ressourceSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static UtilisateurService getUtilisateurSrv() {
         if (utilisateurSrv == null) {
             utilisateurSrv = new UtilisateurServiceImpl();
@@ -116,6 +169,10 @@ public class MetierFactory {
         return utilisateurSrv;
     }
 
+    /**
+     *
+     * @return
+     */
     public static AttributionSecteurCameraService getAttributionSecteurCameraSrv() {
         if (attributionSecteurCameraSrv == null) {
             attributionSecteurCameraSrv = new AttributionSecteurCameraServiceImpl();

@@ -33,6 +33,14 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTEvenementGetAll {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public static Object execute(Object... params) throws ParserConfigurationException, SAXException, IOException {
         Ressource ressource = (Ressource) params[0];
         List<Evenement> utilisateurs = new ArrayList<Evenement>();

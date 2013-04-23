@@ -39,12 +39,18 @@ public class AjoutSecteur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.edittextNom = (EditText) findViewById(R.id.AjoutSecteureditTextAjouterNom);
         this.buttonAjouter = (Button) findViewById(R.id.AjoutSecteurbuttonAjouter);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAjouter.setOnClickListener(new View.OnClickListener() {

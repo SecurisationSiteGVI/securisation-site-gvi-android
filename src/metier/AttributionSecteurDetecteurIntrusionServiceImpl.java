@@ -23,6 +23,16 @@ public class AttributionSecteurDetecteurIntrusionServiceImpl implements Attribut
 
     private AttributionSecteurDetecteurIntrusionServiceWeb attributionSecteurDetecteurIntrusionSrv = PhysiqueDataOutFactory.getAttributionSecteurDetecteurIntrusionSrv();
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void attribuer(Context context, Secteur secteur, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException, Exception {
         if ((context != null) && (secteur != null) && (detecteurIntrusion != null)) {
             if ((context instanceof Context) && (secteur instanceof Secteur) && (detecteurIntrusion instanceof DetecteurIntrusion)) {
@@ -35,6 +45,16 @@ public class AttributionSecteurDetecteurIntrusionServiceImpl implements Attribut
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     * @throws Exception
+     */
     public void desattribuer(Context context, Secteur secteur, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException, Exception {
         if ((context != null) && (secteur != null) && (detecteurIntrusion != null)) {
             if ((context instanceof Context) && (secteur instanceof Secteur) && (detecteurIntrusion instanceof DetecteurIntrusion)) {
@@ -53,6 +73,17 @@ public class AttributionSecteurDetecteurIntrusionServiceImpl implements Attribut
         ressource = ressourcesSrv.getRessource();
         return ressource;
     }
+    /**
+     *
+     * @param context
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public AttributionSecteurDetecteurIntrusion getBySecteur(Context context, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException, Exception {
         AttributionSecteurDetecteurIntrusion  attributionSecteurBorneAcces = null;
         if ((context != null)&&(secteur != null)&&(secteur != null)) {

@@ -17,10 +17,51 @@ import org.xml.sax.SAXException;
  * @author damien
  */
 public interface PositionServiceWeb {
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void add(Ressource ressource, Position position)throws MalformedURLException, IOException;
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void remove(Ressource ressource,Position position)throws MalformedURLException, IOException;
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public List<Position> getAll(Ressource ressource)throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResult
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public List<Position> getAll(Ressource ressource,int index, int nbResult)throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public int count(Ressource ressource)throws MalformedURLException, IOException;
     
 }

@@ -27,6 +27,14 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTAttributionBadgeGetBadgeNotAssignByNumero {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public static Object execute(Object... params) throws ParserConfigurationException, SAXException, IOException {
         Ressource ressource = (Ressource) params[0];
         Integer debut = (Integer) params[1];

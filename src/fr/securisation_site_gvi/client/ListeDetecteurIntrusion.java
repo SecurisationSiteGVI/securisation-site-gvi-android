@@ -69,6 +69,9 @@ public class ListeDetecteurIntrusion extends TemplateActivity {
         new ListeDetecteurIntrusion.RESTDetecteurIntrusionGetAllByRAnge().execute();
     }
 
+    /**
+     *
+     */
     public void pagePrécédente() {
         if (this.index <= nbLinge - 1) {
             Toast.makeText(activityContext, "Vous éte déjà sur la premiere page.", Toast.LENGTH_SHORT).show();
@@ -78,6 +81,9 @@ public class ListeDetecteurIntrusion extends TemplateActivity {
         }
     }
 
+    /**
+     *
+     */
     public void pageSuivante() {
         if (this.getPage() >= this.getNbPages()) {
             Toast.makeText(this.activityContext, "Vous étes déjà sur la derniére page", Toast.LENGTH_LONG).show();
@@ -87,6 +93,10 @@ public class ListeDetecteurIntrusion extends TemplateActivity {
         this.remplirListView();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage() {
         int page = index / nbLinge;
         page = page + 1;
@@ -98,6 +108,9 @@ public class ListeDetecteurIntrusion extends TemplateActivity {
         return nbPages + 1;
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.list = (ListView) findViewById(R.id.listViewBadges);
@@ -106,6 +119,9 @@ public class ListeDetecteurIntrusion extends TemplateActivity {
         this.textViewPage = (TextView) findViewById(R.id.textviewbadgePage);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

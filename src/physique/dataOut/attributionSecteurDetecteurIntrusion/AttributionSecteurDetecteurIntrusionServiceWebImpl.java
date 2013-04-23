@@ -22,14 +22,42 @@ import physique.dataOut.attributionSecteurDetecteurIntrusion.rest.RESTAttributio
  */
 public class AttributionSecteurDetecteurIntrusionServiceWebImpl implements AttributionSecteurDetecteurIntrusionServiceWeb{
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void attribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurDetecteurIntrusionAttribuer.execute(ressource, secteur, detecteurIntrusion);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void desattribuer(Ressource ressource, Secteur secteur, DetecteurIntrusion  detecteurIntrusion) throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurDetecteurIntrusionDesattribuer.execute(ressource, secteur, detecteurIntrusion);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public AttributionSecteurDetecteurIntrusion getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         return RESTAttributionSecteurDetecteurIntrusionGetBySecteur.execute(ressource, secteur);
     }

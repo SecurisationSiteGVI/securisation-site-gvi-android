@@ -51,6 +51,9 @@ public class AjouterUtilisateur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonAjouterUtilisateur = (Button) findViewById(R.id.buttonAjouterUtilisateur);
@@ -66,6 +69,9 @@ public class AjouterUtilisateur extends TemplateActivity {
         this.editTextVille = (EditText) findViewById(R.id.editTextAjouterVille);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAjouterUtilisateur.setOnClickListener(new View.OnClickListener() {

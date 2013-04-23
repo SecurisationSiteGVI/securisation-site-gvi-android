@@ -31,6 +31,15 @@ import physique.dataOut.BoiteAOutils;
  */
 public class RESTPositionGetAll {
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static List<Position> execute(Ressource ressource) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
        List<Position> positions = new ArrayList<Position>();
         InputStream fluxLecture = null;

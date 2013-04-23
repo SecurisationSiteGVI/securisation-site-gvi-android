@@ -34,12 +34,18 @@ public class AjouterNumero extends TemplateActivity {
         this.setThisActivityOn();
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.edittextNumero = (EditText) findViewById(R.id.AjouterNumeroEditTextNumero);
         this.buttonCree = (Button) findViewById(R.id.AjouterNumeroButtonCree);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonCree.setOnClickListener(new View.OnClickListener() {

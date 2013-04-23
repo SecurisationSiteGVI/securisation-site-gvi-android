@@ -16,10 +16,18 @@ public class AttributionSecteurCamera {
     private Secteur secteur;
     private List<Camera> cameras;
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -49,18 +57,34 @@ public class AttributionSecteurCamera {
         return "AttributionSecteur sur secteur :" + getSecteur();
     }
 
+    /**
+     *
+     * @return
+     */
     public Secteur getSecteur() {
         return secteur;
     }
 
+    /**
+     *
+     * @param secteur
+     */
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Camera> getCameras() {
         return cameras;
     }
 
+    /**
+     *
+     * @param cameras
+     */
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
     }

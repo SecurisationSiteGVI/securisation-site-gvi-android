@@ -23,22 +23,63 @@ import physique.dataOut.borneAcces.rest.RESTBorneAccesRemove;
  */
 public class BorneAccesServiceWebImpl implements BorneAccesServiceWeb{
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public List<BorneAcces> getAll(Ressource ressource)throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         return RESTBorneAccesGetAll.execute(ressource);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public List<BorneAcces> getAll(Ressource ressource, int index, int nbResultat)throws MalformedURLException, IOException, ParserConfigurationException, SAXException {
         return RESTBorneAccesGetAllByRange.execute(ressource, index, nbResultat);
     }
 
+    /**
+     *
+     * @param ressource
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public int count(Ressource ressource) throws MalformedURLException, IOException {
         return RESTBorneAccesCount.execute(ressource);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void add(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException {
         RESTBorneAccesAdd.execute(ressource, borneAcces);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public void remove(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException {
         RESTBorneAccesRemove.execute(ressource, borneAcces);
     }

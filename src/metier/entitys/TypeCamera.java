@@ -9,5 +9,12 @@ package metier.entitys;
  * @author damien
  */
 public enum TypeCamera {
-    HEDEN, SONY
+    /**
+     *
+     */
+    HEDEN,
+    /**
+     *
+     */
+    SONY
 }

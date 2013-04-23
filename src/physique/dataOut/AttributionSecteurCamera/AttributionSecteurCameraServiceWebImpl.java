@@ -23,14 +23,42 @@ import physique.dataOut.AttributionSecteurCamera.rest.RESTAttributionSecteurCame
  */
 public class AttributionSecteurCameraServiceWebImpl implements AttributionSecteurCameraServiceWeb{
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void attribuer(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurCameraAttribuer.execute(ressource, secteur, camera);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param camera
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void desattribuer(Ressource ressource, Secteur secteur, Camera camera) throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurCameraDesattribuer.execute(ressource, secteur, camera);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public AttributionSecteurCamera getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException{
         return RESTAttributionSecteurCameraGetBySecteur.execute(ressource, secteur);
     }

@@ -19,6 +19,14 @@ import metier.entitys.Secteur;
  * @author damien
  */
 public class RESTPositionRemove {
+    /**
+     *
+     * @param ressource
+     * @param position
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static boolean execute(Ressource ressource, Position position) throws MalformedURLException, IOException {
         Boolean retour = true;
         URL url = new URL(ressource.getPathToAccesWebService() + "position/" + position.getId());

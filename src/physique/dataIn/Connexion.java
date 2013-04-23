@@ -14,13 +14,37 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class Connexion extends SQLiteOpenHelper {
 
+    /**
+     *
+     */
     public static final String RESSOURCE_KEY = "id";
+    /**
+     *
+     */
     public static final String RESSOURCE_PROTOCOL = "protocol";
+    /**
+     *
+     */
     public static final String RESSOURCE_SERVEUR_URL = "serveurUrl";
+    /**
+     *
+     */
     public static final String RESSOURCE_PORT = "port";
+    /**
+     *
+     */
     public static final String RESSOURCE_APPLICATION_NAME = "appicationName";
+    /**
+     *
+     */
     public static final String RESSOURCE_RESSOURCES_PATH = "ressourcesPath";
+    /**
+     *
+     */
     public static final String RESSOURCE_TABLE_NAME = "Ressource";
+    /**
+     *
+     */
     public static final String RESSOURCE_TABLE_CREATE =
             "CREATE TABLE " + RESSOURCE_TABLE_NAME + " ("
             + RESSOURCE_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -29,14 +53,33 @@ public class Connexion extends SQLiteOpenHelper {
             + RESSOURCE_APPLICATION_NAME + " TEXT, "
             + RESSOURCE_RESSOURCES_PATH + " TEXT, "
             + RESSOURCE_PORT + " INTEGER);";
+    /**
+     *
+     */
     public static final String RESSOURCE_TABLE_DROP = "DROP TABLE IF EXISTS " + RESSOURCE_TABLE_NAME + ";";
+    /**
+     *
+     */
     protected final static int VERSION = 1;
+    /**
+     *
+     */
     protected SQLiteDatabase mDb;
 
+    /**
+     *
+     * @param context
+     * @param name
+     * @param factory
+     * @param version
+     */
     public Connexion(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
+    /**
+     *
+     */
     public void open() {
         mDb = this.getWritableDatabase();
     }
@@ -46,15 +89,29 @@ public class Connexion extends SQLiteOpenHelper {
         mDb.close();
     }
 
+    /**
+     *
+     * @return
+     */
     public SQLiteDatabase getBDD() {
         return this.mDb;
     }
 
+    /**
+     *
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(RESSOURCE_TABLE_CREATE);
     }
 
+    /**
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(RESSOURCE_TABLE_DROP);

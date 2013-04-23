@@ -38,10 +38,18 @@ public class Intrusion extends Evenement {
         return "evenement sur : " + detecteurIntrusion;
     }
 
+    /**
+     *
+     * @return
+     */
     public DetecteurIntrusion getDetecteurIntrusion() {
         return detecteurIntrusion;
     }
 
+    /**
+     *
+     * @param detecteurIntrusion
+     */
     public void setDetecteurIntrusion(DetecteurIntrusion detecteurIntrusion) {
         this.detecteurIntrusion = detecteurIntrusion;
     }

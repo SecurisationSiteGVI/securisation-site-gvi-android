@@ -27,6 +27,9 @@ public class MenuBadge extends TemplateActivity {
 
     }
 
+    /**
+     *
+     */
     @Override
     public void initGraphicalObjects() {
         this.buttonAttributionbadges = (Button) findViewById(R.id.attributionbadges);
@@ -34,6 +37,9 @@ public class MenuBadge extends TemplateActivity {
         this.buttonListeBadge = (Button) findViewById(R.id.listeBadge);
     }
 
+    /**
+     *
+     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonAttributionbadges.setOnClickListener(new View.OnClickListener() {

@@ -27,6 +27,13 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
  */
 public class RESTBadgeRemove {
 
+    /**
+     *
+     * @param params
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static Object execute(Object... params) throws MalformedURLException, IOException {
         Boolean retour = false;
         Context c = (Context) params[0];

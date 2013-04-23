@@ -23,6 +23,16 @@ import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWeb;
  */
 public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
     private DetecteurIntrusionServiceWeb detecteurIntrusionSrv = PhysiqueDataOutFactory.getDetecteurIntrusionServiceWeb();
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<DetecteurIntrusion> getAll(Context context) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<DetecteurIntrusion> ret = null;
         if (context != null) {
@@ -37,6 +47,18 @@ public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param index
+     * @param nbResultat
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws Exception
+     */
     public List<DetecteurIntrusion> getAll(Context context, int index, int nbResultat) throws MalformedURLException, IOException, ParserConfigurationException, SAXException, Exception {
         List<DetecteurIntrusion> ret = null;
         if (context != null) {
@@ -57,6 +79,14 @@ public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
         return ressource;
     }
 
+    /**
+     *
+     * @param context
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public int count(Context context) throws MalformedURLException, IOException, Exception {
         Integer ret = null;
         if (context != null) {
@@ -71,6 +101,14 @@ public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
         return ret;
     }
 
+    /**
+     *
+     * @param context
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void add(Context context, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(detecteurIntrusion!=null)) {
             if ((context instanceof Context)&&(detecteurIntrusion instanceof DetecteurIntrusion)) {
@@ -83,6 +121,14 @@ public class DetecteurIntrusionServiceImpl implements DetecteurIntrusionService{
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param detecteurIntrusion
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws Exception
+     */
     public void remove(Context context, DetecteurIntrusion detecteurIntrusion) throws MalformedURLException, IOException, Exception {
         if ((context != null)&&(detecteurIntrusion!=null)) {
             if ((context instanceof Context)&&(detecteurIntrusion instanceof DetecteurIntrusion)) {

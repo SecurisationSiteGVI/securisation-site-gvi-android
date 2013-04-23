@@ -40,26 +40,50 @@ public class Acces extends Evenement {
         return "passege de l'utilisateur : " + utilisateur;
     }
 
+    /**
+     *
+     * @return
+     */
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }
 
+    /**
+     *
+     * @param utilisateur
+     */
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getPassage() {
         return passage;
     }
 
+    /**
+     *
+     * @param passage
+     */
     public void setPassage(Boolean passage) {
         this.passage = passage;
     }
 
+    /**
+     *
+     * @return
+     */
     public BorneAcces getBorneAcces() {
         return borneAcces;
     }
 
+    /**
+     *
+     * @param borneAcces
+     */
     public void setBorneAcces(BorneAcces borneAcces) {
         this.borneAcces = borneAcces;
     }

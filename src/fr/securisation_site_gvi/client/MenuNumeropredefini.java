@@ -22,14 +22,20 @@ public class MenuNumeropredefini extends TemplateActivity{
         setContentView(R.layout.activity_menu_position);
         this.setThisActivityOn();
     }
-     @Override
+     /**
+     *
+     */
+    @Override
      public void initGraphicalObjects() {
          this.buttonAjouterUnNumero =(Button) findViewById(R.id.MenuPositionButtonAjouterUnePosition);
          this.buttonListerLesNumeros = (Button) findViewById(R.id.MenuPositionButtonListerLesPositions);
          
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addActionListnerForAllGraphicalObjects() {
          this.buttonAjouterUnNumero.setOnClickListener(new View.OnClickListener() {
 
@@ -48,7 +54,10 @@ public class MenuNumeropredefini extends TemplateActivity{
          });
     }
 
-     @Override
+     /**
+     *
+     */
+    @Override
     public void addInitialValueForGraphicalObjects() {
          this.buttonAjouterUnNumero.setText("Ajouter un numéro");
          this.buttonListerLesNumeros.setText("Lister les numéros prédéfini");

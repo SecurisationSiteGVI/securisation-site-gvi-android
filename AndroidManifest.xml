@@ -151,6 +151,18 @@
             android:name=".AjoutBorneAcces"
             android:label="@string/title_activity_ajout_borne_acess" >
         </activity>
+        <activity 
+            android:name=".MenuNumeropredefini"
+            android:label="@string/title_activity_menu_numero" >
+        </activity>
+        <activity 
+            android:name=".AjouterNumero"
+            android:label="@string/title_activity_ajouter_numero" >
+        </activity>
+        <activity 
+            android:name=".ListeNumeroPredefini"
+            android:label="@string/title_activity_liste_numero" >
+        </activity>
     </application> 
     
 </manifest>

@@ -22,13 +22,41 @@ import physique.dataOut.attributionSecteurBorneAcces.rest.RESTAttributionSecteur
  */
 public class AttributionSecteurBorneAccesServiceWebImpl implements AttributionSecteurBorneAccesServiceWeb{
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void attribuer(Ressource ressource, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException{
         RESTAttributionSecteurBorneAccesAttribuer.execute(ressource, secteur, borneAcces);
     }
 
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @param borneAcces
+     * @throws MalformedURLException
+     * @throws IOException
+     * @throws RuntimeException
+     */
     public void desattribuer(Ressource ressource, Secteur secteur, BorneAcces borneAcces)throws MalformedURLException, IOException, RuntimeException {
         RESTAttributionSecteurBorneAccesDesattribuer.execute(ressource, secteur, borneAcces);
     }
+    /**
+     *
+     * @param ressource
+     * @param secteur
+     * @return
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public AttributionSecteurBorneAcces getBySecteur(Ressource ressource, Secteur secteur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException{
         return RESTAttributionSecteurBorneAccesGetBySecteur.execute(ressource, secteur);
     }

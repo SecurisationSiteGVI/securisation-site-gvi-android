@@ -18,6 +18,14 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTBorneAccesRemove {
+    /**
+     *
+     * @param ressource
+     * @param borneAcces
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public static boolean execute(Ressource ressource, BorneAcces borneAcces) throws MalformedURLException, IOException {
         Boolean retour = true;
         URL url = new URL(ressource.getPathToAccesWebService() + "borneacces/" + borneAcces.getId());
