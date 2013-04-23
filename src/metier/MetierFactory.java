@@ -25,7 +25,15 @@ public class MetierFactory {
     private static DetecteurIntrusionService detecteurIntrusionSrv;
     private static AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv;
     private static PositionService positionSrv;
+    private static NumeroPredefiniService numeroPredefiniSrv;
 
+    public static NumeroPredefiniService getNumeroPredefiniService() {
+        if (numeroPredefiniSrv == null) {
+            numeroPredefiniSrv = new NumeroPredefiniServiceImpl();
+        }
+        return numeroPredefiniSrv;
+    }
+    
     public static AttributionSecteurDetecteurIntrusionService getAttributionSecteurDetecteurIntrusionService() {
         if (attributionSecteurDetecteurIntrusionSrv == null) {
             attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceImpl();
