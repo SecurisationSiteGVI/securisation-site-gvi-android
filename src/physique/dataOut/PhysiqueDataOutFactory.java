@@ -4,8 +4,8 @@
  */
 package physique.dataOut;
 
-import fr.securisation_site_gvi.client.AttributionBadge;
-import metier.AttributionSecteurBorneAccesService;
+import metier.NumeroPredefiniService;
+import metier.NumeroPredefiniServiceImpl;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWebImpl;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
@@ -26,6 +26,8 @@ import physique.dataOut.camera.CameraServiceWeb;
 import physique.dataOut.camera.CameraServiceWebImpl;
 import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWeb;
 import physique.dataOut.detecteurIntrusion.DetecteurIntrusionServiceWebImpl;
+import physique.dataOut.numeroPredefini.NumeroPredefiniServiceWeb;
+import physique.dataOut.numeroPredefini.NumeroPredefiniServiceWebImpl;
 import physique.dataOut.position.PositionServiceWeb;
 import physique.dataOut.position.PositionServiceWebImpl;
 import physique.dataOut.secteur.SecteurServiceWeb;
@@ -49,6 +51,15 @@ public class PhysiqueDataOutFactory {
     private static CameraServiceWeb cameraSrv;
     private static DetecteurIntrusionServiceWeb detecteurIntrusionSrv;
     private static PositionServiceWeb positionSrv;
+    private static NumeroPredefiniServiceWeb numeroPredefiniSrv;
+    
+    
+    public static NumeroPredefiniServiceWeb getNumeroPredefiniServiceWeb() {
+        if (numeroPredefiniSrv == null) {
+            numeroPredefiniSrv = new NumeroPredefiniServiceWebImpl() ;
+        }
+        return numeroPredefiniSrv;
+    }
     
     public static PositionServiceWeb getPositionServiceWeb() {
         if (positionSrv == null) {
