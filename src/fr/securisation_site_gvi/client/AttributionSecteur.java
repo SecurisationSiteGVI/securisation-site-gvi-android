@@ -71,7 +71,7 @@ public class AttributionSecteur extends TemplateActivity {
     private DetecteurIntrusion detecteurIntrusionSelected;
     private int countSecteurs;
     private String switchs;
-    private SecteurService secteurSrv = MetierFactory.getSecteurServ();
+    private SecteurService secteurSrv = MetierFactory.getSecteurSrv();
     private BorneAccesService borneAccesSrv = MetierFactory.getBorneAccesService();
     private AttributionSecteurCameraService attributionSecteurCameraSrv = MetierFactory.getAttributionSecteurCameraSrv();
     private AttributionSecteurBorneAccesService attributionSecteurBorneAccesSrv = MetierFactory.getAttributionSecteurBorneAccesService();

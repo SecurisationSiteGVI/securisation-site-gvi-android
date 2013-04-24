@@ -30,7 +30,7 @@ public class AjoutSecteur extends TemplateActivity {
 
     private EditText edittextNom;
     private Button buttonAjouter;
-    private SecteurService secteurSrv = MetierFactory.getSecteurServ();
+    private SecteurService secteurSrv = MetierFactory.getSecteurSrv();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

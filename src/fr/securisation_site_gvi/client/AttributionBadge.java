@@ -152,11 +152,11 @@ public class AttributionBadge extends TemplateActivity {
                 builder.setCustomTitle(view);
                 builder.setView(view);
                 builder.setCancelable(true);
-                View content = View.inflate(activityContext, R.layout.activity_liste_utilisateur, null);
-                list = (ListView) content.findViewById(R.id.SecteurListView);
-                precedent = (Button) content.findViewById(R.id.SecteurButtonPrecedent);
-                suivant = (Button) content.findViewById(R.id.SecteurButtonSuivant);
-                textViewPage = (TextView) content.findViewById(R.id.SecteurTextviewPage);
+                 View content = View.inflate(activityContext, R.layout.activity_listebadges, null);
+                list = (ListView) content.findViewById(R.id.listViewBadges);
+                precedent = (Button) content.findViewById(R.id.buttonBadgesPrecedent);
+                suivant = (Button) content.findViewById(R.id.buttonBadgesSuivant);
+                textViewPage = (TextView) content.findViewById(R.id.textviewbadgePage);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
@@ -164,8 +164,8 @@ public class AttributionBadge extends TemplateActivity {
                         pos = position;
                         AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
                         builder.setTitle("utilisateur séléctionné.");
-                        List<Utilisateur> badges = (List<Utilisateur>) u;
-                        builder.setMessage("Voulez-vous séléctionner le badge n°" + badges.get(position).toString() + " ?");
+                        List<Utilisateur> utilisateurs = (List<Utilisateur>) u;
+                        builder.setMessage("Voulez-vous séléctionner l'utilisateur " + utilisateurs.get(position).toString() + " ?");
                         builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Utilisateur utilisateurCliked = (Utilisateur) u.get(pos);

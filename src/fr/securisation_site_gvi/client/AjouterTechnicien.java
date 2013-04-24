@@ -9,7 +9,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,13 +18,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Technicien;
-import metier.entitys.Utilisateur;
 
 /**
  *
