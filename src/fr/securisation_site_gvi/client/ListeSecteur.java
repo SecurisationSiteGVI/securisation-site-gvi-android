@@ -35,7 +35,7 @@ public class ListeSecteur extends TemplateActivity{
     private ListView listSecteur;
     private Button precedent;
     private Button suivant;
-    private SecteurService secteurSrv = MetierFactory.getSecteurServ();
+    private SecteurService secteurSrv = MetierFactory.getSecteurSrv();
     private int index;
     private int nbLinge = 9;
     private TextView textViewPage;
