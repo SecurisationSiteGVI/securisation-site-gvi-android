@@ -158,10 +158,14 @@
         <activity 
             android:name=".AjouterNumero"
             android:label="@string/title_activity_ajouter_numero" >
-        </activity>
+        </activity> 
         <activity 
             android:name=".ListeNumeroPredefini"
             android:label="@string/title_activity_liste_numero" >
+        </activity>
+        <activity 
+            android:name=".AuthorisationAcces"
+            android:label="@string/title_activity_authorisation_acces" >
         </activity>
     </application> 
     
