@@ -87,7 +87,8 @@ public class AccueilActivity extends TemplateActivity {
         });
         this.gererLesAuthorisationAcces.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(AccueilActivity.this, "LA PAGE PAS ENCORE CREE.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activityContext, AuthorisationAcces.class);
+                startActivity(intent);
             }
         });
     }
