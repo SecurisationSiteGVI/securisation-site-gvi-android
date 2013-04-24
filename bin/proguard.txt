@@ -34,6 +34,9 @@
 # view AndroidManifest.xml #generated:98
 -keep class fr.securisation_site_gvi.client.AttributionSecteur { <init>(...); }
 
+# view AndroidManifest.xml #generated:166
+-keep class fr.securisation_site_gvi.client.AuthorisationAcces { <init>(...); }
+
 # view AndroidManifest.xml #generated:50
 -keep class fr.securisation_site_gvi.client.Historique { <init>(...); }
 

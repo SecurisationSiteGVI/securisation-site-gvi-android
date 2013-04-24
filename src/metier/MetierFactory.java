@@ -119,7 +119,7 @@ public class MetierFactory {
      *
      * @return
      */
-    public static SecteurService getSecteurServ() {
+    public static SecteurService getSecteurSrv() {
         if (secteurSrv == null) {
             secteurSrv = new SecteurServiceImpl();
         }
