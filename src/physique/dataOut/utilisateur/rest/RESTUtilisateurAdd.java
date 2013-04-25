@@ -45,7 +45,11 @@ public class RESTUtilisateurAdd {
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
-        String input = "{\"id\":0,\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\"}";
+        String input = "{\"id\":0,\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\""
+                + "email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\""
+                + "telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\""
+                + "codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\","
+                + "\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\"}";
         OutputStream os = conn.getOutputStream();
         System.out.println(input);
         os.write(input.getBytes());
