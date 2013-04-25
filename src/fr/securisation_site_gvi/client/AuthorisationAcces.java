@@ -26,7 +26,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import metier.MetierFactory;
 import metier.SecteurService;
 import metier.UtilisateurService;
-import metier.entitys.Badge;
 import metier.entitys.Secteur;
 import metier.entitys.Utilisateur;
 import org.xml.sax.SAXException;
@@ -51,6 +50,7 @@ public class AuthorisationAcces extends TemplateActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorisation_acces);
         this.setThisActivityOn();
+        
     }
     @Override
      public void initGraphicalObjects() {
@@ -178,6 +178,68 @@ public class AuthorisationAcces extends TemplateActivity{
             }
         });
     }
+    public void authoriser() {
+       /*metier.entitys.AuthorisationAcces authorisationAcces = null;
+        boolean neww = false;
+        try {
+            if (this.authorisationAccesSrv.getByUtilisateur(utilisateurSelected) == null) {
+                authorisationAcces = new metier.entitys.AuthorisationAcces();
+                neww = true;
+            } else {
+                authorisationAcces = this.authorisationAccesSrv.getByUtilisateur(this.getUtilisateurSelected());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Date fermeture = new Date();
+        if (this.heureFermetre.isEmpty() && this.minutesFermeture.isEmpty()) {
+            fermeture.setHours(0);
+            fermeture.setMinutes(0);
+        } else {
+            fermeture.setHours(Integer.parseInt(this.heureFermetre));
+            fermeture.setMinutes(Integer.parseInt(this.minutesFermeture));
+        }
+        Date ouverture = new Date();
+        if (this.heureOuverture.isEmpty() && this.minutesOuverture.isEmpty()) {
+            ouverture.setHours(0);
+            ouverture.setMinutes(0);
+        } else {
+            ouverture.setHours(Integer.parseInt(this.heureOuverture));
+            ouverture.setMinutes(Integer.parseInt(this.minutesOuverture));
+        }
+        List<Secteur> secteurs = new ArrayList<Secteur>();
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.get(i) instanceof SecteurIsAttribuer) {
+                SecteurIsAttribuer ie = (SecteurIsAttribuer) objects.get(i);
+                secteurs.add(ie.getSecteur());
+                objects.remove(i);
+            }
+        }
+        if (!secteurs.isEmpty()) {
+            if (authorisationAcces.getSecteurs() == null) {
+                List<Secteur> q = new ArrayList<Secteur>();
+                q.addAll(secteurs);
+                authorisationAcces.setSecteurs(q);
+            }
+
+        }
+        authorisationAcces.setHeureFermeture(fermeture);
+        authorisationAcces.setHeureOuverture(ouverture);
+        authorisationAcces.setUtilisateur(utilisateurSelected);
+        if (neww) {
+            try {
+                this.authorisationAccesSrv.add(authorisationAcces);
+            } catch (Exception ex) {
+                Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                this.authorisationAccesSrv.update(authorisationAcces);
+            } catch (Exception ex) {
+                Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }*/
+    }
     private void remplirListView() {
         if (isUtilisateur) {
             if (index == 0) {
@@ -244,6 +306,8 @@ public class AuthorisationAcces extends TemplateActivity{
             this.nbLinge = 14;
         }
         this.index = 0;
+        new RESTUtilisateurCount().execute();
+        new RESTSecteurCount().execute();
         this.buttonUtilisateur.setText("Séléctionnez l'utilisateur");
         this.buttonSecteur.setText("Gérer les secteurs accesible");
     }
@@ -365,6 +429,96 @@ public class AuthorisationAcces extends TemplateActivity{
             } catch (Exception ex) {
                 erreur = true;
                 Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTUtilisateurCount extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+        private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                countUtilisateur = (Integer) result;
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = utilisateurSrv.count(activityContext);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+    private class RESTSecteurCount extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+        private SecteurService secteurSrv = MetierFactory.getSecteurSrv();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                countSecteur = (Integer) result;
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                ret = secteurSrv.count(activityContext);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
             }
             return ret;
         }
