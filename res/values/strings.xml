@@ -120,7 +120,8 @@
      <string name="title_activity_menu_numero">Gérer les numéros prédéfini</string>
      <string name="title_activity_ajouter_numero">Ajouter un numéro prédéfini</string>
      <string name="title_activity_liste_numero">Liste des numéros prédéfinis</string>
-     <!--string name="utilisateur">Utilisateur :</string-->
+     <string name="heuredebut">Heure de début :</string>
+     <string name="heurefin">Heure de fin :</string>
      <string name="secteur">Secteur :</string>
      <string name="title_activity_authorisation_acces">Gérer les authorisations d\'acces</string>
 </resources>
