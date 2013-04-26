@@ -14,6 +14,8 @@ import physique.dataOut.attributionSecteurDetecteurIntrusion.AttributionSecteurD
 import physique.dataOut.attributionSecteurDetecteurIntrusion.AttributionSecteurDetecteurIntrusionServiceWebImpl;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWeb;
 import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeServiceWebImpl;
+import physique.dataOut.authorisationAcces.AuthorisationAccesServiceWeb;
+import physique.dataOut.authorisationAcces.AuthorisationAccesServiceWebImpl;
 import physique.dataOut.utilisateur.UtilisateurServiceWeb;
 import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 import physique.dataOut.evenement.EvenementServiceWeb;
@@ -52,12 +54,15 @@ public class PhysiqueDataOutFactory {
     private static DetecteurIntrusionServiceWeb detecteurIntrusionSrv;
     private static PositionServiceWeb positionSrv;
     private static NumeroPredefiniServiceWeb numeroPredefiniSrv;
+    private static AuthorisationAccesServiceWeb authorisationAccesSrv;
     
+    public static AuthorisationAccesServiceWeb getAuthorisationAccesServiceWeb() {
+        if (authorisationAccesSrv == null) {
+            authorisationAccesSrv = new AuthorisationAccesServiceWebImpl() ;
+        }
+        return authorisationAccesSrv;
+    }
     
-    /**
-     *
-     * @return
-     */
     public static NumeroPredefiniServiceWeb getNumeroPredefiniServiceWeb() {
         if (numeroPredefiniSrv == null) {
             numeroPredefiniSrv = new NumeroPredefiniServiceWebImpl() ;

@@ -13,7 +13,10 @@ import metier.entitys.Secteur;
 import metier.entitys.Utilisateur;
 import org.xml.sax.SAXException;
 import physique.dataOut.authorisationAcces.rest.RESTAuthorisationAccesAdd;
+import physique.dataOut.authorisationAcces.rest.RESTAuthorisationAccesAttacher;
+import physique.dataOut.authorisationAcces.rest.RESTAuthorisationAccesDetacher;
 import physique.dataOut.authorisationAcces.rest.RESTAuthorisationAccesGetByUtilisateur;
+import physique.dataOut.authorisationAcces.rest.RESTAuthorisationAccesUpdate;
 
 /**
  *
@@ -25,16 +28,16 @@ public class AuthorisationAccesServiceWebImpl implements AuthorisationAccesServi
         RESTAuthorisationAccesAdd.execute(ressource, authorisationAcces);
     }
 
-    public void attacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur) {
-        
+    public void attacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur) throws MalformedURLException, IOException{
+        RESTAuthorisationAccesAttacher.execute(ressource, secteur, utilisateur);
     }
 
-    public void detacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void detacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur) throws MalformedURLException, IOException{
+        RESTAuthorisationAccesDetacher.execute(ressource, secteur, utilisateur);
     }
 
-    public void update(Ressource ressource, AuthorisationAcces authorisationAcces) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Ressource ressource, AuthorisationAcces authorisationAcces) throws MalformedURLException, IOException{
+        RESTAuthorisationAccesUpdate.execute(ressource, authorisationAcces);
     }
 
     public AuthorisationAcces getByUtilisateur(Ressource ressource, Utilisateur utilisateur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException{

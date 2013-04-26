@@ -19,8 +19,8 @@ import org.xml.sax.SAXException;
  */
 public interface AuthorisationAccesServiceWeb {
     public void add(Ressource ressource, AuthorisationAcces authorisationAcces)throws MalformedURLException, IOException;
-    public void attacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur);
-    public void detacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur);
-    public void update(Ressource ressource, AuthorisationAcces authorisationAcces);
+    public void attacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur)throws MalformedURLException, IOException;
+    public void detacherSecteur(Ressource ressource, Utilisateur utilisateur, Secteur secteur)throws MalformedURLException, IOException;
+    public void update(Ressource ressource, AuthorisationAcces authorisationAcces)throws MalformedURLException, IOException;
     public AuthorisationAcces getByUtilisateur(Ressource ressource,Utilisateur utilisateur)throws SAXException, ParserConfigurationException, MalformedURLException, IOException;
 }

@@ -37,7 +37,7 @@ import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 public class RESTAuthorisationAccesGetByUtilisateur {
 
     public static AuthorisationAcces execute(Ressource ressource, Utilisateur utilisateur) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
-        AuthorisationAcces authorisationAcces = null;
+        AuthorisationAcces authorisationAcces = new AuthorisationAcces();
         InputStream fluxLecture = null;
         URL url = new URL(ressource.getPathToAccesWebService() + "authorisationacces/byUtilisateur/" + utilisateur.getId());
         fluxLecture = url.openStream();
@@ -73,7 +73,7 @@ public class RESTAuthorisationAccesGetByUtilisateur {
                     authorisationAcces.setHeureOuverture(d);
                 }
                 if (BoiteAOutils.getTagValue("id", eElement) != null) {
-                    Long id = Long.parseLong(BoiteAOutils.getTagValue("heureOuverture", eElement));
+                    Long id = Long.parseLong(BoiteAOutils.getTagValue("id", eElement));
                     authorisationAcces.setId(id);
                 }
                 List<Secteur> secteurs = new ArrayList<Secteur>();
