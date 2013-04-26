@@ -87,7 +87,7 @@ public class AccueilActivity extends TemplateActivity {
         });
         this.gererLesAuthorisationAcces.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activityContext, AuthorisationAcces.class);
+                Intent intent = new Intent(activityContext, GererAuthorisationAcces.class);
                 startActivity(intent);
             }
         });
