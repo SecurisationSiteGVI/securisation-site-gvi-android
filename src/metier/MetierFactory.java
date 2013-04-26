@@ -26,11 +26,14 @@ public class MetierFactory {
     private static AttributionSecteurDetecteurIntrusionService attributionSecteurDetecteurIntrusionSrv;
     private static PositionService positionSrv;
     private static NumeroPredefiniService numeroPredefiniSrv;
-
-    /**
-     *
-     * @return
-     */
+    private static AuthorisationAccesService authorisationAccesSrv;
+    
+    public static AuthorisationAccesService getAuthorisationAccesService() {
+        if (authorisationAccesSrv == null) {
+            authorisationAccesSrv = new AuthorisationAccesServiceImpl();
+        }
+        return authorisationAccesSrv;
+    }
     public static NumeroPredefiniService getNumeroPredefiniService() {
         if (numeroPredefiniSrv == null) {
             numeroPredefiniSrv = new NumeroPredefiniServiceImpl();
