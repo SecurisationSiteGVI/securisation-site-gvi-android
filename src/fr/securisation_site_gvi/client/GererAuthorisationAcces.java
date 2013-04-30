@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +52,8 @@ public class GererAuthorisationAcces extends TemplateActivity {
     private AlertDialog alertDialogInCurrent;
     private boolean isUtilisateur;
     private AuthorisationAcces authorisationAccesByUtilisateur;
-    private Boolean[] isAuthoriser=null;
+    private Boolean[] isAuthoriser = null;
+    private EditText editTextHeureDebut, editTextMinuteDebut, editTextHeureFin, editTextMinuteFin;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,10 @@ public class GererAuthorisationAcces extends TemplateActivity {
         this.buttonUtilisateur = (Button) findViewById(R.id.AuthorisationAccesButtonUtilisateur);
         this.buttonSecteur = (Button) findViewById(R.id.AuthorisationAccesButtonSecteur);
         this.buttonCree = (Button) findViewById(R.id.AuthorisationAccesButtonCree);
+        this.editTextHeureDebut = (EditText) findViewById(R.id.AuthorisationAccesEditTextHeureDebut);
+        this.editTextMinuteDebut = (EditText) findViewById(R.id.AuthorisationAccesEditTextMinuteDebut);
+        this.editTextHeureFin = (EditText) findViewById(R.id.AuthorisationAccesEditTextHeureFin);
+        this.editTextMinuteFin = (EditText) findViewById(R.id.AuthorisationAccesEditTextMinuteFin);
     }
 
     @Override
@@ -72,7 +80,7 @@ public class GererAuthorisationAcces extends TemplateActivity {
             public void onClick(View v) {
                 index = 0;
                 isUtilisateur = false;
-                
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(activityContext, AlertDialog.THEME_HOLO_LIGHT);
                 LayoutInflater inflater = getLayoutInflater();
                 View view = inflater.inflate(R.layout.dialog_custom_titile, null);
@@ -90,26 +98,26 @@ public class GererAuthorisationAcces extends TemplateActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view,
                             int position, long id) {
-                        pos=position;
+                        pos = position;
                         if (utilisateurSelected != null) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
                             builder.setTitle("Secteur séléctionné.");
-                            if(isAuthoriser[position]){
+                            if (isAuthoriser[position]) {
                                 builder.setMessage("Voulez-vous interdir l'acces au secteur : " + secteurs.get(pos).toString() + " à l'utilisateur"
-                                        + " "+utilisateurSelected.toString()+" ?");
-                            }else{
+                                        + " " + utilisateurSelected.toString() + " ?");
+                            } else {
                                 builder.setMessage("Voulez-vous authoriser l'acces au secteur : " + secteurs.get(pos).toString() + " à l'utilisateur"
-                                        + " "+utilisateurSelected.toString()+" ?");
+                                        + " " + utilisateurSelected.toString() + " ?");
                             }
-                            
+
                             builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     Secteur secteurCliced = (Secteur) secteurs.get(pos);
                                     alertDialogInCurrent.cancel();
                                     dialog.cancel();
-                                    if(isAuthoriser[pos]){
+                                    if (isAuthoriser[pos]) {
                                         new RESTAuthorisationAccesDesAuthoriser().execute(secteurCliced);
-                                    }else{
+                                    } else {
                                         new RESTAuthorisationAccesAuthoriser().execute(secteurCliced);
                                     }
                                     new RESTAuthorisationAccesGetByUtilisateur().execute();
@@ -200,69 +208,15 @@ public class GererAuthorisationAcces extends TemplateActivity {
                 alertDialogInCurrent.show();
             }
         });
+        this.buttonCree.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                authoriser();
+            }
+        });
     }
 
     public void authoriser() {
-        /*metier.entitys.AuthorisationAcces authorisationAcces = null;
-         boolean neww = false;
-         try {
-         if (this.authorisationAccesSrv.getByUtilisateur(utilisateurSelected) == null) {
-         authorisationAcces = new metier.entitys.AuthorisationAcces();
-         neww = true;
-         } else {
-         authorisationAcces = this.authorisationAccesSrv.getByUtilisateur(this.getUtilisateurSelected());
-         }
-         } catch (Exception ex) {
-         Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         Date fermeture = new Date();
-         if (this.heureFermetre.isEmpty() && this.minutesFermeture.isEmpty()) {
-         fermeture.setHours(0);
-         fermeture.setMinutes(0);
-         } else {
-         fermeture.setHours(Integer.parseInt(this.heureFermetre));
-         fermeture.setMinutes(Integer.parseInt(this.minutesFermeture));
-         }
-         Date ouverture = new Date();
-         if (this.heureOuverture.isEmpty() && this.minutesOuverture.isEmpty()) {
-         ouverture.setHours(0);
-         ouverture.setMinutes(0);
-         } else {
-         ouverture.setHours(Integer.parseInt(this.heureOuverture));
-         ouverture.setMinutes(Integer.parseInt(this.minutesOuverture));
-         }
-         List<Secteur> secteurs = new ArrayList<Secteur>();
-         for (int i = 0; i < objects.size(); i++) {
-         if (objects.get(i) instanceof SecteurIsAttribuer) {
-         SecteurIsAttribuer ie = (SecteurIsAttribuer) objects.get(i);
-         secteurs.add(ie.getSecteur());
-         objects.remove(i);
-         }
-         }
-         if (!secteurs.isEmpty()) {
-         if (authorisationAcces.getSecteurs() == null) {
-         List<Secteur> q = new ArrayList<Secteur>();
-         q.addAll(secteurs);
-         authorisationAcces.setSecteurs(q);
-         }
-
-         }
-         authorisationAcces.setHeureFermeture(fermeture);
-         authorisationAcces.setHeureOuverture(ouverture);
-         authorisationAcces.setUtilisateur(utilisateurSelected);
-         if (neww) {
-         try {
-         this.authorisationAccesSrv.add(authorisationAcces);
-         } catch (Exception ex) {
-         Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         } else {
-         try {
-         this.authorisationAccesSrv.update(authorisationAcces);
-         } catch (Exception ex) {
-         Logger.getLogger(AuthorisationAccesManagedBean.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         }*/
+        new RESTAuthorisationAccesGetByUtilisateurForAttribuer().execute();
     }
 
     private void remplirListView() {
@@ -338,6 +292,230 @@ public class GererAuthorisationAcces extends TemplateActivity {
         new RESTSecteurCount().execute();
         this.buttonUtilisateur.setText("Séléctionnez l'utilisateur");
         this.buttonSecteur.setText("Gérer les secteurs accesible");
+    }
+
+    private class RESTAuthorisationAccesGetByUtilisateurForAttribuer extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+        private AuthorisationAccesService authorisationAccesSrv = MetierFactory.getAuthorisationAccesService();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
+            this.progressDialog.setCancelable(false);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                if (result != null) {
+                    if (result instanceof AuthorisationAcces) {
+                        authorisationAccesByUtilisateur = (AuthorisationAcces) result;
+                    }
+                    metier.entitys.AuthorisationAcces authorisationAcces = null;
+                    boolean neww = false;
+                    if ((result == null)  ) {
+                        
+                        authorisationAcces = new metier.entitys.AuthorisationAcces();
+                        neww = true;
+                    } else {
+                        if (result instanceof AuthorisationAcces) {
+                            authorisationAcces = (AuthorisationAcces) result;
+                        } else {
+                            authorisationAcces = new metier.entitys.AuthorisationAcces();
+                            neww = true;
+                        }
+                    }
+                    Date fermeture = new Date();
+                    if (editTextHeureFin.getText().toString().isEmpty() && editTextMinuteFin.getText().toString().isEmpty()) {
+                        fermeture.setHours(0);
+                        fermeture.setMinutes(0);
+                    } else {
+                        if(editTextHeureFin.getText().toString().equals("")){
+                            fermeture.setHours(Integer.parseInt("0"));
+                        }else{
+                            fermeture.setHours(Integer.parseInt(editTextHeureFin.getText().toString()));
+                        }
+                        if(editTextMinuteFin.getText().toString().equals("")){
+                            fermeture.setMinutes(0);
+                        }else{
+                            fermeture.setMinutes(Integer.parseInt(editTextMinuteFin.getText().toString()));
+                        }
+                    }
+                    Date ouverture = new Date();
+                    if (editTextHeureDebut.getText().toString().isEmpty() && editTextMinuteFin.getText().toString().isEmpty()) {
+                        ouverture.setHours(0);
+                        ouverture.setMinutes(0);
+                    } else {
+                        if(editTextHeureDebut.getText().toString().equals("")){
+                            ouverture.setHours(0);
+                        }else{
+                            ouverture.setHours(Integer.parseInt(editTextHeureDebut.getText().toString()));
+                        }
+                        if(editTextMinuteDebut.getText().toString().equals("")){
+                            ouverture.setMinutes(0);
+                        }else{
+                            ouverture.setMinutes(Integer.parseInt(editTextMinuteDebut.getText().toString()));
+                        }
+                    }
+                    authorisationAcces.setHeureFermeture(fermeture);
+                    authorisationAcces.setHeureOuverture(ouverture);
+                    authorisationAcces.setUtilisateur(utilisateurSelected);
+                    if (neww) {
+                        new RESTAuthorisationAccesAdd().execute(authorisationAcces);
+                    } else {
+                        new RESTAuthorisationAccesUpdate().execute(authorisationAcces);
+                    }
+                }
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            } else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            } else if (result instanceof NullPointerException) {
+                Toast.makeText(activityContext, "Vous n'avez pas séléctionner d'utilisateur", Toast.LENGTH_LONG).show();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                if (utilisateurSelected != null) {
+                    ret = authorisationAccesSrv.getByUtilisateur(activityContext, utilisateurSelected);
+                } else {
+                    erreur = true;
+                    ret = new NullPointerException();
+                }
+
+            } catch (SAXException ex) {
+                //erreur = true;
+                ret = new SAXException();
+                Logger.getLogger(GererAuthorisationAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur = true;
+                ret = new ParserConfigurationException();
+                Logger.getLogger(GererAuthorisationAcces.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                // erreur = true;
+                Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTAuthorisationAccesAdd extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+        private AuthorisationAccesService utilisateurSrv = MetierFactory.getAuthorisationAccesService();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Authorisation d'acces bien ajouté.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                utilisateurSrv.add(activityContext, (AuthorisationAcces) params[0]);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
+    }
+
+    private class RESTAuthorisationAccesUpdate extends AsyncTask<Object, Void, Object> {
+
+        private ProgressDialog progressDialog;
+        private boolean erreur = false;
+        private AuthorisationAccesService utilisateurSrv = MetierFactory.getAuthorisationAccesService();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            this.progressDialog = ProgressDialog.show(activityContext, "", "Envoie des données ...", true);
+        }
+
+        @Override
+        protected void onPostExecute(Object result) {
+            this.progressDialog.cancel();
+            if (!erreur) {
+                Toast.makeText(activityContext, "Authorisation d'acces bien mis à jour.", Toast.LENGTH_LONG).show();
+            } else if (result instanceof MalformedURLException) {
+                throwMalformedURLException();
+            } else if (result instanceof IOException) {
+                throwIOException();
+            } else if (result instanceof SAXException) {
+                throwIOException();
+            } else {
+                throwException();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object... params) {
+            Object ret = null;
+            try {
+                utilisateurSrv.update(activityContext, (AuthorisationAcces) params[0]);
+            } catch (MalformedURLException ex) {
+                erreur = true;
+                ret = new MalformedURLException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur = true;
+                ret = new IOException();
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                erreur = true;
+                Logger.getLogger(AttributionBadge.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+        }
     }
 
     private class RESTUtilisateurGetAll extends AsyncTask<Object, Void, Object> {
@@ -444,23 +622,23 @@ public class GererAuthorisationAcces extends TemplateActivity {
                         boolean flag = false;
                         for (int i = 0; i < secteurs.size(); i++) {
                             flag = false;
-                            if(!secteursAuthorise.isEmpty()){
+                            if (!secteursAuthorise.isEmpty()) {
                                 for (int j = 0; j < secteursAuthorise.size(); j++) {
-                                if ((j >= secteursAuthorise.size() - 1) && (flag == false)) {
-                                    listeStrings[i] = secteurs.get(i).toString() + " authoriser l'acces";
-                                    isAuthoriser[i] = false;
+                                    if ((j >= secteursAuthorise.size() - 1) && (flag == false)) {
+                                        listeStrings[i] = secteurs.get(i).toString() + " authoriser l'acces";
+                                        isAuthoriser[i] = false;
+                                    }
+                                    if (secteurs.get(i).equals(secteursAuthorise.get(j))) {
+                                        flag = true;
+                                        isAuthoriser[i] = true;
+                                        listeStrings[i] = secteurs.get(i).toString() + " interdir l'acces";
+                                    }
                                 }
-                                if (secteurs.get(i).equals(secteursAuthorise.get(j))) {
-                                    flag = true;
-                                    isAuthoriser[i] = true;
-                                    listeStrings[i] = secteurs.get(i).toString() + " interdir l'acces";
-                                }
-                            }
-                            }else {
+                            } else {
                                 listeStrings[i] = secteurs.get(i).toString() + " authoriser l'acces";
-                                    isAuthoriser[i] = false;
+                                isAuthoriser[i] = false;
                             }
-                            
+
                         }
                         list.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, listeStrings));
                         textViewPage.setText("Page " + getPage() + "/" + getNbPages());
@@ -623,6 +801,15 @@ public class GererAuthorisationAcces extends TemplateActivity {
             if (!erreur) {
                 if (result != null) {
                     authorisationAccesByUtilisateur = (AuthorisationAcces) result;
+                    editTextHeureDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getHours()));
+                    editTextMinuteDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getMinutes()));
+                    editTextHeureFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getHours()));
+                    editTextMinuteFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getMinutes()));
+                }else{
+                    editTextHeureDebut.setText("");
+                    editTextMinuteDebut.setText("");
+                    editTextHeureFin.setText("");
+                    editTextMinuteFin.setText("");
                 }
             } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
@@ -643,8 +830,8 @@ public class GererAuthorisationAcces extends TemplateActivity {
             try {
                 ret = authorisationAccesSrv.getByUtilisateur(activityContext, utilisateurSelected);
             } catch (SAXException ex) {
-                erreur = true;
-                ret = new SAXException();
+//                erreur = true;
+//                ret = new SAXException();
                 Logger.getLogger(GererAuthorisationAcces.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParserConfigurationException ex) {
                 erreur = true;
@@ -665,6 +852,7 @@ public class GererAuthorisationAcces extends TemplateActivity {
             return ret;
         }
     }
+
     private class RESTAuthorisationAccesAuthoriser extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
@@ -683,8 +871,8 @@ public class GererAuthorisationAcces extends TemplateActivity {
             this.progressDialog.cancel();
             if (!erreur) {
 
-                    Toast.makeText(activityContext, "Secteur bien authorisé.", Toast.LENGTH_LONG).show();
-                
+                Toast.makeText(activityContext, "Secteur bien authorisé.", Toast.LENGTH_LONG).show();
+
             } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
             } else if (result instanceof IOException) {
@@ -702,8 +890,8 @@ public class GererAuthorisationAcces extends TemplateActivity {
         protected Object doInBackground(Object... params) {
             Object ret = null;
             try {
-                 authorisationAccesSrv.attacherSecteur(activityContext, utilisateurSelected,(Secteur)params[0]);
-                 
+                authorisationAccesSrv.attacherSecteur(activityContext, utilisateurSelected, (Secteur) params[0]);
+
             } catch (SAXException ex) {
                 erreur = true;
                 ret = new SAXException();
@@ -727,6 +915,7 @@ public class GererAuthorisationAcces extends TemplateActivity {
             return ret;
         }
     }
+
     private class RESTAuthorisationAccesDesAuthoriser extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
@@ -744,9 +933,7 @@ public class GererAuthorisationAcces extends TemplateActivity {
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
-
-                    Toast.makeText(activityContext, "Secteur bien interdi.", Toast.LENGTH_LONG).show();
-        
+                Toast.makeText(activityContext, "Secteur bien interdi.", Toast.LENGTH_LONG).show();
             } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
             } else if (result instanceof IOException) {
@@ -764,7 +951,7 @@ public class GererAuthorisationAcces extends TemplateActivity {
         protected Object doInBackground(Object... params) {
             Object ret = null;
             try {
-                 authorisationAccesSrv.detacherSecteur(activityContext, utilisateurSelected,(Secteur)params[0]);
+                authorisationAccesSrv.detacherSecteur(activityContext, utilisateurSelected, (Secteur) params[0]);
             } catch (SAXException ex) {
                 erreur = true;
                 ret = new SAXException();
