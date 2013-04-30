@@ -19,9 +19,11 @@ import java.net.MalformedURLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
 import metier.MetierFactory;
 import metier.UtilisateurService;
 import metier.entitys.Utilisateur;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -210,20 +212,18 @@ public class ListeUtilisateur extends TemplateActivity {
     }
 
     private class RESTUtilisateurGetAllByRange extends AsyncTask<Object, Void, Object> {
-
         private ProgressDialog progressDialog;
         private boolean erreur = false;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             this.progressDialog = ProgressDialog.show(activityContext, "", "Récupération de l'information ...", true);
         }
-
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
             if (!erreur) {
+                u = (List<Utilisateur>) result;
                 String[] listeStrings = new String[u.size()];
                 for (int i = 0; i < u.size(); i++) {
                     listeStrings[i] = u.get(i).toString();
@@ -232,16 +232,39 @@ public class ListeUtilisateur extends TemplateActivity {
                 setTextViewPageText();
             } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
+            } else if (result instanceof SAXException) {
+                throwSAXException();
+            }else if (result instanceof ParserConfigurationException) {
+                throwParserConfigurationException();
+            }else if (result instanceof IOException) {
+                throwIOException();
+            }else{
+                throwException();
             }
         }
-
         @Override
         protected Object doInBackground(Object... params) {
             Object list = null;
-            try {
+            try {          
                 list = utilisateurSrv.getAll(index, nbLinge, activityContext);
-                u = (List<Utilisateur>) list;
+            } catch (SAXException ex) {
+                erreur=true;
+                list = new SAXException();
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParserConfigurationException ex) {
+                erreur=true;
+                list = new ParserConfigurationException();
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                erreur=true;
+                list = new MalformedURLException();
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                erreur=true;
+                list = new IOException();
+                Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
+                erreur=true;
                 Logger.getLogger(ListeUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
             }
             return list;
