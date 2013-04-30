@@ -20,36 +20,39 @@ import metier.entitys.Ressource;
  * @author damien
  */
 public class RESTAuthorisationAccesAdd {
-
+    //   2/{oh}/{om}/{fh}/{fm}/{idutilisateur}
     public static void execute(Ressource ressource, AuthorisationAcces authorisationAcces) throws MalformedURLException, IOException  {
-        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String heureDebut= dateFormat.format(authorisationAcces.getHeureOuverture());
+        String heureFin= dateFormat.format(authorisationAcces.getHeureFermeture());
+        URL url = new URL(ressource.getPathToAccesWebService() + "authorisationacces/2/"+authorisationAcces.getHeureOuverture().getHours()+"/"+authorisationAcces.getHeureOuverture().getMinutes()+"/"+authorisationAcces.getHeureFermeture().getHours()+"/"+authorisationAcces.getHeureFermeture().getMinutes()+"/"+authorisationAcces.getUtilisateur().getId());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
         String trameSecteur="\"secteurs\":[";
-        String prefix="]";
-        String[] secteurs= new String[authorisationAcces.getSecteurs().size()];
-        for(int i=0;i<authorisationAcces.getSecteurs().size();i++){
-            trameSecteur+="{\"id\":\""+authorisationAcces.getSecteurs().get(i).getId()+"\",\"nom\":\""+authorisationAcces.getSecteurs().get(i).getNom()+"\"}";
-            if((i<1)&&(i!=authorisationAcces.getSecteurs().size()-1)){
-                trameSecteur+=",";
-            }
-        }trameSecteur+=prefix;
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String heureDebut= dateFormat.format(authorisationAcces.getHeureOuverture());
-        String heureFin= dateFormat.format(authorisationAcces.getHeureFermeture());
-        String input = "{\"heureFermeture\":\""+heureFin+"\",\"heureOuverture\":\""+heureFin+"\","
-                + "\"id\":\""+authorisationAcces.getId()+"\","+trameSecteur+",\"utilisateur\":{"
-                + "\"codePostale\":\""+authorisationAcces.getUtilisateur().getCodePostale()+"\","
-                + "\"homme\":\""+authorisationAcces.getUtilisateur().isHomme()+"\","
-                + "\"id\":\""+authorisationAcces.getId()+"\",\"nom"
-                + "\":\""+authorisationAcces.getUtilisateur().getNom()+"\",\""
-                + "prenom\":\""+authorisationAcces.getUtilisateur().getPrenom()+"\"}}";
-        OutputStream os = conn.getOutputStream();
-        System.out.println(input);
-        os.write(input.getBytes());
-        os.flush();
+//        String prefix="]";
+////        String[] secteurs= new String[authorisationAcces.getSecteurs().size()];
+//        for(int i=0;i<authorisationAcces.getSecteurs().size();i++){
+//            trameSecteur+="{\"id\":\""+authorisationAcces.getSecteurs().get(i).getId()+"\",\"nom\":\""+authorisationAcces.getSecteurs().get(i).getNom()+"\"}";
+//            if((i<1)&&(i!=authorisationAcces.getSecteurs().size()-1)){
+//                trameSecteur+=",";
+//            }
+//        }trameSecteur+=prefix;
+//        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//        String heureDebut= dateFormat.format(authorisationAcces.getHeureOuverture());
+//        String heureFin= dateFormat.format(authorisationAcces.getHeureFermeture());
+//        String input = "{\"heureFermeture\":\""+heureFin+"\",\"heureOuverture\":\""+heureFin+"\","
+//                + "\"id\":\""+authorisationAcces.getId()+"\","+trameSecteur+",\"utilisateur\":{"
+//                + "\"codePostale\":\""+authorisationAcces.getUtilisateur().getCodePostale()+"\","
+//                + "\"homme\":\""+authorisationAcces.getUtilisateur().isHomme()+"\","
+//                + "\"id\":\""+authorisationAcces.getId()+"\",\"nom"
+//                + "\":\""+authorisationAcces.getUtilisateur().getNom()+"\",\""
+//                + "prenom\":\""+authorisationAcces.getUtilisateur().getPrenom()+"\"}}";
+//        OutputStream os = conn.getOutputStream();
+//        System.out.println(input);
+//        os.write(input.getBytes());
+//        os.flush();
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
             if (conn.getResponseCode() != 204) {
                 throw new RuntimeException("Failed : HTTP error code : "
