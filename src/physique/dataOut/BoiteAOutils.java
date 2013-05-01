@@ -4,6 +4,10 @@
  */
 package physique.dataOut;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -13,13 +17,11 @@ import org.w3c.dom.NodeList;
  * @author damien
  */
 public class BoiteAOutils {
-
-    /**
-     *
-     * @param sTag
-     * @param eElement
-     * @return
-     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface Path{
+        String ressourceName();
+    }
     public static String getTagValue(String sTag, Element eElement) {
         String ret = null;
 
