@@ -14,6 +14,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
 import org.xml.sax.SAXException;
+import physique.dataOut.BoiteAOutils;
+import physique.dataOut.BoiteAOutils.Path;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurAdd;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurAddTechniecien;
 import physique.dataOut.utilisateur.rest.RESTUtilisateurCount;
@@ -29,16 +31,9 @@ import physique.dataOut.utilisateur.rest.RESTUtilisateurVerificationConnexion;
  *
  * @author damien
  */
+@Path(ressourceName = "utilisateur")
 public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
 
-    /**
-     *
-     * @param ressource
-     * @return
-     * @throws ParserConfigurationException
-     * @throws SAXException
-     * @throws IOException
-     */
     @Override
     public List<Utilisateur> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException {
         List<Utilisateur> retour = (List<Utilisateur>) new RESTUtilisateurGetAll().execute(ressource);
