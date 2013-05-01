@@ -4,6 +4,7 @@
  */
 package physique.dataOut.utilisateur.rest;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,6 +24,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import physique.dataOut.BoiteAOutils;
+import physique.dataOut.BoiteAOutils.Path;
+import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
 
 /**
  *
@@ -58,7 +61,9 @@ public class RESTUtilisateurVerificationConnexion {
         String login = utilisateur.getLogin();
         String password = utilisateur.getPassword();
         Date dateDeNaissance = utilisateur.getDateDeNaissance();
-        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/verificationConnexion");
+        Path annotation = UtilisateurServiceWebImpl.class.getAnnotation(Path.class);
+        URL url = new URL(ressource.getPathToAccesWebService() +annotation.ressourceName() +"/verificationConnexion");
+//        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/verificationConnexion");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
