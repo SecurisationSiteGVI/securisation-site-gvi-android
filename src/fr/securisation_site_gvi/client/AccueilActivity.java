@@ -35,7 +35,11 @@ public class AccueilActivity extends TemplateActivity {
     @Override
     public void initGraphicalObjects() {
         this.voirHistorique = (Button) findViewById(R.id.voirHistorique);
+        
+        
         this.gererLesBadges = (Button) findViewById(R.id.gererLesBadges);
+        
+        
         this.gererLesUtilisateurs = (Button) findViewById(R.id.gererLesUtilisateurs);
         this.gererLesSecteurs = (Button) findViewById(R.id.gererLesSecteur);
         this.gererLesAppareils = (Button) findViewById(R.id.gererLesAppareils);

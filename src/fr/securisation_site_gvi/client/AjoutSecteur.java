@@ -58,12 +58,12 @@ public class AjoutSecteur extends TemplateActivity {
                 String nom = edittextNom.getText().toString();
                 Secteur secteur = new Secteur();
                 secteur.setNom(nom);
-                AsyncTask<Object, Void, Object> ret = new AjoutSecteur.RESTConexion().execute(secteur);
+                new AjoutSecteur.RESTAddSecteur().execute(secteur);
             }
         });
     }
 
-    private class RESTConexion extends AsyncTask<Object, Void, Object> {
+    private class RESTAddSecteur extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
         private boolean erreur = false;
