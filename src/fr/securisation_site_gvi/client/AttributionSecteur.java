@@ -92,13 +92,7 @@ public class AttributionSecteur extends TemplateActivity {
         this.setThisActivityOn();
     }
 
-    /**
-     *
-     */
-    public @interface p {
-    }
-
-    /**
+   /**
      *
      */
     @Override
@@ -115,6 +109,8 @@ public class AttributionSecteur extends TemplateActivity {
      */
     public void listerListe() {
         listViewObjects =null;
+        String[] s= new String[0];
+        listViewSecteur.setAdapter(new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1, s));
         new AttributionSecteur.RESTAttributionSecteurCameraGetBySecteur().execute();
         new AttributionSecteur.RESTAttributionSecteurBorneAccesGetBySecteur().execute();
         new AttributionSecteur.RESTAttributionSecteurDetecteurIntrusionGetBySecteur().execute();

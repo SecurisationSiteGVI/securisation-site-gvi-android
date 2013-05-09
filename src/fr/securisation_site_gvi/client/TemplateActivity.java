@@ -74,8 +74,8 @@ public class TemplateActivity extends Activity {
      *
      */
     public  void throwSAXException() {
-        Toast toast = Toast.makeText(this.activityContext, "Aucun résultat dans la base de données.", Toast.LENGTH_SHORT);
-        toast.show();
+//        Toast toast = Toast.makeText(this.activityContext, "Aucun résultat dans la base de données.", Toast.LENGTH_SHORT);
+//        toast.show();
     }
     /**
      *
