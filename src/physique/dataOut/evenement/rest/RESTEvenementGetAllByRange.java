@@ -41,11 +41,8 @@ public class RESTEvenementGetAllByRange {
      * @throws SAXException
      * @throws IOException
      */
-    public static Object execute(Object... params) throws ParserConfigurationException, SAXException, IOException {
-        Ressource ressource = (Ressource) params[0];
-        Integer index = (Integer) params[1];
-        Integer nbResult = (Integer) params[2];
-        List<Evenement> utilisateurs = new ArrayList<Evenement>();
+    public static Object execute(Ressource ressource,Integer index,Integer nbResult) throws ParserConfigurationException, SAXException, IOException {
+        List<Evenement> evenements = new ArrayList<Evenement>();
         URL url = new URL(ressource.getPathToAccesWebService() + "evenement/" + index + "/" + nbResult);
         InputStream fluxLecture = url.openStream();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -70,9 +67,9 @@ public class RESTEvenementGetAllByRange {
                     }
                     evenement.setDateEvt(d);
                 }
-                utilisateurs.add(evenement);
+                evenements.add(evenement);
             }
         }
-        return utilisateurs;
+        return evenements;
     }
 }
