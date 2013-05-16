@@ -77,8 +77,7 @@ public class RESTCameraGetAllByRange {
                 position.setLatitude(latitude);
                 camera.setPosition(position);
                 }
-                
-                
+                             
                 
                 cameras.add(camera);
             }

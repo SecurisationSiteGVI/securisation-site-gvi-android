@@ -13,7 +13,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  * @author damien
  */
 public class Connexion extends SQLiteOpenHelper {
-
     public static final String RESSOURCE_KEY = "id";
     public static final String RESSOURCE_PROTOCOL = "protocol";
     public static final String RESSOURCE_SERVEUR_URL = "serveurUrl";
