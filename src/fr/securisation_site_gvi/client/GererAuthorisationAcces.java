@@ -317,8 +317,8 @@ public class GererAuthorisationAcces extends TemplateActivity {
                     }
                     metier.entitys.AuthorisationAcces authorisationAcces = null;
                     boolean neww = false;
-                    if ((result == null)  ) {
-                        
+                    if ((result == null)) {
+
                         authorisationAcces = new metier.entitys.AuthorisationAcces();
                         neww = true;
                     } else {
@@ -334,14 +334,14 @@ public class GererAuthorisationAcces extends TemplateActivity {
                         fermeture.setHours(0);
                         fermeture.setMinutes(0);
                     } else {
-                        if(editTextHeureFin.getText().toString().equals("")){
+                        if (editTextHeureFin.getText().toString().equals("")) {
                             fermeture.setHours(Integer.parseInt("0"));
-                        }else{
+                        } else {
                             fermeture.setHours(Integer.parseInt(editTextHeureFin.getText().toString()));
                         }
-                        if(editTextMinuteFin.getText().toString().equals("")){
+                        if (editTextMinuteFin.getText().toString().equals("")) {
                             fermeture.setMinutes(0);
-                        }else{
+                        } else {
                             fermeture.setMinutes(Integer.parseInt(editTextMinuteFin.getText().toString()));
                         }
                     }
@@ -350,14 +350,14 @@ public class GererAuthorisationAcces extends TemplateActivity {
                         ouverture.setHours(0);
                         ouverture.setMinutes(0);
                     } else {
-                        if(editTextHeureDebut.getText().toString().equals("")){
+                        if (editTextHeureDebut.getText().toString().equals("")) {
                             ouverture.setHours(0);
-                        }else{
+                        } else {
                             ouverture.setHours(Integer.parseInt(editTextHeureDebut.getText().toString()));
                         }
-                        if(editTextMinuteDebut.getText().toString().equals("")){
+                        if (editTextMinuteDebut.getText().toString().equals("")) {
                             ouverture.setMinutes(0);
-                        }else{
+                        } else {
                             ouverture.setMinutes(Integer.parseInt(editTextMinuteDebut.getText().toString()));
                         }
                     }
@@ -801,11 +801,21 @@ public class GererAuthorisationAcces extends TemplateActivity {
             if (!erreur) {
                 if (result != null) {
                     authorisationAccesByUtilisateur = (AuthorisationAcces) result;
-                    editTextHeureDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getHours()));
-                    editTextMinuteDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getMinutes()));
-                    editTextHeureFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getHours()));
-                    editTextMinuteFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getMinutes()));
-                }else{
+                    if (authorisationAccesByUtilisateur.getHeureFermeture() != null) {
+                        editTextHeureFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getHours()));
+                        editTextMinuteFin.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureFermeture().getMinutes()));
+                    } else {
+                        editTextHeureFin.setText("0");
+                        editTextMinuteFin.setText("0");
+                    }
+                    if (authorisationAccesByUtilisateur.getHeureOuverture() != null) {
+                        editTextHeureDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getHours()));
+                        editTextMinuteDebut.setText(String.valueOf(authorisationAccesByUtilisateur.getHeureOuverture().getMinutes()));
+                    } else {
+                        editTextHeureDebut.setText("0");
+                        editTextMinuteDebut.setText("0");
+                    }
+                } else {
                     editTextHeureDebut.setText("");
                     editTextMinuteDebut.setText("");
                     editTextHeureFin.setText("");
