@@ -1,0 +1,183 @@
+0000000000000000000000000000000000000000 9c8ad2c7e065d15b998925a73b724f9b351fae19 damien <damien@localhost> 1362738824 +0100	branch: Created from branch refs/remotes/origin/master
+9c8ad2c7e065d15b998925a73b724f9b351fae19 4cfc5228f19c559e1b32c2b791c6364fd6c15bf3 damien <damien@localhost.localdomain> 1362819802 +0100	commit: remove method test
+4cfc5228f19c559e1b32c2b791c6364fd6c15bf3 95218c4d644574e48db65f72955a34343a98675d damien <damien@localhost.localdomain> 1362819826 +0100	commit: update listView to buttons
+95218c4d644574e48db65f72955a34343a98675d be414f63248ed81e336ce5fe758d56032d3373e5 damien <damien@localhost.localdomain> 1362819842 +0100	commit: update ip for home network
+be414f63248ed81e336ce5fe758d56032d3373e5 391b871bdc7cab3a7cfa99dd0c4d043440bbc7cf damien <damien@localhost.localdomain> 1362819937 +0100	commit: update this xml file to have a few buttons instead of a listView composant
+391b871bdc7cab3a7cfa99dd0c4d043440bbc7cf 7f266996c453e060abc0db02532fe6869e4a50f8 damien <damien@localhost.localdomain> 1362819969 +0100	commit: add default dimention of a screen	
+7f266996c453e060abc0db02532fe6869e4a50f8 0cc1fac64517a428d3ab3ea12c9ed756d212e9c7 damien <damien@localhost.localdomain> 1362819980 +0100	commit: add string for app
+0cc1fac64517a428d3ab3ea12c9ed756d212e9c7 2282d3e212b8cd00b79d6010541a41c57fbd3f71 damien <damien@localhost.localdomain> 1362820001 +0100	commit: update maniferst user-permission
+2282d3e212b8cd00b79d6010541a41c57fbd3f71 17a23ec3f70d93ffe30ba37ef5a291a10e121cd2 damien <damien@localhost.localdomain> 1362820018 +0100	commit: update sdk to 4.2.2
+17a23ec3f70d93ffe30ba37ef5a291a10e121cd2 2bd744fa7ef126ebc29b02039857a0dead88f8eb damien <damien@localhost.localdomain> 1362820071 +0100	commit: update sdk to 4.2.2
+2bd744fa7ef126ebc29b02039857a0dead88f8eb 4b05b8eae669ac63f51ffa59f7fb1f1a002ca8b5 damien <damien@localhost.localdomain> 1362821081 +0100	commit: add strings 
+4b05b8eae669ac63f51ffa59f7fb1f1a002ca8b5 688cb4929cade5759350ac9c82719914c226bcdc damien <damien@localhost.localdomain> 1362821097 +0100	commit: add activity MenuUtilisateur
+688cb4929cade5759350ac9c82719914c226bcdc 435ed1e3596d70ac96e92871d57082eac7672a10 damien <damien@localhost.localdomain> 1362821721 +0100	commit: add xml for MenuUtilisateur
+435ed1e3596d70ac96e92871d57082eac7672a10 d81dc38f023480e150981301083fc9ad7fd60925 damien <damien@localhost.localdomain> 1362821734 +0100	commit: add Adroid for MenuUtilisateur
+d81dc38f023480e150981301083fc9ad7fd60925 6ebd9b0f332a1842777c61a3b6cb4fc1a6368276 damien <damien@localhost.localdomain> 1362828299 +0100	commit: add askitask
+6ebd9b0f332a1842777c61a3b6cb4fc1a6368276 38a604efa79634683fa81ba24b659a692fd610ac damien <damien@localhost.localdomain> 1362828317 +0100	commit: add listview add pagination functions
+38a604efa79634683fa81ba24b659a692fd610ac 417557e7b253e5e58baed1c2a23c784d5f1dabde damien <damien@localhost.localdomain> 1362828354 +0100	commit: setOnActionListner function suported for all buttons
+417557e7b253e5e58baed1c2a23c784d5f1dabde 0089b8ef5e71f6472d3b1c29ac51e568e89e70a2 damien <damien@localhost.localdomain> 1362828399 +0100	commit: add textviex
+0089b8ef5e71f6472d3b1c29ac51e568e89e70a2 f1f0cb55be245136f760d884ff812e6364098949 damien <damien@localhost.localdomain> 1362828445 +0100	commit: add activity listUtilisateur
+f1f0cb55be245136f760d884ff812e6364098949 42674845905e8014512fad727b0ad587e3c9ee66 damien <damien@localhost.localdomain> 1362828457 +0100	commit: use a less sdk
+42674845905e8014512fad727b0ad587e3c9ee66 30eeddc9534f7e42fd9121d0a92fb6250b87f774 damien <damien@localhost.localdomain> 1362828478 +0100	commit: compil and new apk
+30eeddc9534f7e42fd9121d0a92fb6250b87f774 9d3183171b21a88e0c4300dbab7091de50d7878d damien <damien@localhost.localdomain> 1363082196 +0100	commit: add metierFactory
+9d3183171b21a88e0c4300dbab7091de50d7878d 5f2746fb9a0947538dba8374a127faa1b3370f30 damien <damien@localhost.localdomain> 1363082212 +0100	commit: add ressourceService in metier paktage
+5f2746fb9a0947538dba8374a127faa1b3370f30 75e97d086a200484c889ce9dc6d9240139b16113 damien <damien@localhost.localdomain> 1363082227 +0100	commit: add connexion for database
+75e97d086a200484c889ce9dc6d9240139b16113 072fb538b69a25630f68cdf21d81cb2a1c64167b damien <damien@localhost.localdomain> 1363082239 +0100	commit: add physiquedatafactory
+072fb538b69a25630f68cdf21d81cb2a1c64167b fe961428ec40eb9f224d7427c0205fc8f1d4a267 damien <damien@localhost.localdomain> 1363082252 +0100	commit: add service CRUD for ressource
+fe961428ec40eb9f224d7427c0205fc8f1d4a267 b44db04625b1814b8907c784fd2204a813796168 damien <damien@localhost.localdomain> 1363082269 +0100	commit: update location of webservice
+b44db04625b1814b8907c784fd2204a813796168 3f0a986dbf2d877c6337c357c17672a77838a7ad damien <damien@localhost.localdomain> 1363082295 +0100	commit: update location of all entity and add a ressource entity
+3f0a986dbf2d877c6337c357c17672a77838a7ad 74f07ccf8b686c53e6bda4ee9040d3b2dada626c damien <damien@localhost.localdomain> 1363082307 +0100	commit: update import
+74f07ccf8b686c53e6bda4ee9040d3b2dada626c 1aaec9cb1c14dda72d3ced8790039e97ba64f154 damien <damien@localhost.localdomain> 1363082347 +0100	commit: update import
+1aaec9cb1c14dda72d3ced8790039e97ba64f154 01744989f1ec8563fd200ab88ba7873bfd5330f9 damien <damien@localhost.localdomain> 1363082361 +0100	commit: update location
+01744989f1ec8563fd200ab88ba7873bfd5330f9 90ee8bb82d2259844bf84be13aa9a6807aa92630 damien <damien@localhost.localdomain> 1363170955 +0100	commit: add AsyncTask for all
+90ee8bb82d2259844bf84be13aa9a6807aa92630 7dfa0db85d304dfc3506913405a0d065778c3629 damien <damien@localhost.localdomain> 1363171285 +0100	commit: add getByid Method
+7dfa0db85d304dfc3506913405a0d065778c3629 d4753e91962d52e8f2e746f940fd2a4399193fbd damien <damien@localhost.localdomain> 1363171319 +0100	commit: passing arg to modifierUtilisateur activity
+d4753e91962d52e8f2e746f940fd2a4399193fbd 61467a30da513fc229c623bbcd0844885cb18ca5 damien <damien@localhost.localdomain> 1363171365 +0100	commit: test for progress dialog into asynctask
+61467a30da513fc229c623bbcd0844885cb18ca5 e69d0a8b3b1c5d67adc71373e81889c441d41593 damien <damien@localhost.localdomain> 1363171382 +0100	commit: test of Sqlite
+e69d0a8b3b1c5d67adc71373e81889c441d41593 b7fb0ea9ddd229c7b6dde45277e986c1ea232c3b damien <damien@localhost.localdomain> 1363171394 +0100	commit: add method getBYId
+b7fb0ea9ddd229c7b6dde45277e986c1ea232c3b 91f8e4dbf23498f56726373aff2443cd8fcce118 damien <damien@localhost.localdomain> 1363171406 +0100	commit: add parametre activity
+91f8e4dbf23498f56726373aff2443cd8fcce118 b898fd10ac7aad147502c6f6e8dcc4b3eb939ada damien <damien@localhost.localdomain> 1363171419 +0100	commit: add modifier utlisateur view
+b898fd10ac7aad147502c6f6e8dcc4b3eb939ada 4ab8e1e2228c5fafe26efffd6acb1e21c5a7a0b0 damien <damien@localhost.localdomain> 1363171430 +0100	commit: add strings
+4ab8e1e2228c5fafe26efffd6acb1e21c5a7a0b0 aa89d1ea4dea2ad3c90650aa1bfa32517b511085 damien <damien@localhost.localdomain> 1363171438 +0100	commit: add activity
+aa89d1ea4dea2ad3c90650aa1bfa32517b511085 9e0d2f0740bdea5588fdf84d42e82b88f933ceb5 damien <damien@localhost.localdomain> 1363171449 +0100	commit: test of sqlite
+9e0d2f0740bdea5588fdf84d42e82b88f933ceb5 c4a1795489e94e1a6b92a8ff4b0e10efe04ba9db damien <damien@localhost.localdomain> 1363171466 +0100	commit: add modifier utilisateur Activity
+c4a1795489e94e1a6b92a8ff4b0e10efe04ba9db 22fce50392fcaad96e2c8b658c1f67599d5f3f44 damien <damien@localhost.localdomain> 1363171479 +0100	commit: compil
+22fce50392fcaad96e2c8b658c1f67599d5f3f44 59e585fa18dbb5af9d06214c0788d9571ae930f8 damien <damien@localhost.localdomain> 1363197804 +0100	commit: print all
+59e585fa18dbb5af9d06214c0788d9571ae930f8 a598d32f0330ffd2277ec6b3428016a2d6ea713c damien <damien@localhost.localdomain> 1363197815 +0100	commit: delete spaces
+a598d32f0330ffd2277ec6b3428016a2d6ea713c d089421b3ac8e72d03c8f1ebb3a7711de36f948a damien <damien@localhost.localdomain> 1363197830 +0100	commit: update ip for home network
+d089421b3ac8e72d03c8f1ebb3a7711de36f948a 98945938b257c0782ee3766110c4abc1353ba4af damien <damien@localhost.localdomain> 1363197848 +0100	commit: compil
+98945938b257c0782ee3766110c4abc1353ba4af e2ef3d7fd42b93d00085f6cac387ccea90a5677d damien <damien@localhost.localdomain> 1363519502 +0100	commit: Suppress imports
+e2ef3d7fd42b93d00085f6cac387ccea90a5677d 1b6b1d3e08392e29b6b7875fdad466894e62c9d7 damien <damien@localhost.localdomain> 1363519529 +0100	commit: Delete progress dialog
+1b6b1d3e08392e29b6b7875fdad466894e62c9d7 0c1a0c3884b709847d1be3c31722363d094c2842 damien <damien@localhost.localdomain> 1363519619 +0100	commit: Test for dateDeNaissance i have yet a problem to update that
+0c1a0c3884b709847d1be3c31722363d094c2842 de9520cd4705fd72038c9ad6241316cc84c2823c damien <damien@localhost.localdomain> 1363519646 +0100	commit: add method into UtilisateurService
+de9520cd4705fd72038c9ad6241316cc84c2823c 3e366c5d334631dd45d57eaa99ad1847bc3034c7 damien <damien@localhost.localdomain> 1363519666 +0100	commit: impl of method into UtilisateurService
+3e366c5d334631dd45d57eaa99ad1847bc3034c7 2ac241e463a92bd7afbc6f0ad8a10a0d231696ce damien <damien@localhost.localdomain> 1363519732 +0100	commit: impl for SQlite database
+2ac241e463a92bd7afbc6f0ad8a10a0d231696ce f02187d7910d32400772541e98331ab9ff31929e damien <damien@localhost.localdomain> 1363519750 +0100	commit: add context
+f02187d7910d32400772541e98331ab9ff31929e c22fc736dd01c16eb9a2fac4bd73df44bc33f996 damien <damien@localhost.localdomain> 1363519780 +0100	commit: add context and progress dialog for connexion activity
+c22fc736dd01c16eb9a2fac4bd73df44bc33f996 cfbe1d8901591fc9d628bbc6ec317242c6ae1846 damien <damien@localhost.localdomain> 1363519797 +0100	commit: test for layouts
+cfbe1d8901591fc9d628bbc6ec317242c6ae1846 8f4cd3f23b5c81ef49f63b4e07e9aff503db9ed8 damien <damien@localhost.localdomain> 1363519801 +0100	commit: test for layouts
+8f4cd3f23b5c81ef49f63b4e07e9aff503db9ed8 e7b791883bc31e7b05e4a2b7dec6c031457f9947 damien <damien@localhost.localdomain> 1363519808 +0100	commit: add strings
+e7b791883bc31e7b05e4a2b7dec6c031457f9947 6a7a403d1f7ef7c349dfa870cf9a712e80c8914b damien <damien@localhost.localdomain> 1363519830 +0100	commit: compil and delete Ressource class
+6a7a403d1f7ef7c349dfa870cf9a712e80c8914b 4e707e8d68d5fbb45bac432a4f21f2517e6d5a97 damien <damien@localhost.localdomain> 1363526261 +0100	commit: update date picker
+4e707e8d68d5fbb45bac432a4f21f2517e6d5a97 ce77f065faa1d5e16f4cd5ddad3724c08f27ba56 damien <damien@localhost.localdomain> 1363526272 +0100	commit: add support of date 
+ce77f065faa1d5e16f4cd5ddad3724c08f27ba56 fd9441989f06d4316832d22235fd59292251e600 damien <damien@localhost.localdomain> 1363526289 +0100	commit: add support of date
+fd9441989f06d4316832d22235fd59292251e600 7175a7c4612ec9138f35a9d45a51c8b5757d079e damien <damien@localhost.localdomain> 1363526307 +0100	commit: add support of date
+7175a7c4612ec9138f35a9d45a51c8b5757d079e 11ce2b30fb384240ef42743f95bc126fcf81066f damien <damien@localhost.localdomain> 1363526460 +0100	commit: adapt layout for large
+11ce2b30fb384240ef42743f95bc126fcf81066f fb3f52b72d725b42c8b2194c5d313e467e10cedc damien <damien@localhost.localdomain> 1363528988 +0100	commit: update to use the overrided method and it's work !
+fb3f52b72d725b42c8b2194c5d313e467e10cedc fda3f469e5d05c53e45fa99ccee3c85c24437c26 damien <damien@localhost.localdomain> 1363529001 +0100	commit: Test update layout
+fda3f469e5d05c53e45fa99ccee3c85c24437c26 d32436a782b423dbd8e38f2258f61bc4e10c3337 damien <damien@localhost.localdomain> 1363529005 +0100	commit: Test update layout
+d32436a782b423dbd8e38f2258f61bc4e10c3337 6359c7703bf0f574036fe9728b63866e7343f067 damien <damien@localhost.localdomain> 1363529009 +0100	commit: Test update layout
+6359c7703bf0f574036fe9728b63866e7343f067 231e4610f4e7c5f506fd0af7aa4b058939e9b3a7 damien <damien@localhost.localdomain> 1363529012 +0100	commit: Test update layout
+231e4610f4e7c5f506fd0af7aa4b058939e9b3a7 790f925947e841b8e530ae55ed736411324a4884 damien <damien@localhost.localdomain> 1363529030 +0100	commit: update icon of application
+790f925947e841b8e530ae55ed736411324a4884 b9ce4c68c071936608b3ae3f9a92d7a5c87fd708 damien <damien@localhost.localdomain> 1363529034 +0100	commit: update icon of application
+b9ce4c68c071936608b3ae3f9a92d7a5c87fd708 a027e97bb463af3a354ea5602791d6c4eca6e283 damien <damien@localhost.localdomain> 1363529037 +0100	commit: update icon of application
+a027e97bb463af3a354ea5602791d6c4eca6e283 0130167c9c3941d3b1f0e5fac3d36b949f8c0dcb damien <damien@localhost.localdomain> 1363529040 +0100	commit: update icon of application
+0130167c9c3941d3b1f0e5fac3d36b949f8c0dcb 36e2008c623a46dc6c645a8f3120b109252b216f damien <damien@localhost.localdomain> 1363529050 +0100	commit: compilation
+36e2008c623a46dc6c645a8f3120b109252b216f a2e370f8a73d8447978f9f26292c0e7d5011f360 damien <damien@localhost.localdomain> 1363711562 +0100	commit: update menu
+a2e370f8a73d8447978f9f26292c0e7d5011f360 a84249adcca525a4c2a1309690933735ea04fdac damien <damien@localhost.localdomain> 1363711565 +0100	commit: update menu
+a84249adcca525a4c2a1309690933735ea04fdac 4c0bc760cb380b316596bded12da60a0efc5312a damien <damien@localhost.localdomain> 1363711568 +0100	commit: update menu
+4c0bc760cb380b316596bded12da60a0efc5312a 3f696633a50493c10130971ae9d61e68c34f5437 damien <damien@localhost.localdomain> 1363711572 +0100	commit: update menu
+3f696633a50493c10130971ae9d61e68c34f5437 b530df6597dde5900a9a1e539a02a78529b7b8f2 damien <damien@localhost.localdomain> 1363711574 +0100	commit: update menu
+b530df6597dde5900a9a1e539a02a78529b7b8f2 ecac55cabedf27306a841ff85afba7cfed5519a8 damien <damien@localhost.localdomain> 1363711577 +0100	commit: update menu
+ecac55cabedf27306a841ff85afba7cfed5519a8 28ba3a1fcdc378f0db9969ec7071a82a3dc1009f damien <damien@localhost.localdomain> 1363711583 +0100	commit: format
+28ba3a1fcdc378f0db9969ec7071a82a3dc1009f 7bb6d2baf24a855b355e06b89db63e957d3460f3 damien <damien@localhost.localdomain> 1363711586 +0100	commit: format
+7bb6d2baf24a855b355e06b89db63e957d3460f3 0f2eb91c1c3949abcc9f4357f27b19c58bc7644b damien <damien@localhost.localdomain> 1363711600 +0100	commit: style align for 4"
+0f2eb91c1c3949abcc9f4357f27b19c58bc7644b 33623db5f42819359d535050ce40860ccf809e3c damien <damien@localhost.localdomain> 1363711606 +0100	commit: style align for 7"
+33623db5f42819359d535050ce40860ccf809e3c 8b8392a3dbac284e23eb35e21ced598acce8de6e damien <damien@localhost.localdomain> 1363857346 +0100	commit: update size of date
+8b8392a3dbac284e23eb35e21ced598acce8de6e 6a510afc27efe0906eb046a84ec76619c565dbe0 damien <damien@localhost.localdomain> 1363857362 +0100	commit: Compilation
+6a510afc27efe0906eb046a84ec76619c565dbe0 4a873c0fddd2dfb5c768a523a6d66a6bc257f3ff damien <damien@localhost.localdomain> 1363885507 +0100	commit: add count and addTechnicen method
+4a873c0fddd2dfb5c768a523a6d66a6bc257f3ff 7a8fa177daf89ec978121e5f2c7ddb26a9bd7b77 damien <damien@localhost.localdomain> 1363885510 +0100	commit: add count and addTechnicen method
+7a8fa177daf89ec978121e5f2c7ddb26a9bd7b77 ce3f50d6a2dc5bde6f9279dcaf668abf10b994d1 damien <damien@localhost.localdomain> 1363885516 +0100	commit: format
+ce3f50d6a2dc5bde6f9279dcaf668abf10b994d1 f453f15838a49afea4c70e55859c9957bebb5ef4 damien <damien@localhost.localdomain> 1363885532 +0100	commit: add count and add technicen method
+f453f15838a49afea4c70e55859c9957bebb5ef4 93ec5320c9f505d68e44008a76f93446877218ca damien <damien@localhost.localdomain> 1363885539 +0100	commit: add count and add technicen method
+93ec5320c9f505d68e44008a76f93446877218ca a1552137ec7f913e69f7da0ad174be71527d52e9 damien <damien@localhost.localdomain> 1363885572 +0100	commit: add link to AjouterUtilisateur
+a1552137ec7f913e69f7da0ad174be71527d52e9 6157914bf4ebe2b579971e5667ec3d923740d244 damien <damien@localhost.localdomain> 1363885639 +0100	commit: update managment of pagination and nblinge was most if the screen is so hight
+6157914bf4ebe2b579971e5667ec3d923740d244 41e234644515a5e3eaa245abf29d270fb27f0193 damien <damien@localhost.localdomain> 1363885681 +0100	commit: update for manage the TemplateActivity
+41e234644515a5e3eaa245abf29d270fb27f0193 86f5d0ac4055267086f29ce99d8ca84381e564c2 damien <damien@localhost.localdomain> 1363885714 +0100	commit: update for manage the TemplateActivity
+86f5d0ac4055267086f29ce99d8ca84381e564c2 201afe33bf91118fd0ac4abd05c0d198edce6e83 damien <damien@localhost.localdomain> 1363885752 +0100	commit: create this activity for have the same menu in all class 
+201afe33bf91118fd0ac4abd05c0d198edce6e83 dd2b25b4ae883deebb4c12c8a482d1982c00cc7b damien <damien@localhost.localdomain> 1363885795 +0100	commit: update for manage the TemplateActivity
+dd2b25b4ae883deebb4c12c8a482d1982c00cc7b 58710b3fd0e46c0d7c923e145e8ae3266dbeb100 damien <damien@localhost.localdomain> 1363885822 +0100	commit: add AjouterUtilisateur activity
+58710b3fd0e46c0d7c923e145e8ae3266dbeb100 09d448ce7bf2e5a797935f657b0e2d76873c6c00 damien <damien@localhost.localdomain> 1363885892 +0100	commit: add AjouterUtilisateur activity
+09d448ce7bf2e5a797935f657b0e2d76873c6c00 1a45be51aa01888a4ca9efb45ad7be82cebf8d8e damien <damien@localhost.localdomain> 1363885896 +0100	commit: add AjouterUtilisateur activity
+1a45be51aa01888a4ca9efb45ad7be82cebf8d8e 2c6ceef516575162fccf23c6d3ce32e60400a136 damien <damien@localhost.localdomain> 1363885899 +0100	commit: add AjouterUtilisateur activity
+2c6ceef516575162fccf23c6d3ce32e60400a136 d93491dc3dc6fd9ec6ff9ef94b5bc71e46e66bec damien <damien@localhost.localdomain> 1363885908 +0100	commit: add AjouterUtilisateur activity
+d93491dc3dc6fd9ec6ff9ef94b5bc71e46e66bec 9f4888f01b12022f2671292e7ae645b8652faa0e damien <damien@localhost.localdomain> 1363885925 +0100	commit: update color
+9f4888f01b12022f2671292e7ae645b8652faa0e ff083b5bc46010270fa69efbb3fda733765bd27a damien <damien@localhost.localdomain> 1363885972 +0100	commit: update padding now we have most of item so the padding is useless
+ff083b5bc46010270fa69efbb3fda733765bd27a 0fe6baa5019d0c4b64f245c41f3d246a63955752 damien <damien@localhost.localdomain> 1363885991 +0100	commit: add AjouterUtilisateur
+0fe6baa5019d0c4b64f245c41f3d246a63955752 91832cf0b34da70d18455665f5a549f6cac901bb damien <damien@localhost.localdomain> 1363885997 +0100	commit: add value
+91832cf0b34da70d18455665f5a549f6cac901bb dac01554adfc11345976cd109144097bca7a713a damien <damien@localhost.localdomain> 1363886006 +0100	commit: add activity
+dac01554adfc11345976cd109144097bca7a713a 8a105d6239e63168cd01b993c7e57dc680370e67 damien <damien@localhost.localdomain> 1363886017 +0100	commit: compilation
+8a105d6239e63168cd01b993c7e57dc680370e67 2c4bb6e654e243f870aa473403d51a98e599b406 damien <damien@localhost.localdomain> 1363888513 +0100	commit: add link to ajouter technicien
+2c4bb6e654e243f870aa473403d51a98e599b406 0d718138e5d389f29f211fd5d723958a73601d3d damien <damien@localhost.localdomain> 1363961309 +0100	commit: add method add technicien
+0d718138e5d389f29f211fd5d723958a73601d3d b762daca6451f428d00df0537b7178d529f033e8 damien <damien@localhost.localdomain> 1363961315 +0100	commit: add method add technicien
+b762daca6451f428d00df0537b7178d529f033e8 4fe5f80fba12342cab70726d5493b9c8e411ef76 damien <damien@localhost.localdomain> 1363961318 +0100	commit: add method add technicien
+4fe5f80fba12342cab70726d5493b9c8e411ef76 406ef2c08e75fc754b2ae157ce2a84d0354b5a16 damien <damien@localhost.localdomain> 1363961326 +0100	commit: add method add technicien
+406ef2c08e75fc754b2ae157ce2a84d0354b5a16 10421c7d5ff3a08651550815949a787b8184b27b damien <damien@localhost.localdomain> 1363961332 +0100	commit: add method add technicien
+10421c7d5ff3a08651550815949a787b8184b27b b8577cb42efb287c446290e10e04b511157e664f damien <damien@localhost.localdomain> 1363961340 +0100	commit: add strings
+b8577cb42efb287c446290e10e04b511157e664f 0a7f511543e42bd8dc3f2c5ebe1bb4056c4ec3d1 damien <damien@localhost.localdomain> 1363961348 +0100	commit: add activity
+0a7f511543e42bd8dc3f2c5ebe1bb4056c4ec3d1 8074e4aafe08a2781ebaafbf23880ae9073e9e22 damien <damien@localhost.localdomain> 1364025440 +0100	commit: move the getId up 
+8074e4aafe08a2781ebaafbf23880ae9073e9e22 856e849e369f7fcbbf27f6d72ffc29d844c82d38 damien <damien@localhost.localdomain> 1364025460 +0100	commit: add voirHistoriqueActivity
+856e849e369f7fcbbf27f6d72ffc29d844c82d38 d8dd4c944165465d42ebe24eaefdf900a69e3d5b damien <damien@localhost.localdomain> 1364025473 +0100	commit: Add EvenementService
+d8dd4c944165465d42ebe24eaefdf900a69e3d5b 12eb09d3220787872afcf4fa492d3e93aa0abfa9 damien <damien@localhost.localdomain> 1364025480 +0100	commit: Add EvenementServiceImpl
+12eb09d3220787872afcf4fa492d3e93aa0abfa9 88635103fb0da59f663500c7bd39782d0522edbb damien <damien@localhost.localdomain> 1364025489 +0100	commit: Add EvenementServiceWebImpl
+88635103fb0da59f663500c7bd39782d0522edbb 10ea7c56b5e60914a02a064f2d11eee8c0a0fcd1 damien <damien@localhost.localdomain> 1364025493 +0100	commit: Add EvenementServiceWebImpl
+10ea7c56b5e60914a02a064f2d11eee8c0a0fcd1 34822700a541cb6c14f0b92441e15fddf68ce526 damien <damien@localhost.localdomain> 1364025520 +0100	commit: add activity historique
+34822700a541cb6c14f0b92441e15fddf68ce526 0ad003119ec3851e8c7882fd7ae601e17df30b74 damien <damien@localhost.localdomain> 1364025525 +0100	commit: add activity historique
+0ad003119ec3851e8c7882fd7ae601e17df30b74 8a11bb12ec9e4a30ef5e376af47fa55b58fbae58 damien <damien@localhost.localdomain> 1364026380 +0100	commit: add link to activity historique
+8a11bb12ec9e4a30ef5e376af47fa55b58fbae58 4df73b10ce6a5cd50cf8946d613de36d51cf10b8 damien <damien@localhost.localdomain> 1364026412 +0100	commit: add evenement service into factory
+4df73b10ce6a5cd50cf8946d613de36d51cf10b8 39757633c78ff7fa2fb1b820eae136fb5c2caeb4 damien <damien@localhost.localdomain> 1364026434 +0100	commit: getlist for listview
+39757633c78ff7fa2fb1b820eae136fb5c2caeb4 eb313be1ca784f76580f6a1adfca6f73616e5a95 damien <damien@localhost.localdomain> 1364137452 +0100	commit: update context and add Historique activity
+eb313be1ca784f76580f6a1adfca6f73616e5a95 43156a4a50ab4ede12bc68f6ed4af9de29bdc889 damien <damien@localhost.localdomain> 1364137471 +0100	commit: add historique activity
+43156a4a50ab4ede12bc68f6ed4af9de29bdc889 739fad7bac415e9d461c12b499a481c4ce83288d damien <damien@localhost.localdomain> 1364137476 +0100	commit: add historique activity
+739fad7bac415e9d461c12b499a481c4ce83288d fd944e3098e5221214913350ea6811f89dca9bd1 damien <damien@localhost.localdomain> 1364137482 +0100	commit: add historique activity
+fd944e3098e5221214913350ea6811f89dca9bd1 4eedb194655d383a743a3ec8c60989aeadd3f53b damien <damien@localhost.localdomain> 1364137495 +0100	commit: Compilation
+4eedb194655d383a743a3ec8c60989aeadd3f53b 0b527cb74158242ec012bc4911bbe09dc08224b5 damien <damien@localhost.localdomain> 1364141651 +0100	commit: update layout like uilisateurListe
+0b527cb74158242ec012bc4911bbe09dc08224b5 d557737cd726ae6630d6acfe24ee5d5af8317199 damien <damien@localhost.localdomain> 1364141655 +0100	commit: update layout like uilisateurListe
+d557737cd726ae6630d6acfe24ee5d5af8317199 21560367c27aa09818ce7a29b7a0a16ac32f886b damien <damien@localhost.localdomain> 1364143632 +0100	commit: add pagination
+21560367c27aa09818ce7a29b7a0a16ac32f886b efe95246c232bf4790bb5f652bb97c8edf0d63e6 damien <damien@localhost.localdomain> 1364143724 +0100	commit: finish the activity where the treatment is valide
+efe95246c232bf4790bb5f652bb97c8edf0d63e6 f541289b25dd7863530f3ea3057fae3df2e3d590 damien <damien@localhost.localdomain> 1364143757 +0100	commit: update tostring
+f541289b25dd7863530f3ea3057fae3df2e3d590 ad18b468c90ba1f395ba68b2a58de2a3d9f00304 damien <damien@localhost.localdomain> 1364143775 +0100	commit: coding method
+ad18b468c90ba1f395ba68b2a58de2a3d9f00304 fdf4d61ccab94f0da4ff94706f93978999216f91 damien <damien@localhost.localdomain> 1364143778 +0100	commit: coding method
+fdf4d61ccab94f0da4ff94706f93978999216f91 6812e375ee73df8abc2f9b5a86e9d704f99c1266 damien <damien@localhost.localdomain> 1364143788 +0100	commit: add count method
+6812e375ee73df8abc2f9b5a86e9d704f99c1266 239f23e973b90efb7c84ed33b36e6e5a710589e5 damien <damien@localhost.localdomain> 1364143793 +0100	commit: add count method
+239f23e973b90efb7c84ed33b36e6e5a710589e5 8155c7b4c3dd092e4dfdc2817c7f37ca94f50ba2 damien <damien@localhost.localdomain> 1364143809 +0100	commit: add evenementSrv into factory
+8155c7b4c3dd092e4dfdc2817c7f37ca94f50ba2 319a43cf206a834e2b2c9353a8d779f7efb8f68b damien <damien@localhost.localdomain> 1364143821 +0100	commit: add style for activity
+319a43cf206a834e2b2c9353a8d779f7efb8f68b 64f19fb0a492bb294cb6a453f86ed47d5c24df54 damien <damien@localhost.localdomain> 1364143824 +0100	commit: add style for activity
+64f19fb0a492bb294cb6a453f86ed47d5c24df54 2d9196b70cf7b1b60ee3cdc9048a153d8d790fb9 damien <damien@localhost.localdomain> 1364143836 +0100	commit: compil
+2d9196b70cf7b1b60ee3cdc9048a153d8d790fb9 db2cbe7e59803861d362b41bd75e8b5101b95a6a damien <damien@localhost.localdomain> 1364144103 +0100	commit: add support of pagination
+db2cbe7e59803861d362b41bd75e8b5101b95a6a 2f69dac62613cc57c2fbba6ffcfbebc54429be55 damien <damien@localhost.localdomain> 1364146239 +0100	commit: update context	
+2f69dac62613cc57c2fbba6ffcfbebc54429be55 4b3a3c7a8b9eb22db1b71a934e2bfcd1679ca1c2 damien <damien@localhost.localdomain> 1364146265 +0100	commit: update method to choose the getAllByRange
+4b3a3c7a8b9eb22db1b71a934e2bfcd1679ca1c2 d9acf3d57f2e2bdbddcbb4fbdae8dd85f0c5d9c4 damien <damien@localhost.localdomain> 1364146279 +0100	commit: update size
+d9acf3d57f2e2bdbddcbb4fbdae8dd85f0c5d9c4 101085ae0d4b73feb92c318b09634ded8ddd97cb damien <damien@localhost.localdomain> 1364146295 +0100	commit: compilation
+101085ae0d4b73feb92c318b09634ded8ddd97cb 695434f53dd2124a0c0946e2bcaea72849ca5f60 damien <damien@localhost.localdomain> 1364304284 +0100	commit: add layout activityhistoriqueacces
+695434f53dd2124a0c0946e2bcaea72849ca5f60 94442adabf6cd6aeddcc02fbd8627ef04e0dea69 damien <damien@localhost.localdomain> 1364304288 +0100	commit: add layout activityhistoriqueacces
+94442adabf6cd6aeddcc02fbd8627ef04e0dea69 4839366561d361c991f03ea882920cd1d81101b8 damien <damien@localhost.localdomain> 1364405495 +0100	commit: update pagination	
+4839366561d361c991f03ea882920cd1d81101b8 35fa9cb41772c9d8c716912561b5f6e004e8ff91 damien <damien@localhost.localdomain> 1364405512 +0100	commit: add historique acces avitvity
+35fa9cb41772c9d8c716912561b5f6e004e8ff91 98ff961d99b147740ce07892250fab10a202b373 damien <damien@localhost.localdomain> 1364405525 +0100	commit: add historique acces avitvity
+98ff961d99b147740ce07892250fab10a202b373 b46a0b6a43c091231201ffe30136a5bf6f074856 damien <damien@localhost.localdomain> 1364405529 +0100	commit: add historique acces avitvity
+b46a0b6a43c091231201ffe30136a5bf6f074856 fa9328fcfcc082ea93fc306dd294efa250f1ad81 damien <damien@localhost.localdomain> 1364405542 +0100	commit: add historique photo avitvity
+fa9328fcfcc082ea93fc306dd294efa250f1ad81 32b7769ceeb4eb9337011045e20b205e11dd0fa5 damien <damien@localhost.localdomain> 1364405547 +0100	commit: add historique photo avitvity
+32b7769ceeb4eb9337011045e20b205e11dd0fa5 f0a1efc40a48c35a4c790c091a27fcacdb2f644e damien <damien@localhost.localdomain> 1364405555 +0100	commit: add historique photo avitvity
+f0a1efc40a48c35a4c790c091a27fcacdb2f644e 6ea5b7e0e30b948d721afe8a290b5e802355211e damien <damien@localhost.localdomain> 1364405585 +0100	commit: Update catch of error
+6ea5b7e0e30b948d721afe8a290b5e802355211e 879bc020e43357abeb7d09e4e284a59c057b6d2d damien <damien@localhost.localdomain> 1364405599 +0100	commit: add strings
+879bc020e43357abeb7d09e4e284a59c057b6d2d 3270a09bb632cad5fe845c8a8383dc83e1d1d021 damien <damien@localhost.localdomain> 1364405618 +0100	commit: add getById method
+3270a09bb632cad5fe845c8a8383dc83e1d1d021 66414ed1ae9b5d15c6be26e5783bfaa420e87bf1 damien <damien@localhost.localdomain> 1364405621 +0100	commit: add getById method
+66414ed1ae9b5d15c6be26e5783bfaa420e87bf1 a3bab3ecc4ddd1d288b59aa74d36f4a64afea2d8 damien <damien@localhost.localdomain> 1364405671 +0100	commit: Delete all toast in asynctask beacause that's generate error
+a3bab3ecc4ddd1d288b59aa74d36f4a64afea2d8 4952e28657eefb5627e96ee0808cccbb24b18399 damien <damien@localhost.localdomain> 1364405698 +0100	commit: Add GetById method
+4952e28657eefb5627e96ee0808cccbb24b18399 9083534954e751ab9507f31a857a6cfabb841f86 damien <damien@localhost.localdomain> 1364405702 +0100	commit: Add GetById method
+9083534954e751ab9507f31a857a6cfabb841f86 4a4ba8598784d45bddbe38f862a8309703656500 damien <damien@localhost.localdomain> 1364405726 +0100	commit: remove VoirHistorque activity for test
+4a4ba8598784d45bddbe38f862a8309703656500 187a397a7b5357da9fc1d094429ad6e7a641eb31 damien <damien@localhost.localdomain> 1364405737 +0100	commit: compil
+187a397a7b5357da9fc1d094429ad6e7a641eb31 066b7a3b255e77431596d85641868aa6bb65de84 damien <damien@localhost.localdomain> 1364476689 +0100	commit: add support of getById for Intrusion entity
+066b7a3b255e77431596d85641868aa6bb65de84 14a0f696edc920ed28668740d570a1e2afbd3d13 damien <damien@localhost.localdomain> 1364476712 +0100	commit: update to string
+14a0f696edc920ed28668740d570a1e2afbd3d13 f03ad12237ac013636631f0c398fd1bceccfd680 damien <damien@localhost.localdomain> 1364477840 +0100	commit: add button retour 
+f03ad12237ac013636631f0c398fd1bceccfd680 8e0d0be6e91196ab57caebd69a1f977521f58d7c damien <damien@localhost.localdomain> 1364477843 +0100	commit: add button retour
+8e0d0be6e91196ab57caebd69a1f977521f58d7c 7787005d527105fc3ba35009777bcfe8d85cd559 damien <damien@localhost.localdomain> 1364477847 +0100	commit: add button retour
+7787005d527105fc3ba35009777bcfe8d85cd559 a38696242b52eedb80237ad69223a65624277759 damien <damien@localhost.localdomain> 1364477851 +0100	commit: add button retour
+a38696242b52eedb80237ad69223a65624277759 e1bbc77507bb536e467e88f2e2b3445dd42aeb7f damien <damien@localhost.localdomain> 1364477863 +0100	commit: add button retour
+e1bbc77507bb536e467e88f2e2b3445dd42aeb7f 5998b07168d258bc1ad7ffc09e485c32268fdaee damien <damien@localhost.localdomain> 1364477868 +0100	commit: add button retour
+5998b07168d258bc1ad7ffc09e485c32268fdaee 4930ba89b16e8143b0d62831a458a531462a55f9 damien <damien@localhost.localdomain> 1364477886 +0100	commit: add strings
+4930ba89b16e8143b0d62831a458a531462a55f9 bb4b731a2f024e0bf1383b4821a971200209c431 damien <damien@localhost.localdomain> 1364477898 +0100	commit: add activity
+bb4b731a2f024e0bf1383b4821a971200209c431 2cea20e5f498e3e115ac40dc5a769d903737c725 damien <damien@localhost.localdomain> 1364477924 +0100	commit: add activity historique intrusion
+2cea20e5f498e3e115ac40dc5a769d903737c725 6ef1b3ba675ee7eb147777f8bce7cc87af34700a damien <damien@localhost.localdomain> 1364477936 +0100	commit: add activity historique intrusion
+6ef1b3ba675ee7eb147777f8bce7cc87af34700a 4cb43c9dc6613fcf4f13144e97478aa92d642f1c damien <damien@localhost.localdomain> 1364477944 +0100	commit: add activity historique intrusion
+4cb43c9dc6613fcf4f13144e97478aa92d642f1c b1dbc308edc79ff4045a04b33537808b5bbb32d0 damien <damien@localhost.localdomain> 1364477974 +0100	commit: add activity

@@ -40,9 +40,6 @@ public class MainActivity extends TemplateActivity {
      *
      */
     public TextView textView;
-    /**
-     *
-     */
     public EditText editTextPassword;
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
 
@@ -51,9 +48,6 @@ public class MainActivity extends TemplateActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         this.setThisActivityOn();
-        this.editTextLogin.setText("damienChes");
-        this.editTextPassword.setText("damien");
-
     }
 
     /**

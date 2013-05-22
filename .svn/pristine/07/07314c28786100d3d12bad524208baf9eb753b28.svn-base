@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="fr.securisation_site_gvi.client"
+          android:versionCode="1"
+          
+          android:versionName="1.0">
+    <uses-permission android:name="android.permission.INTERNET" />   
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />    
+
+    <application android:label="@string/app_name"
+                android:allowBackup="true" 
+                android:largeHeap="true"
+                android:debuggable="true"
+                 android:icon="@drawable/ic_launcher"
+                 android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+                  android:label="@string/app_name"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="fr.securisation_site_gvi.client.AccueilActivity"
+            android:label="@string/title_activity_accueil" >
+        </activity>
+        <activity
+            android:name=".MenuUtilisateur"
+            android:label="@string/title_activity_menu_utilisateur" >
+        </activity>
+        <activity
+            android:name=".ListeUtilisateur"
+            android:label="@string/title_activity_liste_utilisateur" >
+        </activity>
+        <activity
+            android:name=".Parametres"
+            android:label="@string/title_activity_parametres" >
+        </activity>
+        <activity
+            android:name=".ModifierUtilisateur"
+            android:label="@string/title_activity_modifier_utilisateur" >
+        </activity>
+        <activity
+            android:name=".AjouterUtilisateur"
+            android:label="@string/title_activity_ajouter_utilisateur" >
+        </activity>
+        <activity
+            android:name="fr.securisation_site_gvi.client.Historique"
+            android:label="@string/title_activity_historique" >
+        </activity>
+        <activity
+            android:name=".AjouterTechnicien"
+            android:label="@string/title_activity_ajouter_technicien" >
+        </activity>
+        <activity
+            android:name=".HistoriqueAcces"
+            android:label="@string/title_activity_historique_acces" >
+        </activity>
+        <activity
+            android:name=".HistoriquePhoto"
+            android:label="@string/title_activity_historique_photo" >
+        </activity>
+         <activity
+            android:name=".HistoriqueIntrusion"
+            android:label="@string/title_activity_historique_intrusion" >
+        </activity>
+    </application> 
+    
+</manifest>

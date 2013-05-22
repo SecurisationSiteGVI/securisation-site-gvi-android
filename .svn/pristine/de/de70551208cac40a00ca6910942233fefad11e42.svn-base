@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="fr.securisation_site_gvi.client"
+          android:versionCode="1"
+          
+          android:versionName="1.0">
+    <uses-permission android:name="android.permission.INTERNET" />   
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />    
+
+    <application android:label="@string/app_name"
+                android:allowBackup="true" 
+                android:largeHeap="true"
+                android:debuggable="true"
+                 android:icon="@drawable/ic_launcher"
+                 android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+                  android:label="@string/app_name"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="fr.securisation_site_gvi.client.AccueilActivity"
+            android:label="@string/title_activity_accueil" >
+        </activity>
+        <activity
+            android:name=".MenuUtilisateur"
+            android:label="@string/title_activity_menu_utilisateur" >
+        </activity>
+        <activity
+            android:name=".ListeUtilisateur"
+            android:label="@string/title_activity_liste_utilisateur" >
+        </activity>
+        <activity
+            android:name=".Parametres"
+            android:label="@string/title_activity_parametres" >
+        </activity>
+        <activity
+            android:name=".ModifierUtilisateur"
+            android:label="@string/title_activity_modifier_utilisateur" >
+        </activity>
+        <activity
+            android:name=".AjouterUtilisateur"
+            android:label="@string/title_activity_ajouter_utilisateur" >
+        </activity>
+        <activity
+            android:name="fr.securisation_site_gvi.client.Historique"
+            android:label="@string/title_activity_historique" >
+        </activity>
+        <activity
+            android:name=".AjouterTechnicien"
+            android:label="@string/title_activity_ajouter_technicien" >
+        </activity>
+        <activity
+            android:name=".HistoriqueAcces"
+            android:label="@string/title_activity_historique_acces" >
+        </activity>
+        <activity
+            android:name=".HistoriquePhoto"
+            android:label="@string/title_activity_historique_photo" >
+        </activity>
+         <activity
+            android:name=".HistoriqueIntrusion"
+            android:label="@string/title_activity_historique_intrusion" >
+        </activity>
+        <activity
+            android:name=".MenuBadge"
+            android:label="@string/title_activity_menu_badge" >
+        </activity>
+        <activity
+            android:name=".ListeBadges"
+            android:label="@string/title_activity_liste_badges" >
+        </activity>
+        <activity
+            android:name=".AjouterBadge"
+            android:label="@string/title_activity_ajouter_badge" >
+        </activity>
+        <activity
+            android:name=".AttributionBadge"
+            android:label="@string/title_activity_attributionBadge" >
+        </activity>
+        <activity
+            android:name=".MenuSecteur"
+            android:label="@string/title_activity_gerer_secteur" >
+        </activity>
+        <activity
+            android:name=".AjoutSecteur"
+            android:label="@string/title_activity_ajouter_secteur" >
+        </activity>
+        <activity
+            android:name=".ListeSecteur"
+            android:label="@string/title_activity_liste_secteur" >
+        </activity>
+        <activity
+            android:name=".AttributionSecteur"
+            android:label="@string/title_activity_attribution_secteur" >
+        </activity>
+        <activity
+            android:name=".MenuAppareil"
+            android:label="@string/title_activity_menu_appareil" >
+        </activity>
+<activity
+            android:name=".MenuPosition"
+            android:label="@string/title_activity_menu_position" >
+        </activity>
+        <activity
+            android:name=".AjouterPosition"
+            android:label="@string/title_activity_ajouter_position" >
+        </activity>
+        <activity
+            android:name=".ListePositions"
+            android:label="@string/title_activity_liste_positions" >
+        </activity>
+        <activity 
+            android:name=".MenuDetecteurIntrusion"
+            android:label="@string/title_activity_menu_detecteur" >
+        </activity>
+        <activity 
+            android:name="ListeDetecteurIntrusion"
+            android:label="@string/title_activity_liste_detecteur" >
+        </activity>
+         <activity 
+            android:name=".AjouterDetecteurIntrusion"
+            android:label="@string/title_activity_ajouter_detecteur" >
+        </activity>
+        <activity 
+            android:name=".MenuCamera"
+            android:label="@string/title_activity_menu_camera" >
+        </activity>
+        <activity 
+            android:name=".ListeDesCameras"
+            android:label="@string/title_activity_liste_camera" >
+        </activity>
+        <activity 
+            android:name=".AjoutCamera"
+            android:label="@string/title_activity_ajout_camera" >
+        </activity>
+         <activity 
+            android:name=".ListeDesBorneAcces"
+            android:label="@string/title_activity_liste_borne_acess" >
+        </activity>
+        <activity 
+            android:name=".MenuBorneAcces"
+            android:label="@string/title_activity_menu_borne_acess" >
+        </activity>
+        <activity 
+            android:name=".AjoutBorneAcces"
+            android:label="@string/title_activity_ajout_borne_acess" >
+        </activity>
+        <activity 
+            android:name=".MenuNumeropredefini"
+            android:label="@string/title_activity_menu_numero" >
+        </activity>
+        <activity 
+            android:name=".AjouterNumero"
+            android:label="@string/title_activity_ajouter_numero" >
+        </activity> 
+        <activity 
+            android:name=".ListeNumeroPredefini"
+            android:label="@string/title_activity_liste_numero" >
+        </activity>
+        <activity 
+            android:name=".GererAuthorisationAcces"
+            android:label="@string/title_activity_authorisation_acces" >
+        </activity>
+    </application> 
+    
+</manifest>

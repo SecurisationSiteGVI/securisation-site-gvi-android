@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context=".AttributionSecteur" xmlns:app="http://schemas.android.com/apk/res/com.example.test">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" 
+        
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/AttributionSecteurtextViewselectSecteur"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/selectsecteur" />
+
+            <Button
+                android:id="@+id/AttributionSecteurButtonSelectsecteur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="650dp" >
+
+            <ListView
+                android:id="@+id/attributionSecteurListSecteur"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp" >
+            <Button
+                android:id="@+id/attributionSecteurButtonAjouterBorne"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:text="@string/select_borne" />
+            <Button
+                android:id="@+id/attributionSecteurButtonAjouterCamera"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:text="@string/select_camera" />
+            <Button
+                android:id="@+id/attributionSecteurButtonAjouterDetecteurIntrusion"
+                android:layout_width="185dp"
+                android:layout_height="100dp"
+                android:text="@string/select_detecteur" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

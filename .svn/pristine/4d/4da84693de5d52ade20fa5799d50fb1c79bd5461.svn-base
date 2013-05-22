@@ -1,0 +1,34 @@
+46bfc4e68ed1a910a4ee39bbd578e1d3f1db01e6 83e6c23b454967f54158fdd79b208d479cda7e6c damien <damien@localhost.localdomain> 1366797836 +0200	commit: add link
+83e6c23b454967f54158fdd79b208d479cda7e6c 38cb36bb70bf85edef4d7f753f11b21d3338bff3 damien <damien@localhost.localdomain> 1366797863 +0200	commit: update getSecteurService
+38cb36bb70bf85edef4d7f753f11b21d3338bff3 135a112cf5b1ef454731255a4c32d83b90b972a4 damien <damien@localhost.localdomain> 1366797878 +0200	commit: add authorisationAccesActivity
+135a112cf5b1ef454731255a4c32d83b90b972a4 fe50778c706f5b6f32387a6d0f43b22880fea444 damien <damien@localhost.localdomain> 1366797886 +0200	commit: update getSecteurService
+fe50778c706f5b6f32387a6d0f43b22880fea444 d3efec3c66815790aa2785819b511861caafc23e damien <damien@localhost.localdomain> 1366797897 +0200	commit: add authorisationAccesActivity
+d3efec3c66815790aa2785819b511861caafc23e 362e9ac0e487b6adac9b1fbed8ba725f823a4feb damien <damien@localhost.localdomain> 1366797902 +0200	commit: add authorisationAccesActivity
+362e9ac0e487b6adac9b1fbed8ba725f823a4feb 1900956a1de1f1c67c0af55596c24900da60915d damien <damien@localhost.localdomain> 1366797911 +0200	commit: add authorisationAccesActivity
+1900956a1de1f1c67c0af55596c24900da60915d 98ba777a785adb7ae2dea2e5af3c9921c283b43d damien <damien@localhost.localdomain> 1366797916 +0200	commit: add authorisationAccesActivity
+98ba777a785adb7ae2dea2e5af3c9921c283b43d 869259c394e3140c7816dc7d6794e5ab1725506a damien <damien@localhost.localdomain> 1366888498 +0200	commit: delete space
+869259c394e3140c7816dc7d6794e5ab1725506a 707d57095586173363d384e0cf546d8716e1591b damien <damien@localhost.localdomain> 1366888546 +0200	commit: add editText in large view don't forget coding the same for phone view
+707d57095586173363d384e0cf546d8716e1591b 178f2f9a5e786338ca082d8b5e0cd23133c54245 damien <damien@localhost.localdomain> 1366888564 +0200	commit: add RESTAuthorisationAccesAdd
+178f2f9a5e786338ca082d8b5e0cd23133c54245 01221ed93431b8ba6fa57a1aac3d5247f2de6217 damien <damien@localhost.localdomain> 1366888578 +0200	commit: add RESTAuthorisationAccesGetByUtilisateur
+01221ed93431b8ba6fa57a1aac3d5247f2de6217 4ead3bb7988cf675c978ba367a6f3098ed4a9b04 damien <damien@localhost.localdomain> 1366888588 +0200	commit: add RESTAuthorisationAccesServiceWeb
+4ead3bb7988cf675c978ba367a6f3098ed4a9b04 3b438f98ffaa6fcc952143786ce7c1bfd5f6a148 damien <damien@localhost.localdomain> 1366888635 +0200	commit: add method attribuer 
+3b438f98ffaa6fcc952143786ce7c1bfd5f6a148 9bcc898c1d1be0463dbe249a1de1b5f214d0d6c3 damien <damien@localhost.localdomain> 1366973575 +0200	commit: update link
+9bcc898c1d1be0463dbe249a1de1b5f214d0d6c3 338aee3adc6817c148bd2b8971c5ad69817d753e damien <damien@localhost.localdomain> 1366973599 +0200	commit: add method for authoriser and interdir acces to secteurs
+338aee3adc6817c148bd2b8971c5ad69817d753e 8caab5479b8caae68588ff1b2d12d6f5d20db5e1 damien <damien@localhost.localdomain> 1366973615 +0200	commit: add method for authoriser and interdir acces to secteurs
+8caab5479b8caae68588ff1b2d12d6f5d20db5e1 d605e54620b7ed5d04ca66f350214c3e73cbfa5e damien <damien@localhost.localdomain> 1366973621 +0200	commit: add method for authoriser and interdir acces to secteurs
+d605e54620b7ed5d04ca66f350214c3e73cbfa5e c9c0979a9ccb66dfb57beade0ee64b82bf2445f6 damien <damien@localhost.localdomain> 1366973645 +0200	commit: add AuthorisationAccesService
+c9c0979a9ccb66dfb57beade0ee64b82bf2445f6 2c8d5810b0db0ddf52c9667aa97b20a85dbdd2e0 damien <damien@localhost.localdomain> 1367317307 +0200	commit: final activity
+2c8d5810b0db0ddf52c9667aa97b20a85dbdd2e0 7ca05cdbea871d59a66074b6db3d022bd5690e7c damien <damien@localhost.localdomain> 1367317313 +0200	commit: final activity
+7ca05cdbea871d59a66074b6db3d022bd5690e7c 84febf1aab76f2970ce6f8af05bec0d37c281652 damien <damien@localhost.localdomain> 1367317324 +0200	commit: delete space
+84febf1aab76f2970ce6f8af05bec0d37c281652 1598fecac334c42e2c04dd405d1c080f5c4b1e0e damien <damien@localhost.localdomain> 1367317340 +0200	commit: update method for add and update
+1598fecac334c42e2c04dd405d1c080f5c4b1e0e c37e316b3d8b9d7eaa0c0d9c365e7de664c9d920 damien <damien@localhost.localdomain> 1367317360 +0200	commit: add phone input
+c37e316b3d8b9d7eaa0c0d9c365e7de664c9d920 a9383611e9ddf1efaedd90b9da32bfa64b7bffdb damien <damien@localhost.localdomain> 1367317432 +0200	commit: add phone input
+a9383611e9ddf1efaedd90b9da32bfa64b7bffdb 8764bb2987c7193b3beef49da7c890a7388c5b8a damien <damien@localhost.localdomain> 1367317437 +0200	commit: add phone input
+8764bb2987c7193b3beef49da7c890a7388c5b8a 7913ad867fa17637cdb1028ff665541166e339a4 damien <damien@localhost.localdomain> 1367395397 +0200	commit: Annotation support !
+7913ad867fa17637cdb1028ff665541166e339a4 ceb7f12966ccd8cfe29a8ce069e9072b20a161a2 damien <damien@localhost.localdomain> 1367395401 +0200	commit: Annotation support !
+ceb7f12966ccd8cfe29a8ce069e9072b20a161a2 5c723a25acec087a9ea7358dfe8276ad5b07aa7e damien <damien@localhost.localdomain> 1367395405 +0200	commit: Annotation support !
+5c723a25acec087a9ea7358dfe8276ad5b07aa7e c1204434724b886a95063931dbd9d4992188a6db damien <damien@localhost.localdomain> 1367996550 +0200	commit: remove bugs
+c1204434724b886a95063931dbd9d4992188a6db 8b69bcde7f24358196af5dae17ae0e4cb118bdb8 damien <damien@localhost.localdomain> 1368091951 +0200	commit: remove bugs
+8b69bcde7f24358196af5dae17ae0e4cb118bdb8 300b644bc40f07d2244ef056a0a9cd5f5b70e45b damien <damien@localhost.localdomain> 1368266616 +0200	commit: update name of variables
+300b644bc40f07d2244ef056a0a9cd5f5b70e45b c3670469f5492c6c796885f840138df50f69d649 damien <damien@localhost.localdomain> 1368686788 +0200	commit: delete all spaces
+c3670469f5492c6c796885f840138df50f69d649 7e0361782dfbca770dee4252c682f523863cd6f6 damien <damien@localhost.localdomain> 1368774550 +0200	commit: delete all spaces
