@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -26,7 +27,7 @@ public class AjouterNumero extends TemplateActivity {
 
     private EditText edittextNumero;
     private Button buttonCree;
-        
+    private TextView textView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class AjouterNumero extends TemplateActivity {
     public void initGraphicalObjects() {
         this.edittextNumero = (EditText) findViewById(R.id.AjouterNumeroEditTextNumero);
         this.buttonCree = (Button) findViewById(R.id.AjouterNumeroButtonCree);
+                this.textView = (TextView) findViewById(R.id.AjouterNumeroTextViewNumero);
     }
 
     /**
@@ -54,6 +56,10 @@ public class AjouterNumero extends TemplateActivity {
                 
             }
         });
+    }
+    @Override
+    public void addInitialValueForGraphicalObjects() {
+       this.textView.setText("Numéro :");
     }
     private class RESTNumeroPredefiniAjout extends AsyncTask<Object, Void, Object> {
 

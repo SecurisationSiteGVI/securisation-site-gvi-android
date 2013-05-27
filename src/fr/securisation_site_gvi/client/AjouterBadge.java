@@ -56,11 +56,11 @@ public class AjouterBadge extends TemplateActivity {
                 String numero = edittextNumero.getText().toString();
                 Badge b = new Badge();
                 b.setNumero(numero);
-                
+                new RESTBadgeAjout().execute(b);
             }
         });
     }
-    private class RESTUtilisateurAjout extends AsyncTask<Object, Void, Object> {
+    private class RESTBadgeAjout extends AsyncTask<Object, Void, Object> {
 
         private ProgressDialog progressDialog;
         private boolean erreur = false;

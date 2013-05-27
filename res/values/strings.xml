@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Sécurisation site gvi</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_slide">Slide</string>
     <string name="image_content_description">Un Android </string>
     <string name="create_account">Créer un compte</string>
     <string name="email">Adresse email</string>
@@ -124,4 +125,6 @@
      <string name="heurefin">Heure de fin :</string>
      <string name="secteur">Secteur :</string>
      <string name="title_activity_authorisation_acces">Gérer les authorisations d\'acces</string>
+         <string name="drawer_open">Menu ouvert</string>
+    <string name="drawer_close">Menu fermé</string>
 </resources>

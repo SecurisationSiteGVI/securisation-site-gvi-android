@@ -28,6 +28,10 @@
             android:label="@string/title_activity_accueil" >
         </activity>
         <activity
+            android:name="fr.securisation_site_gvi.client.Slide"
+            android:label="@string/title_activity_slide" >
+        </activity>
+        <activity
             android:name=".MenuUtilisateur"
             android:label="@string/title_activity_menu_utilisateur" >
         </activity>

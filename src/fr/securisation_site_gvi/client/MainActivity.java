@@ -28,17 +28,8 @@ import org.xml.sax.SAXException;
  */
 public class MainActivity extends TemplateActivity {
 
-    /**
-     *
-     */
     public Button buttonConnnexion;
-    /**
-     *
-     */
     public EditText editTextLogin;
-    /**
-     *
-     */
     public TextView textView;
     public EditText editTextPassword;
     private UtilisateurService utilisateurSrv = MetierFactory.getUtilisateurSrv();
@@ -48,11 +39,10 @@ public class MainActivity extends TemplateActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         this.setThisActivityOn();
+        this.editTextLogin.setText("damienChes");
+        this.editTextPassword.setText("damien");
     }
 
-    /**
-     *
-     */
     @Override
     public void initGraphicalObjects() {
         this.buttonConnnexion = (Button) findViewById(R.id.buttonConnexion);
@@ -61,9 +51,6 @@ public class MainActivity extends TemplateActivity {
         this.editTextPassword = (EditText) findViewById(R.id.editTextPassword);
     }
 
-    /**
-     *
-     */
     @Override
     public void addActionListnerForAllGraphicalObjects() {
         this.buttonConnnexion.setOnClickListener(new View.OnClickListener() {
@@ -137,8 +124,10 @@ public class MainActivity extends TemplateActivity {
                 } else {
                     textView.setText("Connexion réussi.");
                     addNotification("Conncté", 12);
-                    Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                //    Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                     Intent intent = new Intent(MainActivity.this, Slide.class);
                     startActivity(intent);
+                    finish();
                 }
             }else if(result instanceof ConnectException){
                 throwConnectException();

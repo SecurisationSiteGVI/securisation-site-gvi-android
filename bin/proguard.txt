@@ -1,111 +1,117 @@
+# view res/layout/activity_main.xml #generated:1
+-keep class android.support.v4.widget.DrawerLayout { <init>(...); }
+
 # view AndroidManifest.xml #generated:26
 -keep class fr.securisation_site_gvi.client.AccueilActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:150
+# view AndroidManifest.xml #generated:154
 -keep class fr.securisation_site_gvi.client.AjoutBorneAcces { <init>(...); }
 
-# view AndroidManifest.xml #generated:138
+# view AndroidManifest.xml #generated:142
 -keep class fr.securisation_site_gvi.client.AjoutCamera { <init>(...); }
 
-# view AndroidManifest.xml #generated:90
+# view AndroidManifest.xml #generated:94
 -keep class fr.securisation_site_gvi.client.AjoutSecteur { <init>(...); }
 
-# view AndroidManifest.xml #generated:78
+# view AndroidManifest.xml #generated:82
 -keep class fr.securisation_site_gvi.client.AjouterBadge { <init>(...); }
 
-# view AndroidManifest.xml #generated:126
+# view AndroidManifest.xml #generated:130
 -keep class fr.securisation_site_gvi.client.AjouterDetecteurIntrusion { <init>(...); }
 
-# view AndroidManifest.xml #generated:158
+# view AndroidManifest.xml #generated:162
 -keep class fr.securisation_site_gvi.client.AjouterNumero { <init>(...); }
 
-# view AndroidManifest.xml #generated:110
+# view AndroidManifest.xml #generated:114
 -keep class fr.securisation_site_gvi.client.AjouterPosition { <init>(...); }
 
-# view AndroidManifest.xml #generated:54
+# view AndroidManifest.xml #generated:58
 -keep class fr.securisation_site_gvi.client.AjouterTechnicien { <init>(...); }
 
-# view AndroidManifest.xml #generated:46
+# view AndroidManifest.xml #generated:50
 -keep class fr.securisation_site_gvi.client.AjouterUtilisateur { <init>(...); }
 
-# view AndroidManifest.xml #generated:82
+# view AndroidManifest.xml #generated:86
 -keep class fr.securisation_site_gvi.client.AttributionBadge { <init>(...); }
 
-# view AndroidManifest.xml #generated:98
+# view AndroidManifest.xml #generated:102
 -keep class fr.securisation_site_gvi.client.AttributionSecteur { <init>(...); }
 
-# view AndroidManifest.xml #generated:166
+# view AndroidManifest.xml #generated:170
 -keep class fr.securisation_site_gvi.client.GererAuthorisationAcces { <init>(...); }
 
-# view AndroidManifest.xml #generated:50
+# view AndroidManifest.xml #generated:54
 -keep class fr.securisation_site_gvi.client.Historique { <init>(...); }
 
-# view AndroidManifest.xml #generated:58
+# view AndroidManifest.xml #generated:62
 -keep class fr.securisation_site_gvi.client.HistoriqueAcces { <init>(...); }
 
-# view AndroidManifest.xml #generated:66
+# view AndroidManifest.xml #generated:70
 -keep class fr.securisation_site_gvi.client.HistoriqueIntrusion { <init>(...); }
 
-# view AndroidManifest.xml #generated:62
+# view AndroidManifest.xml #generated:66
 -keep class fr.securisation_site_gvi.client.HistoriquePhoto { <init>(...); }
 
-# view AndroidManifest.xml #generated:74
+# view AndroidManifest.xml #generated:78
 -keep class fr.securisation_site_gvi.client.ListeBadges { <init>(...); }
 
-# view AndroidManifest.xml #generated:142
+# view AndroidManifest.xml #generated:146
 -keep class fr.securisation_site_gvi.client.ListeDesBorneAcces { <init>(...); }
 
-# view AndroidManifest.xml #generated:134
+# view AndroidManifest.xml #generated:138
 -keep class fr.securisation_site_gvi.client.ListeDesCameras { <init>(...); }
 
-# view AndroidManifest.xml #generated:122
+# view AndroidManifest.xml #generated:126
 -keep class fr.securisation_site_gvi.client.ListeDetecteurIntrusion { <init>(...); }
 
-# view AndroidManifest.xml #generated:162
+# view AndroidManifest.xml #generated:166
 -keep class fr.securisation_site_gvi.client.ListeNumeroPredefini { <init>(...); }
 
-# view AndroidManifest.xml #generated:114
+# view AndroidManifest.xml #generated:118
 -keep class fr.securisation_site_gvi.client.ListePositions { <init>(...); }
 
-# view AndroidManifest.xml #generated:94
+# view AndroidManifest.xml #generated:98
 -keep class fr.securisation_site_gvi.client.ListeSecteur { <init>(...); }
 
-# view AndroidManifest.xml #generated:34
+# view AndroidManifest.xml #generated:38
 -keep class fr.securisation_site_gvi.client.ListeUtilisateur { <init>(...); }
 
 # view AndroidManifest.xml #generated:18
 -keep class fr.securisation_site_gvi.client.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:102
+# view AndroidManifest.xml #generated:106
 -keep class fr.securisation_site_gvi.client.MenuAppareil { <init>(...); }
 
-# view AndroidManifest.xml #generated:70
+# view AndroidManifest.xml #generated:74
 -keep class fr.securisation_site_gvi.client.MenuBadge { <init>(...); }
 
-# view AndroidManifest.xml #generated:146
+# view AndroidManifest.xml #generated:150
 -keep class fr.securisation_site_gvi.client.MenuBorneAcces { <init>(...); }
 
-# view AndroidManifest.xml #generated:130
+# view AndroidManifest.xml #generated:134
 -keep class fr.securisation_site_gvi.client.MenuCamera { <init>(...); }
 
-# view AndroidManifest.xml #generated:118
+# view AndroidManifest.xml #generated:122
 -keep class fr.securisation_site_gvi.client.MenuDetecteurIntrusion { <init>(...); }
 
-# view AndroidManifest.xml #generated:154
+# view AndroidManifest.xml #generated:158
 -keep class fr.securisation_site_gvi.client.MenuNumeropredefini { <init>(...); }
 
-# view AndroidManifest.xml #generated:106
+# view AndroidManifest.xml #generated:110
 -keep class fr.securisation_site_gvi.client.MenuPosition { <init>(...); }
 
-# view AndroidManifest.xml #generated:86
+# view AndroidManifest.xml #generated:90
 -keep class fr.securisation_site_gvi.client.MenuSecteur { <init>(...); }
 
-# view AndroidManifest.xml #generated:30
+# view AndroidManifest.xml #generated:34
 -keep class fr.securisation_site_gvi.client.MenuUtilisateur { <init>(...); }
 
-# view AndroidManifest.xml #generated:42
+# view AndroidManifest.xml #generated:46
 -keep class fr.securisation_site_gvi.client.ModifierUtilisateur { <init>(...); }
 
-# view AndroidManifest.xml #generated:38
+# view AndroidManifest.xml #generated:42
 -keep class fr.securisation_site_gvi.client.Parametres { <init>(...); }
+
+# view AndroidManifest.xml #generated:30
+-keep class fr.securisation_site_gvi.client.Slide { <init>(...); }
 

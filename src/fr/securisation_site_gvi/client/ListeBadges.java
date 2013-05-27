@@ -272,7 +272,9 @@ public class ListeBadges extends TemplateActivity {
         @Override
         protected void onPostExecute(Object result) {
             this.progressDialog.cancel();
+            remplirListView();
             if (!erreur) {
+                
                 Toast.makeText(activityContext, "Badge bien supprimé.", Toast.LENGTH_LONG).show();
             } else if (result instanceof MalformedURLException) {
                 throwMalformedURLException();
@@ -300,7 +302,7 @@ public class ListeBadges extends TemplateActivity {
                 erreur=true;
                 Logger.getLogger(ListeBadges.class.getName()).log(Level.SEVERE, null, ex);
             }
-            remplirListView();
+            
             return ret;
         }
     }
