@@ -4,6 +4,10 @@
  */
 package physique.dataOut;
 
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import physique.dataOut.evenement.EvenementServiceWebJsonImpl;
 import metier.NumeroPredefiniService;
 import metier.NumeroPredefiniServiceImpl;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
@@ -138,9 +142,19 @@ public class PhysiqueDataOutFactory {
      *
      * @return
      */
+    @RessourceType(type = RessourceType.Type.XML)
     public static EvenementServiceWeb getEvenementServiceWeb() {
         if (evenementSrv == null) {
-            evenementSrv = new EvenementServiceWebImpl();
+            try {
+                RessourceType pathInMyMethod = BoiteAOutils.getPathInMyMethod(new Exception().getStackTrace()[0].getMethodName(),PhysiqueDataOutFactory.class);
+                if(pathInMyMethod.type()== RessourceType.Type.JSON){
+                    evenementSrv = new EvenementServiceWebJsonImpl();
+                }else if(pathInMyMethod.type()== RessourceType.Type.XML){
+                    evenementSrv = new EvenementServiceWebImpl();
+                }
+            } catch (NoSuchMethodException ex) {
+                Logger.getLogger(PhysiqueDataOutFactory.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return evenementSrv;
     }
