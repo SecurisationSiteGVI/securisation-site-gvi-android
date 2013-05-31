@@ -38,8 +38,4 @@ public class BoiteAOutils {
         }
         return ret;
     }
-    
-    protected static RessourceType getPathInMyMethod(String d , Class s ) throws NoSuchMethodException{
-        return s.getMethod(d, null).getAnnotation(RessourceType.class);
-    }
 }
