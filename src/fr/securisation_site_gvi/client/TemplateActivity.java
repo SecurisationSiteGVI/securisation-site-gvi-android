@@ -197,9 +197,9 @@ public class TemplateActivity extends Activity {
                 .setSmallIcon(R.drawable.ic_action_about)
                 .setContentTitle("Sécurisation site gvi")
                 .setContentText(content);
-        Intent resultIntent = new Intent(this, AccueilActivity.class);
+        Intent resultIntent = new Intent(this, Slide.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(AccueilActivity.class);
+        stackBuilder.addParentStack(Slide.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(

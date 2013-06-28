@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  *
@@ -29,17 +28,10 @@ public class AccueilActivity extends TemplateActivity {
         this.setThisActivityOn();
     }
 
-    /**
-     *
-     */
     @Override
     public void initGraphicalObjects() {
-        this.voirHistorique = (Button) findViewById(R.id.voirHistorique);
-        
-        
-        this.gererLesBadges = (Button) findViewById(R.id.gererLesBadges);
-        
-        
+        this.voirHistorique = (Button) findViewById(R.id.voirHistorique);        
+        this.gererLesBadges = (Button) findViewById(R.id.gererLesBadges);       
         this.gererLesUtilisateurs = (Button) findViewById(R.id.gererLesUtilisateurs);
         this.gererLesSecteurs = (Button) findViewById(R.id.gererLesSecteur);
         this.gererLesAppareils = (Button) findViewById(R.id.gererLesAppareils);

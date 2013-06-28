@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,13 +26,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import physique.dataOut.BoiteAOutils;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebXMLImpl;
 
 /**
  *
  * @author damien
  */
-public class RESTUtilisateurGetAllByRange {
+public class RESTUtilisateurGetById {
 
     /**
      *
@@ -44,12 +44,11 @@ public class RESTUtilisateurGetAllByRange {
      * @throws IOException
      */
     public Object execute(Object... params) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
+        Ressource ressource = (Ressource) params[1];
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-        Integer from = (Integer) params[0];
-        Integer nbResut = (Integer) params[1];
-        Ressource ressource = (Ressource) params[2];
+        Long id = (Long) params[0];
         InputStream fluxLecture = null;
-        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
+        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + id);
         fluxLecture = url.openStream();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -66,11 +65,6 @@ public class RESTUtilisateurGetAllByRange {
                 utilisateur.setVille(BoiteAOutils.getTagValue("ville", eElement));
                 utilisateur.setNom(BoiteAOutils.getTagValue("nom", eElement));
                 utilisateur.setPrenom(BoiteAOutils.getTagValue("prenom", eElement));
-                utilisateur.setCodePostale(Integer.parseInt(BoiteAOutils.getTagValue("codePostale", eElement)));
-                utilisateur.setAdresse(BoiteAOutils.getTagValue("adresse", eElement));
-                utilisateur.setTelephonePortable(BoiteAOutils.getTagValue("telephonePortable", eElement));
-                utilisateur.setTelephoneFixe(BoiteAOutils.getTagValue("telephoneFixe", eElement));
-                utilisateur.setHomme(Boolean.parseBoolean(BoiteAOutils.getTagValue("homme", eElement)));
                 if (BoiteAOutils.getTagValue("dateDeNaissance", eElement) != null) {
                     String dateStr = BoiteAOutils.getTagValue("dateDeNaissance", eElement);
                     final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -78,11 +72,15 @@ public class RESTUtilisateurGetAllByRange {
                     try {
                         d = dateFormat.parse(dateStr);
                     } catch (ParseException ex) {
-                        Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(UtilisateurServiceWebXMLImpl.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     utilisateur.setDateDeNaissance(d);
-
                 }
+                utilisateur.setCodePostale(Integer.parseInt(BoiteAOutils.getTagValue("codePostale", eElement)));
+                utilisateur.setAdresse(BoiteAOutils.getTagValue("adresse", eElement));
+                utilisateur.setTelephonePortable(BoiteAOutils.getTagValue("telephonePortable", eElement));
+                utilisateur.setTelephoneFixe(BoiteAOutils.getTagValue("telephoneFixe", eElement));
+                utilisateur.setHomme(Boolean.parseBoolean(BoiteAOutils.getTagValue("homme", eElement)));
                 utilisateurs.add(utilisateur);
             }
         }

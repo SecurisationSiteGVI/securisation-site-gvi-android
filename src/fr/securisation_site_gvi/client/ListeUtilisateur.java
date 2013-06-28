@@ -109,7 +109,7 @@ public class ListeUtilisateur extends TemplateActivity {
 
     private int getNbPages() {
         int nbPages = this.count / this.nbLinge;
-        return nbPages;
+        return nbPages+1;
     }
 
     /**

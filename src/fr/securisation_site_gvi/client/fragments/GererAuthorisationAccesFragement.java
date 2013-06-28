@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;

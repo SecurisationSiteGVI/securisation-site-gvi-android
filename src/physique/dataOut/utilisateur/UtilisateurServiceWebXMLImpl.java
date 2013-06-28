@@ -14,25 +14,22 @@ import javax.xml.parsers.ParserConfigurationException;
 import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
 import org.xml.sax.SAXException;
-import physique.dataOut.BoiteAOutils;
-import physique.dataOut.BoiteAOutils.Path;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurAdd;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurAddTechniecien;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurCount;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurGetAll;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurGetAllByRange;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurGetById;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurLoginIsUse;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurRemove;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurUpdate;
-import physique.dataOut.utilisateur.rest.RESTUtilisateurVerificationConnexion;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurAdd;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurAddTechniecien;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurCount;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurGetAll;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurGetAllByRange;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurGetById;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurLoginIsUse;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurRemove;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurUpdate;
+import physique.dataOut.utilisateur.restXML.RESTUtilisateurVerificationConnexion;
 
 /**
  *
  * @author damien
  */
-@Path(ressourceName = "utilisateur")
-public class UtilisateurServiceWebImpl implements UtilisateurServiceWeb {
+public class UtilisateurServiceWebXMLImpl implements UtilisateurServiceWeb {
 
     @Override
     public List<Utilisateur> getAll(Ressource ressource) throws ParserConfigurationException, SAXException, IOException {

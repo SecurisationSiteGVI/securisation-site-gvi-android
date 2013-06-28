@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,27 +26,30 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import physique.dataOut.BoiteAOutils;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebXMLImpl;
 
 /**
  *
  * @author damien
  */
-public class RESTUtilisateurGetAll {
+public class RESTUtilisateurGetAllByRange {
 
     /**
      *
      * @param params
      * @return
-     * @throws ParserConfigurationException
      * @throws SAXException
+     * @throws ParserConfigurationException
+     * @throws MalformedURLException
      * @throws IOException
      */
-    public Object execute(Object... params) throws ParserConfigurationException, SAXException, IOException {
-        Ressource ressource = (Ressource) params[0];
+    public Object execute(Object... params) throws SAXException, ParserConfigurationException, MalformedURLException, IOException {
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+        Integer from = (Integer) params[0];
+        Integer nbResut = (Integer) params[1];
+        Ressource ressource = (Ressource) params[2];
         InputStream fluxLecture = null;
-        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
+        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/" + from + "/" + nbResut);
         fluxLecture = url.openStream();
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -74,9 +78,10 @@ public class RESTUtilisateurGetAll {
                     try {
                         d = dateFormat.parse(dateStr);
                     } catch (ParseException ex) {
-                        Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(UtilisateurServiceWebXMLImpl.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     utilisateur.setDateDeNaissance(d);
+
                 }
                 utilisateurs.add(utilisateur);
             }

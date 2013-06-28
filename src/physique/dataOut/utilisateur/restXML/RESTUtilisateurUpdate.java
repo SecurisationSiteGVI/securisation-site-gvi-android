@@ -2,14 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import metier.entitys.Ressource;
 import metier.entitys.Utilisateur;
@@ -18,18 +20,21 @@ import metier.entitys.Utilisateur;
  *
  * @author damien
  */
-public class RESTUtilisateurAdd {
+public class RESTUtilisateurUpdate {
 
     /**
      *
      * @param params
      * @return
+     * @throws MalformedURLException
      * @throws IOException
      */
-    public Object execute(Object... params) throws IOException {
-        Ressource ressource = (Ressource) params[1];
+    public Object execute(Object... params) throws MalformedURLException, IOException {
         Boolean retour = true;
+        Ressource ressource = (Ressource) params[1];
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Utilisateur utilisateur = (Utilisateur) params[0];
+        Long id = utilisateur.getId();
         String prenom = utilisateur.getPrenom();
         String nom = utilisateur.getNom();
         String email = utilisateur.getEmail();
@@ -40,18 +45,22 @@ public class RESTUtilisateurAdd {
         String adresse = utilisateur.getAdresse();
         boolean homme = utilisateur.isHomme();
         Date dateDeNaissance = utilisateur.getDateDeNaissance();
-        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur");
+        String formattedDate = null;
+        if (dateDeNaissance != null) {
+            formattedDate = dateFormat.format(dateDeNaissance);
+        } else {
+            Date d = new Date(0l);
+            formattedDate = dateFormat.format(d);
+        }
+        String surl = ressource.getPathToAccesWebService() + "utilisateur";
+        URL url = new URL(surl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
+        conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", "application/json");
-        String input = "{\"id\":0,\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\""
-                + "email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\""
-                + "telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\""
-                + "codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\","
-                + "\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\"}";
-        OutputStream os = conn.getOutputStream();
+        String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + formattedDate + "\"}";
         System.out.println(input);
+        OutputStream os = conn.getOutputStream();
         os.write(input.getBytes());
         os.flush();
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
@@ -64,7 +73,6 @@ public class RESTUtilisateurAdd {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output;
-        System.out.println("Output from Server .... \n");
         while ((output = br.readLine()) != null) {
             System.out.println(output);
         }

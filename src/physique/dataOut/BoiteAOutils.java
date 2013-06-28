@@ -8,8 +8,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Method;
-import java.text.Annotation;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,11 +19,21 @@ import org.w3c.dom.NodeList;
 public class BoiteAOutils {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
-    public @interface Path{
-        String ressourceName();
+    public @interface MethodToHaveData{
+        Type type();
+        public static enum Type {JSON,XML};
     }
 
-  
+    public static MethodToHaveData.Type getType(Class c){
+     java.lang.annotation.Annotation[] annotations = PhysiqueDataOutFactory.class.getAnnotations();
+        for (int i = 0; i < annotations.length; i++) {
+            if(annotations[i] instanceof MethodToHaveData){
+               MethodToHaveData o = (MethodToHaveData) annotations[i];
+               return o.type();
+            }
+        }
+	return null;
+    }
     public static String getTagValue(String sTag, Element eElement) {
         String ret = null;
 

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 import java.io.BufferedReader;
 import java.io.IOException;

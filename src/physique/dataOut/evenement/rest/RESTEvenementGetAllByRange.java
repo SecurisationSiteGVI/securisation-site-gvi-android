@@ -25,7 +25,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import physique.dataOut.BoiteAOutils;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebXMLImpl;
 
 /**
  *
@@ -63,7 +63,7 @@ public class RESTEvenementGetAllByRange {
                     try {
                         d = dateFormat.parse(dateStr);
                     } catch (ParseException ex) {
-                        Logger.getLogger(UtilisateurServiceWebImpl.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(UtilisateurServiceWebXMLImpl.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     evenement.setDateEvt(d);
                 }

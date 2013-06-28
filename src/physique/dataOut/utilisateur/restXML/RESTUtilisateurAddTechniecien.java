@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,16 +11,15 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import metier.entitys.Ressource;
-import metier.entitys.Utilisateur;
+import metier.entitys.Technicien;
 
 /**
  *
  * @author damien
  */
-public class RESTUtilisateurUpdate {
+public class RESTUtilisateurAddTechniecien {
 
     /**
      *
@@ -30,14 +29,15 @@ public class RESTUtilisateurUpdate {
      * @throws IOException
      */
     public Object execute(Object... params) throws MalformedURLException, IOException {
-        Boolean retour = true;
         Ressource ressource = (Ressource) params[1];
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Utilisateur utilisateur = (Utilisateur) params[0];
-        Long id = utilisateur.getId();
+        Boolean retour = true;
+        Technicien utilisateur = (Technicien) params[0];
+        utilisateur.encode(true);
         String prenom = utilisateur.getPrenom();
         String nom = utilisateur.getNom();
         String email = utilisateur.getEmail();
+        String login = utilisateur.getLogin();
+        String password = utilisateur.getPassword();
         String telephoneFixe = utilisateur.getTelephoneFixe();
         String telephonePortable = utilisateur.getTelephonePortable();
         String ville = utilisateur.getVille();
@@ -45,22 +45,17 @@ public class RESTUtilisateurUpdate {
         String adresse = utilisateur.getAdresse();
         boolean homme = utilisateur.isHomme();
         Date dateDeNaissance = utilisateur.getDateDeNaissance();
-        String formattedDate = null;
-        if (dateDeNaissance != null) {
-            formattedDate = dateFormat.format(dateDeNaissance);
-        } else {
-            Date d = new Date(0l);
-            formattedDate = dateFormat.format(d);
-        }
-        String surl = ressource.getPathToAccesWebService() + "utilisateur";
-        URL url = new URL(surl);
+        URL url = new URL(ressource.getPathToAccesWebService() + "technicien");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
-        conn.setRequestMethod("PUT");
+        conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
-        String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + formattedDate + "\"}";
-        System.out.println(input);
+        String input = "{\"id\":0,\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephone"
+                + "Fixe\":\"" + telephoneFixe + "\",\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"cod"
+                + "ePostale\":" + codePostale + ",\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\""
+                + "dateDeNaissance\":\"" + dateDeNaissance + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
         OutputStream os = conn.getOutputStream();
+        System.out.println(input);
         os.write(input.getBytes());
         os.flush();
         if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
@@ -73,6 +68,7 @@ public class RESTUtilisateurUpdate {
         }
         BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
         String output;
+        System.out.println("Output from Server .... \n");
         while ((output = br.readLine()) != null) {
             System.out.println(output);
         }

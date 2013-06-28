@@ -6,6 +6,7 @@ package physique.dataOut;
 
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWeb;
 import physique.dataOut.AttributionSecteurCamera.AttributionSecteurCameraServiceWebImpl;
+import physique.dataOut.BoiteAOutils.MethodToHaveData;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWeb;
 import physique.dataOut.attributionSecteurBorneAcces.AttributionSecteurBorneAccesServiceWebImpl;
 import physique.dataOut.attributionSecteurDetecteurIntrusion.AttributionSecteurDetecteurIntrusionServiceWeb;
@@ -15,7 +16,7 @@ import physique.dataOut.attributionUtilisateurBadge.AttributionUtilisateurBadgeS
 import physique.dataOut.authorisationAcces.AuthorisationAccesServiceWeb;
 import physique.dataOut.authorisationAcces.AuthorisationAccesServiceWebImpl;
 import physique.dataOut.utilisateur.UtilisateurServiceWeb;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebXMLImpl;
 import physique.dataOut.evenement.EvenementServiceWeb;
 import physique.dataOut.evenement.EvenementServiceWebImpl;
 import physique.dataOut.badge.BadgeServiceWeb;
@@ -32,11 +33,13 @@ import physique.dataOut.position.PositionServiceWeb;
 import physique.dataOut.position.PositionServiceWebImpl;
 import physique.dataOut.secteur.SecteurServiceWeb;
 import physique.dataOut.secteur.SecteurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebJSONImpl;
 
 /**
  *
  * @author damien
  */
+@MethodToHaveData(type = MethodToHaveData.Type.JSON)
 public class PhysiqueDataOutFactory {
 
     private static UtilisateurServiceWeb personneSrv;
@@ -68,10 +71,6 @@ public class PhysiqueDataOutFactory {
         return numeroPredefiniSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static PositionServiceWeb getPositionServiceWeb() {
         if (positionSrv == null) {
             positionSrv = new PositionServiceWebImpl();
@@ -79,10 +78,6 @@ public class PhysiqueDataOutFactory {
         return positionSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static CameraServiceWeb getCameraServiceWeb() {
         if (cameraSrv == null) {
             cameraSrv = new CameraServiceWebImpl();
@@ -90,10 +85,6 @@ public class PhysiqueDataOutFactory {
         return cameraSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static DetecteurIntrusionServiceWeb getDetecteurIntrusionServiceWeb() {
         if (detecteurIntrusionSrv == null) {
             detecteurIntrusionSrv = new DetecteurIntrusionServiceWebImpl();
@@ -101,10 +92,6 @@ public class PhysiqueDataOutFactory {
         return detecteurIntrusionSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static BorneAccesServiceWeb getBorneAccesServiceWeb() {
         if (borneAccesSrv == null) {
             borneAccesSrv = new BorneAccesServiceWebImpl();
@@ -112,21 +99,17 @@ public class PhysiqueDataOutFactory {
         return borneAccesSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static UtilisateurServiceWeb getPersonneClientServiceWeb() {
         if (personneSrv == null) {
-            personneSrv = new UtilisateurServiceWebImpl();
+            if(BoiteAOutils.getType(PhysiqueDataOutFactory.class)== MethodToHaveData.Type.JSON){
+                personneSrv = new UtilisateurServiceWebJSONImpl();
+            }else if (BoiteAOutils.getType(PhysiqueDataOutFactory.class)== MethodToHaveData.Type.XML){
+                personneSrv = new UtilisateurServiceWebXMLImpl();
+            }
         }
         return personneSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static SecteurServiceWeb getSecteurServiceWeb() {
         if (secteurSrv == null) {
             secteurSrv = new SecteurServiceWebImpl();
@@ -134,10 +117,6 @@ public class PhysiqueDataOutFactory {
         return secteurSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static EvenementServiceWeb getEvenementServiceWeb() {
         if (evenementSrv == null) {
             evenementSrv = new EvenementServiceWebImpl();
@@ -145,10 +124,6 @@ public class PhysiqueDataOutFactory {
         return evenementSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static BadgeServiceWeb getBadgeServiceWeb() {
         if (badgeSrv == null) {
             badgeSrv = new BadgeServiceWebImpl();
@@ -156,10 +131,6 @@ public class PhysiqueDataOutFactory {
         return badgeSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static AttributionUtilisateurBadgeServiceWeb getAttributionUtilisateurBadgeSrv() {
         if (attributionUtilisateurBadgeSrv == null) {
             attributionUtilisateurBadgeSrv = new AttributionUtilisateurBadgeServiceWebImpl();
@@ -167,10 +138,6 @@ public class PhysiqueDataOutFactory {
         return attributionUtilisateurBadgeSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static AttributionSecteurBorneAccesServiceWeb getAttributionSecteurBorneAccesSrv() {
         if (attributionSecteurBorneAccesSrv == null) {
             attributionSecteurBorneAccesSrv = new AttributionSecteurBorneAccesServiceWebImpl();
@@ -178,10 +145,6 @@ public class PhysiqueDataOutFactory {
         return attributionSecteurBorneAccesSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static AttributionSecteurCameraServiceWeb getAttributionSecteurCameraSrv() {
         if (attributionSecteurCameraSrv == null) {
             attributionSecteurCameraSrv = new AttributionSecteurCameraServiceWebImpl();
@@ -189,10 +152,6 @@ public class PhysiqueDataOutFactory {
         return attributionSecteurCameraSrv;
     }
 
-    /**
-     *
-     * @return
-     */
     public static AttributionSecteurDetecteurIntrusionServiceWeb getAttributionSecteurDetecteurIntrusionSrv() {
         if (attributionSecteurDetecteurIntrusionSrv == null) {
             attributionSecteurDetecteurIntrusionSrv = new AttributionSecteurDetecteurIntrusionServiceWebImpl();

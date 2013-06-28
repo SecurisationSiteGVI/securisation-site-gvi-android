@@ -5,7 +5,6 @@
 package metier;
 
 import android.content.Context;
-import android.support.v4.app.NotificationCompat;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;

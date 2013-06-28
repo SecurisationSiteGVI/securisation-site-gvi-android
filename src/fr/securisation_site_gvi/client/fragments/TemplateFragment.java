@@ -7,7 +7,11 @@ package fr.securisation_site_gvi.client.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
+import android.view.MenuItem;
 import android.widget.Toast;
+import fr.securisation_site_gvi.client.R;
+
 
 /**
  *
@@ -95,6 +99,17 @@ public class TemplateFragment extends Fragment{
             ret = true;
         }
         return ret;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+                Intent intent = new Intent(getActivity(), fr.securisation_site_gvi.client.Parametres.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
    
 }

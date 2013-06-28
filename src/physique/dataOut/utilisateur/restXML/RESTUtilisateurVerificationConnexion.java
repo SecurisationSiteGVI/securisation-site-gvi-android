@@ -2,15 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package physique.dataOut.utilisateur.rest;
+package physique.dataOut.utilisateur.restXML;
 
 
+import android.graphics.Path;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.xml.parsers.DocumentBuilder;
@@ -24,8 +26,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import physique.dataOut.BoiteAOutils;
-import physique.dataOut.BoiteAOutils.Path;
-import physique.dataOut.utilisateur.UtilisateurServiceWebImpl;
+import physique.dataOut.utilisateur.UtilisateurServiceWebXMLImpl;
 
 /**
  *
@@ -45,6 +46,7 @@ public class RESTUtilisateurVerificationConnexion {
      * @throws ParserConfigurationException
      */
     public Object execute(Object... params) throws Throwable, IOException, SSLPeerUnverifiedException, ConnectException, SAXException, ParserConfigurationException {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Ressource ressource = (Ressource) params[1];
         Technicien technicien = new Technicien();
         Technicien utilisateur = (Technicien) params[0];
@@ -60,17 +62,16 @@ public class RESTUtilisateurVerificationConnexion {
         boolean homme = utilisateur.isHomme();
         String login = utilisateur.getLogin();
         String password = utilisateur.getPassword();
-        Date dateDeNaissance = utilisateur.getDateDeNaissance();
-        Path annotation = UtilisateurServiceWebImpl.class.getAnnotation(Path.class);
-        URL url = new URL(ressource.getPathToAccesWebService() +annotation.ressourceName() +"/verificationConnexion");
-//        URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/verificationConnexion");
+        Date dateDeNaissance = new Date();
+    //    URL url = new URL(ressource.getPathToAccesWebService()+"utilisateur/verificationConnexion");
+       URL url = new URL(ressource.getPathToAccesWebService() + "utilisateur/verificationConnexion");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
         String input = "{\"id\":" + id + ",\"prenom\":\"" + prenom + "\",\"nom\":\"" + nom + "\",\"email\":\"" + email + "\",\"telephoneFixe\":\"" + telephoneFixe + "\","
                 + "\"telephonePortable\":\"" + telephonePortable + "\",\"ville\":\"" + ville + "\",\"codePostale\":" + codePostale + ","
-                + "\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateDeNaissance + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
+                + "\"adresse\":\"" + adresse + "\",\"homme\":\"" + homme + "\",\"dateDeNaissance\":\"" + dateFormat.format(dateDeNaissance) + "\",\"login\":\"" + login + "\",\"password\":\"" + password + "\"}";
         OutputStream os = conn.getOutputStream();
         os.write(input.getBytes());
         os.flush();

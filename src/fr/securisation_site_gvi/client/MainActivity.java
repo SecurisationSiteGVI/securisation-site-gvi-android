@@ -39,8 +39,6 @@ public class MainActivity extends TemplateActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         this.setThisActivityOn();
-        this.editTextLogin.setText("damienChes");
-        this.editTextPassword.setText("damien");
     }
 
     @Override
@@ -49,6 +47,8 @@ public class MainActivity extends TemplateActivity {
         this.editTextLogin = (EditText) findViewById(R.id.editTextLogin);
         this.textView = (TextView) findViewById(R.id.textView1);
         this.editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        this.editTextLogin.setText("damienChes");
+        this.editTextPassword.setText("damien");
     }
 
     @Override
