@@ -8,20 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonReader;
-import javax.json.JsonString;
 
 import javax.json.stream.JsonParser.Event;
 import javax.json.stream.JsonParserFactory;
@@ -75,8 +67,48 @@ public class UtilisateurServiceWebJSONImpl implements UtilisateurServiceWeb {
                             utilisateur.setId(parser.getLong());
                         }
                     }
+                    break;
                 }
-             
+                case VALUE_FALSE: {
+                    if (flag != null) {
+                        if (flag.equals("homme")) {
+                            utilisateur.setHomme(Boolean.parseBoolean(parser.getString()));
+                        }
+                    }
+                    break;
+                }
+                case VALUE_TRUE: {
+                    if (flag != null) {
+                        if (flag.equals("homme")) {
+                            utilisateur.setHomme(Boolean.parseBoolean(parser.getString()));
+                        }
+                    }
+                    break;
+                }
+                case VALUE_NULL: {
+                    if (flag != null) {
+                        if (flag.equals("id")) {
+                            utilisateur.setId(Long.valueOf(parser.getString()));
+                        } else if (flag.equals("nom")) {
+                            utilisateur.setNom(parser.getString());
+                        } else if (flag.equals("prenom")) {
+                            utilisateur.setPrenom(parser.getString());
+                        } else if (flag.equals("ville")) {
+                            utilisateur.setVille(parser.getString());
+                        } else if (flag.equals("codePostale")) {
+                            utilisateur.setCodePostale(parser.getInt());
+                        } else if (flag.equals("adresse")) {
+                            utilisateur.setAdresse(parser.getString());
+                        } else if (flag.equals("telephonePortable")) {
+                            utilisateur.setTelephonePortable(parser.getString());
+                        } else if (flag.equals("telephoneFixe")) {
+                            utilisateur.setTelephoneFixe(parser.getString());
+                        } else if (flag.equals("homme")) {
+                            //utilisateur.setTelephoneFixe(parser.getString());
+                        }
+                    }
+                    break;
+                }
                 case VALUE_STRING: {
                     if (flag != null) {
                         if (flag.equals("id")) {
@@ -97,8 +129,6 @@ public class UtilisateurServiceWebJSONImpl implements UtilisateurServiceWeb {
                             utilisateur.setTelephoneFixe(parser.getString());
                         } else if (flag.equals("homme")) {
                             //utilisateur.setTelephoneFixe(parser.getString());
-                        } else if (flag.equals("homme")) {
-                            //utilisateur.setTelephoneFixe(parser.getString());
                         }
                     }
                     break;
@@ -107,6 +137,11 @@ public class UtilisateurServiceWebJSONImpl implements UtilisateurServiceWeb {
             i++;
         }
         return utilisateurs;
+    }
+
+    private String getValues() {
+
+        return null;
     }
 
     public boolean add(Utilisateur utilisateur, Ressource ressource) throws IOException {

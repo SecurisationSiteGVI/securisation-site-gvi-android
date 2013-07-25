@@ -20,7 +20,7 @@ public class BoiteAOutils {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
     public @interface MethodToHaveData{
-        Type type();
+        Type type() default Type.XML;
         public static enum Type {JSON,XML};
     }
 
